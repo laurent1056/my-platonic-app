@@ -386,9 +386,6 @@ const ConsultView = () => {
     // Load API key from environment variable (set in .env.local file)
     // Create .env.local in project root with: VITE_API_KEY=your_api_key_here
     const apiKey = import.meta.env.VITE_API_KEY || '';
-    // #region agent log
-    fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:388',message:'API key loaded',data:{hasApiKey:!!apiKey,apiKeyPrefix:apiKey?.substring(0,4)||'none',apiKeyLength:apiKey?.length||0,envMode:import.meta.env.MODE},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'A'})}).catch(()=>{});
-    // #endregion
     
     if (!apiKey) {
       setError("API key not configured. Please create a .env.local file with VITE_API_KEY=your_key");
@@ -425,9 +422,6 @@ const ConsultView = () => {
       // Basic exponential backoff implementation
       const fetchWithRetry = async (attempt = 1) => {
         try {
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:425',message:'Oracle API call initiated',data:{attempt,queryLength:query.length,hasApiKey:!!apiKey},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'B'})}).catch(()=>{});
-          // #endregion
           const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -437,9 +431,6 @@ const ConsultView = () => {
               generationConfig: { responseMimeType: "application/json" }
             })
           });
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:433',message:'Oracle API response received',data:{status:response.status,statusText:response.statusText,ok:response.ok,attempt},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'C'})}).catch(()=>{});
-          // #endregion
 
           if (!response.ok) {
             let errorDetails = {
@@ -467,11 +458,7 @@ const ConsultView = () => {
                 errorDetails.message = errorText.substring(0, 200);
               }
               
-              // #region agent log
-              fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:448',message:'Oracle API error response',data:errorDetails,timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'D'})}).catch(()=>{});
-              // #endregion
-              
-              // Create error with full details
+              // Create error with full details (preserve for outer catch)
               const apiError = new Error(`API Error (${errorDetails.status})`);
               apiError.status = errorDetails.status;
               apiError.statusText = errorDetails.statusText;
@@ -479,7 +466,13 @@ const ConsultView = () => {
               apiError.apiCode = errorDetails.code;
               throw apiError;
             } catch (textErr) {
-              // If reading response text fails, throw with status info
+              // If reading response text fails, still preserve error details from textErr if it has them
+              // Otherwise create new error with status info (but this shouldn't lose apiMessage/apiCode from textErr if it was an apiError)
+              if (textErr.status && textErr.apiMessage) {
+                // textErr already has all the details, just rethrow it
+                throw textErr;
+              }
+              // If reading response text truly failed, we can't get error details
               const apiError = new Error(`API Error (${response.status})`);
               apiError.status = response.status;
               apiError.statusText = response.statusText;
@@ -487,9 +480,6 @@ const ConsultView = () => {
             }
           }
           const jsonData = await response.json();
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:445',message:'Oracle API success',data:{hasCandidates:!!jsonData.candidates,hasText:!!jsonData.candidates?.[0]?.content?.parts?.[0]?.text,textLength:jsonData.candidates?.[0]?.content?.parts?.[0]?.text?.length||0},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'E'})}).catch(()=>{});
-          // #endregion
           return jsonData;
         } catch (e) {
           if (attempt < 3) {
@@ -502,26 +492,14 @@ const ConsultView = () => {
 
       const data = await fetchWithRetry();
       const text = data.candidates?.[0]?.content?.parts?.[0]?.text;
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:456',message:'Oracle result processing',data:{hasText:!!text,textLength:text?.length||0},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'F'})}).catch(()=>{});
-      // #endregion
       
       if (text) {
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:471',message:'Attempting JSON parse',data:{textPreview:text.substring(0,100),textLength:text.length},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'G1'})}).catch(()=>{});
-        // #endregion
         let parsedResult;
         try {
           parsedResult = JSON.parse(text);
         } catch (parseErr) {
-          // #region agent log
-          fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:476',message:'JSON parse error',data:{errorMessage:parseErr.message,textPreview:text.substring(0,200)},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'G2'})}).catch(()=>{});
-          // #endregion
           throw new Error(`Failed to parse JSON response: ${parseErr.message}`);
         }
-        // #region agent log
-        fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:481',message:'Oracle result parsed successfully',data:{status:parsedResult.status,category:parsedResult.category,hasReasoning:!!parsedResult.coreReasoning},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'G3'})}).catch(()=>{});
-        // #endregion
         setResult(parsedResult);
       } else {
         throw new Error("No verdict returned");
@@ -565,9 +543,6 @@ const ConsultView = () => {
         userMessage = `The Oracle is currently silent: ${err.message || 'Connection failed. Check your internet connection or try again.'}`;
       }
       
-      // #region agent log
-      fetch('http://127.0.0.1:7242/ingest/87f4a11d-1a98-44f7-bef2-836772595605',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({location:'App.jsx:525',message:'Oracle error caught',data:{errorMessage:err.message,errorName:err.name,errorStatus:err.status,errorStatusText:err.statusText,apiMessage:err.apiMessage,apiCode:err.apiCode,userMessage,errorStack:err.stack?.substring(0,300)},timestamp:Date.now(),sessionId:'debug-session',runId:'production-test',hypothesisId:'H'})}).catch(()=>{});
-      // #endregion
       console.error('Oracle Error:', err);
       setError(userMessage);
     } finally {
