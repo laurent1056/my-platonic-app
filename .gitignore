@@ -1,0 +1,17 @@
+# Environment variables (should not be in build artifacts, but just in case)
+.env
+.env.local
+.env*.local
+
+# Node modules (if accidentally added)
+node_modules/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
