@@ -1,0 +1,54 @@
+---
+import '@/styles/global.css'
+import SiteHeader from '@/components/SiteHeader.astro'
+import SiteFooter from '@/components/SiteFooter.astro'
+
+interface Props {
+  title?: string
+  description?: string
+  current?: 'index' | 'methodology' | 'oracle'
+  image?: string
+}
+
+const {
+  title = 'Platonic Ideal — One product. Or none.',
+  description = 'A finite register of durable, repairable objects: one ideal product per category, or an honest empty verdict.',
+  current,
+  image,
+} = Astro.props
+const canonical = new URL(Astro.url.pathname, Astro.site)
+const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platonic Ideal`
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Platonic Ideal" />
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    {image && <meta property="og:image" content={image} />}
+    <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
+    <script is:inline>
+      (() => {
+        const stored = localStorage.getItem('PI_THEME')
+        if (stored === 'dark' || stored === 'light') document.documentElement.dataset.theme = stored
+      })()
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <SiteHeader current={current} />
+    <main id="main"><slot /></main>
+    <SiteFooter />
+  </body>
+</html>

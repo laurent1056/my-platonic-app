@@ -1,0 +1,15 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro'
+import { withBase } from '@/data/register'
+---
+
+<SiteLayout title="No entry found" description="This inscription does not exist in the Platonic Ideal register.">
+  <div class="shell">
+    <section class="editorial-hero" style="min-height:65vh">
+      <p class="label oxide">404 · No inscription</p>
+      <h1 class="editorial-title">The requested Form is absent.</h1>
+      <p class="editorial-dek">This is not an EMPTY verdict. It is simply a route the register does not contain.</p>
+      <a class="button" href={withBase()} style="margin-top:2rem">Return to the register</a>
+    </section>
+  </div>
+</SiteLayout>

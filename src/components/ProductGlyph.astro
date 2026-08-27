@@ -1,0 +1,92 @@
+---
+import type { RegisterEntry } from '@/data/register'
+
+interface Props {
+  entry: Pick<RegisterEntry, 'category' | 'model' | 'hasRealImage' | 'imageUrl'>
+  preferImage?: boolean
+}
+
+const { entry, preferImage = false } = Astro.props
+const name = entry.category.toLowerCase()
+const kind =
+  /pan|oven|saucepan|kettle|pot/.test(name) ? 'vessel' :
+  /boot|shoe/.test(name) ? 'boot' :
+  /chair|desk/.test(name) ? 'chair' :
+  /hammer|wrench|pliers|chisel|saw|drill|level|measure|ladder|wheelbarrow/.test(name) ? 'tool' :
+  /knife|pen|pencil|toothbrush|razor|flashlight|umbrella/.test(name) ? 'instrument' :
+  /bottle|container|cooler|freezer|refrigerator/.test(name) ? 'container' :
+  /shirt|jeans|jacket|socks|sweater|hat|gloves|belt/.test(name) ? 'garment' :
+  /backpack|briefcase|wallet|tent|sleeping bag/.test(name) ? 'carry' :
+  'object'
+---
+
+{preferImage && entry.hasRealImage ? (
+  <img class="specimen-image" src={entry.imageUrl} alt={entry.model || entry.category} loading="lazy" decoding="async" referrerpolicy="no-referrer" />
+) : (
+  <svg class="product-glyph" viewBox="0 0 400 300" role="img" aria-label={`Diagrammatic icon for ${entry.category}`}>
+    {kind === 'vessel' && (
+      <>
+        <ellipse class="major" cx="172" cy="124" rx="102" ry="24" />
+        <path class="major" d="M71 124c8 65 37 99 101 99s93-34 101-99M269 132l100 43c10 5 6 20-5 18l-105-28" />
+        <path class="detail" d="M96 144c18 35 47 52 80 52M118 112c29-10 77-10 106 0M142 101v-18h55v18" />
+        <path class="detail" d="M70 236h204M92 245h160" />
+      </>
+    )}
+    {kind === 'boot' && (
+      <>
+        <path class="major" d="M131 47h101l-7 114c20 17 44 32 82 43 28 8 37 28 27 44H78c-12-21 2-42 35-51l27-9z" />
+        <path class="major" d="M83 248h252v18H76c-15 0-18-15-7-26" />
+        <path class="detail" d="M145 73h75M143 97h75M141 122h76M139 147h77M137 170h83M139 73l70 95M219 73l-81 95" />
+      </>
+    )}
+    {kind === 'chair' && (
+      <>
+        <path class="major" d="M119 48h166v119H119zM100 178h204v36H100zM128 214l-18 63M277 214l18 63" />
+        <path class="detail" d="M139 68h126v79H139zM202 167v11M103 196h198" />
+        <circle class="detail" cx="110" cy="279" r="7" /><circle class="detail" cx="295" cy="279" r="7" />
+      </>
+    )}
+    {kind === 'tool' && (
+      <>
+        <path class="major" d="M107 65h146c28 0 51 18 51 41s-23 41-51 41h-45l-12 113h-65l12-113h-36c-25 0-45-18-45-41s20-41 45-41z" />
+        <path class="detail" d="M145 147h63M135 184h66M132 215h65M100 84h160M100 126h160" />
+        <circle class="detail" cx="269" cy="106" r="16" />
+      </>
+    )}
+    {kind === 'instrument' && (
+      <>
+        <path class="major" d="M91 218 271 43l39 39-177 179-61 19z" />
+        <path class="detail" d="m91 218 42 43M261 54l38 38M111 210l48 48M134 190l38 38M158 166l38 38" />
+        <path class="major" d="m72 280 19-62" />
+      </>
+    )}
+    {kind === 'container' && (
+      <>
+        <path class="major" d="M111 67h178l-13 198H124zM97 67h206V42H97z" />
+        <path class="detail" d="M133 92h144M134 126h140M137 160h135M139 194h131M142 228h126" />
+        <path class="detail" d="M154 42V25h92v17" />
+      </>
+    )}
+    {kind === 'garment' && (
+      <>
+        <path class="major" d="m149 49-86 55 34 61 37-20-7 128h148l-7-128 37 20 34-61-87-55c-19 18-84 18-103 0z" />
+        <path class="detail" d="M149 49c9 39 94 39 103 0M134 145l10-53M268 145l-10-53M146 248h110" />
+      </>
+    )}
+    {kind === 'carry' && (
+      <>
+        <path class="major" d="M101 99c0-28 23-51 51-51h98c28 0 51 23 51 51v165H101z" />
+        <path class="major" d="M154 48c0-28 20-37 47-37s47 9 47 37" />
+        <path class="detail" d="M129 123h144v111H129zM129 153h144M153 99V74M249 99V74" />
+      </>
+    )}
+    {kind === 'object' && (
+      <>
+        <circle class="major" cx="200" cy="149" r="104" />
+        <path class="major" d="m200 45 90 156H110z" />
+        <rect class="major" x="145" y="94" width="110" height="110" transform="rotate(45 200 149)" />
+        <circle class="detail" cx="200" cy="149" r="38" />
+      </>
+    )}
+  </svg>
+)}

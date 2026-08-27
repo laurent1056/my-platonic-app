@@ -1,57 +1,21 @@
 # Routes and Views
 
-Platonic Ideal remains a single-page app with in-memory view state.
+Platonic Ideal is an Astro static site. Navigation uses real URLs and every category dossier is independently crawlable.
 
-## Current view set
+## Routes
 
-- `home`
-- `index`
-- `category`
-- `methodology`
-- `oracle`
+- `/my-platonic-app/` — orientation, census, searchable register, featured declaration
+- `/my-platonic-app/category/[slug]/` — one static dossier per CSV row
+- `/my-platonic-app/methodology/` — admission test, evidence, EMPTY, and revocation policy
+- `/my-platonic-app/oracle/` — private browser-based authoring studio
+- `/my-platonic-app/404.html` — absent route treatment
 
-## Home
+## Category branches
 
-- introduction
-- search entry
-- declared/empty totals
-- highlighted category cards
-
-## Index
-
-- search
-- status filter
-- alphabetical or declared-first sort
-
-## Category
-
-Dedicated rendered sections:
-
-- status
-- model/category title
-- one-liner
-- Why This
-- Why Not Others
-- Evidence
-- Failure Modes
-- Caveats
-- Where to Acquire
-- Last Reviewed
-- Permanence Mechanism
-
-Review section:
-
-- `Source Fields` lists any populated CSV headers not already treated as identity-only fields
-
-## Methodology
-
-Explains the declaration rules, evidence standard, disqualifiers, and what `EMPTY` means.
-
-## Oracle
-
-Draft-assist UI only. It helps author content but does not replace the CSV as source of truth.
+- `DECLARED` — product icon or real image, gold nimbus, named model, complete argument
+- `EMPTY` — struck specimen bay, “No product qualifies,” apophatic requirements
+- all other source statuses — public `IN REVIEW` state with the precise source status retained
 
 ## URL behavior
 
-The app does not currently provide crawlable per-category routes. View state is internal, and canonical SEO falls back to the project root URL.
-
+Slugs are generated from category names in `src/data/register.ts`. Astro produces all category routes at build time through `getStaticPaths()`.

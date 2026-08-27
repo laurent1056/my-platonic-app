@@ -1,21 +1,10 @@
 # Search and Filter
 
-## Current behavior
+The register supports client-side interaction over statically rendered entries:
 
-The current implementation supports:
+- full-text search across category, model, verdict, permanence, and summary
+- public verdict filter: all / declared / empty / in review
+- sort: canonical order / alphabetical / confidence
+- live result count and a semantic no-results state
 
-- free-text search by category
-- free-text search by model when present
-- status filter: all / declared / empty
-- sort: alphabetical / declared first
-
-## Product intent
-
-- keep the interaction quiet and fast
-- do not add faceted complexity unless the CSV actually supports it
-- do not expose filters for fields that are only review metadata
-
-## Scope boundary
-
-No shareable querystring state, keyboard shortcut system, or advanced multi-filter logic is part of the current product.
-
+Desktop uses a dense register table. Mobile uses purpose-built stacked rows; the same script keeps both representations synchronized. Filter state is intentionally ephemeral and is not indexed or encoded in the URL.

@@ -1,31 +1,33 @@
 # Testing
 
-## Required checks
+## Required commands
 
-- `npm run build`
-- `npm run lint`
+```bash
+npm run validate:data
+npm run check
+npm run build
+```
 
-## Smoke test matrix
+## Current build contract
 
-Check at least:
+- validator accepts all 68 rows and blocks malformed CSV, duplicate slugs, invalid statuses, and declaration/model violations
+- Astro type check returns zero errors, warnings, or hints
+- production build generates 72 pages plus the sitemap
 
-- Home view loads and search filters cards
-- Index view search, filter, and sort work
-- Category page renders for:
-  - one `DECLARED` row
-  - one `EMPTY` row
-  - one `CANDIDATE` row
-- Methodology view loads
-- Oracle view loads without breaking the app
+## Browser smoke matrix
 
-## Data checks
+- desktop and 390px mobile layouts have no body-level horizontal overflow
+- mobile register uses dedicated stacked rows; desktop uses the data table
+- search, status filter, and all three sort modes update both layouts
+- category pages render for DECLARED, EMPTY, and IN REVIEW
+- light/dark switch persists on the device
+- methodology loads and anchors navigate correctly
+- Oracle loads with no key and does not affect browsing
+- browser console remains free of errors
 
-- only `public/platonic_ideal.csv` exists as the tracked dataset
-- the CSV header set matches `docs/DATA_MODEL.md`
-- no repo docs describe any retired duplicate dataset as active
+## Accessibility checks
 
-## SEO checks
-
-- default HTML contains title, description, OG, Twitter, and canonical tags
-- runtime title changes when switching between home, index, methodology, oracle, and category views
-- empty categories generate sensible titles without blank model text
+- keyboard-visible focus on every interactive element
+- 44px minimum primary controls and mobile register targets
+- light and dark text/state contrast meet WCAG 2.1 AA
+- table headings, page landmarks, form labels, verdict text, and image alternatives remain semantic

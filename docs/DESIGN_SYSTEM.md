@@ -1,24 +1,15 @@
 # Design System
 
-The current UI is intentionally quiet and typographic.
+The canonical design specification is [`design/design.md`](./design/design.md).
 
-## Visual principles
+## Implemented system
 
-- warm paper-like background
-- serif-forward titles
-- restrained borders and spacing
-- content-first hierarchy
+- Greek-stele proportion and lapidary micro-labels
+- Orthodox icon-panel treatment for DECLARED entries
+- apophatic absence treatment for EMPTY entries
+- modern monospace data layer and compact register structure
+- restrained gold limited to canonization moments
+- responsive table on desktop and dedicated mobile register rows
+- light and candlelight-dark themes built entirely from CSS tokens
 
-## Repeated UI patterns
-
-- bordered cards
-- uppercase micro-headings
-- simple status badges
-- generous line height for long-form reasoning
-
-## Non-goals
-
-- flashy interaction patterns
-- dashboard-style density
-- major componentization for its own sake
-
+The original Gemini-era system is superseded. `src/styles/global.css` is the implementation contract; reusable motifs and states live in `src/components/`.

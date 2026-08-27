@@ -1,52 +1,76 @@
 # Platonic Ideal
 
-A React-based catalog for durable, rebuildable products. Each category resolves to exactly one product declaration or EMPTY with explicit reasoning.
+**One product per category. Or none.**
 
-## Features
+Platonic Ideal is a static editorial register of durable objects. Every category resolves to one named model that approaches the Form—or an explicit EMPTY finding explaining why no current product qualifies.
 
-- Searchable category index
-- Category detail pages with reasoning, caveats, and failure modes
-- Methodology page describing the declaration standard
-- Oracle draft-writing tool backed by Anthropic
-- CSV-driven content loaded from `public/platonic_ideal.csv`
-- Header-aware source field review for auditing CSV content in the UI
-- GitHub Pages deployment with baseline SEO metadata and runtime title/description updates
+## Product surface
+
+- searchable and sortable 68-entry register
+- 68 crawlable category dossiers generated at build time
+- first-class DECLARED, EMPTY, and IN REVIEW treatments
+- methodology and public editorial standard
+- private, browser-based Oracle drafting studio
+- responsive light and dark themes
+- per-page canonical metadata and XML sitemap
+- CSV validation before every production build
+
+## Stack
+
+- [Astro](https://astro.build/) — static pages and build-time data mapping
+- Tailwind CSS v4 — utility layer and token integration
+- Papa Parse — canonical CSV parsing
+- GitHub Pages — static hosting through GitHub Actions
 
 ## Development
 
 ```bash
 npm install
 npm run dev
+npm run check
 npm run build
-npm run deploy
+npm run preview
 ```
 
-## Canonical Data
+`npm run build` validates the canonical data before producing 72 static pages.
 
-The site uses one canonical dataset:
+## Canonical data
+
+All editorial content originates in:
 
 - `public/platonic_ideal.csv`
 
-There is no secondary CSV source of truth. Content, schema, and rendered sections should reconcile back to this file.
+The build-time mapper is `src/data/register.ts`. It normalizes compatibility columns and generates stable category slugs. The validator is `scripts/validate-register.mjs`.
+
+## Architecture
+
+```text
+src/
+  components/       shared visual and semantic patterns
+  data/register.ts  CSV → typed register entries
+  layouts/          global metadata, navigation, footer
+  pages/
+    index.astro
+    methodology.astro
+    oracle.astro
+    category/[slug].astro
+  styles/global.css design tokens and responsive system
+public/
+  platonic_ideal.csv
+scripts/
+  validate-register.mjs
+```
+
+## Design
+
+The visual system is documented in `docs/design/design.md`: a modern information register informed by the Greek stele, Orthodox icon panels, and the apophatic tradition. Classical flourishes encode meaning; they are not decorative wallpaper.
+
+## Deployment
+
+Pushes to `main` run `.github/workflows/deploy.yml`, which validates, builds, uploads, and deploys the site through GitHub Pages. Repository Pages settings must use **GitHub Actions** as the publishing source.
+
+Public URL: `https://laurent1056.github.io/my-platonic-app/`
 
 ## Documentation
 
-Core project docs live in `docs/`:
-
-- `docs/PRD.md`
-- `docs/DATA_MODEL.md`
-- `docs/CONTENT_GUIDE.md`
-- `docs/CONTENT_TEMPLATES.md`
-- `docs/ROUTES_AND_VIEWS.md`
-- `docs/SEO_METADATA.md`
-- `docs/DEPLOYMENT.md`
-- `docs/TESTING.md`
-- `docs/DESIGN_SYSTEM.md`
-- `docs/SEARCH_AND_FILTER.md`
-- `docs/ACCESSIBILITY.md`
-- `docs/SECURITY_PRIVACY.md`
-- `CONTRIBUTING.md`
-
-## Project Note
-
-This root `platonic-ideal/` directory is the canonical source project. The app uses a single primary dataset at `public/platonic_ideal.csv`, and the category view exposes populated CSV column headers as reviewable source fields in the UI.
+Product, editorial, data, accessibility, security, testing, SEO, and design documentation lives in `docs/`.

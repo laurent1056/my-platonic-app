@@ -1,0 +1,14 @@
+---
+import type { Verdict } from '@/data/register'
+
+interface Props {
+  verdict: Verdict
+  sourceStatus?: string
+}
+
+const { verdict, sourceStatus } = Astro.props
+const variant = verdict === 'DECLARED' ? 'declared' : verdict === 'EMPTY' ? 'empty' : 'review'
+const label = verdict === 'IN REVIEW' && sourceStatus ? sourceStatus.replace(/_/g, ' ') : verdict
+---
+
+<span class:list={['chip', variant]}>{label}</span>

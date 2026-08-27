@@ -36,10 +36,15 @@ The current schema is:
 - `DECLARED`: one model is named and defended
 - `EMPTY`: no current product qualifies
 - `CANDIDATE`: not yet ready for declaration, but still worth tracking
+- `SPLIT_REQUIRED`: the parent category fragments into incompatible Forms
+- `CONDITIONAL`: a named model depends on explicit operating conditions
+- `CONSUMABLE`: replacement is intrinsic to the category and must be judged rationally
 
-## Front-end mapping
+The public design groups every non-`DECLARED`/non-`EMPTY` source status under `IN REVIEW`, while preserving and displaying the precise source status.
 
-The app maps the CSV into a smaller runtime shape:
+## Build-time mapping
+
+`src/data/register.ts` parses the CSV during the Astro build and maps it into a typed shape:
 
 - `Category` → category label
 - `Status` → status badge
@@ -51,9 +56,9 @@ The app maps the CSV into a smaller runtime shape:
 - `Admission Test` → evidence fallback when `Evidence` is absent
 - `Failure Modes` → failure modes card
 - `Last Reviewed` → metadata card
-- `Image URL` → image grid
+- `Image URL` → a real product image only when the URL is not a placeholder; otherwise the site uses its specimen-glyph system
 
-Any populated non-identity field may also appear in the category page's `Source Fields` review block.
+Category pages render the mapped editorial fields directly into static HTML.
 
 ## Normalization rules
 
@@ -67,4 +72,3 @@ Any populated non-identity field may also appear in the category page's `Source 
 - Never list multiple declarations for a single category.
 - If the form splits into incompatible sub-forms, keep the parent unresolved or use child categories already present in the CSV.
 - Prefer filling supported fields over adding new structure.
-

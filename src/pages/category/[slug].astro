@@ -1,0 +1,125 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro'
+import StatusChip from '@/components/StatusChip.astro'
+import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
+import ProductGlyph from '@/components/ProductGlyph.astro'
+import { categoryUrl, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
+
+export function getStaticPaths() {
+  return register.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }))
+}
+
+interface Props { entry: RegisterEntry }
+const { entry } = Astro.props
+const index = register.findIndex((candidate) => candidate.slug === entry.slug)
+const next = register[(index + 1) % register.length]
+const isDeclared = entry.verdict === 'DECLARED'
+const isEmpty = entry.verdict === 'EMPTY'
+const declaration = isDeclared ? entry.model : isEmpty ? 'No product qualifies.' : 'Declaration withheld.'
+const description = entry.summary || entry.coreReasoning || `${entry.category}: ${declaration}`
+const disqualifiers = splitStatements(entry.disqualifiers)
+const admission = splitStatements(entry.admissionTest)
+const failures = splitStatements(entry.failureModes)
+---
+
+<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={entry.hasRealImage ? entry.imageUrl : undefined}>
+  <div class="shell">
+    <section class="dossier-hero">
+      <nav class="breadcrumbs" aria-label="Breadcrumb">
+        <a href={withBase()}>Register</a><span aria-hidden="true">/</span><span>{entry.reference}</span>
+      </nav>
+      <div class="dossier-title-row">
+        <div>
+          <StatusChip verdict={entry.verdict} sourceStatus={entry.sourceStatus} />
+          <h1 class="dossier-title">{entry.category}</h1>
+        </div>
+        <div class="dossier-reference">
+          <span class="label">Canonical entry</span><br />
+          {entry.reference}<br />NO. {String(entry.number).padStart(3, '0')}
+        </div>
+      </div>
+    </section>
+
+    <div class="dossier-grid">
+      <aside class="specimen-panel" aria-label="Specimen record">
+        <div class:list={['specimen-stage', { empty: isEmpty }]}>
+          {isDeclared && <span class="nimbus" aria-hidden="true"></span>}
+          {isEmpty ? (
+            <p class="absence-mark">No specimen admitted.</p>
+          ) : (
+            <ProductGlyph entry={entry} preferImage={entry.hasRealImage} />
+          )}
+        </div>
+        <dl class="specimen-meta">
+          <div><dt class="label">Price</dt><dd>{entry.price || '—'}</dd></div>
+          <div><dt class="label">Confidence</dt><dd><ConfidenceMeter value={entry.confidence} /></dd></div>
+          <div><dt class="label">Permanence</dt><dd>{entry.permanence || '—'}</dd></div>
+          <div><dt class="label">Reviewed</dt><dd>{entry.lastReviewed || '—'}</dd></div>
+        </dl>
+      </aside>
+
+      <article>
+        <header class:list={['model-declaration', { empty: !isDeclared }]}>
+          <p class="label">{isDeclared ? 'The declared model' : isEmpty ? 'Standing verdict' : 'Editorial state'}</p>
+          <h2 class:list={['model-name', { empty: !isDeclared }]}>{declaration}</h2>
+          {isDeclared && entry.price && <p class="mono dim" style="margin:.8rem 0 0">Indicative price · {entry.price}</p>}
+        </header>
+
+        <p class="dossier-lede">{entry.summary || entry.formDefinition}</p>
+
+        {entry.formDefinition && (
+          <section class="argument">
+            <h2>The Form</h2>
+            <p>{entry.formDefinition}</p>
+          </section>
+        )}
+
+        {entry.coreReasoning && (
+          <section class="argument">
+            <h2>{isDeclared ? 'Why it ends the search' : isEmpty ? 'Why the search stays open' : 'Why judgment is withheld'}</h2>
+            <p class="versal">{entry.coreReasoning}</p>
+          </section>
+        )}
+
+        {disqualifiers.length > 0 && (
+          <section class="argument">
+            <h2>{isDeclared ? 'The field it disqualifies' : 'Why the field fails'}</h2>
+            <ul class="evidence-list">
+              {disqualifiers.map((statement) => <li>{statement}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {admission.length > 0 && (
+          <section class="argument">
+            <h2>{isEmpty ? 'What the category would require' : 'Admission test'}</h2>
+            <ul class:list={['evidence-list', { 'requirement-list': isEmpty || !isDeclared }]}>
+              {admission.map((statement) => <li>{statement}</li>)}
+            </ul>
+          </section>
+        )}
+
+        {failures.length > 0 && (
+          <section class="argument">
+            <h2>Failure modes</h2>
+            <ul class="evidence-list">
+              {failures.map((statement) => <li>{statement}</li>)}
+            </ul>
+          </section>
+        )}
+
+        <dl class="dossier-facts">
+          <div class="fact"><dt class="label">Maintenance cycle</dt><dd>{entry.maintenance || 'Not recorded'}</dd></div>
+          <div class="fact"><dt class="label">Permanence mechanism</dt><dd>{entry.permanence || 'Not recorded'}</dd></div>
+          <div class="fact"><dt class="label">Alternates, not declared</dt><dd>{entry.alternates || 'None admitted'}</dd></div>
+          <div class="fact"><dt class="label">Source status</dt><dd>{entry.sourceStatus.replace(/_/g, ' ')}</dd></div>
+        </dl>
+      </article>
+    </div>
+
+    <a class="next-entry" href={categoryUrl(next)}>
+      <span><span class="label">Next in the canon</span><strong>{next.category}</strong></span>
+      <span class="mono" aria-hidden="true">{next.reference} →</span>
+    </a>
+  </div>
+</SiteLayout>

@@ -1,27 +1,32 @@
 # Deployment
 
-Platonic Ideal deploys as a static Vite app to GitHub Pages.
+Platonic Ideal deploys as a static Astro site to GitHub Pages.
 
-## Current deployment assumptions
+## Configuration
 
-- repository: `my-platonic-app`
+- repository: `laurent1056/my-platonic-app`
+- source branch: `main`
 - public URL: `https://laurent1056.github.io/my-platonic-app/`
-- deploy command: `npm run deploy`
+- Astro `site`: `https://laurent1056.github.io`
+- Astro `base`: `/my-platonic-app`
 
-## Data deployment
+## Workflow
 
-- `public/platonic_ideal.csv` is bundled into the deployed site
-- no backend fetch layer is involved
+`.github/workflows/deploy.yml` runs on pushes to `main`:
 
-## Base URL behavior
+1. check out the repository
+2. install dependencies under Node 24
+3. run data validation and the Astro build
+4. upload the static artifact
+5. deploy through the `github-pages` environment
 
-The app uses `import.meta.env.BASE_URL` and the current Pages subpath.
+In GitHub → Settings → Pages, set **Source** to **GitHub Actions**. The retired `gh-pages` branch is not the publishing source for the rebuild.
 
-## Post-deploy checks
+## Post-deploy verification
 
-- site loads at the project URL
-- category count matches the CSV
-- one `DECLARED`, one `EMPTY`, and one `CANDIDATE` row render correctly
-- page title updates on category navigation
-- canonical root URL and meta description exist in the served HTML
-
+- home page and fonts load under the repository base path
+- register contains 68 entries
+- a DECLARED, EMPTY, and IN REVIEW dossier open at unique URLs
+- methodology and Oracle routes load
+- `sitemap-index.xml` and `robots.txt` resolve
+- page source contains a unique canonical URL and description

@@ -1,0 +1,182 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro'
+import StatusChip from '@/components/StatusChip.astro'
+import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
+import ProductGlyph from '@/components/ProductGlyph.astro'
+import { categoryUrl, register, registerStats } from '@/data/register'
+
+const feature = register.find((entry) => entry.slug === 'frying-pan') ?? register[0]
+---
+
+<SiteLayout current="index">
+  <div class="shell">
+    <section class="hero" aria-labelledby="hero-title">
+      <div>
+        <div class="hero-kicker label">A register of durable objects</div>
+        <h1 class="hero-title" id="hero-title">One product.<br /><em>Or none.</em></h1>
+        <p class="hero-copy">For every category, a single object that approaches the Form—durable, repairable, stable—or an honest declaration that the category remains empty.</p>
+      </div>
+      <aside class="hero-aside">
+        <span class="label">The rule</span>
+        <p>No shortlists. No affiliate rankings. No “best for most people.” One declaration earns its place through evidence—or the search stays open.</p>
+        <p class="revision">THE REGISTER · REV 2026.08<br />CANONICAL ENTRIES = {registerStats.total}</p>
+      </aside>
+    </section>
+
+    <section class="census" aria-label="Register census">
+      <div class="census-item"><span class="label">Categories</span><strong class="census-number">{registerStats.total}</strong></div>
+      <div class="census-item"><span class="label">Declared</span><strong class="census-number">{registerStats.declared}</strong></div>
+      <div class="census-item"><span class="label">Empty</span><strong class="census-number oxide">{registerStats.empty}</strong></div>
+      <div class="census-item"><span class="label">In review</span><strong class="census-number" style="color:var(--ochre)">{registerStats.review}</strong></div>
+    </section>
+
+    <section class="register-section" id="register" aria-labelledby="register-title">
+      <div class="section-heading">
+        <h2 class="label" id="register-title">§ 01 · The Register</h2>
+        <span class="count">N = {registerStats.total}</span>
+      </div>
+
+      <div class="register-toolbar" aria-label="Register controls">
+        <div class="field-shell">
+          <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+          <input class="text-field" type="search" id="register-search" placeholder="Search category, model, or mechanism…" autocomplete="off" />
+        </div>
+        <select class="select-field" id="register-verdict" aria-label="Filter by verdict">
+          <option value="all">All verdicts</option>
+          <option value="DECLARED">Declared</option>
+          <option value="EMPTY">Empty</option>
+          <option value="IN REVIEW">In review</option>
+        </select>
+        <select class="select-field" id="register-sort" aria-label="Sort register">
+          <option value="number">Canonical order</option>
+          <option value="category">Alphabetical</option>
+          <option value="confidence">Confidence</option>
+        </select>
+      </div>
+
+      <div class="register-wrap">
+        <table class="register-table">
+          <thead>
+            <tr><th scope="col">No.</th><th scope="col">Category</th><th scope="col">Verdict</th><th scope="col">The model</th><th scope="col">Price</th><th scope="col">Conf.</th></tr>
+          </thead>
+          <tbody id="register-body">
+            {register.map((entry) => (
+              <tr
+                class="register-row"
+                data-search={entry.searchText}
+                data-verdict={entry.verdict}
+                data-number={entry.number}
+                data-category={entry.category.toLocaleLowerCase()}
+                data-confidence={entry.confidence}
+              >
+                <td class="number">{String(entry.number).padStart(3, '0')}</td>
+                <td class="category"><a href={categoryUrl(entry)}>{entry.category}</a></td>
+                <td><StatusChip verdict={entry.verdict} sourceStatus={entry.sourceStatus} /></td>
+                <td class="model">{entry.model || (entry.verdict === 'EMPTY' ? '— no product qualifies' : '— declaration pending')}</td>
+                <td class="price">{entry.price || '—'}</td>
+                <td><ConfidenceMeter value={entry.confidence} /></td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+        <div class="register-mobile" id="register-mobile" aria-label="Category register">
+          {register.map((entry) => (
+            <article
+              class="register-mobile-row"
+              data-search={entry.searchText}
+              data-verdict={entry.verdict}
+              data-number={entry.number}
+              data-category={entry.category.toLocaleLowerCase()}
+              data-confidence={entry.confidence}
+            >
+              <a href={categoryUrl(entry)}>
+                <span class="mono mobile-number">{String(entry.number).padStart(3, '0')}</span>
+                <span class="mobile-category">{entry.category}</span>
+                <StatusChip verdict={entry.verdict} sourceStatus={entry.sourceStatus} />
+                <span class="mobile-model">{entry.model || (entry.verdict === 'EMPTY' ? 'No product qualifies' : 'Declaration pending')}</span>
+                <span class="mobile-meta"><span class="mono">{entry.price || '—'}</span><ConfidenceMeter value={entry.confidence} /></span>
+              </a>
+            </article>
+          ))}
+        </div>
+        <p class="register-empty" id="register-empty" hidden>No entry matches this inscription.</p>
+      </div>
+      <p class="mono dim" style="font-size:.62rem;margin-top:.9rem" aria-live="polite" id="register-result-count">Showing all {registerStats.total} entries.</p>
+    </section>
+
+    <section aria-labelledby="feature-title">
+      <div class="section-heading">
+        <h2 class="label" id="feature-title">§ 02 · A Canonized Object</h2>
+        <span class="count">{feature.reference}</span>
+      </div>
+      <article class="featured">
+        <div class="featured-visual">
+          <ProductGlyph entry={feature} />
+        </div>
+        <div class="featured-content">
+          <StatusChip verdict={feature.verdict} />
+          <h3 class="featured-title">{feature.category}</h3>
+          <p class="featured-model">{feature.model}</p>
+          <p class="featured-reason">{feature.summary}</p>
+          <a class="button secondary" href={categoryUrl(feature)}>Open the dossier <span aria-hidden="true">↗</span></a>
+          <dl class="featured-meta">
+            <div><dt class="label">Permanence</dt><dd class="mono">{feature.permanence || '—'}</dd></div>
+            <div><dt class="label">Reviewed</dt><dd class="mono">{feature.lastReviewed || '—'}</dd></div>
+          </dl>
+        </div>
+      </article>
+    </section>
+  </div>
+</SiteLayout>
+
+<script>
+  const search = document.querySelector('#register-search')
+  const verdict = document.querySelector('#register-verdict')
+  const sort = document.querySelector('#register-sort')
+  const body = document.querySelector('#register-body')
+  const mobile = document.querySelector('#register-mobile')
+  const empty = document.querySelector('#register-empty')
+  const count = document.querySelector('#register-result-count')
+
+  const update = () => {
+    if (!(body instanceof HTMLTableSectionElement)) return
+    const query = search instanceof HTMLInputElement ? search.value.trim().toLocaleLowerCase() : ''
+    const state = verdict instanceof HTMLSelectElement ? verdict.value : 'all'
+    const sortBy = sort instanceof HTMLSelectElement ? sort.value : 'number'
+    const rows = Array.from(body.querySelectorAll('tr'))
+    const mobileRows = mobile instanceof HTMLElement ? Array.from(mobile.querySelectorAll<HTMLElement>('.register-mobile-row')) : []
+
+    rows.sort((a, b) => {
+      if (sortBy === 'category') return (a.dataset.category || '').localeCompare(b.dataset.category || '')
+      if (sortBy === 'confidence') return Number(b.dataset.confidence) - Number(a.dataset.confidence) || Number(a.dataset.number) - Number(b.dataset.number)
+      return Number(a.dataset.number) - Number(b.dataset.number)
+    })
+    rows.forEach((row) => body.append(row))
+    mobileRows.sort((a, b) => {
+      if (sortBy === 'category') return (a.dataset.category || '').localeCompare(b.dataset.category || '')
+      if (sortBy === 'confidence') return Number(b.dataset.confidence) - Number(a.dataset.confidence) || Number(a.dataset.number) - Number(b.dataset.number)
+      return Number(a.dataset.number) - Number(b.dataset.number)
+    })
+    mobileRows.forEach((row) => mobile?.append(row))
+
+    let visible = 0
+    rows.forEach((row) => {
+      const matchesQuery = !query || (row.dataset.search || '').includes(query)
+      const matchesState = state === 'all' || row.dataset.verdict === state
+      row.hidden = !(matchesQuery && matchesState)
+      if (!row.hidden) visible += 1
+    })
+    mobileRows.forEach((row) => {
+      const matchesQuery = !query || (row.dataset.search || '').includes(query)
+      const matchesState = state === 'all' || row.dataset.verdict === state
+      row.hidden = !(matchesQuery && matchesState)
+    })
+
+    if (empty instanceof HTMLElement) empty.hidden = visible > 0
+    if (count instanceof HTMLElement) count.textContent = `Showing ${visible} ${visible === 1 ? 'entry' : 'entries'}.`
+  }
+
+  search?.addEventListener('input', update)
+  verdict?.addEventListener('change', update)
+  sort?.addEventListener('change', update)
+</script>

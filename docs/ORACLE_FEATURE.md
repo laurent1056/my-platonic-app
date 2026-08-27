@@ -16,7 +16,10 @@ The Oracle is an optional front-end helper for drafting CSV content.
 
 ## Current implementation truth
 
-- API key is stored in `localStorage` under `PI_ORACLE_KEY`
+- API key stays in the browser and is sent directly to Anthropic
+- session storage is the default; optional “remember” uses `localStorage` under `PI_ORACLE_KEY`
+- “Forget key” clears both browser stores
+- the default model is `claude-sonnet-5`
 - output is plain draft text, not an auto-applied mutation
+- output follows the register's exact editorial headings and identifies evidence still needed
 - the rest of the site must continue to work without a configured key
-

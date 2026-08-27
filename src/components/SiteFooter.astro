@@ -1,0 +1,31 @@
+---
+import { registerStats, withBase } from '@/data/register'
+const year = new Date().getFullYear()
+---
+
+<footer class="site-footer">
+  <div class="shell">
+    <div class="footer-grid">
+      <div>
+        <p class="footer-title">Platonic Ideal</p>
+        <p class="footer-copy">A finite register of durable objects. One model approaches the Form—or the category remains honestly empty.</p>
+      </div>
+      <nav class="footer-links" aria-label="Project">
+        <span class="label">Project</span>
+        <a href={withBase('#register')}>The Register</a>
+        <a href={withBase('methodology/')}>Methodology</a>
+        <a href={withBase('oracle/')}>Oracle studio</a>
+      </nav>
+      <div class="footer-links">
+        <span class="label">Census</span>
+        <span>{registerStats.declared} declared</span>
+        <span>{registerStats.empty} empty</span>
+        <span>{registerStats.review} in review</span>
+      </div>
+    </div>
+    <div class="colophon">
+      <span>© {year} PLATONIC IDEAL · STATIC REGISTER</span>
+      <span>ASTRO · CSV CANON · REV 2026.08</span>
+    </div>
+  </div>
+</footer>
