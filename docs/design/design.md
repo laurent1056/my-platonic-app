@@ -33,6 +33,7 @@ The **modern half** keeps this from becoming a museum piece: monospace data, hai
 5. **The data layer stays modern.** All values — prices, models, dates, confidence, codes — are monospace and tabular. This is the discipline that earns the right to be ornamental elsewhere.
 6. **Proportion over decoration.** Generous inscription-margins, a strict type scale, hairline rules. Restraint is the classical virtue we're actually borrowing.
 7. **The product drawing is an icon** — in both senses. Frontal, flattened, essential line-work, never a photorealistic render (see §9).
+8. **The philosopher is a guide, not a mascot.** Plato may appear once, in the homepage hero, where his gaze creates a directional cue toward the first declaration. He does not recur as a decorative avatar.
 
 ---
 
@@ -215,6 +216,16 @@ Product illustrations follow the **icon / engraving** convention, not photograph
 - Think **red-figure vase drawing** meets **technical patent illustration** — a lineage that is simultaneously ancient Greek and modern spec-sheet.
 - Hand-author as inline SVG where simple (see the skillet in the mockup); for anything intricate, draw once and store as an optimized SVG asset. Never raster.
 - EMPTY categories have **no icon** — the struck bay stands in for the absent Form.
+
+### The homepage portrait — *Plato as guide*
+
+The homepage may use one documentary photograph of Plato's sculptural portrait as an explicit exception to the product-illustration rule. Its job is behavioral: place the portrait on the right and select a three-quarter view whose gaze falls down and left toward the primary action. The portrait sits in an arched bay recalling an apse or icon niche, but receives no gold nimbus; gold remains reserved for declared products.
+
+- **Primary action:** `Examine a declaration` — opens a strong, representative category dossier.
+- **Secondary action:** `Browse the register` — moves to the complete index.
+- **Do not use:** generic `Learn more`, an authoring/submission action, multiple equal-weight buttons, or a front-facing portrait that stares out of the page.
+- The mobile reading order remains headline → primary action → portrait, so the image can never obstruct the task.
+- Attribution remains visible in the figure caption. See [`IMAGE_CREDITS.md`](./IMAGE_CREDITS.md).
 
 ---
 

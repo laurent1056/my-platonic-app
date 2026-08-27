@@ -3,24 +3,54 @@ import SiteLayout from '@/layouts/SiteLayout.astro'
 import StatusChip from '@/components/StatusChip.astro'
 import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
 import ProductGlyph from '@/components/ProductGlyph.astro'
-import { categoryUrl, register, registerStats } from '@/data/register'
+import { categoryUrl, register, registerStats, withBase } from '@/data/register'
 
 const feature = register.find((entry) => entry.slug === 'frying-pan') ?? register[0]
+const platoPortrait = withBase('images/plato-silanion-berlin.webp')
+const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_Greek_philosopher_Plato._Roman_copy_(1st_century_CE)_of_an_original_(350-340_BCE)._Altes_Museum,_Berlin.jpg'
 ---
 
 <SiteLayout current="index">
   <div class="shell">
     <section class="hero" aria-labelledby="hero-title">
-      <div>
+      <div class="hero-content">
         <div class="hero-kicker label">A register of durable objects</div>
         <h1 class="hero-title" id="hero-title">One product.<br /><em>Or none.</em></h1>
         <p class="hero-copy">For every category, a single object that approaches the Form—durable, repairable, stable—or an honest declaration that the category remains empty.</p>
+        <div class="hero-actions">
+          <a class="button hero-primary" href={categoryUrl(feature)}>
+            <span>Examine a declaration</span>
+            <span class="hero-button-mark" aria-hidden="true">→</span>
+          </a>
+          <a class="hero-text-link" href="#register">
+            Browse the register
+            <span class="mono">{registerStats.total} entries ↓</span>
+          </a>
+        </div>
+        <p class="hero-starting-case">
+          <span class="label">Starting case</span>
+          <span class="mono">{feature.category} · {feature.model}</span>
+        </p>
       </div>
-      <aside class="hero-aside">
-        <span class="label">The rule</span>
-        <p>No shortlists. No affiliate rankings. No “best for most people.” One declaration earns its place through evidence—or the search stays open.</p>
-        <p class="revision">THE REGISTER · REV 2026.08<br />CANONICAL ENTRIES = {registerStats.total}</p>
-      </aside>
+      <figure class="hero-portrait">
+        <div class="hero-portrait-window">
+          <img
+            class="hero-portrait-image"
+            src={platoPortrait}
+            width="960"
+            height="1335"
+            alt="Marble portrait of Plato in three-quarter view, his head turned down and left"
+            fetchpriority="high"
+            decoding="async"
+          />
+          <span class="hero-inscription" aria-hidden="true">ΠΛΑΤΩΝ</span>
+          <span class="hero-portrait-rule label">No shortlists · Evidence before verdict</span>
+        </div>
+        <figcaption class="hero-portrait-caption">
+          <span>Plato · Roman copy after a fourth-century BCE original</span>
+          <a href={platoSource} target="_blank" rel="license noopener noreferrer">Photo: Osama Shukir Muhammed Amin · CC BY-SA 4.0 · cropped and toned</a>
+        </figcaption>
+      </figure>
     </section>
 
     <section class="census" aria-label="Register census">
