@@ -20,7 +20,7 @@ of nested duplicate copies. Everything traces back to one of these two:
 - The **Google Drive project docs describe THIS lineage** (ARCHITECTURE, ROADMAP,
   master PRD reference `App_platonic_v3.jsx`).
 - ⚠️ All three files contain leftover **debug exfiltration** code that POSTs to
-  a localhost debug endpoint including a prefix/length of the API key.
+  `http://127.0.0.1:7242/ingest/...` including a prefix/length of the API key.
 
 ### Lineage B — "Shipped / Canonical" (newer, this is the real app)
 - Single clean `src/App.jsx` (934 lines), 5 views (Home, Index, Category,
@@ -66,9 +66,9 @@ Platonic-Ideal/                         ← working folder (NOT git)
 2. The key is **not** in the current build bundles on disk and **not** in the
    canonical `src/App.jsx`. Good. The exposure is git history + the two `.env`
    files only.
-3. When we archive/remove Lineage A, the old localhost exfiltration code goes
-   with it. It never made it into the shipped app — but confirm it's gone before
-   any redeploy.
+3. When we archive/remove Lineage A, the exfil-to-`127.0.0.1:7242` code goes with
+   it. It never made it into the shipped app — but confirm it's gone before any
+   redeploy.
 
 ---
 
