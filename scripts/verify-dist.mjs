@@ -2,6 +2,7 @@ import { access, readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 
 const dist = path.resolve('dist')
+const vercelConfigPath = path.resolve('vercel.json')
 const productionOrigin = 'https://my-platonic-app.vercel.app'
 const forbiddenFragments = [
   'https://laurent1056.github.io',
@@ -21,6 +22,12 @@ const requiredFiles = [
 ]
 
 const errors = []
+const requiredRedirects = new Map([
+  ['/my-platonic-app', '/'],
+  ['/my-platonic-app/', '/'],
+  ['/my-platonic-app/:path*', '/:path*'],
+  ['/my-platonic-app/:path*/', '/:path*/'],
+])
 
 async function exists(file) {
   try {
@@ -64,6 +71,20 @@ for (const required of requiredFiles) {
   if (!await exists(path.join(dist, required))) {
     errors.push(`Missing required build artifact: ${required}`)
   }
+}
+
+try {
+  const vercelConfig = JSON.parse(await readFile(vercelConfigPath, 'utf8'))
+  const redirects = Array.isArray(vercelConfig.redirects) ? vercelConfig.redirects : []
+
+  for (const [source, destination] of requiredRedirects) {
+    const redirect = redirects.find((entry) => entry.source === source)
+    if (!redirect || redirect.destination !== destination || redirect.permanent !== true) {
+      errors.push(`Missing permanent Vercel redirect: ${source} -> ${destination}`)
+    }
+  }
+} catch (error) {
+  errors.push(`Unable to validate vercel.json: ${error instanceof Error ? error.message : String(error)}`)
 }
 
 const categoryDirectory = path.join(dist, 'category')

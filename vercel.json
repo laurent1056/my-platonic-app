@@ -7,6 +7,16 @@
       "permanent": true
     },
     {
+      "source": "/my-platonic-app/",
+      "destination": "/",
+      "permanent": true
+    },
+    {
+      "source": "/my-platonic-app/:path*/",
+      "destination": "/:path*/",
+      "permanent": true
+    },
+    {
       "source": "/my-platonic-app/:path*",
       "destination": "/:path*",
       "permanent": true
