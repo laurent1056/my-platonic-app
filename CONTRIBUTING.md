@@ -6,6 +6,9 @@ Platonic Ideal is intentionally content-driven and opinionated.
 
 - The canonical implementation is this repo's app and data only.
 - The canonical dataset is `public/platonic_ideal.csv`.
+- The normative authority for new adjudication is `constitution/CONSTITUTION.md`
+  plus its digest-pinned machine profile; the CSV remains migration-compatible
+  until a row is explicitly re-adjudicated.
 - Every category resolves to one declaration, one empty verdict, or a clearly labeled non-final status such as `CANDIDATE`.
 - Do not reintroduce duplicate CSVs, alternate schemas, or parallel app copies into the tracked project.
 
@@ -27,10 +30,13 @@ Platonic Ideal is intentionally content-driven and opinionated.
 ## Before merging
 
 - Run `npm test`.
+- Run `npm run validate:institution` when editing a Constitution, evidence,
+  case, ruling, or challenge record.
 - Check at least:
   - one `DECLARED` category
   - one `EMPTY` category
   - one `CANDIDATE` category
   - the Methodology view
+  - the public `/constitution/` route and its canonical metadata
   - root assets, sitemap, canonical URLs, and `/my-platonic-app/*` redirects on a Vercel preview
   - that `/oracle/` is not publicly emitted

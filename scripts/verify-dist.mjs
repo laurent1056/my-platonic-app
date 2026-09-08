@@ -11,6 +11,7 @@ const forbiddenFragments = [
 const requiredFiles = [
   'index.html',
   '404.html',
+  'constitution/index.html',
   'methodology/index.html',
   'category/frying-pan/index.html',
   'category/refrigerator/index.html',
@@ -150,4 +151,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`Verified ${htmlFiles.length} HTML files, 68 category routes, root-relative assets, and Vercel canonical URLs.`)
+console.log(`Verified ${htmlFiles.length} HTML files, 68 category routes, Constitution route, root-relative assets, and Vercel canonical URLs.`)

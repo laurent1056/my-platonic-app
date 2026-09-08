@@ -1,0 +1,111 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://my-platonic-app.vercel.app/schemas/constitution.schema.json",
+  "title": "Platonic Ideal Constitution machine profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "$schema",
+    "constitutionId",
+    "version",
+    "status",
+    "effective",
+    "sourceFile",
+    "digestAlgorithm",
+    "sourceSha256",
+    "terminalVerdicts",
+    "workingStates",
+    "historicalStates",
+    "admissionGates",
+    "hardDisqualifiers",
+    "evidenceClasses",
+    "evidenceRequirements",
+    "terminalConfidenceMinimum",
+    "identifierPatterns"
+  ],
+  "properties": {
+    "$schema": { "type": "string" },
+    "constitutionId": { "const": "PI-CONSTITUTION" },
+    "version": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "status": { "enum": ["ACTIVE", "SUPERSEDED"] },
+    "effective": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "sourceFile": { "const": "constitution/CONSTITUTION.md" },
+    "digestAlgorithm": { "const": "sha256" },
+    "sourceSha256": { "type": "string", "pattern": "^[a-f0-9]{64}$" },
+    "terminalVerdicts": {
+      "type": "array",
+      "items": { "enum": ["DECLARED", "EMPTY"] },
+      "minItems": 2,
+      "uniqueItems": true
+    },
+    "workingStates": {
+      "type": "array",
+      "items": { "enum": ["DRAFT", "CANDIDATE", "SPLIT_REQUIRED", "CONDITIONAL", "CONSUMABLE", "UNDER_REVIEW"] },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "historicalStates": {
+      "type": "array",
+      "items": { "const": "DEPRECATED" },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "admissionGates": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 5,
+      "items": { "$ref": "#/$defs/rule" },
+      "uniqueItems": true
+    },
+    "hardDisqualifiers": {
+      "type": "array",
+      "minItems": 10,
+      "maxItems": 10,
+      "items": { "$ref": "#/$defs/rule" },
+      "uniqueItems": true
+    },
+    "evidenceClasses": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 8,
+      "items": { "$ref": "#/$defs/rule" },
+      "uniqueItems": true
+    },
+    "evidenceRequirements": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["minimumItems", "minimumIndependentClasses", "requiresPrimaryTechnicalOrService", "requiresIndependentSource"],
+      "properties": {
+        "minimumItems": { "type": "integer", "minimum": 1 },
+        "minimumIndependentClasses": { "type": "integer", "minimum": 1 },
+        "requiresPrimaryTechnicalOrService": { "type": "boolean" },
+        "requiresIndependentSource": { "type": "boolean" }
+      }
+    },
+    "terminalConfidenceMinimum": { "type": "integer", "minimum": 0, "maximum": 5 },
+    "identifierPatterns": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["case", "evidence", "ruling", "rulingEvent", "challenge"],
+      "properties": {
+        "case": { "type": "string" },
+        "evidence": { "type": "string" },
+        "ruling": { "type": "string" },
+        "rulingEvent": { "type": "string" },
+        "challenge": { "type": "string" }
+      }
+    }
+  },
+  "$defs": {
+    "rule": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "key", "title"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^(G-[0-9]{2}|HD-[0-9]{2}|EV-[0-9]{2})$" },
+        "key": { "type": "string", "pattern": "^[A-Z0-9_]+$" },
+        "title": { "type": "string", "minLength": 1 }
+      }
+    }
+  }
+}

@@ -293,7 +293,8 @@ Weekly /review plus on-demand.
 - **Product:** a register of durable products applying the theory of Forms: one named ideal per category, or an explicit `EMPTY` verdict. The editorial rule is “One product per category. Or none.”
 - **Current application:** Astro + Tailwind static site with CSV-driven category routes, index, methodology, product imagery support, and a private Oracle authoring tool. The old React/Gemini implementation is historical reference, not an active architecture.
 - **Canonical product data:** [`public/platonic_ideal.csv`](./public/platonic_ideal.csv). Current baseline: 68 categories, 48 `DECLARED`, 12 `EMPTY`, and 8 grouped as `IN REVIEW` by the UI.
-- **Current stage:** founder-led rebuild and self-use. Laurent is the only stakeholder and the primary customer for now. Revenue exploration is a later concern, not a v1 constraint; public submissions and commerce are out of v1.
+- **Institution authority:** [`constitution/CONSTITUTION.md`](./constitution/CONSTITUTION.md) and its digest-pinned machine profile govern new case, evidence, ruling, and challenge records. The CSV remains migration-compatible until rows are re-adjudicated.
+- **Current stage:** founder-led institution build and self-use. Laurent is the only stakeholder and the primary customer for now. The public verdict remains free; the accepted commercial experiment is a one-time paid evidence dossier, initially $24, after the founding case and validation test. Public submissions, accounts, voting, and paid petitions remain out of the founding launch.
 - **Design direction:** modern catalog/spec-sheet usability with restrained Greek stele, Orthodox icon, and apophatic motifs. The canonical visual language is [`docs/design/design.md`](./docs/design/design.md).
 
 ## Project-specific off-limits

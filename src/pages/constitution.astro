@@ -1,0 +1,192 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro'
+import profileJson from '../../constitution/constitution.v1.json'
+
+interface Rule { id: string; key: string; title: string }
+interface ConstitutionProfile {
+  constitutionId: string
+  version: string
+  effective: string
+  sourceFile: string
+  digestAlgorithm: string
+  sourceSha256: string
+  terminalVerdicts: string[]
+  workingStates: string[]
+  admissionGates: Rule[]
+  evidenceClasses: Rule[]
+  evidenceRequirements: { minimumItems: number; minimumIndependentClasses: number }
+  terminalConfidenceMinimum: number
+}
+
+const profile = profileJson as ConstitutionProfile
+const digest = profile.sourceSha256
+const terminalVerdicts = profile.terminalVerdicts
+const workingStates = profile.workingStates
+---
+
+<SiteLayout current="constitution" title="The Constitution" description="The public rules governing Platonic Ideal: one exact product per category, or an honest EMPTY verdict, supported by evidence and preserved history.">
+  <div class="shell constitution-page">
+    <header class="constitution-hero">
+      <div>
+        <p class="label">{profile.constitutionId} · active standard</p>
+        <h1 class="editorial-title">The rules are<br /><em>the product.</em></h1>
+        <p class="editorial-dek">Platonic Ideal is not a ranking engine. It is a public register governed by a fixed standard: one exact product may embody a category’s Form, or the category remains honestly empty.</p>
+      </div>
+      <aside class="constitution-stamp" aria-label={`Constitution version ${profile.version}`}>
+        <span class="stamp-mark" aria-hidden="true">✦</span>
+        <span class="label">Active edition</span>
+        <strong>v{profile.version}</strong>
+        <span class="mono">effective {profile.effective}</span>
+      </aside>
+    </header>
+
+    <div class="constitution-meta" aria-label="Constitution metadata">
+      <div><span class="label">Authority</span><strong>{profile.constitutionId}</strong></div>
+      <div><span class="label">Terminal verdicts</span><strong>{terminalVerdicts.join(' · ')}</strong></div>
+      <div><span class="label">Source digest</span><code title={digest}>{digest.slice(0, 16)}…</code></div>
+      <div><span class="label">Digest algorithm</span><strong>{profile.digestAlgorithm.toUpperCase()}</strong></div>
+    </div>
+
+    <div class="constitution-layout">
+      <nav class="constitution-nav" aria-label="Constitution sections">
+        <span class="label">Articles</span>
+        <a href="#principles">01 · Principles</a>
+        <a href="#admission">02 · Admission</a>
+        <a href="#evidence">03 · Evidence</a>
+        <a href="#states">04 · States</a>
+        <a href="#challenges">05 · Challenges</a>
+        <a href="#independence">06 · Independence</a>
+      </nav>
+
+      <article class="constitution-copy">
+        <section id="principles" class="constitution-section">
+          <p class="label">Article I · Governing principles</p>
+          <h2>One ideal per category. Or none.</h2>
+          <p>The register’s authority does not come from popularity, volume, an opaque score, or commercial influence. It comes from applying the same public rules to every case, preserving the evidence behind each ruling, exposing uncertainty, and correcting the record without erasing it.</p>
+          <div class="principle-list">
+            <div><span class="mono">01</span><strong>One ideal per category</strong><p>One current <code>DECLARED</code> model or one current <code>EMPTY</code> ruling. No ties or preference matrices.</p></div>
+            <div><span class="mono">02</span><strong>Finality over optimization</strong><p>The point of a ruling is to end a reasonable search, not create another comparison spiral.</p></div>
+            <div><span class="mono">03</span><strong>Reversible failure</strong><p>Expected failure must be repairable, rebuildable, maintainable, or rationally renewable.</p></div>
+            <div><span class="mono">04</span><strong>Revocation is public</strong><p>No ruling disappears silently. Amendments, confirmations, and revocations remain addressable.</p></div>
+          </div>
+        </section>
+
+        <section id="admission" class="constitution-section">
+          <p class="label">Article III · Admission test</p>
+          <h2>Five gates. All must hold.</h2>
+          <p><code>UNKNOWN</code>, <code>PARTIAL</code>, and <code>NOT_APPLICABLE</code> do not count as a pass. A declaration that fails one gate is inadmissible regardless of popularity or review scores.</p>
+          <ol class="gate-list">
+            {profile.admissionGates.map((gate) => <li><span class="gate-id mono">{gate.id}</span><div><strong>{gate.title}</strong><p>{gate.key.replaceAll('_', ' ').toLowerCase()} must be established in the case file with a finding and evidence.</p></div></li>)}
+          </ol>
+        </section>
+
+        <section id="evidence" class="constitution-section">
+          <p class="label">Article IV · Evidence standard</p>
+          <h2>Mechanisms, not adjectives.</h2>
+          <div class="rule-callout">
+            <strong>{profile.evidenceRequirements.minimumItems} items · {profile.evidenceRequirements.minimumIndependentClasses} independent classes</strong>
+            <span>At least one primary technical or service source and one independent source.</span>
+          </div>
+          <div class="evidence-list">
+            {profile.evidenceClasses.map((item) => <div><span class="mono">{item.id}</span><strong>{item.title}</strong><span>{item.key.replaceAll('_', ' ').toLowerCase()}</span></div>)}
+          </div>
+          <p class="constitution-note">Three pages repeating one press release are one source, not three. Facts, editorial inferences, and evidence gaps remain distinct in every case.</p>
+        </section>
+
+        <section id="states" class="constitution-section">
+          <p class="label">Article VI · States and verdicts</p>
+          <h2>Terminal states are expensive.</h2>
+          <div class="state-columns">
+            <div class="state-card terminal"><span class="label">Terminal verdicts</span>{terminalVerdicts.map((state) => <strong>{state}</strong>)}<p>A public conclusion that has crossed the evidence and confidence floor.</p></div>
+            <div class="state-card working"><span class="label">Working states</span><div class="state-tags">{workingStates.map((state) => <code>{state}</code>)}</div><p>Useful editorial statuses that must never masquerade as declarations.</p></div>
+          </div>
+          <p>Confidence describes the completeness and resilience of a case, not product quality or enthusiasm. No terminal ruling may be issued below <strong>{profile.terminalConfidenceMinimum}/5</strong>.</p>
+        </section>
+
+        <section id="challenges" class="constitution-section">
+          <p class="label">Article IX · Challenges</p>
+          <h2>Disagreement needs a receipt.</h2>
+          <p>A public challenge must name a specific gate, hard disqualifier, material claim, evidence-integrity issue, model-drift event, or revocation trigger. It must state a falsifiable objection and supply verifiable evidence.</p>
+          <p class="constitution-note">The docket is not a voting system. Brand preference, popularity, a competing nomination, disagreement without evidence, or payment is not an admissible challenge.</p>
+        </section>
+
+        <section id="independence" class="constitution-section">
+          <p class="label">Articles XI–XII · Boundaries</p>
+          <h2>Commercially independent. Humanly accountable.</h2>
+          <p>The Constitution and complete public ruling remain free. A future dossier may sell research convenience and depth, never a different verdict or hidden decisive reasoning. The private Oracle may draft and critique; it may not create evidence, publish, or mutate the canonical ledgers.</p>
+          <div class="boundary-line"><span class="label">Digest-pinned source</span><code>{profile.sourceFile}</code><span class="boundary-dot" aria-hidden="true">·</span><span class="label">No automatic publication</span></div>
+        </section>
+      </article>
+    </div>
+  </div>
+</SiteLayout>
+
+<style>
+  .constitution-page { padding: clamp(3.4rem, 7vw, 6.5rem) 0 6rem; }
+  .constitution-hero { display: grid; grid-template-columns: minmax(0, 1fr) 220px; gap: 2rem; align-items: end; padding-bottom: clamp(2.5rem, 6vw, 5rem); border-bottom: 1px solid var(--line-strong); }
+  .constitution-hero .editorial-title { margin-top: .85rem; }
+  .constitution-hero .editorial-title em { color: var(--accent); font-style: normal; }
+  .constitution-stamp { display: grid; gap: .35rem; justify-items: start; padding: 1.25rem; border: 1px solid var(--line-strong); background: var(--surface); box-shadow: 5px 5px 0 var(--gold); }
+  .stamp-mark { color: var(--gold); font-size: 1.2rem; }
+  .constitution-stamp strong { font-family: var(--serif); font-size: 2.3rem; font-weight: 500; line-height: 1; }
+  .constitution-stamp .mono { color: var(--muted); font-size: .65rem; }
+  .constitution-meta { display: grid; grid-template-columns: repeat(4, 1fr); border-bottom: 1px solid var(--line); }
+  .constitution-meta > div { display: grid; gap: .4rem; min-height: 88px; padding: 1rem .9rem; border-right: 1px solid var(--line); }
+  .constitution-meta > div:first-child { border-left: 1px solid var(--line); }
+  .constitution-meta strong, .constitution-meta code { font-family: var(--mono); font-size: .72rem; font-weight: 500; line-height: 1.45; }
+  .constitution-meta code { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .constitution-layout { display: grid; grid-template-columns: 180px minmax(0, 680px); gap: clamp(2rem, 7vw, 7rem); justify-content: center; padding-top: clamp(3rem, 7vw, 6rem); }
+  .constitution-nav { position: sticky; top: 1.5rem; align-self: start; display: grid; gap: .1rem; }
+  .constitution-nav .label { margin-bottom: .7rem; }
+  .constitution-nav a { padding: .35rem 0; color: var(--muted); font-family: var(--mono); font-size: .66rem; }
+  .constitution-nav a:hover { color: var(--accent); }
+  .constitution-copy { min-width: 0; }
+  .constitution-section { padding-bottom: clamp(3rem, 6vw, 5rem); margin-bottom: clamp(3rem, 6vw, 5rem); border-bottom: 1px solid var(--line); scroll-margin-top: 2rem; }
+  .constitution-section:last-child { margin-bottom: 0; }
+  .constitution-section h2 { max-width: 620px; margin: .65rem 0 1rem; font-family: var(--serif); font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 500; letter-spacing: -.035em; line-height: .95; }
+  .constitution-section > p:not(.label) { max-width: 620px; color: var(--ink-soft); }
+  .principle-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1.35rem 2rem; margin-top: 2.25rem; }
+  .principle-list > div { display: grid; grid-template-columns: 2rem 1fr; gap: .15rem .6rem; padding-top: .7rem; border-top: 1px solid var(--line-strong); }
+  .principle-list .mono { color: var(--accent); font-size: .7rem; }
+  .principle-list strong { font-family: var(--caps); font-size: .7rem; letter-spacing: .08em; text-transform: uppercase; }
+  .principle-list p { grid-column: 2; margin: .2rem 0 0; color: var(--muted); font-size: .84rem; line-height: 1.5; }
+  .gate-list { display: grid; gap: 0; margin: 2rem 0 0; padding: 0; list-style: none; border-top: 1px solid var(--line-strong); }
+  .gate-list li { display: grid; grid-template-columns: 4rem 1fr; gap: 1rem; padding: 1rem 0; border-bottom: 1px solid var(--line); }
+  .gate-id { color: var(--accent); font-size: .7rem; padding-top: .15rem; }
+  .gate-list strong { font-family: var(--caps); font-size: .76rem; letter-spacing: .09em; text-transform: uppercase; }
+  .gate-list p { margin: .25rem 0 0; color: var(--muted); font-size: .88rem; }
+  .rule-callout { display: grid; gap: .25rem; margin: 2rem 0; padding: 1rem 1.2rem; border-left: 3px solid var(--gold); background: var(--surface); }
+  .rule-callout strong { font-family: var(--caps); font-size: .73rem; letter-spacing: .1em; text-transform: uppercase; }
+  .rule-callout span { color: var(--muted); font-size: .86rem; }
+  .evidence-list { display: grid; gap: 0; border-top: 1px solid var(--line-strong); }
+  .evidence-list > div { display: grid; grid-template-columns: 3.5rem 1fr auto; align-items: baseline; gap: .8rem; padding: .7rem 0; border-bottom: 1px solid var(--line); }
+  .evidence-list .mono { color: var(--accent); font-size: .68rem; }
+  .evidence-list strong { font-family: var(--caps); font-size: .7rem; letter-spacing: .06em; text-transform: uppercase; }
+  .evidence-list span:last-child { color: var(--muted); font-size: .75rem; }
+  .constitution-note { margin-top: 1.5rem; padding-left: 1rem; border-left: 1px solid var(--accent); color: var(--muted) !important; font-size: .84rem; }
+  .state-columns { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem; margin: 2rem 0 1.5rem; }
+  .state-card { display: grid; gap: .65rem; min-height: 180px; padding: 1.2rem; border: 1px solid var(--line-strong); background: var(--surface); }
+  .state-card.terminal { border-top: 3px solid var(--gold); }
+  .state-card.terminal strong { font-family: var(--serif); font-size: 2rem; font-weight: 500; line-height: 1; }
+  .state-card.working { border-top: 3px solid var(--accent); }
+  .state-card p { align-self: end; margin: 0; color: var(--muted); font-size: .82rem; }
+  .state-tags { display: flex; flex-wrap: wrap; gap: .35rem; }
+  .state-tags code { padding: .28rem .4rem; border: 1px solid var(--line); color: var(--muted); font-family: var(--mono); font-size: .62rem; }
+  .boundary-line { display: flex; flex-wrap: wrap; align-items: center; gap: .7rem; margin-top: 2rem; padding-top: 1rem; border-top: 1px solid var(--line-strong); }
+  .boundary-line code { color: var(--accent); font-family: var(--mono); font-size: .68rem; }
+  .boundary-dot { color: var(--gold); }
+  @media (max-width: 760px) {
+    .constitution-hero { grid-template-columns: 1fr; }
+    .constitution-stamp { width: min(220px, 100%); }
+    .constitution-meta { grid-template-columns: repeat(2, 1fr); }
+    .constitution-meta > div:nth-child(3) { border-left: 1px solid var(--line); }
+    .constitution-layout { display: block; }
+    .constitution-nav { position: static; display: flex; flex-wrap: wrap; gap: .2rem .9rem; margin-bottom: 3rem; padding-bottom: 1rem; border-bottom: 1px solid var(--line-strong); }
+    .constitution-nav .label { width: 100%; }
+  }
+  @media (max-width: 520px) {
+    .principle-list, .state-columns { grid-template-columns: 1fr; }
+    .evidence-list > div { grid-template-columns: 3.5rem 1fr; }
+    .evidence-list span:last-child { grid-column: 2; }
+  }
+</style>

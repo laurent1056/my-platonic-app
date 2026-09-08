@@ -1,0 +1,152 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://my-platonic-app.vercel.app/schemas/case.schema.json",
+  "title": "Platonic Ideal case file",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "category",
+    "slug",
+    "status",
+    "constitutionVersion",
+    "form",
+    "subject",
+    "gates",
+    "hardDisqualifiers",
+    "evidenceIds",
+    "evidenceGaps",
+    "failureModes",
+    "maintenance",
+    "repairEconomics",
+    "counterCase",
+    "confidence"
+  ],
+  "properties": {
+    "id": { "type": "string", "pattern": "^PI-C-[0-9]{4}$" },
+    "category": { "type": "string", "minLength": 1 },
+    "slug": { "type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$" },
+    "status": {
+      "enum": ["DRAFT", "CANDIDATE", "SPLIT_REQUIRED", "CONDITIONAL", "CONSUMABLE", "UNDER_REVIEW", "DECLARED", "EMPTY", "DEPRECATED"]
+    },
+    "constitutionVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "form": { "$ref": "#/$defs/form" },
+    "subject": { "$ref": "#/$defs/subject" },
+    "gates": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/gate" }
+    },
+    "hardDisqualifiers": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/disqualifier" }
+    },
+    "evidenceIds": {
+      "type": "array",
+      "items": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" },
+      "uniqueItems": true
+    },
+    "evidenceGaps": {
+      "type": "array",
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "categorySearch": { "$ref": "#/$defs/categorySearch" },
+    "failureModes": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/failureMode" }
+    },
+    "maintenance": { "type": "string" },
+    "repairEconomics": { "type": "string" },
+    "counterCase": { "$ref": "#/$defs/counterCase" },
+    "futureRequirement": { "type": "string" },
+    "confidence": { "type": "integer", "minimum": 0, "maximum": 5 },
+    "adjudicator": { "type": "string", "minLength": 1 },
+    "decisionDate": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "evidenceReceipt": { "$ref": "#/$defs/evidenceReceipt" },
+    "notes": { "type": "string" }
+  },
+  "$defs": {
+    "form": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["statement", "scope", "exclusions"],
+      "properties": {
+        "statement": { "type": "string", "minLength": 1 },
+        "scope": { "type": "string", "minLength": 1 },
+        "exclusions": { "type": "array", "items": { "type": "string" } }
+      }
+    },
+    "subject": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["manufacturer", "model", "modelIdentifier"],
+      "properties": {
+        "manufacturer": { "type": "string" },
+        "model": { "type": "string" },
+        "modelIdentifier": { "type": "string" },
+        "productionLineage": { "type": "string" }
+      }
+    },
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "finding", "evidenceIds"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^G-[0-9]{2}$" },
+        "status": { "enum": ["PASS", "FAIL", "UNKNOWN", "PARTIAL", "NOT_APPLICABLE"] },
+        "finding": { "type": "string", "minLength": 1 },
+        "evidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" }, "uniqueItems": true }
+      }
+    },
+    "disqualifier": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "status", "finding", "evidenceIds"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^HD-[0-9]{2}$" },
+        "status": { "enum": ["ABSENT", "PRESENT", "UNKNOWN"] },
+        "finding": { "type": "string", "minLength": 1 },
+        "evidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" }, "uniqueItems": true }
+      }
+    },
+    "categorySearch": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["protocol", "candidateSet"],
+      "properties": {
+        "protocol": { "type": "string", "minLength": 1 },
+        "candidateSet": { "type": "array", "minItems": 1, "items": { "type": "string", "minLength": 1 } }
+      }
+    },
+    "failureMode": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["mode", "severity", "remedy"],
+      "properties": {
+        "mode": { "type": "string", "minLength": 1 },
+        "severity": { "enum": ["LOW", "MEDIUM", "HIGH", "TERMINAL"] },
+        "remedy": { "type": "string", "minLength": 1 }
+      }
+    },
+    "counterCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["claim", "disposition"],
+      "properties": {
+        "claim": { "type": "string", "minLength": 1 },
+        "disposition": { "type": "string", "minLength": 1 },
+        "evidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" }, "uniqueItems": true }
+      }
+    },
+    "evidenceReceipt": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["evidenceIds", "facts", "inferences", "gaps"],
+      "properties": {
+        "evidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" }, "uniqueItems": true },
+        "facts": { "type": "array", "items": { "type": "string" } },
+        "inferences": { "type": "array", "items": { "type": "string" } },
+        "gaps": { "type": "array", "items": { "type": "string" } }
+      }
+    }
+  }
+}

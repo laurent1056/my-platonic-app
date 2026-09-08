@@ -9,6 +9,7 @@
 <!-- Last 30 days. Each links to the file. -->
 
 - [2026-09-03 — Rebuild as Astro in one repository](./2026-09-03-rebuild-as-astro-single-repo.md) — decided architecture and founder-first v1 scope.
+- [2026-09-08 — Constitution and paid-dossier boundary](./2026-09-08-constitution-and-paid-dossier-boundary.md) — decided the institution authority, evidence contract, and commercial independence boundary.
 
 ## Superseded
 <!-- Decisions reversed by a later decision. Both stay in the log. -->

@@ -1,0 +1,160 @@
+{
+  "$schema": "../schemas/constitution.schema.json",
+  "constitutionId": "PI-CONSTITUTION",
+  "version": "1.0.0",
+  "status": "ACTIVE",
+  "effective": "2026-09-08",
+  "sourceFile": "constitution/CONSTITUTION.md",
+  "digestAlgorithm": "sha256",
+  "sourceSha256": "5507eca9b8e8d44bf2b3928b24bb0791505ab1f060ce96d7dc9c93092d065e53",
+  "terminalVerdicts": [
+    "DECLARED",
+    "EMPTY"
+  ],
+  "workingStates": [
+    "DRAFT",
+    "CANDIDATE",
+    "SPLIT_REQUIRED",
+    "CONDITIONAL",
+    "CONSUMABLE",
+    "UNDER_REVIEW"
+  ],
+  "historicalStates": [
+    "DEPRECATED"
+  ],
+  "admissionGates": [
+    {
+      "id": "G-01",
+      "key": "STABLE_FORM",
+      "title": "Stable Form"
+    },
+    {
+      "id": "G-02",
+      "key": "DURABLE_CORE",
+      "title": "Durable core"
+    },
+    {
+      "id": "G-03",
+      "key": "REVERSIBLE_FAILURE",
+      "title": "Reversible failure"
+    },
+    {
+      "id": "G-04",
+      "key": "STABLE_MODEL",
+      "title": "Stable model"
+    },
+    {
+      "id": "G-05",
+      "key": "ENDS_SEARCH",
+      "title": "Ends the search"
+    }
+  ],
+  "hardDisqualifiers": [
+    {
+      "id": "HD-01",
+      "key": "SEALED_CRITICAL_SYSTEM",
+      "title": "Sealed critical system"
+    },
+    {
+      "id": "HD-02",
+      "key": "IRREVERSIBLE_WEAR_LAYER",
+      "title": "Irreversible wear layer"
+    },
+    {
+      "id": "HD-03",
+      "key": "NONREPLACEABLE_CRITICAL_PART",
+      "title": "Nonreplaceable critical part"
+    },
+    {
+      "id": "HD-04",
+      "key": "TERMINATING_PROPRIETARY_DEPENDENCY",
+      "title": "Terminating proprietary dependency"
+    },
+    {
+      "id": "HD-05",
+      "key": "SILENT_MODEL_DRIFT",
+      "title": "Silent model drift"
+    },
+    {
+      "id": "HD-06",
+      "key": "UNAVAILABLE_SERVICE_PATH",
+      "title": "Unavailable service path"
+    },
+    {
+      "id": "HD-07",
+      "key": "IRRATIONAL_REPAIR_ECONOMICS",
+      "title": "Irrational repair economics"
+    },
+    {
+      "id": "HD-08",
+      "key": "UNRESOLVED_TERMINAL_SAFETY_RISK",
+      "title": "Unresolved terminal safety risk"
+    },
+    {
+      "id": "HD-09",
+      "key": "CATEGORY_MISMATCH",
+      "title": "Category mismatch"
+    },
+    {
+      "id": "HD-10",
+      "key": "EVIDENCE_INTEGRITY_FAILURE",
+      "title": "Evidence integrity failure"
+    }
+  ],
+  "evidenceClasses": [
+    {
+      "id": "EV-01",
+      "key": "MATERIALS_CONSTRUCTION",
+      "title": "Materials and construction"
+    },
+    {
+      "id": "EV-02",
+      "key": "REPAIR_PATH",
+      "title": "Repair path"
+    },
+    {
+      "id": "EV-03",
+      "key": "PARTS_SERVICE",
+      "title": "Parts and service"
+    },
+    {
+      "id": "EV-04",
+      "key": "FAILURE_LONGEVITY",
+      "title": "Failure and longevity"
+    },
+    {
+      "id": "EV-05",
+      "key": "MODEL_STABILITY",
+      "title": "Model stability"
+    },
+    {
+      "id": "EV-06",
+      "key": "REPAIR_ECONOMICS",
+      "title": "Repair economics"
+    },
+    {
+      "id": "EV-07",
+      "key": "SAFETY_REGULATORY",
+      "title": "Safety and regulatory"
+    },
+    {
+      "id": "EV-08",
+      "key": "MARKET_COVERAGE",
+      "title": "Market coverage"
+    }
+  ],
+  "evidenceRequirements": {
+    "minimumItems": 3,
+    "minimumIndependentClasses": 3,
+    "requiresPrimaryTechnicalOrService": true,
+    "requiresIndependentSource": true
+  },
+  "terminalConfidenceMinimum": 4,
+  "identifierPatterns": {
+    "case": "^PI-C-[0-9]{4}$",
+    "evidence": "^PI-E-[0-9]{6}$",
+    "ruling": "^PI-R-[0-9]{4}$",
+    "rulingEvent": "^PI-RE-[0-9]{6}$",
+    "challenge": "^PI-CH-[0-9]{6}$"
+  }
+}

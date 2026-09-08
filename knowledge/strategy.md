@@ -20,25 +20,29 @@ external demand; no public analytics are instrumented yet.
    class `DECLARED` and `EMPTY` states, product imagery, and the catalog/spec-
    sheet visual language. Success is a green check/build, a usable index, and a
    route for every current category.
-2. **Make the register editorially trustworthy.** Freeze the CSV schema,
-   remove compatibility-column ambiguity, validate every row at build time, and
-   resolve the current `CANDIDATE`, `SPLIT_REQUIRED`, `CONDITIONAL`, and
-   `CONSUMABLE` rows to a defensible declaration or `EMPTY` finding before
-   expanding the register toward 100 categories.
-3. **Use the founder loop to learn what deserves expansion.** Keep the Oracle
-   private and make it useful for drafting and critique. Use Laurent's own
-   browsing and authoring sessions to improve the product before investing in
-   external discovery or a revenue model.
+2. **Make the register institutionally trustworthy.** Treat the Constitution
+   as the normative authority, validate case/evidence/ruling/challenge records
+   at build time, preserve the evidence receipt, and resolve the current
+   `CANDIDATE`, `SPLIT_REQUIRED`, `CONDITIONAL`, and `CONSUMABLE` rows only
+   through explicit re-adjudication. The CSV remains migration-compatible, not
+   a shortcut around the evidence floor.
+3. **Prove the founding case before scaling commerce.** Re-adjudicate
+   Everyday Pocket Knife from first principles, keep the public verdict and
+   reasoning free, and test a one-time `$24` evidence dossier with 20 qualified
+   EDC/personal-carry buyers. The first success threshold is 10 dossier
+   purchases and 5 reports of reduced or ended comparison shopping in 30 days.
 
 ## Explicit non-goals
 <!-- What we are deliberately NOT doing this period. This is the most valuable section. -->
-- E-commerce checkout, affiliate revenue, or a marketplace; the eventual revenue
-  model is intentionally unresolved.
+- Checkout implementation, fulfillment automation, affiliate ranking, or a
+  marketplace before the founding case and willingness-to-pay test.
 - Public submissions, voting, comments, accounts, and community moderation.
 - A comparison engine that returns many “best” products, or a category tree that
   evades the one-declaration-or-empty rule.
 - Analytics, CRM, or backend infrastructure before the founder-facing product
   is coherent and useful.
+- Product selection influenced by sponsorship, payment, affiliate economics, or
+  popularity.
 
 ## Bets vs. commitments
 - **Bets** (testing): see [`hypotheses/`](../hypotheses/)
@@ -46,7 +50,7 @@ external demand; no public analytics are instrumented yet.
 
 ## Last reviewed
 <!-- Date. Updated whenever strategy is meaningfully revised. -->
-2026-09-03
+2026-09-08
 
 ## Tensions
 <!-- Maintenance and ingestion append here when signals conflict with the strategy. Tensions are not rejections — new bets, features, opportunities, and user needs can inform strategy just as strategy informs them. Each entry: signal, what it tensions, possible resolutions (update strategy / reject signal / hold as open tension). PM resolves deliberately. -->
@@ -60,16 +64,17 @@ external demand; no public analytics are instrumented yet.
 - **Possible resolution:** Resolve each row before calling the register complete;
   preserve a provisional state only while the evidence work is explicitly open.
 
-### T2 — Current editorial scope vs. future revenue
-- **Signal:** The current requirements define the product as a static catalog,
-  not e-commerce or a marketplace. [Current PRD](../source/adhoc/2026-09-03-project-baseline/docs/PRD.md)
-  Laurent also stated that revenue is a longer-term interest whose model has not
-  been worked through (stakeholder-verbal, Laurent, 2026-09-03).
-- **What it tensions:** A future desire to generate revenue could pull the v1
-  register toward affiliate links, commerce, or commercial bias before trust is
-  established.
-- **Possible resolution:** Keep v1 editorial and model revenue as a later,
-  evidence-led decision with explicit disclosure and reversal criteria.
+### T2 — Public authority vs. paid research convenience
+- **Signal:** The accepted founding-case decision keeps the public verdict and
+  decisive reasoning free while testing a one-time paid evidence dossier at
+  `$24`, with payment never affecting the verdict. [Founding-case decision](../decisions/2026-09-08-constitution-and-paid-dossier-boundary.md)
+- **What it tensions:** A dossier can fund research, but hidden decisive
+  reasoning, sponsored placement, or paid petitions would destroy the authority
+  proposition.
+- **Possible resolution:** Keep the Constitution, evidence receipt, verdict,
+  and ruling history public; test only research depth and convenience as the
+  paid layer. Revisit the offer if the founding test misses 10 purchases in 30
+  days or buyers cannot explain what they paid for.
 
 ### T3 — Founder-primary product vs. external usefulness
 - **Signal:** Laurent is the only stakeholder and primary customer for now, with

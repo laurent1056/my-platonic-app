@@ -4,7 +4,7 @@
 - Owner: Laurent Courtines
 - Status: building
 - Priority: P1
-- Last updated: 2026-09-03
+- Last updated: 2026-09-08
 
 ## Problem
 Category research and editorial writing are judgment-heavy. The Oracle should
@@ -18,6 +18,8 @@ automatic publisher, a source of truth, or a replacement for editorial judgment.
 - Laurent can submit a category question and receive a useful draft structure.
 - The tool clearly distinguishes draft assistance from canonical content.
 - No Oracle interaction mutates the CSV or publishes a verdict automatically.
+- No Oracle interaction mutates the Constitution-backed ledgers or creates
+  evidence; the institution validator remains the publication boundary.
 - The tool remains usable without a configured key and does not affect public
   browsing.
 
@@ -47,6 +49,8 @@ not before the category dossier flow is coherent.
 
 ## Open questions
 - Does the Oracle prompt use the final canonical field names after schema cleanup?
+- Does every Oracle draft clearly distinguish an unverified suggestion from a
+  verified evidence item and a human adjudication?
 - Which draft checks catch unsupported claims before Laurent copies content into
   the register?
 

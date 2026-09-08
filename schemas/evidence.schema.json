@@ -1,0 +1,68 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://my-platonic-app.vercel.app/schemas/evidence.schema.json",
+  "title": "Platonic Ideal evidence ledger",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["constitutionVersion", "items"],
+  "properties": {
+    "constitutionVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "items": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/evidenceItem" }
+    }
+  },
+  "$defs": {
+    "evidenceItem": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "sourceUrl",
+        "title",
+        "publisher",
+        "sourceRole",
+        "evidenceClass",
+        "claim",
+        "relationship",
+        "retrievedOn",
+        "verificationStatus",
+        "independenceGroup",
+        "independence",
+        "commercialRelationship"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" },
+        "sourceUrl": { "type": "string", "pattern": "^https?://[^\\s]+$" },
+        "title": { "type": "string", "minLength": 1 },
+        "publisher": { "type": "string", "minLength": 1 },
+        "sourceRole": {
+          "enum": [
+            "PRIMARY_TECHNICAL",
+            "PRIMARY_SERVICE",
+            "INDEPENDENT_TEST",
+            "PROFESSIONAL_USE",
+            "OWNER_REPORT",
+            "REPAIR_RECORD",
+            "RETAILER",
+            "REGULATORY",
+            "OTHER"
+          ]
+        },
+        "evidenceClass": {
+          "enum": ["EV-01", "EV-02", "EV-03", "EV-04", "EV-05", "EV-06", "EV-07", "EV-08"]
+        },
+        "claim": { "type": "string", "minLength": 1 },
+        "relationship": { "enum": ["SUPPORTS", "CONTRADICTS", "CONTEXTUALIZES"] },
+        "retrievedOn": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "verificationStatus": { "enum": ["VERIFIED", "PARTIAL", "UNVERIFIED", "CONTRADICTED"] },
+        "independenceGroup": { "type": "string", "minLength": 1 },
+        "independence": { "enum": ["MANUFACTURER", "SELLER", "INDEPENDENT", "FINANCIALLY_INTERESTED", "OTHER"] },
+        "commercialRelationship": {
+          "enum": ["NONE", "MANUFACTURER", "SELLER", "SPONSOR", "AFFILIATE", "FINANCIALLY_INTERESTED", "OTHER"]
+        },
+        "notes": { "type": "string" }
+      }
+    }
+  }
+}

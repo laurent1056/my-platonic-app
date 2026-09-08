@@ -82,3 +82,33 @@ Product requirements and editorial rules remain in [`docs/`](./docs/). The
 PM Brain folders at the repository root are the operating memory for strategy,
 evidence, hypotheses, decisions, and maintenance; they do not replace the
 product documentation.
+
+## Institution authoring
+
+The public CSV is a migration-compatible register for the current site. It is
+not, by itself, a constitutional ruling. New adjudication work lives in the
+institution layer:
+
+```text
+constitution/CONSTITUTION.md       normative editorial authority
+constitution/constitution.v1.json  digest-pinned machine profile
+schemas/                            structural contracts
+institution/evidence.json           evidence ledger
+cases/                              case files, including DRAFT work
+institution/rulings.json            append-only ruling events
+institution/challenges.json         evidence-based challenge docket
+```
+
+Read [`docs/INSTITUTION_WORKFLOW.md`](./docs/INSTITUTION_WORKFLOW.md) before
+creating a case. The shortest trustworthy loop is:
+
+```bash
+npm ci
+npm run validate:institution
+npm run test:institution
+npm test
+```
+
+The validator may reject terminal `DECLARED` or `EMPTY` cases, but it never
+selects a product. The private Oracle remains a drafting aid and cannot write
+canonical institution records.

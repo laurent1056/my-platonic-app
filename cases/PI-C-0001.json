@@ -1,0 +1,37 @@
+{
+  "id": "PI-C-0001",
+  "category": "Everyday Pocket Knife",
+  "slug": "everyday-pocket-knife",
+  "status": "DRAFT",
+  "constitutionVersion": "1.0.0",
+  "form": {
+    "statement": "A compact folding knife for ordinary daily cutting and utility tasks that can remain serviceable across years of use.",
+    "scope": "Everyday personal carry in ordinary civilian use; the founding case will define the legal and practical jurisdiction before adjudication.",
+    "exclusions": [
+      "Fixed-blade field knives",
+      "Dedicated survival or combat knives",
+      "Multi-tools whose knife is not the primary form"
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "",
+    "modelIdentifier": ""
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "The category jurisdiction and exact Form need to be finalized.",
+    "Candidate models must be re-adjudicated from first principles with independent evidence."
+  ],
+  "failureModes": [],
+  "maintenance": "Not yet adjudicated.",
+  "repairEconomics": "Not yet adjudicated.",
+  "counterCase": {
+    "claim": "Not yet adjudicated.",
+    "disposition": "The founding case has not selected an incumbent or terminal verdict."
+  },
+  "confidence": 0,
+  "notes": "This scaffold intentionally does not inherit the former Opinel/Victorinox CSV row as a ruling."
+}

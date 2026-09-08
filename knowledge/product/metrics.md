@@ -25,9 +25,10 @@ canonical CSV and build contract.
 - Source: no data yet.
 
 ### Revenue
-- Current: unresolved / not in v1
-- Definition: to be chosen only after a credible editorial value proposition and commercial boundary exist.
-- Source: Laurent's statement that revenue is longer-term and not yet worked through (stakeholder-verbal, Laurent, 2026-09-03).
+- Current: defined hypothesis, not yet instrumented
+- Definition: one-time `$24` evidence dossier purchase after a public ruling; payment buys research depth and convenience, never a different verdict or hidden decisive reasoning.
+- Target: 10 purchases and 5 reports of reduced or ended comparison shopping from 20 qualified EDC/personal-carry buyers within 30 days of the founding case invite.
+- Source: [Constitution and paid-dossier boundary](../../decisions/2026-09-08-constitution-and-paid-dossier-boundary.md).
 
 ### Referral
 - Current: not instrumented
@@ -37,3 +38,4 @@ canonical CSV and build contract.
 ## Recent movements
 <!-- Brief notes when a metric shifts materially. Links to relevant decisions or hypotheses. -->
 - 2026-09-03 — PM Brain initialized; the Astro rebuild is local and the repository is two commits ahead of `origin/main`. No public launch or behavioral baseline has been claimed.
+- 2026-09-08 — Constitution foundation implemented in the working tree. The Pocket Knife remains `DRAFT`; no public ruling or dossier checkout exists yet.

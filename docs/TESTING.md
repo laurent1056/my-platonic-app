@@ -4,6 +4,7 @@
 
 ```bash
 npm run validate:data
+npm run validate:institution
 npm run check
 npm run build
 npm run audit:prod
@@ -14,7 +15,7 @@ npm test
 
 - validator accepts all 68 rows and blocks malformed CSV, duplicate slugs, invalid statuses, and declaration/model violations
 - Astro type check returns zero errors, warnings, or hints
-- production build generates 71 HTML pages plus the sitemap after retiring the public Oracle
+- production build generates 72 HTML pages plus the sitemap after retiring the public Oracle and adding the Constitution route
 - generated-output verification rejects the retired GitHub origin and repository base path, broken internal references, invalid canonical URLs, and a public Oracle route
 
 ## Browser smoke matrix

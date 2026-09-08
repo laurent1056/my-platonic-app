@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://my-platonic-app.vercel.app/schemas/challenge.schema.json",
+  "title": "Platonic Ideal challenge docket",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["constitutionVersion", "challenges"],
+  "properties": {
+    "constitutionVersion": { "type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$" },
+    "challenges": {
+      "type": "array",
+      "items": { "$ref": "#/$defs/challenge" }
+    }
+  },
+  "$defs": {
+    "challenge": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "rulingId",
+        "caseId",
+        "status",
+        "groundType",
+        "objection",
+        "evidenceIds",
+        "submittedOn"
+      ],
+      "properties": {
+        "id": { "type": "string", "pattern": "^PI-CH-[0-9]{6}$" },
+        "rulingId": { "type": "string", "pattern": "^PI-R-[0-9]{4}$" },
+        "caseId": { "type": "string", "pattern": "^PI-C-[0-9]{4}$" },
+        "status": { "enum": ["SUBMITTED", "ADMITTED", "DISMISSED", "UPHELD", "AMENDED", "REVOKED"] },
+        "groundType": {
+          "enum": ["ADMISSION_GATE", "HARD_DISQUALIFIER", "MATERIAL_CLAIM", "EVIDENCE_INTEGRITY", "MODEL_DRIFT", "REVOCATION_TRIGGER"]
+        },
+        "objection": { "type": "string", "minLength": 1 },
+        "evidenceIds": { "type": "array", "items": { "type": "string", "pattern": "^PI-E-[0-9]{6}$" }, "uniqueItems": true },
+        "submittedOn": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "resolvedOn": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+        "disposition": { "type": "string" }
+      }
+    }
+  }
+}
