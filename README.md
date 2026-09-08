@@ -64,8 +64,8 @@ qualifies.
 
 The application is the Astro site in `src/`, with the canonical register in
 [`public/platonic_ideal.csv`](./public/platonic_ideal.csv). Its current surface
-includes the browse index, crawlable category dossiers, methodology, a private
-Oracle authoring studio, and the Greek/Orthodox-inspired visual system in
+includes the browse index, crawlable category dossiers, methodology, a local-only
+Oracle authoring reference, and the Greek/Orthodox-inspired visual system in
 [`docs/design/design.md`](./docs/design/design.md).
 
 Use the application commands from the product README preserved at

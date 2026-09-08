@@ -1,32 +1,53 @@
 # Deployment
 
-Platonic Ideal deploys as a static Astro site to GitHub Pages.
+Platonic Ideal deploys from `main` to Vercel as a static-first Astro application. Public editorial pages are prerendered; server endpoints may be added selectively through the Vercel adapter.
 
 ## Configuration
 
 - repository: `laurent1056/my-platonic-app`
 - source branch: `main`
-- public URL: `https://laurent1056.github.io/my-platonic-app/`
-- Astro `site`: `https://laurent1056.github.io`
-- Astro `base`: `/my-platonic-app`
+- Vercel project: `laurent1056-4779s-projects/my-platonic-app`
+- production URL: `https://my-platonic-app.vercel.app/`
+- Astro `site`: `https://my-platonic-app.vercel.app`
+- Astro `base`: none; the site is served from `/`
+- framework adapter: `@astrojs/vercel`
 
-## Workflow
+Set `SITE_URL` at build time only when moving production to a custom domain. Preview deployments intentionally retain the production canonical origin.
 
-`.github/workflows/deploy.yml` runs on pushes to `main`:
+## Delivery workflow
 
-1. check out the repository
-2. install dependencies under Node 24
-3. run data validation and the Astro build
-4. upload the static artifact
-5. deploy through the `github-pages` environment
+Vercel's Git integration creates a preview for non-production branches and a production deployment for `main`. GitHub Actions does not publish the application; `.github/workflows/ci.yml` independently runs:
 
-In GitHub → Settings → Pages, set **Source** to **GitHub Actions**. The retired `gh-pages` branch is not the publishing source for the rebuild.
+1. `npm ci`
+2. Astro type checking
+3. CSV validation
+4. the Astro production build
+5. generated-output verification
+
+The output verifier fails when generated pages contain the retired GitHub origin or `/my-platonic-app/` base, when internal assets do not resolve, when canonical URLs are wrong, when the Oracle is public, or when required category routes are absent.
+
+## Parallel cutover
+
+The former GitHub Pages deployment remains available as a temporary rollback target for seven days after the Vercel production build passes verification. Do not delete the `gh-pages` branch during that window.
+
+After the rollback window:
+
+1. confirm production and preview deployments are healthy
+2. remove GitHub Pages as an active publishing target
+3. replace the old Pages site with a redirect if preserving its inbound links is valuable
+4. remove the `gh-pages` branch only after explicit confirmation
 
 ## Post-deploy verification
 
-- home page and fonts load under the repository base path
-- register contains 68 entries
-- a DECLARED, EMPTY, and IN REVIEW dossier open at unique URLs
-- methodology and Oracle routes load
-- `sitemap-index.xml` and `robots.txt` resolve
-- page source contains a unique canonical URL and description
+- `/`, `/methodology/`, and representative `DECLARED`, `EMPTY`, and `IN REVIEW` category routes return `200`
+- CSS, fonts, the favicon, and Plato portrait resolve from root-relative URLs
+- `/my-platonic-app/*` redirects to the equivalent root route
+- the public `/oracle/` route returns `404`
+- the register contains 68 pre-canon source entries until the constitutional migration changes that contract
+- `sitemap-index.xml` and `robots.txt` use the production origin
+- every page contains a unique production canonical URL and description
+- no browser console errors occur in desktop or mobile smoke tests
+
+## Rollback
+
+If the Vercel deployment fails after promotion, restore traffic to the frozen GitHub Pages target and revert the responsible `main` commit. Do not edit generated Vercel output or the rollback branch by hand.

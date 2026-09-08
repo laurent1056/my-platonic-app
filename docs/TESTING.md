@@ -6,13 +6,16 @@
 npm run validate:data
 npm run check
 npm run build
+npm run audit:prod
+npm test
 ```
 
 ## Current build contract
 
 - validator accepts all 68 rows and blocks malformed CSV, duplicate slugs, invalid statuses, and declaration/model violations
 - Astro type check returns zero errors, warnings, or hints
-- production build generates 72 pages plus the sitemap
+- production build generates 71 HTML pages plus the sitemap after retiring the public Oracle
+- generated-output verification rejects the retired GitHub origin and repository base path, broken internal references, invalid canonical URLs, and a public Oracle route
 
 ## Browser smoke matrix
 
@@ -22,7 +25,8 @@ npm run build
 - category pages render for DECLARED, EMPTY, and IN REVIEW
 - light/dark switch persists on the device
 - methodology loads and anchors navigate correctly
-- Oracle loads with no key and does not affect browsing
+- `/oracle/` is absent from the public build
+- `/my-platonic-app/*` redirects to the equivalent root route on Vercel
 - browser console remains free of errors
 
 ## Accessibility checks

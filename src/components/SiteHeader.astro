@@ -3,7 +3,7 @@ import Meander from './Meander.astro'
 import ThemeToggle from './ThemeToggle.astro'
 import { registerStats, withBase } from '@/data/register'
 
-interface Props { current?: 'index' | 'methodology' | 'oracle' }
+interface Props { current?: 'index' | 'methodology' }
 const { current } = Astro.props
 ---
 
@@ -17,7 +17,6 @@ const { current } = Astro.props
       <nav class="primary-nav" aria-label="Primary navigation">
         <a href={withBase('#register')} aria-current={current === 'index' ? 'page' : undefined}>The Register</a>
         <a href={withBase('methodology/')} aria-current={current === 'methodology' ? 'page' : undefined}>Method</a>
-        <a href={withBase('oracle/')} aria-current={current === 'oracle' ? 'page' : undefined}>Oracle</a>
       </nav>
       <div class="header-actions">
         <span class="edition mono label">N = {registerStats.total}</span>

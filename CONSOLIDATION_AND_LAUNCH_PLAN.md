@@ -1,6 +1,11 @@
 # Platonic Ideal — Consolidation & Launch Plan
 
-_Audit + path to launch. Generated 2026-08-04._
+_Historical audit + path to launch. Generated 2026-08-04; status updated 2026-09-08._
+
+> This document preserves the original consolidation diagnosis. The repository has
+> since been consolidated and the app rebuilt in Astro. Current implementation,
+> deployment, and product requirements live in `README.md`, `docs/DEPLOYMENT.md`,
+> and `docs/PRD.md`.
 
 ---
 
@@ -32,7 +37,8 @@ of nested duplicate copies. Everything traces back to one of these two:
   Confidence, Last Reviewed`.
 - CSV name: `platonic_ideal.csv` (68 categories).
 - Git remote: `github.com/laurent1056/my-platonic-app.git`.
-- Deploy target: GitHub Pages (`laurent1056.github.io/my-platonic-app/`).
+- Current deploy target: Vercel (`my-platonic-app.vercel.app`); the former GitHub
+  Pages build is retained only as a short-lived rollback target.
 
 **→ Lineage B is the canonical app. Everything else is history or duplication.**
 
@@ -54,15 +60,10 @@ Platonic-Ideal/                         ← working folder (NOT git)
 
 ---
 
-## 2. 🔴 Security — do this first (blocks launch)
+## 2. Security finding — resolved
 
-1. **Rotate the Gemini API key `[rotated Gemini key — redacted]` now.**
-   It is committed in the git history of `my-platonic-app`
-   (commit `20d780b` "Deploy with environment variable API key" and `61aec9e`).
-   If that repo is or ever becomes public, the key is exposed. **Rotation is the
-   real fix** — deleting the file does not remove it from history.
-   → Google Cloud Console → APIs & Services → Credentials → regenerate/restrict.
-   _(You must do this yourself — I don't touch credentials.)_
+1. The exposed Gemini API key was revoked. Its value remains redacted here; old
+   local exports and repository history must continue to be treated as sensitive.
 2. The key is **not** in the current build bundles on disk and **not** in the
    canonical `src/App.jsx`. Good. The exposure is git history + the two `.env`
    files only.
@@ -120,10 +121,8 @@ files, and stale CSVs into `_archive/` → dedupe the CSV to one file → add a 
 
 ## 5. Product gaps for a real launch
 
-- **Crawlable per-category URLs.** The app routes views in memory; there are no
-  distinct URLs per category, so nothing is individually linkable or indexable.
-  For "the index that ends searches," each category needs its own URL (hash router
-  is enough for GitHub Pages) + `<title>`/meta per page.
+- **Crawlable per-category URLs — implemented.** The Astro rebuild emits one
+  static route per category with canonical metadata and sitemap coverage.
 - **Images.** Many rows have no `Image URL`. Decide sourcing (own photos vs.
   linked) and fill the DECLARED set first.
 - **EMPTY pages as first-class.** The "no ideal exists yet" verdict is core to the
@@ -140,7 +139,7 @@ files, and stale CSVs into `_archive/` → dedupe the CSV to one file → add a 
 | **2. Data** | Dedupe schema; validator; resolve CANDIDATE/SPLIT | frozen schema + green validator |
 | **3. Content → 100** | Sync 73 analyzed rows; finish 74–100 | 100-row master CSV |
 | **4. Polish** | Per-category URLs/SEO, images, EMPTY pages | launch-ready UX |
-| **5. Deploy** | GitHub Pages via Actions; verify live | public site |
+| **5. Deploy** | Vercel Git deployment; verify live | public site |
 | **6. Later** | Submissions ("is this the ideal?"), acquisition/commerce links | post-MVP |
 
 ---

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://laurent1056.github.io/my-platonic-app/sitemap-index.xml
+Sitemap: https://my-platonic-app.vercel.app/sitemap-index.xml

@@ -1,18 +1,22 @@
 {
   "name": "my-platonic-app",
-  "homepage": "https://laurent1056.github.io/my-platonic-app/",
+  "homepage": "https://my-platonic-app.vercel.app/",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate:data && astro build",
+    "build": "npm run validate:data && astro build && npm run verify:dist",
     "check": "astro check",
     "preview": "astro preview",
-    "validate:data": "node scripts/validate-register.mjs"
+    "validate:data": "node scripts/validate-register.mjs",
+    "verify:dist": "node scripts/verify-dist.mjs",
+    "audit:prod": "npm audit --audit-level=high --omit=dev",
+    "test": "npm run check && npm run build"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
+    "@astrojs/vercel": "^11.0.10",
     "@fontsource/cinzel": "5.3.0",
     "@fontsource/cormorant-garamond": "5.3.0",
     "@fontsource/ibm-plex-mono": "5.3.0",
@@ -26,5 +30,10 @@
     "@astrojs/check": "0.9.6",
     "@types/papaparse": "5.5.2",
     "typescript": "5.9.3"
+  },
+  "overrides": {
+    "@vercel/routing-utils": {
+      "path-to-regexp": "6.3.0"
+    }
   }
 }

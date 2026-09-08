@@ -10,6 +10,7 @@ node_modules/
 __pycache__/
 dist/
 dist-ssr/
+.vercel/
 
 # Local credentials and environment files
 .env

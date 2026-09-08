@@ -1,14 +1,15 @@
 # Routes and Views
 
-Platonic Ideal is an Astro static site. Navigation uses real URLs and every category dossier is independently crawlable.
+Platonic Ideal is a static-first Astro site on Vercel. Navigation uses real URLs and every category dossier is independently crawlable.
 
 ## Routes
 
-- `/my-platonic-app/` — orientation, census, searchable register, featured declaration
-- `/my-platonic-app/category/[slug]/` — one static dossier per CSV row
-- `/my-platonic-app/methodology/` — admission test, evidence, EMPTY, and revocation policy
-- `/my-platonic-app/oracle/` — private browser-based authoring studio
-- `/my-platonic-app/404.html` — absent route treatment
+- `/` — orientation, census, searchable register, featured declaration
+- `/category/[slug]/` — one prerendered dossier per CSV row
+- `/methodology/` — admission test, evidence, EMPTY, and revocation policy
+- `/404.html` — absent route treatment
+
+The Oracle is an editorial tool, not a public route. Its retired browser implementation is preserved under `src/studio/` until it is rebuilt as a local authoring workflow against the canonical Constitution.
 
 ## Category branches
 

@@ -19,18 +19,18 @@ Platonic Ideal is intentionally content-driven and opinionated.
 
 ## Front-end changes
 
-- Keep the current five views only: `home`, `index`, `category`, `methodology`, `oracle`.
-- Preserve GitHub Pages compatibility and the existing lightweight SPA structure.
-- SEO work should stay truthful to the static SPA; do not imply server rendering or crawlable per-category routes that do not exist.
+- Keep public editorial routes prerendered unless a server boundary is explicitly justified.
+- Preserve root-hosted Vercel URLs, unique category routes, truthful canonical metadata, and the lightweight Astro architecture.
+- Do not expose the Oracle as a public route. Its source under `src/studio/` is migration reference for a future local authoring tool.
+- Add server endpoints narrowly; validate input, document secrets and retention, and keep external submissions outside canonical Git content until editorially admitted.
 
 ## Before merging
 
-- Run `npm run build`.
-- Run `npm run lint`.
+- Run `npm test`.
 - Check at least:
   - one `DECLARED` category
   - one `EMPTY` category
   - one `CANDIDATE` category
   - the Methodology view
-  - the Oracle view
-
+  - root assets, sitemap, canonical URLs, and `/my-platonic-app/*` redirects on a Vercel preview
+  - that `/oracle/` is not publicly emitted

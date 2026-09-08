@@ -1,25 +1,25 @@
 # Oracle Feature
 
-The Oracle is an optional front-end helper for drafting CSV content.
+The Oracle is an optional local editorial assistant. It is not a public product surface and it never issues or publishes an institutional ruling.
 
-## What it does
+## Intended workflow
 
-- accepts a prompt
-- sends it to Anthropic from the browser
-- returns draft text to review and paste into the CSV manually
+- load the canonical Constitution and case schema
+- accept category evidence or a challenge supplied by the editor
+- draft or critique a structured case file
+- mark unsupported claims and missing evidence explicitly
+- save output outside the canon until a human reviews and commits it
 
 ## What it does not do
 
-- write to the CSV automatically
-- override the one-declaration rule
-- become a required browsing dependency
+- appear in the public Vercel build
+- accept public API keys
+- write or publish canonical content automatically
+- override the one-declaration-or-empty rule
+- turn model output into evidence
 
-## Current implementation truth
+## Migration state
 
-- API key stays in the browser and is sent directly to Anthropic
-- session storage is the default; optional “remember” uses `localStorage` under `PI_ORACLE_KEY`
-- “Forget key” clears both browser stores
-- the default model is `claude-sonnet-5`
-- output is plain draft text, not an auto-applied mutation
-- output follows the register's exact editorial headings and identifies evidence still needed
-- the rest of the site must continue to work without a configured key
+The former browser-direct implementation has been removed from `src/pages/` and preserved at `src/studio/OracleStudio.astro` as migration reference. It still reflects the retired CSV-era prompt and is not considered the final local studio.
+
+The replacement is blocked on the structured Constitution and case-file schema. Until then, the preserved component must not be imported into a public route.

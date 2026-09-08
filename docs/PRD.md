@@ -16,9 +16,9 @@ The project exists to make durable, repairable decisions legible. It is not e-co
 - Index view for browse, search, filter, and sort
 - Category dossier pages
 - Methodology page
-- Oracle draft-assist view
+- local Oracle editorial studio (not a public route)
 - CSV-driven content updates with no backend
-- GitHub Pages deployment
+- static-first Vercel deployment
 
 ## Out of scope
 
@@ -27,7 +27,7 @@ The project exists to make durable, repairable decisions legible. It is not e-co
 - Compare view
 - Child-category routing UI
 - Comments, voting, or community features
-- Backend APIs or databases
+- General-purpose backend APIs or databases; a narrowly scoped moderated challenge endpoint is planned separately
 
 ## Success criteria
 
@@ -35,4 +35,3 @@ The project exists to make durable, repairable decisions legible. It is not e-co
 - Category pages explain the decision clearly and honestly.
 - Content changes propagate without requiring new app features.
 - The repo docs describe the app that actually exists.
-
