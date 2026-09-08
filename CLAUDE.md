@@ -301,3 +301,22 @@ Weekly /review plus on-demand.
 - Never push, deploy, publish, or change repository settings from PM Brain work without a separate explicit approval.
 - Never copy `_archive/` into the active tree. It contains historical Gemini-era files, debug instrumentation, and old environment files; it is not an implementation source.
 - Never place credentials, API keys, or `.env` contents in the brain. The Oracle is an authoring aid, not a source of trusted facts.
+
+## Skill routing
+
+When the user's request matches an available skill, invoke it via the Skill tool. When in doubt, invoke the skill.
+
+Key routing rules:
+- Product ideas/brainstorming → invoke /office-hours
+- Strategy/scope → invoke /plan-ceo-review
+- Architecture → invoke /plan-eng-review
+- Design system/plan review → invoke /design-consultation or /plan-design-review
+- Full review pipeline → invoke /autoplan
+- Bugs/errors → invoke /investigate
+- QA/testing site behavior → invoke /qa or /qa-only
+- Code review/diff check → invoke /review
+- Visual polish → invoke /design-review
+- Ship/deploy/PR → invoke /ship or /land-and-deploy
+- Save progress → invoke /context-save
+- Resume context → invoke /context-restore
+- Author a backlog-ready spec/issue → invoke /spec
