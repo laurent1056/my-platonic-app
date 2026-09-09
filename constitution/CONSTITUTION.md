@@ -1,7 +1,7 @@
 # The Platonic Ideal Constitution
 
 **Constitution ID:** `PI-CONSTITUTION`
-**Version:** `1.0.0`
+**Version:** `1.1.0`
 **Status:** Active
 **Effective:** 2026-09-08
 
@@ -35,8 +35,12 @@ do not create multiple current ideals.
 The purpose of a ruling is to end a reasonable search, not begin another round
 of comparison. A declared object must reach the practical ceiling of the Form
 without depending on luxury theater, novelty, or marginal specification gains.
-Finality is conditional on the evidence remaining true; it is not a claim of
-perfection or immortality.
+The practical ceiling is not perfection: ordinary trade-offs, replaceable wear
+parts, and rational maintenance or renewal cycles may be compatible with a
+declaration. Do not withhold a declaration because another product wins a
+nonessential preference; disclose the preference and decide whether it changes
+the Form. Finality is conditional on the evidence remaining true; it is not a
+claim of perfection or immortality.
 
 ### 3. Reversible failure
 
@@ -52,11 +56,16 @@ brand, family, or marketing label. Material changes in construction, parts,
 service, software dependency, or model identity require review. Silent drift is
 itself an integrity failure.
 
-### 5. Emptiness is integrity
+### 5. Emptiness is a last resort
 
-`EMPTY` is a positive finding, not missing content. If no examined product
-passes every gate, the category remains empty indefinitely. “Best available” is
-not an exception to the standard.
+`EMPTY` is a positive finding, not missing content, but it is a last resort.
+Before issuing it, the editor must run a declaration-rescue pass: verify that
+the Form is coherent, split incompatible sub-Forms, distinguish essential
+failures from preferences, and evaluate maintenance, repair, rebuilding, and
+rational renewal. If one exact product fulfills the essential function and its
+remaining failures are reversible or rationally renewable, the case should be
+declared with those limits disclosed. “Best available” is not a reason to lower
+the evidence standard, but “not perfect” is not a reason to reject a candidate.
 
 ### 6. Revocation is public
 
@@ -81,6 +90,13 @@ be redefined or marked `SPLIT_REQUIRED`. A regional law or operating condition
 may be part of the category's scope when it changes what can safely or legally
 perform the Form. Personal taste alone may not define jurisdiction.
 
+A category may not be declared `EMPTY` while its Stable Form remains unresolved.
+When an apparent failure comes from a conflict between user contexts, carrying
+systems, service models, or permanence assumptions, the parent case remains
+nonterminal until the conflict is narrowed, split, or resolved. The case must
+record that rescue pass rather than treating the first failed broad definition
+as proof that the whole category has no ideal.
+
 The Form statement must describe essential function and constraints. It must
 not contain a brand, model, winner, price point, trend, or aesthetic preference
 unless that characteristic is itself functionally necessary.
@@ -89,7 +105,9 @@ unless that characteristic is itself functionally necessary.
 
 A proposed declaration must pass all five gates. `UNKNOWN`, `PARTIAL`, or
 `NOT_APPLICABLE` does not count as a pass. Failure of one gate makes a
-`DECLARED` ruling inadmissible regardless of popularity or review scores.
+`DECLARED` ruling inadmissible regardless of popularity or review scores. The
+standard is strict about essential function and evidence, not maximalist about
+optional features or marginal preferences.
 
 ### Gate G-01 — Stable Form
 
@@ -116,7 +134,10 @@ rationally renewed. The remedy must be available in practice, not merely
 theoretically possible.
 
 Required finding: the case records likely failure modes, repair paths, parts,
-skills, costs, and the point at which replacement becomes rational.
+skills, costs, and the point at which replacement becomes rational. Rational
+renewal may include sharpening, replacing a standard wear component, rebuilding
+a module, or renewing an inherently consumable item under `CONSUMABLE`; it does
+not excuse a disposable critical core.
 
 ### Gate G-04 — Stable model
 
@@ -131,11 +152,14 @@ would trigger re-review.
 
 The product reaches the practical ceiling of the Form for the defined category.
 Spending or comparing further yields mostly preference, status, novelty, or
-marginal gains—not a materially more complete embodiment.
+marginal gains—not a materially more complete embodiment. A candidate does not
+need to eliminate every compromise when its essential function is complete and
+its remaining limitations are disclosed and manageable under this Constitution.
 
 Required finding: the case states the strongest counter-case and explains why
-it does not overturn the declaration. This is an editorial judgment supported
-by evidence, never a numeric score.
+it does not overturn the declaration. The counter-case must show material
+incompleteness, not merely a different preference. This is an editorial
+judgment supported by evidence, never a numeric score.
 
 ## Article IV — Evidence standard
 
@@ -217,7 +241,8 @@ material disqualifier also bars declaration until resolved.
 - `HD-02 IRREVERSIBLE_WEAR_LAYER` — the primary function depends on a coating,
   bonded layer, or consumable surface that cannot be practically renewed.
 - `HD-03 NONREPLACEABLE_CRITICAL_PART` — an expected-to-fail critical component
-  has no compatible replacement, rebuild, or documented substitute.
+  has no compatible replacement, rebuild, documented substitute, or accepted
+  maintenance/renewal path appropriate to the Form.
 - `HD-04 TERMINATING_PROPRIETARY_DEPENDENCY` — essential function or maintenance
   depends on proprietary software, authentication, consumables, or infrastructure
   whose foreseeable retirement ends use without a migration path.
@@ -246,8 +271,9 @@ The only current terminal verdicts are:
 
 - `DECLARED` — one exact model passes every gate, no hard disqualifier is
   present or materially unknown, and the evidence and confidence floors hold;
-- `EMPTY` — the defined category has been seriously searched and no examined
-  product can honestly be declared under this Constitution.
+- `EMPTY` — the defined category has a stable, coherent Form; the declaration-
+  rescue pass is complete; and no examined product can honestly be declared
+  under this Constitution.
 
 The nonterminal working states are:
 
@@ -288,15 +314,18 @@ Before issue, the case file must contain:
 Before issue, the case file must contain:
 
 1. a stable category and Form definition;
-2. a recorded market-search protocol and credible candidate set;
-3. the material gate failures or disqualifying patterns for each serious
+2. a passing Stable Form finding with no unresolved split;
+3. a recorded declaration-rescue pass showing that narrowing, splitting,
+   essential-versus-optional distinctions, and rational renewal were considered;
+4. a recorded market-search protocol and credible candidate set;
+5. the material gate failures or disqualifying patterns for each serious
    candidate or for the category's shared architecture;
-4. the minimum independent evidence packet, including market coverage;
-5. an explicit statement of what a future qualifying product would require;
-6. a strongest counter-case to emptiness and reasoned disposition;
-7. a confidence score of at least `4/5`;
-8. an adjudicator, decision date, Constitution version, and evidence receipt;
-9. a complete public ruling ready to remain free.
+6. the minimum independent evidence packet, including market coverage;
+7. an explicit statement of what a future qualifying product would require;
+8. a strongest counter-case to emptiness and reasoned disposition;
+9. a confidence score of at least `4/5`;
+10. an adjudicator, decision date, Constitution version, and evidence receipt;
+11. a complete public ruling ready to remain free.
 
 ### 3. Confidence
 
@@ -393,7 +422,7 @@ Editorial outcome and commercial outcome are separate systems.
 - Affiliate revenue, if ever introduced, may follow a ruling but may not select,
   order, or preserve one.
 - Paid petitions and sponsored adjudications require a future constitutional
-  amendment and explicit product decision; they are not authorized by v1.0.0.
+  amendment and explicit product decision; they are not authorized by v1.1.0.
 
 Hosted checkout and private fulfillment are operational conveniences, not
 editorial inputs.

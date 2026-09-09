@@ -34,7 +34,8 @@ The current schema is:
 ## Status semantics
 
 - `DECLARED`: one model is named and defended
-- `EMPTY`: no current product qualifies
+- `EMPTY`: no current product qualifies after the Form is stable and the
+  declaration-rescue pass is complete
 - `CANDIDATE`: not yet ready for declaration, but still worth tracking
 - `SPLIT_REQUIRED`: the parent category fragments into incompatible Forms
 - `CONDITIONAL`: a named model depends on explicit operating conditions

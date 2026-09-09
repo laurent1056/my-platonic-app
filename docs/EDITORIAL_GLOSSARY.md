@@ -10,7 +10,9 @@ The single named product that best expresses the form.
 
 ## Empty
 
-A category status meaning nothing currently qualifies.
+A category status meaning nothing currently qualifies after the Form has been
+stabilized, incompatible sub-forms have been split or resolved, and rational
+maintenance or renewal has been considered.
 
 ## Candidate
 
@@ -27,4 +29,3 @@ The property that makes long-term ownership possible: repairability, replaceable
 ## Source Fields
 
 The app's review block that surfaces populated CSV headers not already mapped to a dedicated visible section.
-

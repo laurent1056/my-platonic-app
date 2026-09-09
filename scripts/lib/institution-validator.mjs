@@ -308,6 +308,31 @@ function validateTerminalCase(caseFile, profile, evidenceById, errors) {
   }
 
   if (caseFile.status === 'EMPTY') {
+    const stableForm = (caseFile.gates || []).find((gate) => gate.id === 'G-01')
+    if (stableForm?.status !== 'PASS') {
+      errors.push(makeError({
+        code: 'C-EMPTY-004',
+        path: `${casePath}.gates.G-01.status`,
+        id,
+        rule: 'stable Form before emptiness',
+        message: 'EMPTY requires a resolved Stable Form; the category is still split or unresolved',
+        fix: 'Narrow the Form, resolve the split, or keep the case nonterminal.',
+      }))
+    }
+
+    const rescue = caseFile.declarationRescue || {}
+    const rescueFields = ['formCoherence', 'splitReview', 'essentialVsOptional', 'renewalReview', 'conclusion']
+    if (rescueFields.some((field) => !rescue[field]?.trim())) {
+      errors.push(makeError({
+        code: 'C-EMPTY-005',
+        path: `${casePath}.declarationRescue`,
+        id,
+        rule: 'declaration-rescue pass',
+        message: 'EMPTY requires a recorded declaration-rescue pass before terminal issue',
+        fix: 'Record Form coherence, split review, essential-versus-optional analysis, renewal analysis, and the rescue conclusion.',
+      }))
+    }
+
     if (!caseFile.categorySearch?.protocol?.trim() || !caseFile.categorySearch?.candidateSet?.length) {
       errors.push(makeError({
         code: 'C-EMPTY-001',

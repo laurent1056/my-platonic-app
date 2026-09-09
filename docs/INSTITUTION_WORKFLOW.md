@@ -36,9 +36,10 @@ eventually become a public Platonic Ideal ruling.
 4. Record findings for the five admission gates and ten hard disqualifiers.
    Facts, editorial inferences, and gaps must remain distinguishable.
 5. Record failure modes, maintenance, repair economics, and the strongest
-   counter-case. For `EMPTY`, also record the search protocol, serious
-   candidate set, structural failure, and the future requirement that could
-   reopen the category.
+   counter-case. For `EMPTY`, also record the declaration-rescue pass: stable
+   Form, split review, essential-versus-optional analysis, rational-renewal
+   analysis, search protocol, serious candidate set, structural failure, and
+   the future requirement that could reopen the category.
 6. Run the validator:
 
    ```bash

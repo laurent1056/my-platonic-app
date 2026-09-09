@@ -1,12 +1,12 @@
 {
   "$schema": "../schemas/constitution.schema.json",
   "constitutionId": "PI-CONSTITUTION",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "status": "ACTIVE",
   "effective": "2026-09-08",
   "sourceFile": "constitution/CONSTITUTION.md",
   "digestAlgorithm": "sha256",
-  "sourceSha256": "5507eca9b8e8d44bf2b3928b24bb0791505ab1f060ce96d7dc9c93092d065e53",
+  "sourceSha256": "cfbd7ae3a56ce31e3f587951d56f27bd682d1f00c49041ac1f661820d6b1e893",
   "terminalVerdicts": [
     "DECLARED",
     "EMPTY"

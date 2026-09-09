@@ -45,7 +45,7 @@ const makeCase = (status = 'DECLARED', evidenceIds = validEvidence.map((item) =>
       : { manufacturer: '', model: '', modelIdentifier: '' },
     gates: base.profile.admissionGates.map((gate, index) => ({
       id: gate.id,
-      status: empty && index === 0 ? 'FAIL' : 'PASS',
+      status: empty && index === 1 ? 'FAIL' : 'PASS',
       finding: `${gate.title} finding.`,
       evidenceIds: [validEvidence[index % validEvidence.length].id],
     })),
@@ -62,6 +62,13 @@ const makeCase = (status = 'DECLARED', evidenceIds = validEvidence.map((item) =>
           categorySearch: {
             protocol: 'Examined the serious candidates in the defined market.',
             candidateSet: ['Candidate A', 'Candidate B'],
+          },
+          declarationRescue: {
+            formCoherence: 'The category has one stable job and scope.',
+            splitReview: 'Incompatible sub-forms were considered and excluded.',
+            essentialVsOptional: 'The failure affects an essential function, not a preference.',
+            renewalReview: 'Maintenance and rational renewal do not cure the shared failure.',
+            conclusion: 'No examined candidate clears the stable Form after the rescue pass.',
           },
           futureRequirement: 'A future product must provide a repairable critical core.',
         }
@@ -138,6 +145,17 @@ test('a complete EMPTY case passes category coverage and future-requirement chec
     cases: [makeCase('EMPTY')],
   }))
   assert.equal(result.ok, true, result.errors.map((error) => error.message).join('\n'))
+})
+
+test('EMPTY rejects an unresolved or split Form', () => {
+  const invalid = makeCase('EMPTY')
+  invalid.gates[0].status = 'PARTIAL'
+  const result = validateInstitutionData(dataWith({
+    evidenceStore: { constitutionVersion: base.profile.version, items: validEvidence },
+    cases: [invalid],
+  }))
+  assert.equal(result.ok, false)
+  assert.ok(errorCodes(result).has('C-EMPTY-004'))
 })
 
 test('terminal DECLARED requires an exact model', () => {

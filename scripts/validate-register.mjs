@@ -41,7 +41,14 @@ data.forEach((row, index) => {
   if (disA && disB && disA !== disB) warnings.push(`Line ${line} (${category}): duplicate Key Disqualifiers columns differ`)
 })
 
+const emptyShare = data.length ? (statusCounts.EMPTY || 0) / data.length : 0
+const emptyPercent = (emptyShare * 100).toFixed(1)
+if (emptyShare > 0.3) {
+  warnings.push(`EMPTY share is ${emptyPercent}% of the register; audit Form scope, split review, and declaration-rescue work before issuing more empty verdicts`)
+}
+
 console.log(`Register: ${data.length} entries · ${Object.entries(statusCounts).map(([key, value]) => `${key} ${value}`).join(' · ')}`)
+console.log(`Declaration health: ${statusCounts.DECLARED || 0} declared · ${emptyPercent}% EMPTY (30% is an audit threshold, not a declaration quota)`)
 if (warnings.length) console.log(`Register warnings: ${warnings.length} (run the validator directly to review during data cleanup)`)
 if (process.argv.includes('--verbose')) warnings.forEach((warning) => console.warn(`WARN  ${warning}`))
 

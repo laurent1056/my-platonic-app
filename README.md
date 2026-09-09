@@ -60,7 +60,8 @@ Temp/               Scratch. Gitignored. Created on demand the first time you ne
 This PM Brain lives in the same repository as the product it supports. The
 product is Platonic Ideal: a static editorial register that names one product
 per category—or records an explicit `EMPTY` finding when no current product
-qualifies.
+qualifies after the Form has been stabilized and a declaration-rescue pass has
+been completed.
 
 The application is the Astro site in `src/`, with the canonical register in
 [`public/platonic_ideal.csv`](./public/platonic_ideal.csv). Its current surface
