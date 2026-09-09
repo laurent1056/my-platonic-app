@@ -2,15 +2,16 @@
   "id": "PI-C-0001",
   "category": "Everyday Pocket Knife",
   "slug": "everyday-pocket-knife",
-  "status": "DRAFT",
+  "status": "SPLIT_REQUIRED",
   "constitutionVersion": "1.0.0",
   "form": {
-    "statement": "A compact folding knife for ordinary daily cutting and utility tasks that can remain serviceable across years of use.",
-    "scope": "Everyday personal carry in ordinary civilian use; the founding case will define the legal and practical jurisdiction before adjudication.",
+    "statement": "A single-blade folding knife intended for daily pocket-compatible personal carry and ordinary civilian cutting and utility tasks, with a secure lock, maintainable edge, stable model identity, and a practical service path that keeps the knife in service rather than replacing the assembly.",
+    "scope": "United States market availability and manufacturer service access; ordinary adult civilian use; pocket or equivalent unobtrusive personal carry where lawful. This case makes no claim that any knife is legal to carry in every locality; users must verify local law.",
     "exclusions": [
       "Fixed-blade field knives",
-      "Dedicated survival or combat knives",
-      "Multi-tools whose knife is not the primary form"
+      "Dedicated survival, combat, automatic, or assisted-opening knives",
+      "Multi-tools whose knife is not the primary form",
+      "Kitchen, trade, and task-specific knives"
     ]
   },
   "subject": {
@@ -18,20 +19,110 @@
     "model": "",
     "modelIdentifier": ""
   },
-  "gates": [],
-  "hardDisqualifiers": [],
-  "evidenceIds": [],
-  "evidenceGaps": [
-    "The category jurisdiction and exact Form need to be finalized.",
-    "Candidate models must be re-adjudicated from first principles with independent evidence."
+  "gates": [
+    {
+      "id": "G-01",
+      "status": "PARTIAL",
+      "finding": "The case began with one apparent job, but the evidence exposes two legitimate carry-and-permanence Forms: a traditional utility folder carried in a sheath or kit, and a light modern pocket folder. They cannot be adjudicated as one Form without making either carry convenience or long-horizon serviceability do hidden normative work.",
+      "evidenceIds": ["PI-E-000005", "PI-E-000007", "PI-E-000009"]
+    },
+    {
+      "id": "G-02",
+      "status": "PARTIAL",
+      "finding": "The evidence supports a durable core in the traditional Buck 110 form and a lighter pocket-compatible core in the Opinel and Delica forms, but it does not establish that these are competing answers to one stable Form. The apparent failure may be a category boundary rather than a product failure.",
+      "evidenceIds": ["PI-E-000002", "PI-E-000005", "PI-E-000006", "PI-E-000007", "PI-E-000009"]
+    },
+    {
+      "id": "G-03",
+      "status": "PARTIAL",
+      "finding": "Serviceability is not yet being judged against a settled permanence rule. Buck documents factory repair and 420HC blade replacement; Opinel documents sharpening and ring maintenance; Spyderco documents sharpening, regrinding, and reassembly but explicitly does not replace blades. The Constitution permits rational renewal, so the case must decide whether a replaceable blade is essential or whether recoverable edge maintenance is sufficient for each successor Form.",
+      "evidenceIds": ["PI-E-000003", "PI-E-000008", "PI-E-000010"]
+    },
+    {
+      "id": "G-04",
+      "status": "PASS",
+      "finding": "The serious candidates were evaluated as exact identifiable specifications: Buck 110 Folding Hunter 0110BRS-B, Opinel No.08 Stainless Steel Folding Knife, and Spyderco Delica4 Lightweight C11BK. Their model records and material differences are legible enough to adjudicate without collapsing them into brand families.",
+      "evidenceIds": ["PI-E-000001", "PI-E-000004", "PI-E-000007", "PI-E-000009"]
+    },
+    {
+      "id": "G-05",
+      "status": "PARTIAL",
+      "finding": "No candidate ends the search under the provisional combined Form, but that result is not yet a valid EMPTY ruling. The Buck 110 may end the search for a traditional utility folder; Opinel or Delica may end it for a modern pocket folder. The case must split those Forms before terminal judgment.",
+      "evidenceIds": ["PI-E-000002", "PI-E-000005", "PI-E-000007", "PI-E-000010"]
+    }
   ],
-  "failureModes": [],
-  "maintenance": "Not yet adjudicated.",
-  "repairEconomics": "Not yet adjudicated.",
-  "counterCase": {
-    "claim": "Not yet adjudicated.",
-    "disposition": "The founding case has not selected an incumbent or terminal verdict."
+  "hardDisqualifiers": [
+    {
+      "id": "HD-03",
+      "status": "UNKNOWN",
+      "finding": "Spyderco's service policy states that it does not replace knife blades under any circumstances. Whether that is a hard disqualifier depends on the successor Form's permanence rule: a blade may be maintained by sharpening or re-profiling, while terminal damage may rationally require renewal. The present combined case cannot decide that question fairly.",
+      "evidenceIds": ["PI-E-000010"]
+    },
+    {
+      "id": "HD-09",
+      "status": "UNKNOWN",
+      "finding": "The standard Buck 110 0110BRS-B is a traditional, larger sheath-carry folder rather than a modern pocket-clip everyday carry object. That is a category mismatch only if pocket-compatible carry is essential to the Form; it is not a disqualifier for a traditional utility-folder successor category.",
+      "evidenceIds": ["PI-E-000002", "PI-E-000005"]
+    }
+  ],
+  "evidenceIds": [
+    "PI-E-000001",
+    "PI-E-000002",
+    "PI-E-000003",
+    "PI-E-000004",
+    "PI-E-000005",
+    "PI-E-000006",
+    "PI-E-000007",
+    "PI-E-000008",
+    "PI-E-000009",
+    "PI-E-000010",
+    "PI-E-000011"
+  ],
+  "evidenceGaps": [],
+  "categorySearch": {
+    "protocol": "Reviewed exact-model manufacturer specifications and service records across three serious sub-forms: a traditional longevity-first folder, a simple lightweight traditional folder, and a modern pocket-clip folder. Compared carry system, dimensions and weight, materials, lock and interface complexity, model identity, maintenance, critical-part service, repair economics, and long-horizon evidence. The protocol found that the category boundary itself requires adjudication before a terminal ruling. Retailer rankings were not used as the selection rule.",
+    "candidateSet": [
+      "Buck 110 Folding Hunter, standard model 0110BRS-B",
+      "Opinel No.08 Stainless Steel Folding Knife",
+      "Spyderco Delica4 Lightweight, C11BK",
+      "Victorinox Cadet, excluded at the Form boundary because the knife is part of a multi-tool rather than the primary form"
+    ]
   },
-  "confidence": 0,
-  "notes": "This scaffold intentionally does not inherit the former Opinel/Victorinox CSV row as a ruling."
+  "failureModes": [
+    {
+      "mode": "Edge dulling through ordinary cutting",
+      "severity": "LOW",
+      "remedy": "Routine sharpening or professional sharpening service; this is compatible with permanence when the edge geometry remains recoverable."
+    },
+    {
+      "mode": "Broken tip, chipped edge, or severe blade damage",
+      "severity": "HIGH",
+      "remedy": "Buck documents factory blade replacement for the standard 110; Spyderco documents limited regrinding and re-profiling but no blade replacement; Opinel's public record does not establish a standard blade replacement path."
+    },
+    {
+      "mode": "Pivot, lock, or locking-ring wear",
+      "severity": "MEDIUM",
+      "remedy": "Buck and Spyderco provide factory service paths; Opinel documents user adjustment and replacement-ring contact. Serviceability is not uniform across the category."
+    },
+    {
+      "mode": "Handle, sheath, or pocket-clip wear or loss",
+      "severity": "MEDIUM",
+      "remedy": "Replace or service the affected carry component where the manufacturer supports it; a carry system is part of the Form and cannot be dismissed as cosmetic."
+    },
+    {
+      "mode": "Corrosion from moisture or neglected maintenance",
+      "severity": "LOW",
+      "remedy": "Clean, dry, oil, and sharpen according to the maker's maintenance guidance; corrosion prevention does not solve the category's service-path failure."
+    }
+  ],
+  "maintenance": "All serious candidates require cleaning, drying, and edge maintenance. Buck recommends keeping the knife dry and clean, oiling the pivot and blade at least twice a year, and sending damaged knives to the factory rather than disassembling them. Opinel requires special care for the wooden handle and Virobloc ring. Spyderco requires normal maintenance and treats ordinary wear as outside warranty.",
+  "repairEconomics": "Buck's documented repair economics are favorable in isolation: $6.95 SPA service, $10 420HC blade replacement, customer-paid outbound shipping, and a stated 10–12 week repair turnaround. Spyderco lists free sharpening with $10 return shipping, $20 regrinding plus $10 return shipping, and no blade replacement; fees can change. Opinel's current No.08 price is $23, its warranty is a defect/workmanship exchange, and its public maintenance record does not establish a standard blade rebuild. The lowest-cost rational action for an Opinel at terminal damage may be replacement, which is precisely why its otherwise excellent simplicity does not clear this Form's permanence requirement.",
+  "counterCase": {
+    "claim": "The Buck 110 is the strongest argument against emptiness: its design dates to the 1960s, a long-term owner report describes decades of hard service, and Buck offers an unusually explicit factory repair and blade-replacement path.",
+    "disposition": "This is not a counter-case to be dismissed. It is evidence that the traditional utility folder may be a distinct Form. The Buck 110 should be re-adjudicated in that successor category rather than rejected for failing a modern pocket-carry requirement.",
+    "evidenceIds": ["PI-E-000002", "PI-E-000003", "PI-E-000004", "PI-E-000005"]
+  },
+  "futureRequirement": "Before any terminal verdict, create and adjudicate two successor cases: Traditional Utility Folding Knife, where sheath or kit carry and factory rebuild evidence are central; and Modern Everyday Pocket Knife, where pocket access, weight, edge maintenance, and rational renewal are defined without assuming that blade replacement is automatically essential.",
+  "confidence": 3,
+  "notes": "Founding research case; not a terminal ruling. The evidence does not justify making the category EMPTY because the provisional Form combines two potentially incompatible ideals: traditional utility permanence and modern pocket-compatible carry. This case therefore requires a split. The Buck 110 remains a serious candidate for Traditional Utility Folding Knife; Opinel No. 8 and Spyderco Delica remain candidates for Modern Everyday Pocket Knife. The inherited Pocket Knife CSV declaration is not validated by this case and should remain a separate migration concern until the successor cases are adjudicated."
 }

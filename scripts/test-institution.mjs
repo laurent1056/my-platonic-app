@@ -91,7 +91,7 @@ function dataWith(overrides = {}) {
     constitutionText: base.constitutionText,
     evidenceStore: structuredClone(base.evidenceStore),
     cases: structuredClone(base.cases),
-    rulings: structuredClone(base.rulings),
+    rulings: { constitutionVersion: base.profile.version, events: [] },
     challenges: structuredClone(base.challenges),
     schemasDir: new URL('../schemas/', import.meta.url).pathname,
     ...overrides,
@@ -102,17 +102,24 @@ function errorCodes(result) {
   return new Set(result.errors.map((error) => error.code))
 }
 
-test('canonical institution fixtures pass and retain a nonterminal Pocket Knife case', async () => {
+test('canonical institution fixtures pass and retain the founding split-required case', async () => {
   const result = await validateInstitution()
   assert.equal(result.ok, true, result.errors.map((error) => error.message).join('\n'))
   assert.equal(result.summary.cases, 1)
   assert.equal(result.summary.nonterminalCases, 1)
   assert.equal(result.summary.terminalCases, 0)
+  assert.equal(result.summary.rulings, 0)
 })
 
 test('a draft case may have incomplete evidence and gates without becoming terminal', () => {
+  const draft = structuredClone(base.cases[0])
+  draft.status = 'DRAFT'
+  draft.gates = []
+  draft.hardDisqualifiers = []
+  draft.evidenceIds = []
+  draft.evidenceGaps = ['Research remains incomplete.']
   const result = validateInstitutionData(dataWith({
-    cases: [structuredClone(base.cases[0])],
+    cases: [draft],
   }))
   assert.equal(result.ok, true, result.errors.map((error) => error.message).join('\n'))
 })
