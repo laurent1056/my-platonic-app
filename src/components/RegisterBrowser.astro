@@ -1,0 +1,197 @@
+---
+import ConfidenceMeter from './ConfidenceMeter.astro'
+import StatusChip from './StatusChip.astro'
+import { categoryUrl, domains, register, registerStats, withBase } from '@/data/register'
+
+const mechanismLabels = {
+  repairable: 'Repairable',
+  warranty: 'Warranty-backed',
+  'rational-renewal': 'Rational renewal',
+  consumable: 'Consumable',
+  unspecified: 'Not yet classified',
+} as const
+
+const stateOptions = [
+  ['all', 'All public states'],
+  ['DECLARED', 'Declared'],
+  ['EMPTY', 'Empty'],
+  ['IN REVIEW', 'In review'],
+  ['SPLIT_REQUIRED', 'Split required'],
+  ['CONDITIONAL', 'Conditional'],
+  ['CANDIDATE', 'Candidate'],
+  ['CONSUMABLE', 'Consumable'],
+] as const
+---
+
+<section class="register-browser" aria-labelledby="register-browser-title">
+  <header class="register-browser-hero">
+    <div>
+      <p class="label">The public catalogue</p>
+      <h1 class="editorial-title" id="register-browser-title">Browse the register.</h1>
+      <p class="editorial-dek">Start with a domain, a public state, or a permanence mechanism. The register is ordered canonically, not ranked. Each row leads to the current dossier for that category.</p>
+    </div>
+    <aside class="register-browser-stamp" aria-label="Register census">
+      <span class="label">Current census</span>
+      <strong class="mono">N = {registerStats.total}</strong>
+      <span class="mono">{registerStats.declared} declared · {registerStats.empty} empty</span>
+      <span class="mono">{registerStats.review} in review</span>
+    </aside>
+  </header>
+
+  <nav class="domain-strip" aria-label="Browse domains">
+    <span class="label">Domains</span>
+    <a href={withBase('register/')} data-domain-link="all">All</a>
+    {domains.map((domain) => <a href={withBase(`register/?domain=${domain.id}`)} data-domain-link={domain.id}>{domain.name}</a>)}
+  </nav>
+
+  <div class="register-browser-controls" aria-label="Register filters">
+    <div class="field-shell register-search-field">
+      <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+      <label class="sr-only" for="catalog-search">Search the register</label>
+      <input class="text-field" type="search" id="catalog-search" placeholder="Search category, model, Form, or mechanism…" autocomplete="off" />
+    </div>
+    <label class="filter-field"><span class="label">Domain</span><select class="select-field" id="catalog-domain">
+      <option value="all">All domains</option>
+      {domains.map((domain) => <option value={domain.id}>{domain.name}</option>)}
+    </select></label>
+    <label class="filter-field"><span class="label">State</span><select class="select-field" id="catalog-state">
+      {stateOptions.map(([value, label]) => <option value={value}>{label}</option>)}
+    </select></label>
+    <label class="filter-field"><span class="label">Permanence</span><select class="select-field" id="catalog-mechanism">
+      <option value="all">All mechanisms</option>
+      {Object.entries(mechanismLabels).map(([value, label]) => <option value={value}>{label}</option>)}
+    </select></label>
+    <label class="filter-field"><span class="label">Order</span><select class="select-field" id="catalog-sort">
+      <option value="number">Canonical order</option>
+      <option value="category">Alphabetical</option>
+      <option value="confidence">Confidence</option>
+    </select></label>
+    <button class="filter-clear" type="button" id="catalog-clear">Clear filters</button>
+  </div>
+
+  <div class="register-filter-status" aria-live="polite" role="status">
+    <span id="catalog-result-count">Showing all {registerStats.total} entries.</span>
+    <span class="mono">Filters are views, not rankings.</span>
+  </div>
+
+  <div class="register-wrap register-browser-table-wrap">
+    <table class="register-table" id="catalog-table">
+      <caption class="sr-only">The Platonic Ideal public register</caption>
+      <thead>
+        <tr><th scope="col">No.</th><th scope="col">Category</th><th scope="col">Domain</th><th scope="col">State</th><th scope="col">The model</th><th scope="col">Permanence</th><th scope="col">Conf.</th></tr>
+      </thead>
+      <tbody id="catalog-body">
+        {register.map((entry) => (
+          <tr
+            class="register-row"
+            data-search={entry.searchText}
+            data-verdict={entry.verdict}
+            data-status={entry.sourceStatus}
+            data-domain={entry.domainSlug}
+            data-mechanism={entry.permanenceKind}
+            data-number={entry.number}
+            data-category={entry.category.toLocaleLowerCase()}
+            data-confidence={entry.confidence}
+          >
+            <td class="number">{String(entry.number).padStart(3, '0')}</td>
+            <td class="category"><a href={categoryUrl(entry)}>{entry.category}</a></td>
+            <td class="catalog-domain"><span class="mono">{entry.domain.name}</span></td>
+            <td><StatusChip verdict={entry.verdict} sourceStatus={entry.sourceStatus} /></td>
+            <td class="model">{entry.model || (entry.verdict === 'EMPTY' ? '— no product qualifies' : '— declaration pending')}</td>
+            <td class="catalog-mechanism">{mechanismLabels[entry.permanenceKind]}</td>
+            <td><ConfidenceMeter value={entry.confidence} /></td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+    <p class="register-empty" id="catalog-empty" hidden>No entry matches this view. Try clearing one filter.</p>
+  </div>
+</section>
+
+<script>
+  const search = document.querySelector('#catalog-search')
+  const domain = document.querySelector('#catalog-domain')
+  const state = document.querySelector('#catalog-state')
+  const mechanism = document.querySelector('#catalog-mechanism')
+  const sort = document.querySelector('#catalog-sort')
+  const clear = document.querySelector('#catalog-clear')
+  const body = document.querySelector('#catalog-body')
+  const empty = document.querySelector('#catalog-empty')
+  const count = document.querySelector('#catalog-result-count')
+
+  const controls = [search, domain, state, mechanism, sort]
+  const isInput = (element: Element | null): element is HTMLInputElement => element instanceof HTMLInputElement
+  const isSelect = (element: Element | null): element is HTMLSelectElement => element instanceof HTMLSelectElement
+
+  const readParams = () => {
+    const params = new URLSearchParams(window.location.search)
+    if (isInput(search)) search.value = params.get('q') || ''
+    if (isSelect(domain)) domain.value = params.get('domain') || 'all'
+    if (isSelect(state)) state.value = params.get('state') || 'all'
+    if (isSelect(mechanism)) mechanism.value = params.get('mechanism') || 'all'
+    if (isSelect(sort)) sort.value = params.get('sort') || 'number'
+  }
+
+  const writeParams = () => {
+    const params = new URLSearchParams()
+    if (isInput(search) && search.value.trim()) params.set('q', search.value.trim())
+    if (isSelect(domain) && domain.value !== 'all') params.set('domain', domain.value)
+    if (isSelect(state) && state.value !== 'all') params.set('state', state.value)
+    if (isSelect(mechanism) && mechanism.value !== 'all') params.set('mechanism', mechanism.value)
+    if (isSelect(sort) && sort.value !== 'number') params.set('sort', sort.value)
+    const query = params.toString()
+    window.history.replaceState({}, '', `${window.location.pathname}${query ? `?${query}` : ''}`)
+  }
+
+  const updateDomainLinks = () => {
+    const selected = isSelect(domain) ? domain.value : 'all'
+    document.querySelectorAll('[data-domain-link]').forEach((link) => {
+      if (link.getAttribute('data-domain-link') === selected) link.setAttribute('aria-current', 'page')
+      else link.removeAttribute('aria-current')
+    })
+  }
+
+  const update = (persist = true) => {
+    if (!(body instanceof HTMLTableSectionElement)) return
+    const query = isInput(search) ? search.value.trim().toLocaleLowerCase() : ''
+    const selectedDomain = isSelect(domain) ? domain.value : 'all'
+    const selectedState = isSelect(state) ? state.value : 'all'
+    const selectedMechanism = isSelect(mechanism) ? mechanism.value : 'all'
+    const sortBy = isSelect(sort) ? sort.value : 'number'
+    const rows = Array.from(body.querySelectorAll('tr'))
+
+    rows.sort((a, b) => {
+      if (sortBy === 'category') return (a.dataset.category || '').localeCompare(b.dataset.category || '')
+      if (sortBy === 'confidence') return Number(b.dataset.confidence) - Number(a.dataset.confidence) || Number(a.dataset.number) - Number(b.dataset.number)
+      return Number(a.dataset.number) - Number(b.dataset.number)
+    })
+    rows.forEach((row) => body.append(row))
+
+    let visible = 0
+    rows.forEach((row) => {
+      const matchesQuery = !query || (row.dataset.search || '').includes(query)
+      const matchesDomain = selectedDomain === 'all' || row.dataset.domain === selectedDomain
+      const matchesState = selectedState === 'all' || (selectedState === 'IN REVIEW' ? row.dataset.verdict === selectedState : row.dataset.status === selectedState)
+      const matchesMechanism = selectedMechanism === 'all' || row.dataset.mechanism === selectedMechanism
+      row.hidden = !(matchesQuery && matchesDomain && matchesState && matchesMechanism)
+      if (!row.hidden) visible += 1
+    })
+
+    if (empty instanceof HTMLElement) empty.hidden = visible > 0
+    if (count instanceof HTMLElement) count.textContent = `Showing ${visible} ${visible === 1 ? 'entry' : 'entries'}.`
+    updateDomainLinks()
+    if (persist) writeParams()
+  }
+
+  readParams()
+  update(false)
+  controls.forEach((control) => control?.addEventListener(isInput(control) ? 'input' : 'change', () => update(true)))
+  clear?.addEventListener('click', () => {
+    if (isInput(search)) search.value = ''
+    if (isSelect(domain)) domain.value = 'all'
+    if (isSelect(state)) state.value = 'all'
+    if (isSelect(mechanism)) mechanism.value = 'all'
+    if (isSelect(sort)) sort.value = 'number'
+    update(true)
+  })
+</script>

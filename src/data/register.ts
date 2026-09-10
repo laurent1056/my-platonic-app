@@ -12,6 +12,120 @@ export type SourceStatus =
 
 export type Verdict = 'DECLARED' | 'EMPTY' | 'IN REVIEW'
 
+export type DomainId =
+  | 'kitchen-cooking'
+  | 'household-systems'
+  | 'tools-workshop'
+  | 'clothing-carry'
+  | 'outdoor-utility'
+  | 'furniture-work'
+  | 'writing-office'
+  | 'electronics'
+  | 'personal-care-misc'
+
+export interface DomainDefinition {
+  id: DomainId
+  name: string
+  description: string
+}
+
+export type PermanenceKind = 'repairable' | 'warranty' | 'rational-renewal' | 'consumable' | 'unspecified'
+
+export const domains: DomainDefinition[] = [
+  { id: 'kitchen-cooking', name: 'Kitchen & Cooking', description: 'Objects that turn ingredients into meals or keep them ready.' },
+  { id: 'household-systems', name: 'Household Systems', description: 'Appliances and infrastructure that keep a home working.' },
+  { id: 'tools-workshop', name: 'Tools & Workshop', description: 'Hand tools, powered tools, and practical equipment for making and maintaining.' },
+  { id: 'clothing-carry', name: 'Clothing & Carry', description: 'Wearable and carried objects built around daily use and personal movement.' },
+  { id: 'outdoor-utility', name: 'Outdoor & Utility', description: 'Field equipment for travel, shelter, weather, and utility.' },
+  { id: 'furniture-work', name: 'Furniture & Work', description: 'Objects that support sitting, writing, storage, and daily work.' },
+  { id: 'writing-office', name: 'Writing & Office', description: 'Small instruments and office objects for recording and organizing thought.' },
+  { id: 'electronics', name: 'Electronics', description: 'Computing and connected objects judged with special attention to software and service life.' },
+  { id: 'personal-care-misc', name: 'Personal Care & Misc.', description: 'Personal instruments and inherently renewing objects.' },
+]
+
+const categoryDomainOverrides: Record<string, DomainId> = {
+  'frying pan': 'kitchen-cooking',
+  refrigerator: 'household-systems',
+  hammer: 'tools-workshop',
+  smartphone: 'electronics',
+  'kitchen knife': 'kitchen-cooking',
+  'washing machine': 'household-systems',
+  saucepan: 'kitchen-cooking',
+  screwdriver: 'tools-workshop',
+  'dutch oven': 'kitchen-cooking',
+  laptop: 'electronics',
+  'coffee maker': 'kitchen-cooking',
+  drill: 'tools-workshop',
+  kettle: 'kitchen-cooking',
+  'task chair': 'furniture-work',
+  toaster: 'kitchen-cooking',
+  backpack: 'outdoor-utility',
+  mattress: 'household-systems',
+  'hand saw': 'tools-workshop',
+  desk: 'furniture-work',
+  boots: 'clothing-carry',
+  'oven/range': 'kitchen-cooking',
+  belt: 'clothing-carry',
+  freezer: 'household-systems',
+  'adjustable wrench': 'tools-workshop',
+  't-shirt': 'clothing-carry',
+  jeans: 'clothing-carry',
+  'jacket/coat': 'clothing-carry',
+  chisel: 'tools-workshop',
+  pliers: 'tools-workshop',
+  'tape measure': 'tools-workshop',
+  tent: 'outdoor-utility',
+  'sleeping bag': 'outdoor-utility',
+  'water bottle': 'outdoor-utility',
+  flashlight: 'outdoor-utility',
+  sweater: 'clothing-carry',
+  cooler: 'outdoor-utility',
+  'pocket knife': 'outdoor-utility',
+  notebook: 'writing-office',
+  pen: 'writing-office',
+  'cutting board': 'kitchen-cooking',
+  'vacuum cleaner': 'household-systems',
+  bicycle: 'outdoor-utility',
+  'dining chair': 'furniture-work',
+  printer: 'electronics',
+  socks: 'clothing-carry',
+  watch: 'personal-care-misc',
+  shoes: 'clothing-carry',
+  'food storage container': 'kitchen-cooking',
+  level: 'tools-workshop',
+  'drill bits': 'tools-workshop',
+  'extension cord': 'tools-workshop',
+  'camping stove': 'outdoor-utility',
+  'mechanical pencil': 'writing-office',
+  umbrella: 'personal-care-misc',
+  ladder: 'tools-workshop',
+  wheelbarrow: 'outdoor-utility',
+  wallet: 'clothing-carry',
+  briefcase: 'clothing-carry',
+  hat: 'clothing-carry',
+  gloves: 'clothing-carry',
+  toothbrush: 'personal-care-misc',
+  razor: 'personal-care-misc',
+  'hair dryer': 'personal-care-misc',
+  'desktop computer': 'electronics',
+}
+
+function domainForCategory(category: string): DomainDefinition {
+  const normalized = category.toLocaleLowerCase()
+  const parentName = normalized.replace(/\s+\([^)]*\)$/, '')
+  const id = categoryDomainOverrides[normalized] ?? categoryDomainOverrides[parentName] ?? 'personal-care-misc'
+  return domains.find((domain) => domain.id === id) ?? domains[domains.length - 1]!
+}
+
+function permanenceKind(value: string, sourceStatus: SourceStatus): PermanenceKind {
+  const normalized = value.toLocaleLowerCase()
+  if (sourceStatus === 'CONSUMABLE' || normalized.includes('consumable')) return 'consumable'
+  if (normalized.includes('warranty') || normalized.includes('guarantee')) return 'warranty'
+  if (normalized.includes('rebuild') || normalized.includes('repair') || normalized.includes('service')) return 'repairable'
+  if (normalized.includes('renew') || normalized.includes('replacement') || normalized.includes('replace')) return 'rational-renewal'
+  return 'unspecified'
+}
+
 export interface RegisterEntry {
   number: number
   reference: string
@@ -37,6 +151,9 @@ export interface RegisterEntry {
   lastReviewed: string
   notes: string
   searchText: string
+  domain: DomainDefinition
+  domainSlug: DomainId
+  permanenceKind: PermanenceKind
 }
 
 type CsvRow = Record<string, string>
@@ -89,6 +206,8 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     clean(row['Form Statement']) ||
     coreReasoning
   const imageUrl = clean(row['Image URL'])
+  const domain = domainForCategory(category)
+  const permanenceValue = clean(row['Permanence Mechanism'])
   const entry: RegisterEntry = {
     number,
     reference: `PI-${String(number).padStart(3, '0')}`,
@@ -114,6 +233,9 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     lastReviewed: clean(row['Last Reviewed']),
     notes: clean(row.Notes),
     searchText: '',
+    domain,
+    domainSlug: domain.id,
+    permanenceKind: permanenceKind(permanenceValue, sourceStatus),
   }
 
   entry.searchText = [
@@ -122,6 +244,8 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     entry.verdict,
     entry.sourceStatus,
     entry.permanence,
+    entry.domain.name,
+    entry.permanenceKind,
     entry.summary,
   ]
     .join(' ')

@@ -438,6 +438,91 @@ img, svg { display: block; max-width: 100%; }
 .confidence-bars i.filled { background: var(--ink); border-color: var(--ink); }
 .confidence output { font-family: var(--mono); font-size: .66rem; color: var(--muted); }
 
+/* Register browser */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+.register-browser { padding: clamp(3.5rem, 8vw, 7rem) 0 6rem; }
+.register-browser-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 2rem;
+  align-items: end;
+  padding-bottom: clamp(2.6rem, 6vw, 5rem);
+  border-bottom: 1px solid var(--line-strong);
+}
+.register-browser-hero .editorial-title { margin-top: .8rem; }
+.register-browser-stamp {
+  display: grid;
+  gap: .5rem;
+  padding: 1.15rem;
+  border: 1px solid var(--line-strong);
+  background: var(--surface);
+  box-shadow: 5px 5px 0 var(--gold);
+}
+.register-browser-stamp strong { font-size: 1.85rem; line-height: 1; }
+.register-browser-stamp .mono { font-size: .62rem; color: var(--muted); }
+.domain-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .35rem .95rem;
+  align-items: baseline;
+  padding: 1.2rem 0;
+  border-bottom: 1px solid var(--line);
+}
+.domain-strip .label { margin-right: .5rem; }
+.domain-strip a {
+  padding: .3rem 0;
+  border-bottom: 1px solid transparent;
+  font-family: var(--mono);
+  font-size: .64rem;
+  color: var(--muted);
+}
+.domain-strip a:hover, .domain-strip a[aria-current="page"] { color: var(--accent); border-bottom-color: var(--accent); }
+.register-browser-controls {
+  display: grid;
+  grid-template-columns: minmax(240px, 1.4fr) repeat(4, minmax(125px, .65fr)) auto;
+  gap: .65rem;
+  align-items: end;
+  padding: 1.4rem 0 1rem;
+}
+.register-search-field { align-self: end; }
+.filter-field { display: grid; gap: .35rem; }
+.filter-field .label { font-size: .53rem; }
+.filter-clear {
+  min-height: 46px;
+  padding: .75rem .25rem;
+  border: 0;
+  border-bottom: 1px solid var(--line-strong);
+  background: transparent;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: .62rem;
+  white-space: nowrap;
+}
+.filter-clear:hover { color: var(--accent); border-bottom-color: var(--accent); }
+.register-filter-status {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: .4rem 0 .85rem;
+  color: var(--muted);
+  font-family: var(--mono);
+  font-size: .62rem;
+}
+.register-browser-table-wrap { border-top-color: var(--gold); }
+.catalog-domain, .catalog-mechanism { color: var(--muted); font-size: .68rem; }
+.catalog-domain .mono { font-size: .62rem; }
+.catalog-mechanism { white-space: nowrap; }
+
 /* Editorial feature */
 .featured {
   margin: 0 0 clamp(4rem, 8vw, 7rem);
@@ -584,6 +669,11 @@ img, svg { display: block; max-width: 100%; }
   .header-row { grid-template-columns: 1fr auto; }
   .primary-nav { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; border-top: 1px solid var(--line); }
   .hero, .featured, .dossier-grid, .method-grid, .oracle-layout { grid-template-columns: 1fr; }
+  .register-browser-hero { grid-template-columns: 1fr; }
+  .register-browser-stamp { width: min(240px, 100%); }
+  .register-browser-controls { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .register-search-field { grid-column: 1 / -1; }
+  .filter-clear { justify-self: start; }
   .hero { gap: 3.25rem; }
   .hero-portrait { width: min(100%, 520px); margin-inline: auto; }
   .featured-visual { min-height: 390px; border-right: 0; border-bottom: 1px solid var(--line-strong); }
@@ -612,6 +702,12 @@ img, svg { display: block; max-width: 100%; }
   .register-wrap { overflow: visible; }
   .register-table { display: none; }
   .register-mobile { display: block; }
+  .register-browser-controls { grid-template-columns: 1fr 1fr; }
+  .register-browser-controls .register-search-field { grid-column: 1 / -1; }
+  .register-browser-controls .filter-clear { grid-column: 1 / -1; }
+  .register-filter-status { display: grid; gap: .35rem; }
+  .register-browser-table-wrap { overflow-x: auto; }
+  .register-browser-table-wrap .register-table { display: table; min-width: 1120px; }
   .dossier-title-row { display: block; }
   .dossier-reference { text-align: left; }
   .dossier-facts, .method-cards { grid-template-columns: 1fr; }
