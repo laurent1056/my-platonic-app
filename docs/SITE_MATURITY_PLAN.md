@@ -409,8 +409,9 @@ Deliverables:
 ### Unit 4 — Build product dossiers and images
 
 Add the exact Product entity, image credit record, product/service/parts links,
-and dated availability fields. Product pages should be generated only when a
-Form relationship exists.
+and dated availability fields. Follow the [Product Image System](./IMAGE_SYSTEM_PLAN.md)
+for exactness, rights, local assets, and the specimen-portrait treatment.
+Product pages should be generated only when a Form relationship exists.
 
 Deliverables:
 
