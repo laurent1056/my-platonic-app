@@ -17,7 +17,7 @@ understand, and difficult to misread. A visitor should be able to move from a
 broad category to the exact Form being judged, inspect the named product, see
 the evidence and limits, and understand what would cause the ruling to change.
 
-The completed Top 100 research makes the required structure visible. A
+The completed Top 100 research (see [`docs/research/README.md`](./research/README.md)) makes the required structure visible. A
 `Television` is not one Form. A `Router` may resolve inside a wired firewall
 Form but not as a universal Wi-Fi recommendation. A `Smartphone` may contain a
 repairable long-support child Form without making Fairphone the universal
@@ -38,7 +38,9 @@ model is still a flattened historical register:
 - product images and purchase links are optional fields rather than a
   structured product record.
 
-This is sufficient for the founding register and the 68-row migration view.
+This is sufficient for the founding register and the 68-row migration view
+(64 original entries plus four legacy child rows awaiting stable-ID
+reconciliation).
 It is not the final information architecture for 100 researched categories,
 child Forms, public evidence receipts, and product dossiers.
 
