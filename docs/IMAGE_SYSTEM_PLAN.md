@@ -36,14 +36,42 @@ product photograph. Every public visual must be:
 
 1. a local asset generated as an editorial interpretation of the Form;
 2. clearly labelled as AI-generated and not product photography;
-3. recognisable as the category without logos, readable text, packaging, or
-   invented SKU-specific details;
+3. recognisable as the declared model's physical language—silhouette, material,
+   proportion, color, and defining functional construction—without logos,
+   readable text, packaging, or invented SKU-specific details;
 4. paired with a written ruling and a separate source handoff for exact-model
    inspection or acquisition.
 
 The diagrammatic product glyph remains the honest fallback while a plate is
 awaiting review. A beautiful but misidentified image would damage the
 authority of the register more than an honest absence.
+
+## Model-faithful interpretation
+
+The image target is **model-faithful, not model-identical**. The declared model
+is a design reference, not an image to reproduce. A strong plate should let a
+visitor understand why the named object belongs to the category while making
+clear that the plate is Platonic Ideal's interpretation.
+
+For each new or revised plate, identify three to five visual anchors from the
+model record and public specifications:
+
+- overall silhouette and proportions;
+- primary material, finish, and characteristic color;
+- distinctive functional geometry or hardware;
+- the construction detail that matters to the ruling; and
+- the era or use-context cues that make the object recognisable.
+
+Those anchors may be translated into the catalog's limestone, basalt, nimbus,
+and relief language. The result should not reproduce the source image's camera
+angle, crop, lighting, background, arrangement, or distinctive retail styling.
+Never add a logo, wordmark, readable model number, package, serial mark, or
+proprietary graphic treatment. If a visitor could mistake the plate for a
+manufacturer or retailer photograph, reject it and regenerate.
+
+The named model remains the subject of the written ruling and source handoff;
+the plate is a model-informed visual metaphor for the Form. Its caption must
+continue to say that it is AI-generated and not product photography.
 
 ## Visual direction: the specimen portrait
 
@@ -53,8 +81,8 @@ Use one consistent visual grammar for declared products:
 - quiet weathered-marble, charcoal, or neutral studio ground;
 - object isolated and depicted frontally at a readable scale;
 - no promotional badges, sale text, lifestyle clutter, or star ratings;
-- service points and replaceable parts may be interpreted in a future diagram,
-  but never as an invented exact-SKU photograph;
+- service points and replaceable parts may be interpreted as legible visual
+  cues, but never as an invented exact-SKU photograph;
 - restrained grayscale or low-saturation treatment so the object belongs to the
   catalog, while the DECLARED nimbus/gold remains the state signal;
 - consistent edge margin and optical centering across products;
@@ -151,8 +179,9 @@ Generate the plate queue from `DECLARED` entries first, ordered by importance:
 ### 2. Model context
 
 Record the manufacturer, model identifier, variant, region, and the physical
-qualities the plate is meant to evoke. This keeps the interpretation attached
-to the actual ruling without asking the image to prove the ruling.
+qualities the plate is meant to evoke. Record the three to five visual anchors
+used in the prompt. This keeps the interpretation attached to the actual
+ruling without asking the image to prove the ruling.
 
 ### 3. Generate and prepare
 
@@ -203,6 +232,7 @@ The credible image release is not “all 100 images at any cost.” It is:
 - a repeatable intake process for future declarations.
 
 The full declared set is now covered without changing the public ruling model.
-Future plate work should follow the same process when a candidate becomes a
-stable declaration. Exact product photography is intentionally excluded from
-this release plan.
+Future plate work—and any replacement of an existing plate—should follow the
+model-faithful interpretation rule when a candidate becomes a stable
+declaration or an existing image needs a closer visual match. Exact product
+photography is intentionally excluded from this release plan.

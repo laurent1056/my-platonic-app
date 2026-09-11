@@ -82,6 +82,20 @@ EMPTY and nonterminal entries do not receive product hero art. That distinction
 is intentional: an absence verdict is not made more authoritative by inventing
 a product image for it.
 
+## Refinement direction: model-faithful, not model-identical
+
+The next quality bar for new plates and targeted revisions is closer visual
+fidelity to the declared model without copying a product image. Prompts may
+use the model's observable silhouette, proportions, materials, colors, and
+defining functional construction. They must not reproduce a source photo's
+composition or add logos, readable marks, packaging, serial numbers, or
+proprietary graphics. The plate remains an AI-generated interpretation, not
+product photography.
+
+The full 48-plate set remains live while individual plates are refined against
+this rule. A revision should replace a plate only when it improves model
+recognisability without increasing identity confusion.
+
 ## Exact photography: excluded from the public image system
 
 The image-source inventory currently has 41 image-bearing leads for the 48
