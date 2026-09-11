@@ -2,11 +2,10 @@
 import type { RegisterEntry } from '@/data/register'
 
 interface Props {
-  entry: Pick<RegisterEntry, 'category' | 'model' | 'hasRealImage' | 'imageUrl'>
-  preferImage?: boolean
+  entry: Pick<RegisterEntry, 'category' | 'model'>
 }
 
-const { entry, preferImage = false } = Astro.props
+const { entry } = Astro.props
 const name = entry.category.toLowerCase()
 const kind =
   /pan|oven|saucepan|kettle|pot/.test(name) ? 'vessel' :
@@ -20,10 +19,7 @@ const kind =
   'object'
 ---
 
-{preferImage && entry.hasRealImage ? (
-  <img class="specimen-image" src={entry.imageUrl} alt={entry.model || entry.category} loading="lazy" decoding="async" referrerpolicy="no-referrer" />
-) : (
-  <svg class="product-glyph" viewBox="0 0 400 300" role="img" aria-label={`Diagrammatic icon for ${entry.category}`}>
+<svg class="product-glyph" viewBox="0 0 400 300" role="img" aria-label={`Diagrammatic icon for ${entry.category}`}>
     {kind === 'vessel' && (
       <>
         <ellipse class="major" cx="172" cy="124" rx="102" ry="24" />
@@ -88,5 +84,4 @@ const kind =
         <circle class="detail" cx="200" cy="149" r="38" />
       </>
     )}
-  </svg>
-)}
+</svg>

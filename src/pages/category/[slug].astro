@@ -3,6 +3,7 @@ import SiteLayout from '@/layouts/SiteLayout.astro'
 import StatusChip from '@/components/StatusChip.astro'
 import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
 import ProductImage from '@/components/ProductImage.astro'
+import SourceReference from '@/components/SourceReference.astro'
 import { approvedHeroImageFor } from '@/data/product-images'
 import { categoryUrl, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
 
@@ -58,6 +59,7 @@ const failures = splitStatements(entry.failureModes)
           <div><dt class="label">Permanence</dt><dd>{entry.permanence || '—'}</dd></div>
           <div><dt class="label">Reviewed</dt><dd>{entry.lastReviewed || '—'}</dd></div>
         </dl>
+        {isDeclared && <SourceReference productId={entry.reference} />}
       </aside>
 
       <article>

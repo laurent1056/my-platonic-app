@@ -5,7 +5,7 @@ import type { RegisterEntry } from '@/data/register'
 import { withBase } from '@/data/register'
 
 interface Props {
-  entry: Pick<RegisterEntry, 'reference' | 'category' | 'model' | 'hasRealImage' | 'imageUrl'>
+  entry: Pick<RegisterEntry, 'reference' | 'category' | 'model'>
   priority?: boolean
 }
 
@@ -31,4 +31,3 @@ const image: ProductImageRecord | undefined = approvedHeroImageFor(entry.referen
 ) : (
   <ProductGlyph entry={entry} />
 )}
-

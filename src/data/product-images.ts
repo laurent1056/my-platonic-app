@@ -24,7 +24,8 @@ export interface ProductImage {
 /**
  * The image layer is deliberately separate from the CSV. An image can be an
  * editorial interpretation of a product without pretending to be evidence of
- * the exact SKU. Only approved records are eligible for the public component.
+ * the exact SKU. Only approved local records are eligible for the public
+ * component; the source inventory is intentionally a separate lead queue.
  */
 export const productImages: ProductImage[] = [
   {

@@ -6,13 +6,14 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate:data && npm run validate:institution && astro build && npm run verify:dist",
+    "build": "npm run validate:data && npm run validate:images && npm run validate:institution && astro build && npm run verify:dist",
     "check": "astro check",
     "preview": "astro preview",
     "validate:data": "node scripts/validate-register.mjs",
     "validate:institution": "node scripts/validate-institution.mjs",
     "test:institution": "node --test scripts/test-institution.mjs",
     "verify:dist": "node scripts/verify-dist.mjs",
+    "validate:images": "node scripts/validate-image-sources.mjs",
     "audit:prod": "npm audit --audit-level=high --omit=dev",
     "test": "npm run check && npm run test:institution && npm run build"
   },

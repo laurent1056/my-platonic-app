@@ -604,6 +604,23 @@ img, svg { display: block; max-width: 100%; }
 .product-image-caption .label { color: var(--accent); }
 .specimen-meta { padding: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .specimen-meta dd { margin: .3rem 0 0; font-family: var(--mono); font-size: .72rem; }
+.source-reference {
+  display: grid;
+  gap: .55rem;
+  padding: 1.2rem;
+  border-top: 1px solid var(--line-strong);
+  background: var(--paper-deep);
+}
+.source-reference-heading { display: flex; justify-content: space-between; gap: .8rem; align-items: baseline; }
+.source-reference-state { font-family: var(--mono); font-size: .56rem; color: var(--ochre); text-align: right; }
+.source-reference-state.confirmed { color: var(--muted); }
+.source-reference-title { margin: .2rem 0 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.15; }
+.source-reference-maker { margin: 0; color: var(--muted); font-size: .6rem; line-height: 1.45; }
+.source-reference-link { width: fit-content; padding: .35rem 0; border-bottom: 1px solid var(--line-strong); color: var(--accent); font-family: var(--caps); font-size: .58rem; letter-spacing: .1em; text-transform: uppercase; }
+.source-reference-link:hover { border-bottom-color: var(--accent); }
+.source-reference-link.muted-link { color: var(--muted); cursor: default; }
+.source-reference-facts { display: grid; gap: .2rem; padding-top: .55rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .57rem; line-height: 1.45; text-transform: uppercase; }
+.source-reference-note { margin: .1rem 0 0; color: var(--muted); font-size: .7rem; line-height: 1.5; }
 .model-declaration { padding-bottom: 1.75rem; border-bottom: 1px solid var(--gold); }
 .model-declaration.empty { border-bottom-color: var(--accent); }
 .model-name { margin: .55rem 0 0; font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4rem); font-weight: 500; line-height: .95; }
