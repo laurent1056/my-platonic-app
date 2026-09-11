@@ -7,10 +7,10 @@ interface Props {
 
 const source: ImageSourceRecord | undefined = imageSourceFor(Astro.props.productId)
 const availabilityLabel = source?.imageAvailability === 'confirmed'
-  ? 'Image-bearing page located'
+  ? 'Current model page located'
   : source?.imageAvailability === 'lead'
-    ? 'Source lead needs exactness review'
-    : 'Current source not located'
+    ? 'Model source needs exactness review'
+    : 'Current model source not located'
 const identityLabel = source?.identityStatus === 'exact'
   ? 'Exact model'
   : source?.identityStatus === 'family'
@@ -18,17 +18,12 @@ const identityLabel = source?.identityStatus === 'exact'
     : source?.identityStatus === 'ambiguous'
       ? 'Identity unresolved'
       : 'Generic subject'
-const rightsLabel = source?.rightsStatus === 'owned' || source?.rightsStatus === 'licensed'
-  ? 'Image rights cleared'
-  : source?.rightsStatus === 'not-for-republish'
-    ? 'Republication not cleared'
-    : 'Rights unknown'
 ---
 
 {source && (
-  <aside class="source-reference" aria-label="Image source record">
+  <aside class="source-reference" aria-label="Model source record">
     <div class="source-reference-heading">
-      <p class="label">Image source record</p>
+      <p class="label">Model source</p>
       <span class:list={['source-reference-state', { confirmed: source.imageAvailability === 'confirmed' }]}>
         {availabilityLabel}
       </span>
@@ -37,7 +32,7 @@ const rightsLabel = source?.rightsStatus === 'owned' || source?.rightsStatus ===
     <p class="source-reference-maker mono">{source.sellerOrManufacturer} · {source.exactModel}</p>
     {source.sourceUrl ? (
       <a class="source-reference-link" href={source.sourceUrl} target="_blank" rel="noopener noreferrer">
-        Inspect current source <span aria-hidden="true">↗</span>
+        Inspect exact model <span aria-hidden="true">↗</span>
       </a>
     ) : (
       <span class="source-reference-link muted-link">No current source page recorded</span>
@@ -45,8 +40,8 @@ const rightsLabel = source?.rightsStatus === 'owned' || source?.rightsStatus ===
     <div class="source-reference-facts mono">
       <span>Identity · {identityLabel}</span>
       <span>Use · {source.recommendedUse.replace(/-/g, ' ')}</span>
-      <span>Rights · {rightsLabel}</span>
+      <span>Release · Interpretive plate only</span>
     </div>
-    <p class="source-reference-note">{source.notes}</p>
+    <p class="source-reference-note">The public visual is an interpretive plate. This source link identifies the exact model for inspection or acquisition; its photography is not used.</p>
   </aside>
 )}

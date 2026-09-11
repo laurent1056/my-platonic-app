@@ -2,9 +2,9 @@
 import SiteLayout from '@/layouts/SiteLayout.astro'
 import StatusChip from '@/components/StatusChip.astro'
 import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
-import ProductImage from '@/components/ProductImage.astro'
+import ProductPlate from '@/components/ProductPlate.astro'
 import SourceReference from '@/components/SourceReference.astro'
-import { approvedHeroImageFor } from '@/data/product-images'
+import { approvedPlateFor } from '@/data/product-plates'
 import { categoryUrl, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
 
 export function getStaticPaths() {
@@ -19,13 +19,13 @@ const isDeclared = entry.verdict === 'DECLARED'
 const isEmpty = entry.verdict === 'EMPTY'
 const declaration = isDeclared ? entry.model : isEmpty ? 'No product qualifies.' : 'Declaration withheld.'
 const description = entry.summary || entry.coreReasoning || `${entry.category}: ${declaration}`
-const approvedImage = approvedHeroImageFor(entry.reference)
+const approvedPlate = approvedPlateFor(entry.reference)
 const disqualifiers = splitStatements(entry.disqualifiers)
 const admission = splitStatements(entry.admissionTest)
 const failures = splitStatements(entry.failureModes)
 ---
 
-<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedImage ? withBase(approvedImage.path) : undefined}>
+<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedPlate ? withBase(approvedPlate.path) : undefined}>
   <div class="shell">
     <section class="dossier-hero">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -50,7 +50,7 @@ const failures = splitStatements(entry.failureModes)
           {isEmpty ? (
             <p class="absence-mark">No specimen admitted.</p>
           ) : (
-            <ProductImage entry={entry} />
+            <ProductPlate entry={entry} />
           )}
         </div>
         <dl class="specimen-meta">

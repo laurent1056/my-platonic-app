@@ -170,8 +170,6 @@ export interface RegisterEntry {
   disqualifiers: string
   maintenance: string
   permanence: string
-  imageUrl: string
-  hasRealImage: boolean
   alternates: string
   admissionTest: string
   failureModes: string
@@ -218,10 +216,6 @@ function publicVerdict(status: SourceStatus): Verdict {
   return 'IN REVIEW'
 }
 
-function isRealImage(url: string): boolean {
-  return Boolean(url) && !url.includes('placehold.co')
-}
-
 export const register: RegisterEntry[] = parsed.data.map((row, index) => {
   const number = Number(clean(row.Number)) || index + 1
   const category = clean(row.Category)
@@ -233,7 +227,6 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     clean(row['Card Snippet (Why this ends the search)']) ||
     clean(row['Form Statement']) ||
     coreReasoning
-  const imageUrl = clean(row['Image URL'])
   const domain = domainForCategory(category)
   const permanenceValue = clean(row['Permanence Mechanism'])
   const entry: RegisterEntry = {
@@ -252,8 +245,6 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     disqualifiers,
     maintenance: clean(row['Maintenance / Replacement Cycle']),
     permanence: clean(row['Permanence Mechanism']),
-    imageUrl,
-    hasRealImage: isRealImage(imageUrl),
     alternates: clean(row['Alternates (non-declared)']),
     admissionTest: clean(row['Admission Test']),
     failureModes: clean(row['Failure Modes']),

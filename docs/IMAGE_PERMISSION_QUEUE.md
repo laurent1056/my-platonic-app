@@ -1,27 +1,25 @@
-# Exact image permission queue
+# Archived exact image permission queue
 
-**Status:** optional future identity layer; no permission has been granted yet
+**Status:** retired by decision; no permission has been granted
 **Checked:** 2026-09-10  
-**Purpose:** move exact product photography from “identity lead” to “approved
-product image” without weakening the register’s authority.
+**Purpose:** preserve the earlier identity research without making exact
+product photography part of the public image system.
 
 ## Operating rule
 
 The manufacturer or seller page is useful for identity, purchase, and model
-verification. It is not automatically a license to copy its photographs. An
-image may be promoted into `src/data/product-images.ts` only when the queue
-contains a permission record or an owned/public-domain/Creative-Commons
-record that covers the intended use.
+verification. It is not automatically a license to copy its photographs.
+Platonic Ideal has decided not to use exact product photography in the public
+site, even if a permission later becomes available.
 
-The public site does not wait for this queue. It shows the clearly labelled
-interpretive plate and the “Inspect current source” handoff. A permissioned
-photo can be added later as a secondary identity or evidence image.
+The public site does not use this queue. It shows the clearly labelled
+interpretive plate and the “Inspect exact model” handoff.
 
-## First outreach wave
+## Historical exact-model leads
 
-These are the highest-value exact-model leads for the first permission pass.
-The contact route is a starting point, not evidence that permission has been
-granted.
+These were the highest-value exact-model leads from the earlier image plan.
+They are retained for provenance and acquisition links only; no outreach is
+required for the current plate-only release.
 
 | Reference | Exact subject | Rights state | Contact route | Status |
 | --- | --- | --- | --- | --- |
@@ -34,11 +32,10 @@ granted.
 | PI-022 | Hanks Gunner 1.5 in full-grain belt | Not cleared | `support@hanksbelts.com` / [Hanks contact](https://www.hanksbelts.com/pages/contact-hanks-belts) | Draft |
 | PI-024 | Bahco 8071, 8 in adjustable wrench | Not cleared | [Bahco contact form](https://www.bahco.com/int_en/contact) | Draft |
 
-## Remaining exact-identity queue
+## Other historical leads
 
 These records already have an exact or near-exact source lead in
-`src/data/image-source-inventory.json`. They should be contacted after the
-first wave or handled by owned photography.
+`src/data/image-source-inventory.json`. They remain source references only.
 
 | Reference | Exact subject | Current image use |
 | --- | --- | --- |
@@ -57,32 +54,27 @@ first wave or handled by owned photography.
 | PI-060 | Dachstein DW-3112 boiled-wool mittens | Purchase/identity lead only |
 | PI-062 | Merkur 34C / 34101 double-edge safety razor | Identity lead |
 
-## Permission request
+## Historical permission notes
 
-Use [`IMAGE_PERMISSION_REQUEST.md`](./IMAGE_PERMISSION_REQUEST.md) for each
-maker or authorized seller. The request should name the exact model and
-variant, identify the intended dossier URL, require visible credit and a
-source link, and explicitly ask whether the grant covers the website, PDF,
-newsletter, and clearly disclosed acquisition links.
+[`IMAGE_PERMISSION_REQUEST.md`](./IMAGE_PERMISSION_REQUEST.md) is retained as
+an archived note from the earlier plan. Do not use it for the current release:
+we are not seeking or displaying product photography.
 
-Do not record an informal “sure” as licensed unless the responder has
-authority to grant the rights. Record the named image, allowed channels,
-territory, duration, required credit, restrictions, and the original message
-or permission record.
+If the product-image policy changes in the future, the permission record must
+still be explicit and must come from someone authorized to grant the rights.
 
-## Promotion checklist
+## If the policy changes in the future
 
-Before changing an image record from an interpretive plate to product
-photography:
+Before introducing any non-plate image in a future policy revision:
 
 - exact manufacturer, model identifier, variant, and region match the ruling;
 - the source or photographer has granted the required rights;
 - the original image and permission record are archived;
-- the manifest has `kind: 'product-photograph'`, the correct `exactness`,
-  visible credit, source URL, and review date;
-- the caption no longer implies that a representative image is the exact SKU;
-- the interpretive plate remains available as editorial art where useful;
+- the manifest has explicit rights, visible credit, source URL, and review
+  metadata;
+- the caption does not imply that a representative image is the exact SKU;
+- the interpretive plate remains the primary public visual;
 - `npm run validate:images` and the full production build pass.
 
-**Current count:** 0 rights-cleared exact photographs. This is an honest
-queue, not a missing-data bug.
+**Current count:** 0 exact product photographs by design. This is a product
+decision, not a missing-data bug.

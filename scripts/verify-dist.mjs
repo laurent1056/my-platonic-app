@@ -135,6 +135,13 @@ for (const file of htmlFiles) {
       errors.push(`${label} references missing internal artifact: ${value}`)
     }
   }
+
+  const imageReferences = content.matchAll(/<img\b[^>]*\bsrc="([^"]+)"/gi)
+  for (const [, value] of imageReferences) {
+    if (/^https?:\/\//i.test(value) || !value.startsWith('/images/')) {
+      errors.push(`${label} contains a non-local public image source: ${value}`)
+    }
+  }
 }
 
 for (const file of ['robots.txt', 'sitemap-index.xml']) {

@@ -598,10 +598,10 @@ img, svg { display: block; max-width: 100%; }
 .absence-mark { position: relative; z-index: 1; max-width: 16ch; text-align: center; font-family: var(--serif); font-size: 1.65rem; font-style: italic; color: var(--accent); }
 .specimen-image { position: relative; z-index: 2; max-height: 330px; width: 80%; object-fit: contain; mix-blend-mode: multiply; }
 :root[data-theme="dark"] .specimen-image { mix-blend-mode: screen; }
-.product-image-plate { position: relative; z-index: 2; width: min(92%, 440px); margin: 0; display: grid; justify-items: center; gap: .75rem; }
-.product-image-plate .specimen-image { width: 100%; max-height: 480px; mix-blend-mode: normal; border: 1px solid var(--line); box-shadow: 0 14px 32px color-mix(in srgb, var(--ink) 12%, transparent); }
-.product-image-caption { width: 100%; display: grid; gap: .2rem; font-family: var(--mono); font-size: .58rem; line-height: 1.45; color: var(--muted); text-align: left; }
-.product-image-caption .label { color: var(--accent); }
+.interpretive-plate { position: relative; z-index: 2; width: min(92%, 440px); margin: 0; display: grid; justify-items: center; gap: .75rem; }
+.interpretive-plate .specimen-image { width: 100%; max-height: 480px; mix-blend-mode: normal; border: 1px solid var(--line); box-shadow: 0 14px 32px color-mix(in srgb, var(--ink) 12%, transparent); }
+.interpretive-plate-caption { width: 100%; display: grid; gap: .2rem; font-family: var(--mono); font-size: .58rem; line-height: 1.45; color: var(--muted); text-align: left; }
+.interpretive-plate-caption .label { color: var(--accent); }
 .specimen-meta { padding: 1.2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
 .specimen-meta dd { margin: .3rem 0 0; font-family: var(--mono); font-size: .72rem; }
 .source-reference {

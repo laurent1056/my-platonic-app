@@ -6,10 +6,11 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev",
-    "build": "npm run validate:data && npm run validate:images && npm run validate:institution && astro build && npm run verify:dist",
+    "build": "npm run validate:data && npm run validate:plates && npm run validate:images && npm run validate:institution && astro build && npm run verify:dist",
     "check": "astro check",
     "preview": "astro preview",
     "validate:data": "node scripts/validate-register.mjs",
+    "validate:plates": "node --experimental-strip-types scripts/validate-plates.mjs",
     "validate:institution": "node scripts/validate-institution.mjs",
     "test:institution": "node --test scripts/test-institution.mjs",
     "verify:dist": "node scripts/verify-dist.mjs",

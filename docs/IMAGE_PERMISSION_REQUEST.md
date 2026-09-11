@@ -1,5 +1,9 @@
 # Image permission request
 
+> **Archived.** Platonic Ideal now uses interpretive plates only. This template
+> is retained for historical context and is not part of the current public
+> release workflow.
+
 Use this note when requesting product photography from a manufacturer or
 authorized seller. The request is deliberately specific: Platonic Ideal is an
 editorial register, but it may later include paid dossiers and acquisition

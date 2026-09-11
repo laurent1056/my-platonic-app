@@ -1,0 +1,33 @@
+---
+import ProductGlyph from './ProductGlyph.astro'
+import { approvedPlateFor, type ProductPlate as ProductPlateRecord } from '@/data/product-plates'
+import type { RegisterEntry } from '@/data/register'
+import { withBase } from '@/data/register'
+
+interface Props {
+  entry: Pick<RegisterEntry, 'reference' | 'category' | 'model'>
+  priority?: boolean
+}
+
+const { entry, priority = false } = Astro.props
+const plate: ProductPlateRecord | undefined = approvedPlateFor(entry.reference)
+---
+
+{plate ? (
+  <figure class="interpretive-plate">
+    <img
+      class="specimen-image editorial-plate-image"
+      src={withBase(plate.path)}
+      alt={plate.alt}
+      loading={priority ? 'eager' : 'lazy'}
+      decoding="async"
+      fetchpriority={priority ? 'high' : 'auto'}
+    />
+    <figcaption class="interpretive-plate-caption">
+      <span class="label">Interpretive plate</span>
+      <span>{plate.caption}</span>
+    </figcaption>
+  </figure>
+) : (
+  <ProductGlyph entry={entry} />
+)}

@@ -1,33 +1,32 @@
-export type ImageRole = 'hero' | 'detail' | 'service' | 'maker-mark' | 'evidence'
-export type ImageStatus = 'pending' | 'approved' | 'rejected' | 'needs-review'
-export type ImageExactness = 'exact-model' | 'exact-family' | 'representative'
-export type ImageKind = 'product-photograph' | 'editorial-interpretation'
+export type PlateRole = 'hero'
+export type PlateStatus = 'pending' | 'approved' | 'rejected' | 'needs-review'
+export type PlateExactness = 'representative'
+export type PlateKind = 'editorial-interpretation'
 
-export interface ProductImage {
+export interface ProductPlate {
   id: string
   productId: string
-  role: ImageRole
-  kind: ImageKind
+  role: PlateRole
+  kind: PlateKind
   path: string
   alt: string
   caption: string
   credit: string
   license: string
-  sourceUrl?: string
-  exactness: ImageExactness
+  exactness: PlateExactness
   region?: string
   capturedOrRetrievedAt: string
   verifiedAt: string
-  status: ImageStatus
+  status: PlateStatus
 }
 
 /**
- * The image layer is deliberately separate from the CSV. An image can be an
- * editorial interpretation of a product without pretending to be evidence of
- * the exact SKU. Only approved local records are eligible for the public
- * component; the source inventory is intentionally a separate lead queue.
+ * Plates are the only public product visuals. They express the meaning of a
+ * Form without pretending to be evidence of the exact SKU. Only approved
+ * local records are eligible for the public component; acquisition sources
+ * remain a separate set of links for inspection and purchase.
  */
-export const productImages: ProductImage[] = [
+export const productPlates: ProductPlate[] = [
   {
     id: 'pi-001-frying-pan-hero-v1',
     productId: 'PI-001',
@@ -350,8 +349,8 @@ export const productImages: ProductImage[] = [
   },
 ]
 
-export function approvedHeroImageFor(productId: string): ProductImage | undefined {
-  return productImages.find(
-    (image) => image.productId === productId && image.role === 'hero' && image.status === 'approved',
+export function approvedPlateFor(productId: string): ProductPlate | undefined {
+  return productPlates.find(
+    (plate) => plate.productId === productId && plate.role === 'hero' && plate.status === 'approved',
   )
 }

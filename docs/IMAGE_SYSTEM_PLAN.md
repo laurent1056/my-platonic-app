@@ -1,8 +1,15 @@
-# Platonic Ideal — Product Image System
+# Platonic Ideal — Interpretive Plate System
 
-**Status:** Implementation specification  
-**Purpose:** Give every validated product a trustworthy, visually consistent
-specimen image without weakening the evidence standard.
+**Status:** Active public-image policy
+**Decision:** the public site uses generated antiquity-style interpretive plates
+only. Exact manufacturer, retailer, Creative Commons, and owned product
+photography are not part of the public visual system.
+
+The ruling names a commercial model, but the page communicates the Form that
+the model exemplifies. The plate makes that meaning memorable; the written
+ruling and evidence establish the claim; the source handoff lets a visitor
+inspect or acquire the exact model. A plate is never evidence that a particular
+SKU looks exactly as shown.
 
 ## Current state
 
@@ -13,9 +20,9 @@ The current register has 100 rows:
 - 40 entries in review (`CANDIDATE`, `CONDITIONAL`, `CONSUMABLE`, or
   `SPLIT_REQUIRED`).
 
-The first two interpretive waves now cover 20 declared Form dossiers with
-approved local plates. The remaining declared entries retain the glyph
-fallback until a plate is generated for them.
+Twenty declared Form dossiers now have approved local plates. The remaining
+28 declared entries retain the glyph fallback until a plate is generated for
+them. EMPTY and nonterminal entries do not receive public product art.
 
 The remote URLs are useful leads, not a production-ready image library. A URL
 does not establish permission to republish an image, prove that the image is
@@ -24,19 +31,18 @@ serve it.
 
 ## Image principle
 
-The image is a specimen plate, not an advertisement.
+The public image is a specimen plate, not an advertisement and not an exact
+product photograph. Every public visual must be:
 
-Every production image must answer three questions:
+1. a local asset generated as an editorial interpretation of the Form;
+2. clearly labelled as AI-generated and not product photography;
+3. recognisable as the category without logos, readable text, packaging, or
+   invented SKU-specific details;
+4. paired with a written ruling and a separate source handoff for exact-model
+   inspection or acquisition.
 
-1. Is this the exact product, model, variant, and region being judged?
-2. Do we have a defensible right to display it?
-3. Can a visitor see enough of the construction or identity to understand why
-   it belongs to the ruling?
-
-If exactness or rights are unknown, the page may use a clearly labelled
-interpretive plate as the public visual layer, with the diagrammatic product
-glyph as the fallback. The plate must never be presented as evidence of the
-exact commercial SKU. A beautiful but misidentified image would damage the
+The diagrammatic product glyph remains the honest fallback while a plate is
+awaiting review. A beautiful but misidentified image would damage the
 authority of the register more than an honest absence.
 
 ## Visual direction: the specimen portrait
@@ -45,10 +51,10 @@ Use one consistent visual grammar for declared products:
 
 - portrait-oriented or square crop, normally 4:5 or 1:1;
 - quiet weathered-marble, charcoal, or neutral studio ground;
-- object isolated or photographed frontally at a readable scale;
+- object isolated and depicted frontally at a readable scale;
 - no promotional badges, sale text, lifestyle clutter, or star ratings;
-- maker marks, model plates, fasteners, interfaces, and replaceable parts may
-  appear as secondary detail plates;
+- service points and replaceable parts may be interpreted in a future diagram,
+  but never as an invented exact-SKU photograph;
 - restrained grayscale or low-saturation treatment so the object belongs to the
   catalog, while the DECLARED nimbus/gold remains the state signal;
 - consistent edge margin and optical centering across products;
@@ -57,36 +63,28 @@ Use one consistent visual grammar for declared products:
 The product should look observed and catalogued—closer to a museum specimen,
 technical manual, or icon panel than an ecommerce thumbnail.
 
-## Source hierarchy
+## Plate-only source rule
 
-Use sources in this order:
+There is no public image-source hierarchy. There is one public visual source:
+the approved local interpretive plate generated for Platonic Ideal.
 
-1. **Original Platonic photography** — preferred. Photograph the exact object,
-   variant, service points, and any identifying mark. Obtain a simple model and
-   location release when another person, private property, or a recognizable
-   setting appears.
-2. **Permissioned manufacturer or distributor image** — acceptable when the
-   owner explicitly permits editorial republication or provides a press/media
-   license. Record the permission and scope in the manifest.
-3. **Public-domain or Creative Commons image** — acceptable when it depicts the
-   exact object or is clearly labelled as a representative historical artifact.
-   Preserve attribution, license, source URL, and any ShareAlike obligation.
-4. **Licensed stock or commissioned photography** — acceptable when the license
-   covers the intended web, PDF, and future commercial uses.
-5. **External image URL** — temporary research reference only. Do not rely on
-   hotlinking for production.
+The separate source inventory may contain manufacturer, retailer, catalogue,
+Creative Commons, or other pages. Those records exist only to:
 
-Do not use AI-generated imagery to impersonate exact product photography or to
-prove a declared object's model, construction, logo, control, or service
-interface. An invented detail turns a visual aid into false evidence.
+- verify the identity and availability of the exact model;
+- give a visitor an “Inspect exact model” or acquisition handoff;
+- preserve editorial provenance for the ruling.
 
-An AI-generated **interpretive plate** is allowed as a separate, clearly
-labelled visual layer. It may express the meaning of a Form—a cast-iron pan as
-an archetype, for example—but it must be marked as an interpretation, must not
-carry the exactness value `exact-model`, and must never be the only support for
-a product claim. The caption should say that it is AI-generated and not
-product photography. This is the visual treatment used by the first 20
-interpretive plates in the repository.
+The source URL is never rendered as an image, hotlinked, copied, or promoted to
+evidence. Permission to use a source photograph is therefore not a launch
+dependency—and even a future permission does not replace the plate without an
+explicit revision to this policy.
+
+AI generation must not impersonate an exact product photograph or prove a
+declared object's model, construction, logo, control, or service interface. An
+invented detail turns a visual aid into false evidence. The plate may express
+the meaning of a Form—a cast-iron pan as an archetype, for example—but it must
+always be labelled as a representative editorial interpretation.
 
 ## Image record
 
@@ -94,118 +92,117 @@ The image layer should be independent from the register CSV. A product can have
 multiple images, while the register row should continue to describe the ruling.
 
 ```ts
-export type ImageRole = 'hero' | 'detail' | 'service' | 'maker-mark' | 'evidence'
-export type ImageStatus = 'pending' | 'approved' | 'rejected' | 'needs-review'
+export type PlateRole = 'hero'
+export type PlateStatus = 'pending' | 'approved' | 'rejected' | 'needs-review'
+export type PlateExactness = 'representative'
+export type PlateKind = 'editorial-interpretation'
 
-export interface ProductImage {
+export interface ProductPlate {
   id: string
   productId: string
-  role: ImageRole
+  role: PlateRole
+  kind: PlateKind
   path: string
   alt: string
-  caption?: string
+  caption: string
   credit: string
   license: string
-  sourceUrl: string
-  permissionRecord?: string
-  exactness: 'exact-model' | 'exact-family' | 'representative'
+  exactness: PlateExactness
   region?: string
   capturedOrRetrievedAt: string
   verifiedAt: string
-  status: ImageStatus
+  status: PlateStatus
 }
 ```
 
-Only `approved` images should be rendered by the public image component.
-`exact-family` and `representative` images must say so in the caption and
-cannot be used to silently imply that the photographed object is the exact
-SKU. An `editorial-interpretation` image is a visual interpretation of the
-Form, not product identity, even when it appears in the hero position.
+Only `approved` plates should be rendered by the public image component. Every
+public record has `exactness: 'representative'`,
+`kind: 'editorial-interpretation'`, and a caption disclosing that it is
+AI-generated and not product photography.
 
 ## Repository layout
 
-Approved local assets should eventually live under:
+Approved local plates live under:
 
 ```text
 public/
 └── images/
     └── products/
-        ├── pi-001-lodge-l10sk3/
-        │   ├── hero.webp
-        │   ├── detail-cooking-surface.webp
-        │   └── service-mark.webp
+        ├── pi-001-frying-pan/
+        │   └── hero.webp
         └── ...
 ```
 
-The image manifest should live beside the typed product records, for example
-`src/data/product-images.ts`. The CSV's `Image URL` field remains a migration
-reference until every approved asset has a local identity, credit, and status.
+The plate manifest lives beside the typed product records at
+`src/data/product-plates.ts`. The CSV's `Image URL` field remains a historical
+source reference for model inspection; it is never a public image asset.
 
 ## Editorial workflow
 
 ### 1. Queue
 
-Generate the queue from `DECLARED` entries first, ordered by importance:
+Generate the plate queue from `DECLARED` entries first, ordered by importance:
 
-- homepage feature and the first 12–15 most useful declarations;
+- homepage feature and the first visual wave of useful declarations;
 - the remaining declared set;
 - candidates and conditional Forms only after their exact subject is stable;
-- never create a “product image” for an EMPTY verdict.
+- never create a public plate for an EMPTY verdict or an unresolved entry.
 
-### 2. Identity check
+### 2. Model context
 
-Before an image is approved, record the manufacturer, model identifier,
-variant, region, and the visual feature that distinguishes it from adjacent
-models. If a brand has silently changed the product, create a new product
-record rather than reusing the old image.
+Record the manufacturer, model identifier, variant, region, and the physical
+qualities the plate is meant to evoke. This keeps the interpretation attached
+to the actual ruling without asking the image to prove the ruling.
 
-### 3. Rights check
+### 3. Generate and prepare
 
-Record the license or permission in the manifest. “Found on Google,” “on the
-manufacturer website,” and “OpenGraph image” are not licenses. Keep the source
-URL and retrieval date even for owned or permissioned photography.
+Generate a single editorial interpretation, then normalize orientation,
+dimensions, compression, and filename. Keep the generation output outside the
+web asset directory until it has passed review. Do not add logos, readable text,
+packaging, or exact-SKU claims during preparation.
 
-### 4. Preparation
+### 4. Review
 
-Normalize orientation, crop, dimensions, compression, and filename. Preserve
-the original outside the web asset directory when the source license requires
-it. Generate WebP or AVIF derivatives only from an approved original.
-
-### 5. Review
-
-The reviewer checks exactness, rights, alt text, contrast, crop, and mobile
-behavior. The glyph remains the fallback if the image fails to load. The page
+The reviewer checks category recognisability, single-subject clarity, antiquity
+treatment, alt text, contrast, crop, mobile behavior, caption disclosure, and
+credit. The glyph remains the fallback if the plate fails to load. The page
 must never show a broken image icon or an uncredited remote image.
+
+### 5. Approve
+
+Set the manifest record to `approved`, copy the selected local asset into
+`public/images/products/`, and run `npm run validate:plates`. No permission
+request or external photo is required for this workflow.
 
 ## Page treatment
 
 On a declared Form or product dossier:
 
 - the hero image sits inside the specimen panel with the nimbus behind it;
-- the caption states the exact model and image credit;
+- the caption calls it an interpretive plate and says it is not product photography;
 - a “View service details” or “Inspect evidence” action is more prominent than
   a purchase link;
-- detail/service images appear below the ruling argument, attached to the claim
-  they help a visitor inspect;
-- image source and license are visible without opening developer tools.
+- “Inspect exact model” points to the source page for inspection or purchase;
+- the source reference says that the public release is plate-only.
 
 On an EMPTY page:
 
-- do not show a generic product photo as a consolation prize;
+- do not show a generic product image or plate as a consolation prize;
 - use the absence treatment and the “what the category would require” copy;
-- representative imagery may appear only if it explains a failure mode and is
-  explicitly labelled as representative evidence.
+- any future explanatory illustration would be a separate, explicitly labelled
+  editorial diagram—not a product plate.
 
 ## Launch target
 
 The first credible image release is not “all 100 images at any cost.” It is:
 
-- approved hero images for the homepage feature and the first visual wave of
+- approved plates for the homepage feature and the first visual wave of
   declared Form dossiers (20 are now complete);
-- a complete image manifest and visible credits;
+- a complete plate manifest and visible generation disclosures;
 - a stable glyph fallback for every other entry;
-- no placeholder URL exposed as if it were a product image;
+- no source-page URL exposed as if it were a product image;
 - a repeatable intake process for the remaining declared set.
 
-Once the product and evidence entities exist, the image pipeline can expand to
-all validated products without changing the public ruling model.
+The next plate wave can expand to all validated declarations without changing
+the public ruling model. Exact product photography is intentionally excluded
+from this release plan.
