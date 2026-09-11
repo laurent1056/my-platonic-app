@@ -108,12 +108,40 @@ const categoryDomainOverrides: Record<string, DomainId> = {
   razor: 'personal-care-misc',
   'hair dryer': 'personal-care-misc',
   'desktop computer': 'electronics',
+  'bed frame': 'furniture-work',
+  'sofa / couch': 'furniture-work',
+  sofa: 'furniture-work',
+  bookshelf: 'furniture-work',
+  'coffee table': 'furniture-work',
+  'dresser / wardrobe': 'furniture-work',
+  dresser: 'furniture-work',
+  wardrobe: 'furniture-work',
+  'desk lamp': 'furniture-work',
+  'floor lamp': 'furniture-work',
+  'window blinds': 'furniture-work',
+  pillow: 'furniture-work',
+  'backpacking pack': 'outdoor-utility',
+  'hunting knife': 'outdoor-utility',
+  television: 'electronics',
+  router: 'electronics',
+  headphones: 'electronics',
+  speakers: 'electronics',
+  camera: 'electronics',
+  smartwatch: 'electronics',
+  'home thermostat': 'household-systems',
+  dryer: 'household-systems',
+  'water heater': 'household-systems',
+  furnace: 'household-systems',
+  'air conditioner': 'household-systems',
 }
 
 function domainForCategory(category: string): DomainDefinition {
   const normalized = category.toLocaleLowerCase()
   const parentName = normalized.replace(/\s+\([^)]*\)$/, '')
-  const id = categoryDomainOverrides[normalized] ?? categoryDomainOverrides[parentName] ?? 'personal-care-misc'
+  const formName = normalized.replace(/\s+—\s+.*/, '')
+  const slashParent = formName.split(' / ')[0] ?? formName
+  const candidates = [normalized, parentName, formName, slashParent]
+  const id = candidates.map((candidate) => categoryDomainOverrides[candidate]).find(Boolean) ?? 'personal-care-misc'
   return domains.find((domain) => domain.id === id) ?? domains[domains.length - 1]!
 }
 

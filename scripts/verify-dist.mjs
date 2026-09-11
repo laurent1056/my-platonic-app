@@ -1,9 +1,11 @@
 import { access, readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
+import Papa from 'papaparse'
 
 const dist = path.resolve('dist')
 const vercelConfigPath = path.resolve('vercel.json')
 const productionOrigin = 'https://my-platonic-app.vercel.app'
+const registerPath = path.resolve('public/platonic_ideal.csv')
 const forbiddenFragments = [
   'https://laurent1056.github.io',
   '/my-platonic-app/',
@@ -23,6 +25,11 @@ const requiredFiles = [
 ]
 
 const errors = []
+const register = Papa.parse(await readFile(registerPath, 'utf8'), { header: true, skipEmptyLines: true })
+const expectedCategoryRoutes = register.data.length
+if (register.errors.length) {
+  errors.push(`Unable to parse canonical register: ${register.errors[0]?.message || 'unknown CSV error'}`)
+}
 const requiredRedirects = new Map([
   ['/my-platonic-app', '/'],
   ['/my-platonic-app/', '/'],
@@ -92,8 +99,8 @@ const categoryDirectory = path.join(dist, 'category')
 if (await exists(categoryDirectory)) {
   const categoryEntries = (await readdir(categoryDirectory, { withFileTypes: true }))
     .filter((entry) => entry.isDirectory())
-  if (categoryEntries.length !== 68) {
-    errors.push(`Expected 68 category routes; found ${categoryEntries.length}`)
+  if (categoryEntries.length !== expectedCategoryRoutes) {
+    errors.push(`Expected ${expectedCategoryRoutes} category routes; found ${categoryEntries.length}`)
   }
 }
 
@@ -151,4 +158,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`Verified ${htmlFiles.length} HTML files, 68 category routes, Constitution route, root-relative assets, and Vercel canonical URLs.`)
+console.log(`Verified ${htmlFiles.length} HTML files, ${expectedCategoryRoutes} category routes, Constitution route, root-relative assets, and Vercel canonical URLs.`)

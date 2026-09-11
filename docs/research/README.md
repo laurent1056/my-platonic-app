@@ -18,20 +18,20 @@ becomes terminal.
 
 ## The numbering reconciliation
 
-The live CSV currently contains 68 rows. Rows 1–64 are the original Top 100
-sequence. Rows 65–68 are legacy child categories created during an earlier
-split pass (`Task Chair (New)`, `Task Chair (Used)`, and two food-storage
-children); they occupy the same numeric range as the later Top 100 research.
+The live CSV now contains 100 records. Rows 1–64 remain the founding register;
+rows 65–68 are the researched furniture sequence, and rows 69–100 are the
+remaining research records. Four legacy child rows were migrated into
+[`legacy-child-rows-065-068.md`](./legacy-child-rows-065-068.md) so their Form
+constraints remain visible without creating duplicate top-level slugs.
 
-Those four child rows are not being silently discarded. Before the researched
-65–100 set is promoted, the data migration must preserve their useful Form
-work, assign stable IDs, and decide whether they remain child Forms beneath a
-parent category. The final public census should be based on stable category and
-Form IDs, not on the historical row number.
+Those four child rows are not being silently discarded. They remain in the
+migration record while the mature data model assigns stable Category and Form
+IDs. The final public census should be based on those IDs, not on historical
+row numbers.
 
 ## Promotion queue
 
-1. Reconcile the four legacy child rows with the 65–100 research sequence.
+1. Reconcile the four legacy child rows with stable Category and Form IDs.
 2. Convert each research disposition into a bounded Category + Form record.
 3. Attach evidence receipts and identify missing counter-case evidence.
 4. Resolve split parents before declaring any child Form.
@@ -42,4 +42,3 @@ Form IDs, not on the historical row number.
 This separation keeps the site honest: “researched” means the question has
 been worked through; “declared” means the institution has completed its public
 constitutional process.
-
