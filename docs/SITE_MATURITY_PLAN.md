@@ -446,6 +446,22 @@ remain free. Monetization may sell convenience and depth:
   verdict;
 - premium historical or category reports.
 
+### Commercial sequence
+
+Conversion work begins after the public register, Form dossiers, product
+identity, image treatment, and evidence presentation are visually and
+editorially locked. The first job is to make the judgment trustworthy and
+easy to examine; the second is to make the resulting purchase easy to complete.
+
+The intended buyer path is:
+
+`Examine a declaration → Read the ruling → Inspect the evidence → Acquire the named product`
+
+Commercial design may improve clarity, availability, price context, and the
+acquisition handoff. It must not use urgency, invented scarcity, rankings,
+reviews, or motion to manufacture trust. The acquisition action is a
+consequence of the ruling, never an input to it.
+
 The paywall must never hide the decisive reason for a ruling or create a
 different paid verdict. The site becomes valuable because the public standard
 is inspectable, not because the conclusion is secret.

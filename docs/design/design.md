@@ -231,7 +231,30 @@ The homepage may use one documentary photograph of Plato's sculptural portrait a
 
 ## 9. Motion
 
-Restrained to the point of near-stillness — inscriptions don't animate. Permitted: row-hover tint (120ms), the DECLARED gilded-edge reveal on hover, theme cross-fade. **No** page-load theatrics, parallax, or scroll-jacking — extra motion here reads as un-serious and machine-made. Everything wrapped in `@media (prefers-reduced-motion: reduce)`.
+### Examine this, not watch this
+
+Platonic Ideal is an authority register, not a media feed. Stillness communicates
+that a ruling has been considered and recorded. Motion is permitted only when it
+helps a visitor examine, understand, or confirm something; it must never exist
+simply to make the page feel busy or contemporary.
+
+Permitted in the core interface: row-hover tint (120ms), the DECLARED
+gilded-edge reveal on hover, a restrained dossier or evidence reveal, a small
+CTA mark movement on hover/focus, and a brief theme cross-fade. These should
+feel like turning a page, opening a case, or uncovering an inscription.
+
+Video is not a default hero treatment. A short, optional, silent product film
+may appear on selected Form or Product dossiers only when it demonstrates a
+constitutional claim—such as resoling a boot, sharpening a knife, or servicing
+a mechanism. It must have a poster image, controls, a caption, and an equivalent
+text description. The written ruling and static image remain complete without
+the video.
+
+No animated Plato portrait, autoplay hero video, parallax, scroll-jacking,
+kinetic typography, rotating product model, animated gold halo, or theatrical
+page-load sequence. Those treatments compete with the act of examination and
+make the register feel promotional or machine-made. Everything is wrapped in
+`@media (prefers-reduced-motion: reduce)`.
 
 ---
 
