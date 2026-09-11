@@ -109,11 +109,11 @@ function errorCodes(result) {
   return new Set(result.errors.map((error) => error.code))
 }
 
-test('canonical institution fixtures pass and retain the founding split-required case', async () => {
+test('canonical institution fixtures pass and retain the nonterminal adjudication queue', async () => {
   const result = await validateInstitution()
   assert.equal(result.ok, true, result.errors.map((error) => error.message).join('\n'))
-  assert.equal(result.summary.cases, 1)
-  assert.equal(result.summary.nonterminalCases, 1)
+  assert.equal(result.summary.cases, 41)
+  assert.equal(result.summary.nonterminalCases, 41)
   assert.equal(result.summary.terminalCases, 0)
   assert.equal(result.summary.rulings, 0)
 })

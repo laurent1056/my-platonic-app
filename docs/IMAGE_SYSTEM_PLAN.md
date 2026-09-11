@@ -6,13 +6,16 @@ specimen image without weakening the evidence standard.
 
 ## Current state
 
-The inherited register has 68 rows:
+The current register has 100 rows:
 
 - 48 `DECLARED` entries;
-- 45 declared rows with placeholder image URLs;
-- 3 declared rows with non-placeholder remote image URLs;
-- 12 `EMPTY` entries and 8 entries in review, all currently using the glyph
-  fallback.
+- 12 `EMPTY` entries;
+- 40 entries in review (`CANDIDATE`, `CONDITIONAL`, `CONSUMABLE`, or
+  `SPLIT_REQUIRED`).
+
+The first interpretive release now covers 12 declared Form dossiers with
+approved local plates. The remaining declared entries retain the glyph
+fallback until their exact identity and image treatment are ready.
 
 The remote URLs are useful leads, not a production-ready image library. A URL
 does not establish permission to republish an image, prove that the image is
@@ -80,8 +83,8 @@ labelled visual layer. It may express the meaning of a Form—a cast-iron pan as
 an archetype, for example—but it must be marked as an interpretation, must not
 carry the exactness value `exact-model`, and must never be the only support for
 a product claim. The caption should say that it is AI-generated and not
-product photography. This is the visual treatment used by the first Frying Pan
-plate in the repository.
+product photography. This is the visual treatment used by the first 12
+interpretive plates in the repository.
 
 ## Image record
 
@@ -196,7 +199,7 @@ On an EMPTY page:
 The first credible image release is not “all 100 images at any cost.” It is:
 
 - approved hero images for the homepage feature and the first 12–15 declared
-  Form dossiers;
+  Form dossiers (12 are now complete);
 - a complete image manifest and visible credits;
 - a stable glyph fallback for every other entry;
 - no placeholder URL exposed as if it were a product image;
