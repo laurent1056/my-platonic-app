@@ -71,10 +71,17 @@ Use sources in this order:
 5. **External image URL** — temporary research reference only. Do not rely on
    hotlinking for production.
 
-Do not use AI-generated product images for a declared object. An invented
-surface, logo, control, or model detail turns a visual aid into false evidence.
-AI may help generate a decorative background or an abstract EMPTY-state mark,
-but it must never impersonate the product under judgment.
+Do not use AI-generated imagery to impersonate exact product photography or to
+prove a declared object's model, construction, logo, control, or service
+interface. An invented detail turns a visual aid into false evidence.
+
+An AI-generated **interpretive plate** is allowed as a separate, clearly
+labelled visual layer. It may express the meaning of a Form—a cast-iron pan as
+an archetype, for example—but it must be marked as an interpretation, must not
+carry the exactness value `exact-model`, and must never be the only support for
+a product claim. The caption should say that it is AI-generated and not
+product photography. This is the visual treatment used by the first Frying Pan
+plate in the repository.
 
 ## Image record
 
@@ -104,9 +111,11 @@ export interface ProductImage {
 }
 ```
 
-Only `approved` images should be rendered as product identity. `exact-family`
-and `representative` images must say so in the caption and cannot be used to
-silently imply that the photographed object is the exact SKU.
+Only `approved` images should be rendered by the public image component.
+`exact-family` and `representative` images must say so in the caption and
+cannot be used to silently imply that the photographed object is the exact
+SKU. An `editorial-interpretation` image is a visual interpretation of the
+Form, not product identity, even when it appears in the hero position.
 
 ## Repository layout
 
@@ -195,4 +204,3 @@ The first credible image release is not “all 100 images at any cost.” It is:
 
 Once the product and evidence entities exist, the image pipeline can expand to
 all validated products without changing the public ruling model.
-
