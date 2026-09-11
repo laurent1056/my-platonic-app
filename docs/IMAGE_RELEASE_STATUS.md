@@ -1,7 +1,7 @@
 # Image release status
 
-**Checked:** 2026-09-10  
-**Release:** Interpretive plate waves 01–02
+**Checked:** 2026-09-11
+**Release:** Complete declared-form interpretive plate set
 
 ## Decision: plates are the public visual layer
 
@@ -13,13 +13,14 @@ that a generated image proves the exact SKU.
 
 ## What is live
 
-The public site now has 20 approved local interpretive plates for declared
+The public site now has 48 approved local interpretive plates for all declared
 Forms. They are deliberately antiquity-style images: a visual expression of
 the Form, not a claim that the generated object is the exact commercial SKU.
 Each record is labelled `editorial-interpretation`, `representative`, and
 “AI-generated … not product photography” in `src/data/product-plates.ts`.
+There are no declared products left on the glyph fallback.
 
-The first wave covers:
+The initial plate set covers:
 
 | Reference | Category | Public image treatment |
 | --- | --- | --- |
@@ -44,9 +45,42 @@ The first wave covers:
 | PI-040 | Cutting Board | Interpretive plate |
 | PI-047 | Shoes | Interpretive plate |
 
-The remaining 28 declared products use the diagrammatic glyph until a local
-interpretive plate is generated. EMPTY and nonterminal entries do not receive
-product hero art.
+The completed release adds the remaining declared Forms:
+
+| Reference | Category | Public image treatment |
+| --- | --- | --- |
+| PI-025 | T-Shirt | Interpretive plate |
+| PI-026 | Jeans | Interpretive plate |
+| PI-027 | Jacket / Coat | Interpretive plate |
+| PI-028 | Chisel | Interpretive plate |
+| PI-031 | Tent | Interpretive plate |
+| PI-032 | Sleeping Bag | Interpretive plate |
+| PI-034 | Flashlight | Interpretive plate |
+| PI-035 | Sweater | Interpretive plate |
+| PI-036 | Cooler | Interpretive plate |
+| PI-038 | Notebook | Interpretive plate |
+| PI-039 | Pen | Interpretive plate |
+| PI-042 | Bicycle | Interpretive plate |
+| PI-043 | Dining Chair | Interpretive plate |
+| PI-045 | Socks | Interpretive plate |
+| PI-046 | Watch | Interpretive plate |
+| PI-049 | Level | Interpretive plate |
+| PI-050 | Drill Bits | Interpretive plate |
+| PI-051 | Extension Cord | Interpretive plate |
+| PI-052 | Camping Stove | Interpretive plate |
+| PI-053 | Mechanical Pencil | Interpretive plate |
+| PI-054 | Umbrella | Interpretive plate |
+| PI-055 | Ladder | Interpretive plate |
+| PI-056 | Wheelbarrow | Interpretive plate |
+| PI-057 | Wallet | Interpretive plate |
+| PI-058 | Briefcase | Interpretive plate |
+| PI-059 | Hat | Interpretive plate |
+| PI-060 | Gloves | Interpretive plate |
+| PI-062 | Razor | Interpretive plate |
+
+EMPTY and nonterminal entries do not receive product hero art. That distinction
+is intentional: an absence verdict is not made more authoritative by inventing
+a product image for it.
 
 ## Exact photography: excluded from the public image system
 
@@ -68,8 +102,9 @@ but it is retired and is not an active product requirement. The source records
 remain useful only as links for visitors who want to inspect or acquire the
 named model.
 
-## Next image batch
+## Future image work
 
-The next batch should add interpretive plates to the remaining high-confidence
-declared products in the register. The plate is the final public visual; no
-exact product photograph should silently replace it.
+The declared set is complete. When a candidate becomes a stable declaration,
+add its plate through the same manifest, disclosure, and validation workflow.
+The plate is the final public visual; no exact product photograph should
+silently replace it.

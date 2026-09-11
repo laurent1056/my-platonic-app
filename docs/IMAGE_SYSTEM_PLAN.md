@@ -20,9 +20,9 @@ The current register has 100 rows:
 - 40 entries in review (`CANDIDATE`, `CONDITIONAL`, `CONSUMABLE`, or
   `SPLIT_REQUIRED`).
 
-Twenty declared Form dossiers now have approved local plates. The remaining
-28 declared entries retain the glyph fallback until a plate is generated for
-them. EMPTY and nonterminal entries do not receive public product art.
+All 48 declared Form dossiers now have approved local plates. No declared
+entry relies on the glyph fallback. EMPTY and nonterminal entries still do not
+receive public product art.
 
 The remote URLs are useful leads, not a production-ready image library. A URL
 does not establish permission to republish an image, prove that the image is
@@ -143,8 +143,8 @@ source reference for model inspection; it is never a public image asset.
 
 Generate the plate queue from `DECLARED` entries first, ordered by importance:
 
-- homepage feature and the first visual wave of useful declarations;
-- the remaining declared set;
+- homepage feature and the most useful declarations first;
+- the full declared register before any unresolved entry;
 - candidates and conditional Forms only after their exact subject is stable;
 - never create a public plate for an EMPTY verdict or an unresolved entry.
 
@@ -194,15 +194,15 @@ On an EMPTY page:
 
 ## Launch target
 
-The first credible image release is not “all 100 images at any cost.” It is:
+The credible image release is not “all 100 images at any cost.” It is:
 
-- approved plates for the homepage feature and the first visual wave of
-  declared Form dossiers (20 are now complete);
+- approved plates for all 48 declared Form dossiers;
 - a complete plate manifest and visible generation disclosures;
-- a stable glyph fallback for every other entry;
+- a stable glyph fallback for any future entry that is not yet approved;
 - no source-page URL exposed as if it were a product image;
-- a repeatable intake process for the remaining declared set.
+- a repeatable intake process for future declarations.
 
-The next plate wave can expand to all validated declarations without changing
-the public ruling model. Exact product photography is intentionally excluded
-from this release plan.
+The full declared set is now covered without changing the public ruling model.
+Future plate work should follow the same process when a candidate becomes a
+stable declaration. Exact product photography is intentionally excluded from
+this release plan.
