@@ -25,3 +25,17 @@ The source credit and license link also appear directly beneath the portrait in 
   austerity of a Greek red-figure vessel with the gravity of a restrained
   Byzantine icon panel, using terracotta, black iron, mineral pigment, and a
   single aureole behind one pan
+
+## Hammer interpretive plate
+
+- **Asset:** `public/images/products/pi-003-hammer/hero.webp`
+- **Subject:** A single-piece steel claw hammer rendered in the same
+  antiquity-inspired editorial style
+- **Type:** AI-generated interpretive image; it is not exact product
+  photography and is not evidence for the Estwing E3-16C model
+- **Generator:** OpenAI image generation
+- **Status:** Approved as a visual interpretation only; the page caption keeps
+  that distinction visible
+- **Prompt intent:** Preserve the Frying Pan plate's terracotta mineral ground,
+  aureole, aged panel, and solemn composition while expressing the hammer's
+  continuous forged-steel construction

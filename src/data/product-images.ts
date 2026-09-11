@@ -43,6 +43,22 @@ export const productImages: ProductImage[] = [
     verifiedAt: '2026-09-10',
     status: 'approved',
   },
+  {
+    id: 'pi-003-hammer-hero-v1',
+    productId: 'PI-003',
+    role: 'hero',
+    kind: 'editorial-interpretation',
+    path: 'images/products/pi-003-hammer/hero.webp',
+    alt: 'Antiquity-style editorial interpretation of a single-piece steel claw hammer',
+    caption: 'Interpretive plate · AI-generated for Platonic Ideal · not product photography',
+    credit: 'OpenAI image generation',
+    license: 'Generated for Platonic Ideal; no manufacturer marks or product claims',
+    exactness: 'representative',
+    region: 'US',
+    capturedOrRetrievedAt: '2026-09-10',
+    verifiedAt: '2026-09-10',
+    status: 'approved',
+  },
 ]
 
 export function approvedHeroImageFor(productId: string): ProductImage | undefined {
@@ -50,4 +66,3 @@ export function approvedHeroImageFor(productId: string): ProductImage | undefine
     (image) => image.productId === productId && image.role === 'hero' && image.status === 'approved',
   )
 }
-
