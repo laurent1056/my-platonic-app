@@ -13,9 +13,9 @@ The current register has 100 rows:
 - 40 entries in review (`CANDIDATE`, `CONDITIONAL`, `CONSUMABLE`, or
   `SPLIT_REQUIRED`).
 
-The first interpretive release now covers 12 declared Form dossiers with
+The first two interpretive waves now cover 20 declared Form dossiers with
 approved local plates. The remaining declared entries retain the glyph
-fallback until their exact identity and image treatment are ready.
+fallback until a plate is generated for them.
 
 The remote URLs are useful leads, not a production-ready image library. A URL
 does not establish permission to republish an image, prove that the image is
@@ -33,9 +33,11 @@ Every production image must answer three questions:
 3. Can a visitor see enough of the construction or identity to understand why
    it belongs to the ruling?
 
-If any answer is unknown, the page keeps the diagrammatic product glyph and
-labels the image as pending. A beautiful but misidentified image would damage
-the authority of the register more than an honest absence.
+If exactness or rights are unknown, the page may use a clearly labelled
+interpretive plate as the public visual layer, with the diagrammatic product
+glyph as the fallback. The plate must never be presented as evidence of the
+exact commercial SKU. A beautiful but misidentified image would damage the
+authority of the register more than an honest absence.
 
 ## Visual direction: the specimen portrait
 
@@ -83,7 +85,7 @@ labelled visual layer. It may express the meaning of a Form—a cast-iron pan as
 an archetype, for example—but it must be marked as an interpretation, must not
 carry the exactness value `exact-model`, and must never be the only support for
 a product claim. The caption should say that it is AI-generated and not
-product photography. This is the visual treatment used by the first 12
+product photography. This is the visual treatment used by the first 20
 interpretive plates in the repository.
 
 ## Image record
@@ -198,8 +200,8 @@ On an EMPTY page:
 
 The first credible image release is not “all 100 images at any cost.” It is:
 
-- approved hero images for the homepage feature and the first 12–15 declared
-  Form dossiers (12 are now complete);
+- approved hero images for the homepage feature and the first visual wave of
+  declared Form dossiers (20 are now complete);
 - a complete image manifest and visible credits;
 - a stable glyph fallback for every other entry;
 - no placeholder URL exposed as if it were a product image;

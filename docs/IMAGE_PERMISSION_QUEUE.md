@@ -1,6 +1,6 @@
 # Exact image permission queue
 
-**Status:** outreach packet prepared; no permission has been granted yet  
+**Status:** optional future identity layer; no permission has been granted yet
 **Checked:** 2026-09-10  
 **Purpose:** move exact product photography from “identity lead” to “approved
 product image” without weakening the register’s authority.
@@ -13,8 +13,9 @@ image may be promoted into `src/data/product-images.ts` only when the queue
 contains a permission record or an owned/public-domain/Creative-Commons
 record that covers the intended use.
 
-Until then, the public site continues to show the clearly labelled
-interpretive plate and the “Inspect current source” handoff.
+The public site does not wait for this queue. It shows the clearly labelled
+interpretive plate and the “Inspect current source” handoff. A permissioned
+photo can be added later as a secondary identity or evidence image.
 
 ## First outreach wave
 
