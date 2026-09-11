@@ -2,7 +2,7 @@
 import SiteLayout from '@/layouts/SiteLayout.astro'
 import StatusChip from '@/components/StatusChip.astro'
 import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
-import ProductGlyph from '@/components/ProductGlyph.astro'
+import ProductImage from '@/components/ProductImage.astro'
 import { categoryUrl, register, registerStats, withBase } from '@/data/register'
 
 const feature = register.find((entry) => entry.slug === 'frying-pan') ?? register[0]
@@ -141,7 +141,7 @@ const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_
       </div>
       <article class="featured">
         <div class="featured-visual">
-          <ProductGlyph entry={feature} />
+          <ProductImage entry={feature} priority />
         </div>
         <div class="featured-content">
           <StatusChip verdict={feature.verdict} />

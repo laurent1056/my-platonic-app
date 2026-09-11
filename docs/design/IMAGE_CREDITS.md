@@ -10,3 +10,18 @@
 - **Site adaptation:** Resized, WebP-compressed, responsively cropped, and CSS-toned to grayscale. The adapted image remains available under CC BY-SA 4.0.
 
 The source credit and license link also appear directly beneath the portrait in the homepage hero. Keep that visible attribution with any future use of this asset.
+
+## Frying Pan interpretive plate
+
+- **Asset:** `public/images/products/pi-001-frying-pan/hero.webp`
+- **Subject:** A single cast-iron frying pan rendered in an antiquity-inspired
+  editorial style
+- **Type:** AI-generated interpretive image; it is not exact product
+  photography and is not evidence for the Lodge L10SK3 model
+- **Generator:** OpenAI image generation
+- **Status:** Approved as a visual interpretation only; the page caption keeps
+  that distinction visible
+- **Prompt intent:** A solemn, museum-like specimen plate combining the
+  austerity of a Greek red-figure vessel with the gravity of a restrained
+  Byzantine icon panel, using terracotta, black iron, mineral pigment, and a
+  single aureole behind one pan

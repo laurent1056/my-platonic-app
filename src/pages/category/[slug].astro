@@ -2,7 +2,8 @@
 import SiteLayout from '@/layouts/SiteLayout.astro'
 import StatusChip from '@/components/StatusChip.astro'
 import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
-import ProductGlyph from '@/components/ProductGlyph.astro'
+import ProductImage from '@/components/ProductImage.astro'
+import { approvedHeroImageFor } from '@/data/product-images'
 import { categoryUrl, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
 
 export function getStaticPaths() {
@@ -17,12 +18,13 @@ const isDeclared = entry.verdict === 'DECLARED'
 const isEmpty = entry.verdict === 'EMPTY'
 const declaration = isDeclared ? entry.model : isEmpty ? 'No product qualifies.' : 'Declaration withheld.'
 const description = entry.summary || entry.coreReasoning || `${entry.category}: ${declaration}`
+const approvedImage = approvedHeroImageFor(entry.reference)
 const disqualifiers = splitStatements(entry.disqualifiers)
 const admission = splitStatements(entry.admissionTest)
 const failures = splitStatements(entry.failureModes)
 ---
 
-<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={entry.hasRealImage ? entry.imageUrl : undefined}>
+<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedImage ? withBase(approvedImage.path) : undefined}>
   <div class="shell">
     <section class="dossier-hero">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
@@ -47,7 +49,7 @@ const failures = splitStatements(entry.failureModes)
           {isEmpty ? (
             <p class="absence-mark">No specimen admitted.</p>
           ) : (
-            <ProductGlyph entry={entry} preferImage={entry.hasRealImage} />
+            <ProductImage entry={entry} />
           )}
         </div>
         <dl class="specimen-meta">
