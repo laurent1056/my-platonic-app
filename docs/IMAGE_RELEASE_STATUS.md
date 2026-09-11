@@ -32,7 +32,7 @@ The remaining declared products use the diagrammatic glyph until a local
 interpretive plate or rights-cleared exact image is approved. EMPTY and
 nonterminal entries do not receive product hero art.
 
-## Exact photography gate
+## Step 4 status: exact photography gate
 
 The image-source inventory currently has 41 image-bearing leads for the 48
 declared products, including 22 exact-identity leads. It has **zero**
@@ -53,6 +53,14 @@ conditions is recorded:
 Until then, the interpretive plate and source handoff remain separate layers:
 the plate communicates the meaning of the ruling; the source record points to
 where the exact object can be inspected or purchased.
+
+This means the exact-photo step is prepared but not falsely marked complete:
+the permission request template is ready in `docs/IMAGE_PERMISSION_REQUEST.md`,
+and the 22 exact-identity leads are recorded in
+`src/data/image-source-inventory.json`. The next outward action is to request
+permission from the makers or authorized sellers, or to photograph objects
+Platonic Ideal owns. That action requires a real permission record before an
+image can be promoted.
 
 ## Next image batch
 
