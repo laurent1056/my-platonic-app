@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0078",
+  "category": "Backpacking Pack",
+  "slug": "backpacking-pack",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "A pack can end the search only inside a defined load and fit Form; torso size is part of the product identity.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Wrong torso fit, load range outside the Form, nonreplaceable harness parts, failed stitching or frame, and assumptions that one pack fits every body."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Osprey Atmos AG 65, fitted to the user's torso size",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Osprey Atmos AG 65, fitted to the user's torso size"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Fit mismatch, seam or fabric abrasion, buckle failure, frame deformation, foam fatigue, and suspension wear."
+    }
+  ],
+  "maintenance": "Adjust and clean suspension; replace hip belt, harness, buckles, or repair fabric when supported.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 08 research disposition: declaration path. Candidate only; fit is a constitutional constraint. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

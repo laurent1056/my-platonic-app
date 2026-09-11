@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0100",
+  "category": "Umbrella — Full-Length Wind-Resistant Walking",
+  "slug": "umbrella-full-length-wind-resistant-walking",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The BLUNT Classic is a candidate inside a wind-resistant walking Form, but wind fatigue and warranty dependence must remain visible.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Compact mechanisms with many fatigue points, irreplaceable ribs, unavailable canopy parts, warranty treated as infinite repair, and wind claims without failure-boundary evidence."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "BLUNT Classic, current modular full-length model",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "BLUNT Classic, current modular full-length model"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Rib fatigue, canopy tears, runner or shaft failure, handle separation, and wind use beyond the Form."
+    }
+  ],
+  "maintenance": "Replace canopy, ribs, runner, or handle modules where supported; dry and store open after use.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 10 research disposition: declaration path. Candidate only; scoped to full-length wind-resistant walking. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

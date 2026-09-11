@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0092",
+  "category": "Dryer — Full-Size Vented Electric",
+  "slug": "dryer-full-size-vented-electric",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "A vented electric dryer has a plausible declaration path when its heater, motor, drum, and controls remain serviceable.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Sealed heater or motor, inaccessible controls, unavailable safety components, poor venting assumptions, and repair cost that exceeds rational replacement."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Speed Queen DC5, product code DC5004WE",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Speed Queen DC5, product code DC5004WE"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Heater failure, belt or roller wear, motor failure, control failure, sensor failure, and lint or vent hazards."
+    }
+  ],
+  "maintenance": "Clean lint path and vent; replace heater, belt, rollers, motor, controls, and sensors as supported.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 3,
+  "notes": "Constitutional Batch 09 research disposition: declaration path. Candidate only; scoped to full-size vented electric. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

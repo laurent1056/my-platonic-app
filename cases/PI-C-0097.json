@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0097",
+  "category": "Toothbrush — Manual Soft-Bristle Consumable",
+  "slug": "toothbrush-manual-soft-bristle-consumable",
+  "status": "CONSUMABLE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The toothbrush Form is honest when it treats worn bristles as a rational consumable renewal cycle instead of pretending the handle is permanent.",
+    "scope": "Imported from the 100-record register as a nonterminal CONSUMABLE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Hard bristles that damage enamel, inaccessible or unnecessary electronics, replacement cycles hidden by marketing, and a handle claim that ignores bristle wear."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Curaprox CS 5460 manual soft-bristle toothbrush",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Curaprox CS 5460 manual soft-bristle toothbrush"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Bristle splay, contamination, handle damage, and replacement timing missed through overuse."
+    }
+  ],
+  "maintenance": "Replace on the clinically appropriate schedule; keep the handle and packaging simple where possible.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 3,
+  "notes": "Constitutional Batch 10 research disposition: consumable Form. This scoped record is not a new durable declaration. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

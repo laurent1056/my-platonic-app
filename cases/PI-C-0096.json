@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0096",
+  "category": "Vacuum Cleaner — Corded Bagged Upright",
+  "slug": "vacuum-cleaner-corded-bagged-upright",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The FELIX is a strong candidate inside a corded bagged upright Form because the dust system and wear parts are serviceable.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Sealed battery or motor, unavailable bags or belts, disposable brush assembly, proprietary consumables without long support, and using a cordless Form as the counter-case."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "SEBO FELIX Premium, working variant 9809AM",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "SEBO FELIX Premium, working variant 9809AM"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Bag or filter neglect, belt and brush wear, hose cracking, motor failure, cord damage, and wrong floor-tool Form."
+    }
+  ],
+  "maintenance": "Replace bags, filters, belts, brush, hose, and supported motor or electrical parts.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 3,
+  "notes": "Constitutional Batch 10 research disposition: declaration path. Candidate only; scoped to corded bagged upright. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

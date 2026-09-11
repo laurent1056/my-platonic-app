@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0085",
+  "category": "Router — Wired Firewall Appliance",
+  "slug": "router-wired-firewall-appliance",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The VP2430e is a strong candidate inside a wired firewall/router Form, not a universal Wi-Fi mesh answer.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Vendor-cloud lock-in, nonstandard storage or memory, unsupported firmware, thermal failure, and treating an all-in-one wireless mesh system as the same Form."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Protectli Vault Pro VP2430e, exact SKU VP2430e",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Protectli Vault Pro VP2430e, exact SKU VP2430e"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Storage wear, power failure, thermal failure, firmware abandonment, and misconfiguration outside the Form."
+    }
+  ],
+  "maintenance": "Update or replace storage, memory, power supply, and supported components; maintain the chosen firewall software.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 3,
+  "notes": "Constitutional Batch 09 research disposition: declaration path. Candidate only; scoped to wired appliance use. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

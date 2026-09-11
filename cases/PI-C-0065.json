@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0065",
+  "category": "Bed Frame",
+  "slug": "bed-frame",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "A narrow steel support Form can end the search when load capacity, fit, and replaceable hardware are explicit.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Unrated spans, undersized center supports, proprietary hardware, welded failure points, and frames whose fit or load rating is unclear."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Model pending — heavy-duty steel bolt-together frame",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Model pending — heavy-duty steel bolt-together frame"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Loose fasteners, bent brackets, missing center support, squeaks, and incompatibility with the mattress size."
+    }
+  ],
+  "maintenance": "Tighten hardware periodically; replace feet, brackets, or fasteners as needed.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 07 research disposition: declaration path. Not a terminal ruling; exact model and evidence packet required. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

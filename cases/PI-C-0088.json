@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0088",
+  "category": "Camera — Form Split",
+  "slug": "camera-form-split",
+  "status": "SPLIT_REQUIRED",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "No single camera can be declared until the carrying, capture, lens, service, and media Forms are separated.",
+    "scope": "Imported from the 100-record register as a nonterminal SPLIT_REQUIRED research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "One universal camera claim, incompatible lens or media expectations, sealed battery or sensor assumptions, and ignoring film processing or software dependency."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "No exact subject named; Form or category split required"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Shutter or sensor failure, lens damage, battery degradation, media obsolescence, water ingress, and software abandonment."
+    }
+  ],
+  "maintenance": "Shutter, sensor, lens, battery, media, seals, and electronics require different service paths by child Form.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 09 research disposition: preserve split; develop child cases before naming a model. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

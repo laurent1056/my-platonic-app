@@ -1,0 +1,44 @@
+{
+  "id": "PI-C-0064",
+  "category": "Desktop Computer",
+  "slug": "desktop-computer",
+  "status": "CONDITIONAL",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "Maximally repairable within PC category.",
+    "scope": "Imported from the 100-record register as a nonterminal CONDITIONAL research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Motherboard/CPU/RAM platform shifts force major rebuild every ~10–15 years; requires technical competence and willingness to run Linux."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Custom ATX Desktop (standard components) + Linux",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Custom ATX Desktop (standard components) + Linux"
+    ]
+  },
+  "failureModes": [],
+  "maintenance": "every 5-10 years",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Define the Form tighter (e.g., Repairable Desktop PC) or mark as CANDIDATE. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

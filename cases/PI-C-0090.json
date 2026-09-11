@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0090",
+  "category": "Home Thermostat — Non-Cloud Programmable",
+  "slug": "home-thermostat-non-cloud-programmable",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "A thermostat can end the search inside a non-cloud-dependent control Form when compatibility and replacement are explicit.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Cloud-only operation, incompatible HVAC systems, sealed nonreplaceable control failures, proprietary lock-in, and unsafe installation assumptions."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Honeywell Home T6 Pro Programmable, SKU TH6220U2000/U",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Honeywell Home T6 Pro Programmable, SKU TH6220U2000/U"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Relay failure, display failure, battery depletion, wiring incompatibility, and firmware or support abandonment."
+    }
+  ],
+  "maintenance": "Replace batteries, display, base, or thermostat unit within a compatible documented system.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 3,
+  "notes": "Constitutional Batch 09 research disposition: declaration path. Candidate only; professional installation and system scope are part of the Form. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

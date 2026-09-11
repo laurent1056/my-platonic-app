@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0069",
+  "category": "Dresser / Wardrobe",
+  "slug": "dresser-wardrobe",
+  "status": "CONDITIONAL",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The storage Form may be declarable after dresser and wardrobe are separated and the hardware and sourcing rules are explicit.",
+    "scope": "Imported from the 100-record register as a nonterminal CONDITIONAL research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Particleboard bodies, weak drawer bottoms, glued-in hardware, nonreplaceable slides, unstable vintage condition, and undefined wardrobe or dresser scope."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Model pending — proven solid-wood dresser",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Model pending — proven solid-wood dresser"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Drawer slide wear, joint loosening, warped panels, missing hardware, and restoration cost exceeding value."
+    }
+  ],
+  "maintenance": "Replace pulls and slides; repair drawer joints; refinish the surface as needed.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 07 research disposition: conditional. Do not name a universal dresser/wardrobe ideal before the parent is split. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

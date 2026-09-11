@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0067",
+  "category": "Bookshelf",
+  "slug": "bookshelf",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The ideal bookshelf is defined by load geometry and serviceable construction, not by a prestige material or brand.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Particleboard spans that sag, fragile cam-locks, unrated shelves, decorative complexity that weakens the structure, and hardware that cannot be replaced."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Model pending — bounded load-rated shelf system",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Model pending — bounded load-rated shelf system"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Shelf sag, racking, loose fasteners, damaged edges, and unsupported spans overloaded beyond the Form."
+    }
+  ],
+  "maintenance": "Tighten fasteners, replace hardware, and refinish or replace shelves when the bounded structure remains sound.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 07 research disposition: declaration path after Form choice. Not a terminal ruling. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

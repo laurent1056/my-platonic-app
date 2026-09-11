@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0089",
+  "category": "Smartwatch — Rugged Outdoor GPS",
+  "slug": "smartwatch-rugged-outdoor-gps",
+  "status": "CONDITIONAL",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "The Instinct 3 Solar has a declaration path only inside a rugged GPS-watch Form; battery and serviceability remain material conditions.",
+    "scope": "Imported from the 100-record register as a nonterminal CONDITIONAL research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Sealed battery with no practical replacement, unsupported software, GPS or sensor failure, proprietary charger lock-in, and treating a watch as an indefinite mechanical object."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "Garmin Instinct 3 Solar 50 mm, working identifier 010-02935-02",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "Garmin Instinct 3 Solar 50 mm, working identifier 010-02935-02"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Battery degradation, seal damage, sensor failure, display failure, charger loss, and software support lapse."
+    }
+  ],
+  "maintenance": "Clean and inspect seals; replace bands and charger; verify battery and software support horizon.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 2,
+  "notes": "Constitutional Batch 09 research disposition: conditional declaration path. Do not promote without resolving the battery and service question. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}

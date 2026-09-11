@@ -1,0 +1,50 @@
+{
+  "id": "PI-C-0077",
+  "category": "Camping Stove — Liquid-Fuel Backpacking",
+  "slug": "camping-stove-liquid-fuel-backpacking",
+  "status": "CANDIDATE",
+  "constitutionVersion": "1.1.0",
+  "form": {
+    "statement": "A liquid-fuel stove can remain in service when its pump, jet, seals, and fuel line are cleanable or replaceable in the field.",
+    "scope": "Imported from the 100-record register as a nonterminal CANDIDATE research case. The ordinary use context, jurisdiction, and exact Form boundary remain part of adjudication.",
+    "exclusions": [
+      "Sealed fuel systems, proprietary nonreplaceable canisters, inaccessible jets or pumps, and fuel or safety claims outside the defined operating scope."
+    ]
+  },
+  "subject": {
+    "manufacturer": "",
+    "model": "MSR WhisperLite International, SKU 06633",
+    "modelIdentifier": "",
+    "productionLineage": "Exact model identity and production continuity remain to be verified."
+  },
+  "gates": [],
+  "hardDisqualifiers": [],
+  "evidenceIds": [],
+  "evidenceGaps": [
+    "Attach at least one primary technical or service source.",
+    "Attach independent evidence of longevity, failure behavior, or repair economics.",
+    "Record the strongest counter-case and the exact model or child Form boundary."
+  ],
+  "categorySearch": {
+    "protocol": "Research disposition imported from the canonical register. The case must record the candidate set, search coverage, and why the chosen Form is coherent before terminal review.",
+    "candidateSet": [
+      "MSR WhisperLite International, SKU 06633"
+    ]
+  },
+  "failureModes": [
+    {
+      "mode": "Register failure-mode record",
+      "severity": "MEDIUM",
+      "remedy": "Clogged jet, dried pump seals, damaged fuel line, corroded burner, and unsafe fuel handling."
+    }
+  ],
+  "maintenance": "Clean jet and fuel line; replace pump seals, cup, filter, and other kit parts.",
+  "repairEconomics": "Not yet established. Compare parts, labor, access, downtime, and rational replacement cost before terminal review.",
+  "counterCase": {
+    "claim": "A serious alternative or incompatible sub-Form may answer the same broad category differently.",
+    "disposition": "Counter-case not yet adjudicated; do not issue a terminal ruling until the strongest alternative is recorded and answered."
+  },
+  "futureRequirement": "Complete the evidence packet, five-gate findings, hard-disqualifier review, and human adjudication before promotion to DECLARED or EMPTY.",
+  "confidence": 3,
+  "notes": "Constitutional Batch 08 research disposition: declaration path. Candidate only; scoped to liquid-fuel backpacking. Seeded from the 100-record migration as a formal nonterminal case; this file does not issue a public ruling."
+}
