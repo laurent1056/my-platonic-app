@@ -15,12 +15,12 @@ const { current } = Astro.props
         <span>Platonic Ideal</span>
       </a>
       <nav class="primary-nav" aria-label="Primary navigation">
-        <a href={withBase('register/')} aria-current={current === 'index' || current === 'register' ? 'page' : undefined}>The Register</a>
-        <a href={withBase('methodology/')} aria-current={current === 'methodology' ? 'page' : undefined}>Method</a>
-        <a href={withBase('constitution/')} aria-current={current === 'constitution' ? 'page' : undefined}>Constitution</a>
+        <a href={withBase('register/')} aria-current={current === 'index' || current === 'register' ? 'page' : undefined}>Explore products</a>
+        <a href={withBase('methodology/')} aria-current={current === 'methodology' ? 'page' : undefined}>How we choose</a>
+        <a href={withBase('constitution/')} aria-current={current === 'constitution' ? 'page' : undefined}>Our rules</a>
       </nav>
       <div class="header-actions">
-        <span class="edition mono label">N = {registerStats.total}</span>
+        <span class="edition mono label">{registerStats.total} categories</span>
         <ThemeToggle />
       </div>
     </div>

@@ -1,6 +1,7 @@
 ---
 import { registerStats, withBase } from '@/data/register'
 const year = new Date().getFullYear()
+const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_Greek_philosopher_Plato._Roman_copy_(1st_century_CE)_of_an_original_(350-340_BCE)._Altes_Museum,_Berlin.jpg'
 ---
 
 <footer class="site-footer">
@@ -8,19 +9,21 @@ const year = new Date().getFullYear()
     <div class="footer-grid">
       <div>
         <p class="footer-title">Platonic Ideal</p>
-        <p class="footer-copy">A finite register of durable objects. One model approaches the Form—or the category remains honestly empty.</p>
+        <p class="footer-copy">A buyer’s guide to products that earn their place. We name one product when the evidence supports it—or explain why none has earned the pick.</p>
       </div>
-      <nav class="footer-links" aria-label="Project">
-        <span class="label">Project</span>
-        <a href={withBase('register/')}>The Register</a>
-        <a href={withBase('methodology/')}>Methodology</a>
-        <a href={withBase('constitution/')}>Constitution</a>
+      <nav class="footer-links" aria-label="Learn about Platonic Ideal">
+        <span class="label">Learn</span>
+        <a href={withBase('register/')}>Explore products</a>
+        <a href={withBase('methodology/')}>How we choose</a>
+        <a href={withBase('constitution/')}>Our rules</a>
+        <a href={platoSource} target="_blank" rel="license noopener noreferrer">Plato portrait credit</a>
       </nav>
       <div class="footer-links">
-        <span class="label">Census</span>
-        <span>{registerStats.declared} declared</span>
-        <span>{registerStats.empty} empty</span>
-        <span>{registerStats.review} in review</span>
+        <span class="label">Current catalog</span>
+        <span>{registerStats.total} categories tracked</span>
+        <span>{registerStats.declared} picks made</span>
+        <span>{registerStats.empty} no-pick verdicts</span>
+        <span>{registerStats.review} still researching</span>
       </div>
     </div>
     <div class="colophon">

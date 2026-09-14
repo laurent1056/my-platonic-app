@@ -12,6 +12,46 @@ export type SourceStatus =
 
 export type Verdict = 'DECLARED' | 'EMPTY' | 'IN REVIEW'
 
+/**
+ * Public language for the editorial states. The CSV keeps the precise
+ * workflow vocabulary; visitors should see the decision in plain English.
+ */
+export const publicStateLabels = {
+  DECLARED: 'Our pick',
+  EMPTY: 'No qualifying pick',
+  'IN REVIEW': 'Still researching',
+  CANDIDATE: 'Possible pick under review',
+  CONDITIONAL: 'Depends on the use',
+  CONSUMABLE: 'Designed to be replaced',
+  SPLIT_REQUIRED: 'Needs a narrower category',
+} as const
+
+export const publicStateDescriptions = {
+  DECLARED: 'One product met the standard and is named here.',
+  EMPTY: 'We looked seriously and did not find one product that earned the pick.',
+  'IN REVIEW': 'The evidence is not complete enough for a final recommendation.',
+  CANDIDATE: 'A possible product is being investigated, but it is not yet recommended.',
+  CONDITIONAL: 'The answer changes materially depending on the job or operating conditions.',
+  CONSUMABLE: 'This category has a rational replacement cycle rather than indefinite ownership.',
+  SPLIT_REQUIRED: 'This category contains different jobs that should not share one answer.',
+} as const
+
+export const publicPermanenceLabels = {
+  repairable: 'Repairable',
+  warranty: 'Backed by service or warranty',
+  'rational-renewal': 'Replaceable by design',
+  consumable: 'Designed to be replaced',
+  unspecified: 'Not yet classified',
+} as const
+
+export const publicPermanenceDescriptions = {
+  repairable: 'The product can be repaired, rebuilt, or restored when parts wear out.',
+  warranty: 'A durable service or warranty system helps keep the product in use.',
+  'rational-renewal': 'Replacing the product is an expected and rational part of ownership.',
+  consumable: 'The category is meant to be replaced as part of normal use.',
+  unspecified: 'The long-term ownership path has not been classified yet.',
+} as const
+
 export type DomainId =
   | 'kitchen-cooking'
   | 'household-systems'
@@ -216,6 +256,18 @@ function publicVerdict(status: SourceStatus): Verdict {
   return 'IN REVIEW'
 }
 
+export function publicStateLabel(verdict: Verdict, sourceStatus?: SourceStatus): string {
+  if (verdict === 'DECLARED') return publicStateLabels.DECLARED
+  if (verdict === 'EMPTY') return publicStateLabels.EMPTY
+  return publicStateLabels[sourceStatus ?? 'CANDIDATE'] ?? publicStateLabels['IN REVIEW']
+}
+
+export function publicStateDescription(verdict: Verdict, sourceStatus?: SourceStatus): string {
+  if (verdict === 'DECLARED') return publicStateDescriptions.DECLARED
+  if (verdict === 'EMPTY') return publicStateDescriptions.EMPTY
+  return publicStateDescriptions[sourceStatus ?? 'CANDIDATE'] ?? publicStateDescriptions['IN REVIEW']
+}
+
 export const register: RegisterEntry[] = parsed.data.map((row, index) => {
   const number = Number(clean(row.Number)) || index + 1
   const category = clean(row.Category)
@@ -262,7 +314,9 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     entry.model,
     entry.verdict,
     entry.sourceStatus,
+    publicStateLabel(entry.verdict, entry.sourceStatus),
     entry.permanence,
+    publicPermanenceLabels[entry.permanenceKind],
     entry.domain.name,
     entry.permanenceKind,
     entry.summary,

@@ -12,30 +12,30 @@ const oracleEntries = register.map((entry) => ({
 }))
 ---
 
-<SiteLayout title="The Oracle" description="A private, browser-based drafting studio for applying the Platonic Ideal admission test to a category.">
+<SiteLayout title="The Oracle" description="A private drafting studio for applying the Platonic Ideal standard to a product category.">
   <div class="shell">
     <header class="editorial-hero">
-      <p class="label">Private authoring studio</p>
-      <h1 class="editorial-title">Consult the standard—not the market.</h1>
-      <p class="editorial-dek">The Oracle drafts and critiques entries against the same admission test as the register. It proposes language. It never publishes, votes, or changes the canonical CSV.</p>
+      <p class="label">Private editorial studio</p>
+      <h1 class="editorial-title">Apply the standard—not the market.</h1>
+      <p class="editorial-dek">The Oracle helps draft and critique a product decision against the same questions used by the public catalog. It proposes language. It never publishes, votes, or changes the source data on its own.</p>
     </header>
 
     <div class="oracle-layout">
       <section class="oracle-panel" aria-labelledby="oracle-controls-title">
-        <h2 class="label" id="oracle-controls-title">§ 01 · The consultation</h2>
+          <h2 class="label" id="oracle-controls-title">§ 01 · Start a draft</h2>
         <form class="form-stack" id="oracle-form" style="margin-top:1.5rem">
           <div class="form-field">
             <label class="label" for="oracle-mode">Task</label>
             <select class="select-field" id="oracle-mode">
-              <option value="draft">Draft a new judgment</option>
-              <option value="critique">Critique the existing entry</option>
-              <option value="empty">Test the case for EMPTY</option>
+              <option value="draft">Draft a new product decision</option>
+              <option value="critique">Review an existing category</option>
+              <option value="empty">Test whether no product qualifies</option>
             </select>
           </div>
           <div class="form-field">
             <label class="label" for="oracle-category">Category</label>
             <select class="select-field" id="oracle-category">
-              <option value="">Choose an existing category…</option>
+              <option value="">Choose a category…</option>
               {register.map((entry) => <option value={entry.category}>{entry.category} · {entry.sourceStatus.replace(/_/g, ' ')}</option>)}
               <option value="__new__">A new category…</option>
             </select>
@@ -45,7 +45,7 @@ const oracleEntries = register.map((entry) => ({
             <input class="text-field" id="oracle-new-category" placeholder="e.g. Garden hose" />
           </div>
           <div class="form-field">
-            <label class="label" for="oracle-constraints">Evidence, constraints, or challenge</label>
+            <label class="label" for="oracle-constraints">Evidence, constraints, or question</label>
             <textarea class="textarea-field" id="oracle-constraints" placeholder="Name candidate models, observed failure modes, repair constraints, or the specific claim to test…"></textarea>
           </div>
           <div class="form-field">
@@ -58,7 +58,7 @@ const oracleEntries = register.map((entry) => ({
           </label>
           <div class="privacy-note">Browser-direct API access is appropriate for a private authoring tool, not a public multi-user feature. Use a restricted key and clear it after drafting.</div>
           <div style="display:flex;gap:.6rem;flex-wrap:wrap">
-            <button class="button" type="submit">Ask the Oracle <span aria-hidden="true">◇</span></button>
+            <button class="button" type="submit">Create a draft <span aria-hidden="true">◇</span></button>
             <button class="button secondary" type="button" id="clear-key">Forget key</button>
           </div>
           <p class="oracle-status" id="oracle-status" role="status" aria-live="polite"></p>
@@ -67,15 +67,15 @@ const oracleEntries = register.map((entry) => ({
 
       <section class="oracle-panel" aria-labelledby="oracle-output-title">
         <div style="display:flex;justify-content:space-between;align-items:center;gap:1rem">
-          <h2 class="label" id="oracle-output-title">§ 02 · Draft inscription</h2>
+          <h2 class="label" id="oracle-output-title">§ 02 · Draft decision</h2>
           <button class="button secondary" type="button" id="copy-output" hidden>Copy draft</button>
         </div>
         <div class="oracle-output" id="oracle-output" style="margin-top:1.5rem">
           <div class="oracle-placeholder">
             <div>
               <span class="gold" style="font-family:var(--serif);font-size:3rem" aria-hidden="true">◇</span>
-              <p>No consultation has been made.</p>
-              <p class="mono" style="font-size:.63rem">OUTPUT REMAINS OUTSIDE THE CANON<br />UNTIL EDITORIALLY REVIEWED</p>
+              <p>No draft has been made.</p>
+              <p class="mono" style="font-size:.63rem">DRAFTS STAY OUTSIDE THE PUBLIC CATALOG<br />UNTIL EDITORIALLY REVIEWED</p>
             </div>
           </div>
         </div>

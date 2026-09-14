@@ -7,28 +7,27 @@ import { categoryUrl, register, registerStats, withBase } from '@/data/register'
 
 const feature = register.find((entry) => entry.slug === 'frying-pan') ?? register[0]
 const platoPortrait = withBase('images/plato-silanion-berlin.webp')
-const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_Greek_philosopher_Plato._Roman_copy_(1st_century_CE)_of_an_original_(350-340_BCE)._Altes_Museum,_Berlin.jpg'
 ---
 
 <SiteLayout current="index">
   <div class="shell">
     <section class="hero" aria-labelledby="hero-title">
       <div class="hero-content">
-        <div class="hero-kicker label">A register of durable objects</div>
+        <div class="hero-kicker label">A buyer’s guide to products that earn their place</div>
         <h1 class="hero-title" id="hero-title">One product.<br /><em>Or none.</em></h1>
-        <p class="hero-copy">For every category, a single object that approaches the Form—durable, repairable, stable—or an honest declaration that the category remains empty.</p>
+        <p class="hero-copy">Product research has become a second job. We inspect how products are built, what fails, whether they can be repaired, and whether the evidence holds up. When one model meets the standard, we name it. When none does, we tell you why.</p>
         <div class="hero-actions">
           <a class="button hero-primary" href={categoryUrl(feature)}>
-            <span>Examine a declaration</span>
+            <span>See why we chose it</span>
             <span class="hero-button-mark" aria-hidden="true">→</span>
           </a>
           <a class="hero-text-link" href="#register">
-            Browse the register
-            <span class="mono">{registerStats.total} entries ↓</span>
+            Explore all products
+            <span class="mono">{registerStats.total} categories ↓</span>
           </a>
         </div>
         <p class="hero-starting-case">
-          <span class="label">Starting case</span>
+          <span class="label">Start here</span>
           <span class="mono">{feature.category} · {feature.model}</span>
         </p>
       </div>
@@ -48,46 +47,45 @@ const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_
         </div>
         <figcaption class="hero-portrait-caption">
           <span>Plato · Roman copy after a fourth-century BCE original</span>
-          <a href={platoSource} target="_blank" rel="license noopener noreferrer">Photo: Osama Shukir Muhammed Amin · CC BY-SA 4.0 · cropped and toned</a>
         </figcaption>
-      </figure>
+        </figure>
     </section>
 
     <section class="census" aria-label="Register census">
-      <div class="census-item"><span class="label">Categories</span><strong class="census-number">{registerStats.total}</strong></div>
-      <div class="census-item"><span class="label">Declared</span><strong class="census-number">{registerStats.declared}</strong></div>
-      <div class="census-item"><span class="label">Empty</span><strong class="census-number oxide">{registerStats.empty}</strong></div>
-      <div class="census-item"><span class="label">In review</span><strong class="census-number" style="color:var(--ochre)">{registerStats.review}</strong></div>
+      <div class="census-item"><span class="label">Categories tracked</span><strong class="census-number">{registerStats.total}</strong></div>
+      <div class="census-item"><span class="label">Our picks</span><strong class="census-number">{registerStats.declared}</strong></div>
+      <div class="census-item"><span class="label">No qualifying pick</span><strong class="census-number oxide">{registerStats.empty}</strong></div>
+      <div class="census-item"><span class="label">Still researching</span><strong class="census-number" style="color:var(--ochre)">{registerStats.review}</strong></div>
     </section>
 
     <section class="register-section" id="register" aria-labelledby="register-title">
       <div class="section-heading">
-        <h2 class="label" id="register-title">§ 01 · The Register</h2>
-        <span class="count">N = {registerStats.total}</span>
+        <h2 class="label" id="register-title">§ 01 · Explore products</h2>
+        <span class="count">{registerStats.total} categories</span>
       </div>
 
       <div class="register-toolbar" aria-label="Register controls">
         <div class="field-shell">
           <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-          <input class="text-field" type="search" id="register-search" placeholder="Search category, model, or mechanism…" autocomplete="off" />
+          <input class="text-field" type="search" id="register-search" placeholder="Search by product, category, or use…" autocomplete="off" />
         </div>
-        <select class="select-field" id="register-verdict" aria-label="Filter by verdict">
-          <option value="all">All verdicts</option>
-          <option value="DECLARED">Declared</option>
-          <option value="EMPTY">Empty</option>
-          <option value="IN REVIEW">In review</option>
+        <select class="select-field" id="register-verdict" aria-label="Filter by review status">
+          <option value="all">All categories</option>
+          <option value="DECLARED">Our picks</option>
+          <option value="EMPTY">No qualifying pick</option>
+          <option value="IN REVIEW">Still researching</option>
         </select>
         <select class="select-field" id="register-sort" aria-label="Sort register">
-          <option value="number">Canonical order</option>
+          <option value="number">Original order</option>
           <option value="category">Alphabetical</option>
-          <option value="confidence">Confidence</option>
+          <option value="confidence">Evidence strength</option>
         </select>
       </div>
 
       <div class="register-wrap">
         <table class="register-table">
           <thead>
-            <tr><th scope="col">No.</th><th scope="col">Category</th><th scope="col">Verdict</th><th scope="col">The model</th><th scope="col">Price</th><th scope="col">Conf.</th></tr>
+            <tr><th scope="col">#</th><th scope="col">Category</th><th scope="col">Review</th><th scope="col">Our pick</th><th scope="col">Price</th><th scope="col">Evidence</th></tr>
           </thead>
           <tbody id="register-body">
             {register.map((entry) => (
@@ -129,15 +127,15 @@ const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_
             </article>
           ))}
         </div>
-        <p class="register-empty" id="register-empty" hidden>No entry matches this inscription.</p>
+        <p class="register-empty" id="register-empty" hidden>No products match that search. Try another category or clear the filter.</p>
       </div>
-      <p class="mono dim" style="font-size:.62rem;margin-top:.9rem" aria-live="polite" id="register-result-count">Showing all {registerStats.total} entries.</p>
+      <p class="mono dim" style="font-size:.62rem;margin-top:.9rem" aria-live="polite" id="register-result-count">Showing all {registerStats.total} categories.</p>
     </section>
 
     <section aria-labelledby="feature-title">
       <div class="section-heading">
-        <h2 class="label" id="feature-title">§ 02 · A Canonized Object</h2>
-        <span class="count">{feature.reference}</span>
+        <h2 class="label" id="feature-title">§ 02 · Featured pick</h2>
+        <span class="count">Start here</span>
       </div>
       <article class="featured">
         <div class="featured-visual">
@@ -148,10 +146,10 @@ const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_
           <h3 class="featured-title">{feature.category}</h3>
           <p class="featured-model">{feature.model}</p>
           <p class="featured-reason">{feature.summary}</p>
-          <a class="button secondary" href={categoryUrl(feature)}>Open the dossier <span aria-hidden="true">↗</span></a>
+          <a class="button secondary" href={categoryUrl(feature)}>See the full review <span aria-hidden="true">↗</span></a>
           <dl class="featured-meta">
-            <div><dt class="label">Permanence</dt><dd class="mono">{feature.permanence || '—'}</dd></div>
-            <div><dt class="label">Reviewed</dt><dd class="mono">{feature.lastReviewed || '—'}</dd></div>
+            <div><dt class="label">Why it lasts</dt><dd class="mono">{feature.permanence || '—'}</dd></div>
+            <div><dt class="label">Last reviewed</dt><dd class="mono">{feature.lastReviewed || '—'}</dd></div>
           </dl>
         </div>
       </article>

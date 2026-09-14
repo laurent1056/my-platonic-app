@@ -5,7 +5,7 @@ import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
 import ProductPlate from '@/components/ProductPlate.astro'
 import SourceReference from '@/components/SourceReference.astro'
 import { approvedPlateFor } from '@/data/product-plates'
-import { categoryUrl, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
+import { categoryUrl, publicPermanenceDescriptions, publicPermanenceLabels, publicStateLabel, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
 
 export function getStaticPaths() {
   return register.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }))
@@ -29,7 +29,7 @@ const failures = splitStatements(entry.failureModes)
   <div class="shell">
     <section class="dossier-hero">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
-        <a href={withBase()}>Register</a><span aria-hidden="true">/</span><span>{entry.reference}</span>
+        <a href={withBase('register/')}>Explore products</a><span aria-hidden="true">/</span><span>{entry.category}</span>
       </nav>
       <div class="dossier-title-row">
         <div>
@@ -37,57 +37,57 @@ const failures = splitStatements(entry.failureModes)
           <h1 class="dossier-title">{entry.category}</h1>
         </div>
         <div class="dossier-reference">
-          <span class="label">Canonical entry</span><br />
-          {entry.reference}<br />NO. {String(entry.number).padStart(3, '0')}
+          <span class="label">Category</span><br />
+          {entry.number} of {register.length}
         </div>
       </div>
     </section>
 
     <div class="dossier-grid">
-      <aside class="specimen-panel" aria-label="Specimen record">
+      <aside class="specimen-panel" aria-label="Product illustration and buying details">
         <div class:list={['specimen-stage', { empty: isEmpty }]}>
           {isDeclared && <span class="nimbus" aria-hidden="true"></span>}
           {isEmpty ? (
-            <p class="absence-mark">No specimen admitted.</p>
+            <p class="absence-mark">No qualifying product yet.</p>
           ) : (
             <ProductPlate entry={entry} />
           )}
         </div>
         <dl class="specimen-meta">
-          <div><dt class="label">Price</dt><dd>{entry.price || '—'}</dd></div>
-          <div><dt class="label">Confidence</dt><dd><ConfidenceMeter value={entry.confidence} /></dd></div>
-          <div><dt class="label">Permanence</dt><dd>{entry.permanence || '—'}</dd></div>
-          <div><dt class="label">Reviewed</dt><dd>{entry.lastReviewed || '—'}</dd></div>
+          <div><dt class="label">Typical price</dt><dd>{entry.price || '—'}</dd></div>
+          <div><dt class="label" title="How complete and resilient the evidence is—not a product score.">Evidence strength</dt><dd><ConfidenceMeter value={entry.confidence} /></dd></div>
+          <div><dt class="label" title={publicPermanenceDescriptions[entry.permanenceKind]}>Why it lasts</dt><dd>{publicPermanenceLabels[entry.permanenceKind]}</dd></div>
+          <div><dt class="label">Last reviewed</dt><dd>{entry.lastReviewed || '—'}</dd></div>
         </dl>
         {isDeclared && <SourceReference productId={entry.reference} />}
       </aside>
 
       <article>
         <header class:list={['model-declaration', { empty: !isDeclared }]}>
-          <p class="label">{isDeclared ? 'The declared model' : isEmpty ? 'Standing verdict' : 'Editorial state'}</p>
-          <h2 class:list={['model-name', { empty: !isDeclared }]}>{declaration}</h2>
-          {isDeclared && entry.price && <p class="mono dim" style="margin:.8rem 0 0">Indicative price · {entry.price}</p>}
+          <p class="label">{isDeclared ? 'Our pick' : isEmpty ? 'No qualifying pick' : publicStateLabel(entry.verdict, entry.sourceStatus)}</p>
+          <h2 class:list={['model-name', { empty: !isDeclared }]}>{isDeclared ? declaration : isEmpty ? 'No product has earned the pick yet.' : 'Research is still in progress.'}</h2>
+          {isDeclared && entry.price && <p class="mono dim" style="margin:.8rem 0 0">Typical price · {entry.price}</p>}
         </header>
 
         <p class="dossier-lede">{entry.summary || entry.formDefinition}</p>
 
         {entry.formDefinition && (
           <section class="argument">
-            <h2>The Form</h2>
+            <h2>What we were looking for</h2>
             <p>{entry.formDefinition}</p>
           </section>
         )}
 
         {entry.coreReasoning && (
           <section class="argument">
-            <h2>{isDeclared ? 'Why it ends the search' : isEmpty ? 'Why the search stays open' : 'Why judgment is withheld'}</h2>
+            <h2>{isDeclared ? 'Why this is our pick' : isEmpty ? 'Why no product has earned the pick' : 'Why the decision is still open'}</h2>
             <p class="versal">{entry.coreReasoning}</p>
           </section>
         )}
 
         {disqualifiers.length > 0 && (
           <section class="argument">
-            <h2>{isDeclared ? 'The field it disqualifies' : 'Why the field fails'}</h2>
+            <h2>{isDeclared ? 'Why other products fell short' : 'What prevents a clear pick'}</h2>
             <ul class="evidence-list">
               {disqualifiers.map((statement) => <li>{statement}</li>)}
             </ul>
@@ -96,7 +96,7 @@ const failures = splitStatements(entry.failureModes)
 
         {admission.length > 0 && (
           <section class="argument">
-            <h2>{isEmpty ? 'What the category would require' : 'Admission test'}</h2>
+            <h2>{isEmpty ? 'What a future product would need' : 'What a qualifying product must do'}</h2>
             <ul class:list={['evidence-list', { 'requirement-list': isEmpty || !isDeclared }]}>
               {admission.map((statement) => <li>{statement}</li>)}
             </ul>
@@ -105,7 +105,7 @@ const failures = splitStatements(entry.failureModes)
 
         {failures.length > 0 && (
           <section class="argument">
-            <h2>Failure modes</h2>
+            <h2>What can go wrong</h2>
             <ul class="evidence-list">
               {failures.map((statement) => <li>{statement}</li>)}
             </ul>
@@ -113,17 +113,17 @@ const failures = splitStatements(entry.failureModes)
         )}
 
         <dl class="dossier-facts">
-          <div class="fact"><dt class="label">Maintenance cycle</dt><dd>{entry.maintenance || 'Not recorded'}</dd></div>
-          <div class="fact"><dt class="label">Permanence mechanism</dt><dd>{entry.permanence || 'Not recorded'}</dd></div>
-          <div class="fact"><dt class="label">Alternates, not declared</dt><dd>{entry.alternates || 'None admitted'}</dd></div>
-          <div class="fact"><dt class="label">Source status</dt><dd>{entry.sourceStatus.replace(/_/g, ' ')}</dd></div>
+          <div class="fact"><dt class="label" title="What wears out, needs care, or may eventually need replacement.">What you’ll maintain</dt><dd>{entry.maintenance || 'Not recorded'}</dd></div>
+          <div class="fact"><dt class="label" title={publicPermanenceDescriptions[entry.permanenceKind]}>Why it lasts</dt><dd>{entry.permanence || 'Not recorded'}</dd></div>
+          <div class="fact"><dt class="label" title="Products we reviewed but did not choose.">Other products considered</dt><dd>{entry.alternates || 'None recorded'}</dd></div>
+          <div class="fact"><dt class="label">Review status</dt><dd>{publicStateLabel(entry.verdict, entry.sourceStatus)}</dd></div>
         </dl>
       </article>
     </div>
 
     <a class="next-entry" href={categoryUrl(next)}>
-      <span><span class="label">Next in the canon</span><strong>{next.category}</strong></span>
-      <span class="mono" aria-hidden="true">{next.reference} →</span>
+      <span><span class="label">Next category</span><strong>{next.category}</strong></span>
+      <span class="mono" aria-hidden="true">→</span>
     </a>
   </div>
 </SiteLayout>

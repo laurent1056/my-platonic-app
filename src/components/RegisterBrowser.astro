@@ -1,84 +1,78 @@
 ---
 import ConfidenceMeter from './ConfidenceMeter.astro'
 import StatusChip from './StatusChip.astro'
-import { categoryUrl, domains, register, registerStats, withBase } from '@/data/register'
+import { categoryUrl, domains, publicPermanenceDescriptions, publicPermanenceLabels, register, registerStats, withBase } from '@/data/register'
 
-const mechanismLabels = {
-  repairable: 'Repairable',
-  warranty: 'Warranty-backed',
-  'rational-renewal': 'Rational renewal',
-  consumable: 'Consumable',
-  unspecified: 'Not yet classified',
-} as const
+const mechanismLabels = publicPermanenceLabels
 
 const stateOptions = [
-  ['all', 'All public states'],
-  ['DECLARED', 'Declared'],
-  ['EMPTY', 'Empty'],
-  ['IN REVIEW', 'In review'],
-  ['SPLIT_REQUIRED', 'Split required'],
-  ['CONDITIONAL', 'Conditional'],
-  ['CANDIDATE', 'Candidate'],
-  ['CONSUMABLE', 'Consumable'],
+  ['all', 'All review statuses'],
+  ['DECLARED', 'Our picks'],
+  ['EMPTY', 'No qualifying pick'],
+  ['IN REVIEW', 'Still researching'],
+  ['SPLIT_REQUIRED', 'Needs a narrower category'],
+  ['CONDITIONAL', 'Depends on the use'],
+  ['CANDIDATE', 'Possible pick under review'],
+  ['CONSUMABLE', 'Designed to be replaced'],
 ] as const
 ---
 
 <section class="register-browser" aria-labelledby="register-browser-title">
   <header class="register-browser-hero">
     <div>
-      <p class="label">The public catalogue</p>
-      <h1 class="editorial-title" id="register-browser-title">Browse the register.</h1>
-      <p class="editorial-dek">Start with a domain, a public state, or a permanence mechanism. The register is ordered canonically, not ranked. Each row leads to the current dossier for that category.</p>
+      <p class="label">Every category we’re investigating</p>
+      <h1 class="editorial-title" id="register-browser-title">Find a product.</h1>
+      <p class="editorial-dek">We research a category, inspect how products are built and how they fail, and name one product when it earns the answer. Search by product, room, or activity. These filters help you find a category; they never change our verdict.</p>
     </div>
     <aside class="register-browser-stamp" aria-label="Register census">
-      <span class="label">Current census</span>
-      <strong class="mono">N = {registerStats.total}</strong>
-      <span class="mono">{registerStats.declared} declared · {registerStats.empty} empty</span>
-      <span class="mono">{registerStats.review} in review</span>
+      <span class="label">Current catalog</span>
+      <strong class="mono">{registerStats.total} categories</strong>
+      <span class="mono">{registerStats.declared} picks · {registerStats.empty} no-pick verdicts</span>
+      <span class="mono">{registerStats.review} still researching</span>
     </aside>
   </header>
 
   <nav class="domain-strip" aria-label="Browse domains">
-    <span class="label">Domains</span>
-    <a href={withBase('register/')} data-domain-link="all">All</a>
+    <span class="label">Category groups</span>
+    <a href={withBase('register/')} data-domain-link="all">All categories</a>
     {domains.map((domain) => <a href={withBase(`register/?domain=${domain.id}`)} data-domain-link={domain.id}>{domain.name}</a>)}
   </nav>
 
   <div class="register-browser-controls" aria-label="Register filters">
     <div class="field-shell register-search-field">
       <svg width="16" height="16" viewBox="0 0 24 24" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="m15.5 15.5 5 5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
-      <label class="sr-only" for="catalog-search">Search the register</label>
-      <input class="text-field" type="search" id="catalog-search" placeholder="Search category, model, Form, or mechanism…" autocomplete="off" />
+      <label class="sr-only" for="catalog-search">Search products and categories</label>
+      <input class="text-field" type="search" id="catalog-search" placeholder="Search by product, category, or use…" autocomplete="off" />
     </div>
-    <label class="filter-field"><span class="label">Domain</span><select class="select-field" id="catalog-domain">
-      <option value="all">All domains</option>
+    <label class="filter-field"><span class="label">Category group</span><select class="select-field" id="catalog-domain">
+      <option value="all">All category groups</option>
       {domains.map((domain) => <option value={domain.id}>{domain.name}</option>)}
     </select></label>
-    <label class="filter-field"><span class="label">State</span><select class="select-field" id="catalog-state">
+    <label class="filter-field"><span class="label">Review status</span><select class="select-field" id="catalog-state">
       {stateOptions.map(([value, label]) => <option value={value}>{label}</option>)}
     </select></label>
-    <label class="filter-field"><span class="label">Permanence</span><select class="select-field" id="catalog-mechanism">
-      <option value="all">All mechanisms</option>
-      {Object.entries(mechanismLabels).map(([value, label]) => <option value={value}>{label}</option>)}
+    <label class="filter-field"><span class="label">Why it lasts</span><select class="select-field" id="catalog-mechanism">
+      <option value="all">All ownership paths</option>
+      {Object.entries(mechanismLabels).map(([value, label]) => <option value={value} title={publicPermanenceDescriptions[value as keyof typeof publicPermanenceDescriptions]}>{label}</option>)}
     </select></label>
-    <label class="filter-field"><span class="label">Order</span><select class="select-field" id="catalog-sort">
-      <option value="number">Canonical order</option>
+    <label class="filter-field"><span class="label">Sort by</span><select class="select-field" id="catalog-sort">
+      <option value="number">Original order</option>
       <option value="category">Alphabetical</option>
-      <option value="confidence">Confidence</option>
+      <option value="confidence">Evidence strength</option>
     </select></label>
     <button class="filter-clear" type="button" id="catalog-clear">Clear filters</button>
   </div>
 
   <div class="register-filter-status" aria-live="polite" role="status">
-    <span id="catalog-result-count">Showing all {registerStats.total} entries.</span>
-    <span class="mono">Filters are views, not rankings.</span>
+    <span id="catalog-result-count">Showing all {registerStats.total} categories.</span>
+    <span class="mono">Filters help you find a category. They never change the verdict.</span>
   </div>
 
   <div class="register-wrap register-browser-table-wrap">
     <table class="register-table" id="catalog-table">
       <caption class="sr-only">The Platonic Ideal public register</caption>
       <thead>
-        <tr><th scope="col">No.</th><th scope="col">Category</th><th scope="col">Domain</th><th scope="col">State</th><th scope="col">The model</th><th scope="col">Permanence</th><th scope="col">Conf.</th></tr>
+        <tr><th scope="col">#</th><th scope="col">Category</th><th scope="col">Group</th><th scope="col">Review</th><th scope="col">Our pick</th><th scope="col">Why it lasts</th><th scope="col">Evidence</th></tr>
       </thead>
       <tbody id="catalog-body">
         {register.map((entry) => (
@@ -97,8 +91,8 @@ const stateOptions = [
             <td class="category"><a href={categoryUrl(entry)}>{entry.category}</a></td>
             <td class="catalog-domain"><span class="mono">{entry.domain.name}</span></td>
             <td><StatusChip verdict={entry.verdict} sourceStatus={entry.sourceStatus} /></td>
-            <td class="model">{entry.model || (entry.verdict === 'EMPTY' ? '— no product qualifies' : '— declaration pending')}</td>
-            <td class="catalog-mechanism">{mechanismLabels[entry.permanenceKind]}</td>
+            <td class="model">{entry.model || (entry.verdict === 'EMPTY' ? 'No qualifying pick' : 'Still researching')}</td>
+            <td class="catalog-mechanism" title={publicPermanenceDescriptions[entry.permanenceKind]}>{mechanismLabels[entry.permanenceKind]}</td>
             <td><ConfidenceMeter value={entry.confidence} /></td>
           </tr>
         ))}
@@ -178,7 +172,7 @@ const stateOptions = [
     })
 
     if (empty instanceof HTMLElement) empty.hidden = visible > 0
-    if (count instanceof HTMLElement) count.textContent = `Showing ${visible} ${visible === 1 ? 'entry' : 'entries'}.`
+    if (count instanceof HTMLElement) count.textContent = `Showing ${visible} ${visible === 1 ? 'category' : 'categories'}.`
     updateDomainLinks()
     if (persist) writeParams()
   }

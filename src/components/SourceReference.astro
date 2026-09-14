@@ -7,10 +7,10 @@ interface Props {
 
 const source: ImageSourceRecord | undefined = imageSourceFor(Astro.props.productId)
 const availabilityLabel = source?.imageAvailability === 'confirmed'
-  ? 'Current model page located'
+  ? 'Exact model page available'
   : source?.imageAvailability === 'lead'
-    ? 'Model source needs exactness review'
-    : 'Current model source not located'
+    ? 'Model identity needs review'
+    : 'Exact model source not located'
 const identityLabel = source?.identityStatus === 'exact'
   ? 'Exact model'
   : source?.identityStatus === 'family'
@@ -21,27 +21,33 @@ const identityLabel = source?.identityStatus === 'exact'
 ---
 
 {source && (
-  <aside class="source-reference" aria-label="Model source record">
-    <div class="source-reference-heading">
-      <p class="label">Model source</p>
+  <details class="source-reference">
+    <summary class="source-reference-summary">
+      <span>
+        <span class="label">Where to find the exact model</span>
+        <span class="source-reference-summary-note">Check current availability, price, and model identity</span>
+      </span>
+      <span class="source-reference-toggle mono">Details</span>
+    </summary>
+    <div class="source-reference-body">
+      <p class="source-reference-note">The illustration above is our interpretation of the category, not a product photograph. Use this source to inspect the exact model or check where it is currently available.</p>
       <span class:list={['source-reference-state', { confirmed: source.imageAvailability === 'confirmed' }]}>
         {availabilityLabel}
       </span>
+      <p class="source-reference-title">{source.sourcePageTitle}</p>
+      <p class="source-reference-maker mono">{source.sellerOrManufacturer} · {source.exactModel}</p>
+      {source.sourceUrl ? (
+        <a class="source-reference-link" href={source.sourceUrl} target="_blank" rel="noopener noreferrer">
+          Check the exact model <span aria-hidden="true">↗</span>
+        </a>
+      ) : (
+        <span class="source-reference-link muted-link">No current source page recorded</span>
+      )}
+      <div class="source-reference-facts mono">
+        <span>Identity · {identityLabel}</span>
+        <span>Use · {source.recommendedUse.replace(/-/g, ' ')}</span>
+        <span>Visual · Interpretive plate</span>
+      </div>
     </div>
-    <p class="source-reference-title">{source.sourcePageTitle}</p>
-    <p class="source-reference-maker mono">{source.sellerOrManufacturer} · {source.exactModel}</p>
-    {source.sourceUrl ? (
-      <a class="source-reference-link" href={source.sourceUrl} target="_blank" rel="noopener noreferrer">
-        Inspect exact model <span aria-hidden="true">↗</span>
-      </a>
-    ) : (
-      <span class="source-reference-link muted-link">No current source page recorded</span>
-    )}
-    <div class="source-reference-facts mono">
-      <span>Identity · {identityLabel}</span>
-      <span>Use · {source.recommendedUse.replace(/-/g, ' ')}</span>
-      <span>Release · Interpretive plate only</span>
-    </div>
-    <p class="source-reference-note">The public visual is an interpretive plate. This source link identifies the exact model for inspection or acquisition; its photography is not used.</p>
-  </aside>
+  </details>
 )}

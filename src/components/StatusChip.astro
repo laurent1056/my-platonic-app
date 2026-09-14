@@ -1,14 +1,15 @@
 ---
-import type { Verdict } from '@/data/register'
+import { publicStateDescription, publicStateLabel, type SourceStatus, type Verdict } from '@/data/register'
 
 interface Props {
   verdict: Verdict
-  sourceStatus?: string
+  sourceStatus?: SourceStatus
 }
 
 const { verdict, sourceStatus } = Astro.props
 const variant = verdict === 'DECLARED' ? 'declared' : verdict === 'EMPTY' ? 'empty' : 'review'
-const label = verdict === 'IN REVIEW' && sourceStatus ? sourceStatus.replace(/_/g, ' ') : verdict
+const label = publicStateLabel(verdict, sourceStatus)
+const description = publicStateDescription(verdict, sourceStatus)
 ---
 
-<span class:list={['chip', variant]}>{label}</span>
+<span class:list={['chip', variant]} title={description}>{label}</span>
