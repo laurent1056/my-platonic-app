@@ -103,6 +103,9 @@ img, svg { display: block; max-width: 100%; }
   left: 1rem;
   top: -4rem;
   z-index: 200;
+  min-height: 44px;
+  display: flex;
+  align-items: center;
   background: var(--ink);
   color: var(--paper);
   padding: .65rem .9rem;
