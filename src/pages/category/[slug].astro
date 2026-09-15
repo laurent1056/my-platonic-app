@@ -26,7 +26,7 @@ const admission = splitStatements(entry.admissionTest)
 const failures = splitStatements(entry.failureModes)
 ---
 
-<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedPlate ? withBase(approvedPlate.path) : undefined}>
+<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedPlate ? withBase(approvedPlate.path) : undefined} offer={false}>
   <div class="shell">
     <section class="dossier-hero">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
