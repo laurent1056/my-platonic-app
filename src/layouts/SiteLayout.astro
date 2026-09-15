@@ -74,6 +74,9 @@ const resolvedCurrent = current === 'constitution' ? 'methodology' : current || 
     <a class="skip-link" href="#main">Skip to content</a>
     <SiteHeader current={resolvedCurrent} />
     <main id="main"><slot /></main>
+    <script>
+      document.querySelector('#main')?.setAttribute('tabindex', '-1')
+    </script>
     {offer && <div class="shell"><DossierOffer /></div>}
     <SiteFooter />
     <div class="shop-toast" id="shop-toast" role="status" hidden></div>
