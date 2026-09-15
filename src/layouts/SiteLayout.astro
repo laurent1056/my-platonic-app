@@ -25,12 +25,12 @@ const {
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platonic Ideal`
 const routePath = Astro.url.pathname
-const inferredCurrent = /\/(register|collections|category)(\/|$)/.test(routePath)
-  ? 'register'
-  : /\/journal(\/|$)/.test(routePath)
-    ? 'journal'
-    : /\/account(\/|$)/.test(routePath)
-      ? 'account'
+const inferredCurrent = /\/account(\/|$)/.test(routePath)
+  ? 'account'
+  : /\/(register|collections|category)(\/|$)/.test(routePath)
+    ? 'register'
+    : /\/journal(\/|$)/.test(routePath)
+      ? 'journal'
       : /\/search(\/|$)/.test(routePath)
         ? 'search'
         : /\/(cart|checkout|order-confirmation)(\/|$)/.test(routePath)
