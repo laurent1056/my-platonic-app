@@ -43,7 +43,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .store-dek { font-size: 16px; line-height: 1.9; max-width: 440px; color: var(--ink-soft); margin: 24px 0 30px; }
 .hero-footnote { font-size: 12px; color: var(--muted); line-height: 1.8; margin-top: 32px; }
 .hero-book-stage { position: relative; min-height: 500px; background: var(--paper-deep); display: grid; justify-items: center; padding: 50px 30px 20px; overflow: hidden; }
-.book-stage-caption { font-size: 10px; position: absolute; left: 26px; top: 22px; }
+.book-stage-caption { font-size: 12px; position: absolute; left: 26px; top: 22px; }
 .book-stage-bottom { width: 100%; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 20px; }
 .hero-book-stage .dossier-cover { width: 275px; transform: rotate(-6deg); margin: 20px 0; transition: transform .35s; }
 .hero-book-stage:hover .dossier-cover { transform: rotate(-3deg) translateY(-4px); }
@@ -344,7 +344,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .account-links { gap: 22px; }
   .saved-dossier { align-items: flex-start; gap: 22px; }
   .saved-dossier .action-row { gap: 16px; }
-  .saved-dossier .button { padding: 12px; font-size: 11px; }
+  .saved-dossier .button { padding: 12px; font-size: 12px; }
   .directory-grid { grid-template-columns: 1fr; gap: 30px; }
   .auth-aside { padding: 30px; }
 }
