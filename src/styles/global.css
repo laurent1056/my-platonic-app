@@ -632,7 +632,7 @@ img, svg { display: block; max-width: 100%; }
 .source-reference-state.confirmed { color: var(--muted); }
 .source-reference-title { margin: .2rem 0 0; font-family: var(--serif); font-size: 1.15rem; line-height: 1.15; }
 .source-reference-maker { margin: 0; color: var(--muted); font-size: .75rem; line-height: 1.45; }
-.source-reference-link { width: fit-content; padding: .35rem 0; border-bottom: 1px solid var(--line-strong); color: var(--accent); font-family: var(--caps); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
+.source-reference-link { width: fit-content; min-height: 44px; display: inline-flex; align-items: center; padding: .35rem 0; border-bottom: 1px solid var(--line-strong); color: var(--accent); font-family: var(--caps); font-size: .75rem; letter-spacing: .1em; text-transform: uppercase; }
 .source-reference-link:hover { border-bottom-color: var(--accent); }
 .source-reference-link.muted-link { color: var(--muted); cursor: default; }
 .source-reference-facts { display: grid; gap: .2rem; padding-top: .55rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .75rem; line-height: 1.45; text-transform: uppercase; }
