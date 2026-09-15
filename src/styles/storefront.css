@@ -331,8 +331,10 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .comparison-table thead span { font-size: 12px; }
   .campaign-layout { padding: 30px; }
   .campaign-layout .dossier-cover { width: 240px; }
-  .account-nav { flex-direction: row; overflow-x: auto; }
-  .account-nav a { white-space: nowrap; padding: 14px 18px; }
+  .account-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; border-top: 1px solid var(--line); }
+  .account-nav a { min-height: 48px; white-space: normal; padding: 12px; }
+  .account-nav a:nth-child(odd) { border-right: 1px solid var(--line); }
+  .account-nav a:last-child { grid-column: 1 / -1; border-right: 0; }
   .account-nav a span { display: none; }
   .account-links { gap: 22px; }
   .saved-dossier { align-items: flex-start; gap: 22px; }
