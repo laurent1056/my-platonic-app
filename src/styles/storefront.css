@@ -364,6 +364,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .shop-tools { order: 2; justify-self: center; margin-left: 0; }
   .shop-nav { order: 3; }
   .nav-offer { order: 4; }
+  .card-heading > span[aria-hidden="true"] { display: none; }
 }
 .category-card .chip { max-width: 100%; white-space: normal; font-size: 12px; letter-spacing: .03em; line-height: 1.5; }
 body { min-width: 0; }
