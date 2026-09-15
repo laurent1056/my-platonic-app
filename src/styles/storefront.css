@@ -242,7 +242,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .auth-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; max-width: 1000px; }
 .auth-panel form { display: grid; gap: 22px; margin-top: 30px; }
 .auth-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: 12px; text-decoration: underline; margin-top: 25px; }
-.auth-links a { min-height: 44px; display: inline-flex; align-items: center; }
+.auth-links a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
 .auth-aside { padding: 45px; background: var(--paper-deep); }
 .auth-aside > p:not(.eyebrow) { font-size: 14px; line-height: 1.9; color: var(--muted); margin: 25px 0; }
 .directory-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
