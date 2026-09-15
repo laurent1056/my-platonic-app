@@ -76,4 +76,4 @@ The catalog accepts both the previous `domain`, `state`, `mechanism`, `sort=cate
 
 ## Production work still required
 
-Finalize the actual dossier and offer scope, follow `docs/design/DOSSIER_PDF_ART_DIRECTION.md` while building its image and quotation ledger, configure hosted payment and verified fulfillment, decide whether accounts are needed, and supply final support/contact and policy information. The current design must not be described as a live store.
+Finalize the actual dossier against `docs/design/DOSSIER_CONTENT_BLUEPRINT.md`, follow `docs/design/DOSSIER_PDF_ART_DIRECTION.md` while building its product, image, and quotation ledgers, configure hosted payment and verified fulfillment, decide whether accounts are needed, and supply final support/contact and policy information. The current design must not be described as a live store.
