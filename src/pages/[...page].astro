@@ -1,0 +1,48 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro'
+import DossierCover from '@/components/DossierCover.astro'
+import AccountPage from '@/components/AccountPage.astro'
+import { infoPages, journalPosts, accountPages, authPages } from '@/data/site-pages'
+import { dossier, faqs } from '@/data/dossier'
+import { domains, withBase } from '@/data/register'
+export function getStaticPaths() {
+  return [...infoPages.map(p => p.slug), ...accountPages.map(p => p[0]), ...authPages.map(p => p[0]), ...journalPosts.map(p => `journal/${p.slug}`), 'journal', 'help', 'compare', 'campaign', 'page-directory'].map(page => ({ params: { page } }))
+}
+const slug = Astro.params.page!
+const info = infoPages.find(p => p.slug === slug)
+const post = journalPosts.find(p => `journal/${p.slug}` === slug)
+const account = accountPages.find(p => p[0] === slug)
+const auth = authPages.find(p => p[0] === slug)
+const special: Record<string, [string, string, string]> = {
+  journal: ['Notes on a considered life.', 'The journal', 'Ideas about judgment, ownership, and the things we choose to keep.'],
+  help: ['A little clarity.', 'Help center', 'Everything to know about the dossier, the public research, and how this preview works.'],
+  compare: ['The verdict is free. The depth is optional.', 'Free research & the dossier', 'One independent standard. Two ways to spend time with the research.'],
+  campaign: ['Close a few tabs. Open a better question.', 'The dossier · Digital research edition', 'An organized companion for people who want a reason to choose—and a reason to stop comparing.'],
+  'page-directory': ['A place for every next step.', 'Page directory', 'The complete site, organized around one commercial product: the dossier.'],
+}
+const title = info?.title || post?.title || account?.[1] || auth?.[1] || special[slug]?.[0]
+const eyebrow = info?.eyebrow || post?.tag || account?.[2] || auth?.[2] || special[slug]?.[1]
+const intro = info?.intro || post?.excerpt || special[slug]?.[2]
+const directory = [
+  ['Storefront & research', [['Home', ''], ['Catalog / product listing', 'register/'], ['Dossier / product detail', 'dossier/'], ['Search results', 'search/'], ['Cart', 'cart/'], ['Checkout preview', 'checkout/'], ['Confirmation preview', 'order-confirmation/']]],
+  ['Reader account · Preview', [...authPages.map(([path, , label]) => [label, `${path}/`]), ...accountPages.map(([path, , label]) => [label, `${path}/`])]],
+  ['Content & trust', [['Campaign', 'campaign/'], ['Journal', 'journal/'], ...journalPosts.map(p => [p.title, `journal/${p.slug}/`]), ['About', 'about/'], ['Contact', 'contact/'], ['Help center', 'help/'], ['Delivery & returns', 'shipping-returns/'], ['Privacy preview', 'privacy/'], ['Terms preview', 'terms/'], ['404', '404.html']]],
+  ['Special situations', [['Store locator', 'store-locator/'], ['Brands & vendors', 'brands/'], ['Gift card information', 'gift-card/'], ['Format / size guide', 'size-guide/'], ['Free vs. paid comparison', 'compare/'], ['Subscription management', 'account/subscriptions/']]],
+  ['Collections', domains.map(d => [d.name, `collections/${d.id}/`])],
+] as [string, string[][]][]
+---
+<SiteLayout title={title} noindex={!!account || !!auth || info?.preview || slug === 'page-directory'}>
+  <div class="shell page-space">
+    <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={withBase()}>Home</a><span>/</span>{post && <><a href={withBase('journal/')}>Journal</a><span>/</span></>}<span>{eyebrow}</span></nav>
+    <div class="page-heading"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1>{intro && <p>{intro}</p>}</div>
+    {info && <div class="content-layout"><nav class="content-index" aria-label="On this page"><span class="eyebrow">On this page</span>{info.sections.map(([heading], i) => <a href={`#section-${i}`}>{heading} ↗</a>)}</nav><article class="prose">{info.preview && <p class="preview-note">Design preview. Details on this page must be finalized before live purchasing opens.</p>}{info.sections.map(([heading, copy], i) => <section id={`section-${i}`}><h2>{heading}</h2><p>{copy}</p></section>)}<div class="action-row"><a class="inline-link" href={withBase('help/')}>Help center →</a><a class="inline-link" href={withBase('constitution/')}>Our editorial rules →</a></div></article></div>}
+    {post && <div class="content-layout"><aside class="content-index"><span class="eyebrow">Platonic Ideal</span><span>Editorial note</span><a href={withBase('journal/')}>← All articles</a></aside><article class="prose journal-prose">{post.sections.map(([heading, copy]) => <section><h2>{heading}</h2><p>{copy}</p></section>)}<p class="fine-print">An editorial explanation of our approach. Read the public methodology for the complete standard.</p><a class="inline-link" href={withBase('methodology/')}>Our approach →</a></article></div>}
+    {slug === 'journal' && <div class="journal-list">{journalPosts.map((item, i) => <a href={withBase(`journal/${item.slug}/`)}><span class="journal-number">0{i + 1}</span><div><p class="eyebrow">{item.tag}</p><h2>{item.title}</h2><p>{item.excerpt}</p></div><span aria-hidden="true">↗</span></a>)}</div>}
+    {slug === 'help' && <div class="help-layout"><aside class="help-aside"><p class="eyebrow">Start here</p><h2>One product.<br />A few good answers.</h2><p>Read the sample before considering the dossier.</p><a class="inline-link" href={withBase('dossier/#sample')}>Read a sample →</a></aside><div class="faq-section">{faqs.map(([q, a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div>}
+    {slug === 'compare' && <div class="comparison-wrap"><table class="comparison-table"><caption>Public research compared with the proposed dossier</caption><thead><tr><th scope="col">What you get</th><th scope="col">Public catalog<br /><span>Free</span></th><th scope="col">The dossier<br /><span>{dossier.priceLabel} · One time</span></th></tr></thead><tbody>{[['Category verdict & decisive reasoning', 'Included', 'Remains public'], ['Methodology & Constitution', 'Included', 'Remains public'], ['Organized deeper reading', 'Browse public research', 'Proposed dossier content'], ['Ownership research companion', 'Category notes', 'Proposed dossier content'], ['Influence over our judgment', 'None', 'None'], ['Availability', 'Read now', 'Design preview']].map(row => <tr>{row.map((value, i) => i === 0 ? <th scope="row">{value}</th> : <td>{value}</td>)}</tr>)}</tbody></table><p class="fine-print">The final dossier contents and format are pending. The public research does not move behind a paywall.</p></div>}
+    {slug === 'campaign' && <section class="campaign-layout"><div><h2>Meet the dossier.</h2><p>The useful part of research is understanding why. The dossier is designed to bring that understanding into an organized digital reading experience.</p><ul class="check-list"><li>The questions behind a considered purchase</li><li>A reading path through evidence and tradeoffs</li><li>An ownership perspective that outlasts checkout</li></ul><a class="button" href={withBase('dossier/')}>Get the dossier <span>{dossier.priceLabel} ↗</span></a><p class="fine-print">One-time digital offer · Design preview</p></div><DossierCover /></section>}
+    {account && <AccountPage slug={slug} />}
+    {auth && <div class="auth-layout"><div class="auth-panel"><p class="preview-note">Account interface preview. These example fields are disabled. No password, identity, or email is collected.</p><form><label class="form-field"><span>Email address</span><input type="email" value="reader@example.com" disabled /></label>{slug !== 'account/password-reset' && <label class="form-field"><span>Password</span><input type="password" value="preview-only" disabled /></label>}{slug === 'account/password-reset' ? <><button type="button" class="button wide-button" disabled>Reset email unavailable</button><p class="fine-print">Password reset will be available when authentication is connected. No email has been sent.</p></> : <a class="button wide-button" href={withBase('account/')}>Explore account preview →</a>}</form><div class="auth-links"><a href={withBase('account/login/')}>Login</a><a href={withBase('account/register/')}>Create account</a><a href={withBase('account/password-reset/')}>Reset password</a></div></div><aside class="auth-aside"><p class="eyebrow">The reader’s edition</p><h2>Good research.<br /><em>Worth keeping.</em></h2><p>Your sample is always available. No account is needed to read the public verdicts.</p><a class="inline-link" href={withBase('dossier/#sample')}>Start with a sample →</a></aside></div>}
+    {slug === 'page-directory' && <div class="directory-grid">{directory.map(([heading, links]) => <section><h2>{heading}</h2>{links.map(([label, href]) => <a href={withBase(href)}>{label}<span>↗</span></a>)}</section>)}</div>}
+  </div>
+</SiteLayout>

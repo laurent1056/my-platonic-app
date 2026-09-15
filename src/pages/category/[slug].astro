@@ -4,6 +4,7 @@ import StatusChip from '@/components/StatusChip.astro'
 import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
 import ProductPlate from '@/components/ProductPlate.astro'
 import SourceReference from '@/components/SourceReference.astro'
+import DossierOffer from '@/components/DossierOffer.astro'
 import { approvedPlateFor } from '@/data/product-plates'
 import { categoryUrl, publicPermanenceDescriptions, publicPermanenceLabels, publicStateLabel, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
 
@@ -60,6 +61,7 @@ const failures = splitStatements(entry.failureModes)
           <div><dt class="label">Last reviewed</dt><dd>{entry.lastReviewed || '—'}</dd></div>
         </dl>
         {isDeclared && <SourceReference productId={entry.reference} />}
+        <DossierOffer compact />
       </aside>
 
       <article>

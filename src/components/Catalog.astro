@@ -1,0 +1,65 @@
+---
+import CategoryCard from './CategoryCard.astro'
+import { domains, register, publicPermanenceLabels, publicStateLabels } from '@/data/register'
+interface Props { domain?: string; search?: boolean }
+const { domain = '', search = false } = Astro.props
+const entries = domain ? register.filter(entry => entry.domainSlug === domain) : register
+---
+<section data-catalog>
+  <div class="catalog-controls">
+    <label class="form-field catalog-search"><span>{search ? 'Search the research' : 'Find a category'}</span><input id="catalog-query" type="search" placeholder="Try cookware, boots, or repair…" /></label>
+    {!domain && <label class="form-field"><span>Collection</span><select id="catalog-domain"><option value="">All collections</option>{domains.map(item => <option value={item.id}>{item.name}</option>)}</select></label>}
+    <label class="form-field"><span>Verdict</span><select id="catalog-verdict"><option value="">All verdicts</option>{Object.entries(publicStateLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
+    <label class="form-field"><span>Why it lasts</span><select id="catalog-mechanism"><option value="">All ownership paths</option>{Object.entries(publicPermanenceLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
+    <label class="form-field"><span>Sort by</span><select id="catalog-sort"><option value="original">Register order</option><option value="az">Category A–Z</option><option value="confidence">Evidence strength</option></select></label>
+  </div>
+  <div class="catalog-summary"><p id="catalog-count" role="status">{entries.length} categories</p><button class="text-button" id="catalog-reset" type="button">Clear filters</button></div>
+  <p class="fine-print">Public research · Physical objects are not sold here. Images are interpretive illustrations, not product photography.</p>
+  <h2 class="sr-only">Category results</h2>
+  <div class="category-grid" id="catalog-grid">{entries.map(entry => <CategoryCard entry={entry} />)}</div>
+  <div class="empty-state" id="catalog-empty" hidden><h2>No matching research.</h2><p>Try a broader search, or clear the filters to see every category.</p><button class="button secondary" id="catalog-empty-reset" type="button">Show all categories</button></div>
+</section>
+<script>
+  const grid = document.querySelector('#catalog-grid')
+  if (grid) {
+    const query = document.querySelector<HTMLInputElement>('#catalog-query')!
+    const domain = document.querySelector<HTMLSelectElement>('#catalog-domain')
+    const verdict = document.querySelector<HTMLSelectElement>('#catalog-verdict')!
+    const sort = document.querySelector<HTMLSelectElement>('#catalog-sort')!
+    const mechanism = document.querySelector<HTMLSelectElement>('#catalog-mechanism')!
+    const cards = Array.from(grid.querySelectorAll<HTMLElement>('[data-category-card]'))
+    const params = new URLSearchParams(location.search)
+    query.value = params.get('q') || ''
+    const groupValue = params.get('collection') || params.get('domain')
+    const verdictValue = params.get('verdict') || params.get('state')
+    if (domain && Array.from(domain.options).some(o => o.value === groupValue)) domain.value = groupValue!
+    if (Array.from(verdict.options).some(o => o.value === verdictValue)) verdict.value = verdictValue!
+    if (Array.from(mechanism.options).some(o => o.value === params.get('mechanism'))) mechanism.value = params.get('mechanism')!
+    if (['az', 'category'].includes(params.get('sort') || '')) sort.value = 'az'
+    if (params.get('sort') === 'confidence') sort.value = 'confidence'
+    function update() {
+      let count = 0
+      cards.sort((a, b) => sort.value === 'az' ? a.dataset.name!.localeCompare(b.dataset.name!) : sort.value === 'confidence' ? Number(b.dataset.confidence) - Number(a.dataset.confidence) || Number(a.dataset.number) - Number(b.dataset.number) : Number(a.dataset.number) - Number(b.dataset.number))
+      for (const card of cards) {
+        card.hidden = !((card.dataset.search || '').includes(query.value.trim().toLowerCase()) && (!domain?.value || card.dataset.domain === domain.value) && (!verdict.value || card.dataset.verdict === verdict.value || card.dataset.status === verdict.value) && (!mechanism.value || card.dataset.mechanism === mechanism.value))
+        if (!card.hidden) count++
+        grid!.append(card)
+      }
+      document.querySelector('#catalog-count')!.textContent = `${count} ${count === 1 ? 'category' : 'categories'}`
+      ;(document.querySelector('#catalog-empty') as HTMLElement).hidden = count > 0
+      const state = new URLSearchParams()
+      if (query.value.trim()) state.set('q', query.value.trim())
+      if (domain?.value) state.set('collection', domain.value)
+      if (verdict.value) state.set('verdict', verdict.value)
+      if (mechanism.value) state.set('mechanism', mechanism.value)
+      if (sort.value !== 'original') state.set('sort', sort.value)
+      history.replaceState(null, '', `${location.pathname}${state.size ? '?' + state : ''}`)
+    }
+    function reset() { query.value = ''; if (domain) domain.value = ''; verdict.value = ''; mechanism.value = ''; sort.value = 'original'; update() }
+    query.addEventListener('input', update)
+    for (const field of [domain, verdict, mechanism, sort]) field?.addEventListener('change', update)
+    document.querySelector('#catalog-reset')?.addEventListener('click', reset)
+    document.querySelector('#catalog-empty-reset')?.addEventListener('click', reset)
+    update()
+  }
+</script>

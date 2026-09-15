@@ -9,7 +9,9 @@ export default defineConfig({
   site,
   trailingSlash: 'always',
   adapter: vercel(),
-  integrations: [sitemap()],
+  integrations: [sitemap({
+    filter: (page) => !/^\/(account(?:\/|$)|cart\/|checkout\/|order-confirmation\/|search\/|page-directory\/|privacy\/|terms\/|shipping-returns\/|gift-card\/|404)/.test(new URL(page).pathname),
+  })],
   vite: {
     plugins: [tailwindcss()],
   },

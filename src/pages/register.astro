@@ -1,10 +1,5 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro'
-import RegisterBrowser from '@/components/RegisterBrowser.astro'
+import Catalog from '@/components/Catalog.astro'
 ---
-
-<SiteLayout current="register" title="Find a product" description="Explore the products Platonic Ideal has researched: one pick per category, or an honest explanation when none qualifies.">
-  <div class="shell">
-    <RegisterBrowser />
-  </div>
-</SiteLayout>
+<SiteLayout title="The catalog" current="register"><div class="shell page-space"><div class="page-heading"><p class="eyebrow">The public research</p><h1>The catalog.</h1><p>One pick per category. Or an honest explanation of why none qualifies. Explore the research, then go deeper with the dossier.</p></div><Catalog /></div></SiteLayout>

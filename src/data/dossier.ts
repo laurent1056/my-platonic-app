@@ -1,0 +1,25 @@
+/** One commercial product. Editorial categories are never cart items. */
+export const dossier = {
+  id: 'the-dossier',
+  name: 'The Platonic Ideal Dossier',
+  price: 24,
+  priceLabel: '$24',
+  format: 'Digital research dossier',
+  availability: 'Design preview — purchasing is not live',
+}
+
+export const dossierChapters = [
+  ['01', 'The standard', 'The questions to ask before an object earns a place in your life.'],
+  ['02', 'The evidence', 'An organized reading path through source material and research notes.'],
+  ['03', 'The tradeoffs', 'What fails, what falls short, and which compromises deserve attention.'],
+  ['04', 'The ownership plan', 'Maintenance, repair, replacement, and the practical work of keeping things.'],
+]
+
+export const faqs = [
+  ['What am I buying?', 'A digital research dossier from Platonic Ideal. Physical objects in the catalog are subjects of our research; they are not sold by us. The offer shown here is a design preview.'],
+  ['Can I still read the verdict for free?', 'Yes. Category verdicts, decisive reasoning, and the editorial rules stay public. The dossier is intended to add research depth and convenience.'],
+  ['Is this a subscription?', 'No. The proposed dossier offer is a one-time $24 purchase. There are no membership tiers or recurring charges.'],
+  ['Does paying change a recommendation?', 'No. Payment cannot influence product selection, placement, or a verdict. A category can still have no qualifying pick.'],
+  ['Can I buy it today?', 'Not yet. You can explore the offer, read a sample, and try a clearly marked checkout preview. No payment is collected and no paid download is issued.'],
+  ['What will the final dossier include?', 'The chapter outline illustrates the intended research experience. Final coverage, file format, delivery, and refund terms will be confirmed before purchasing opens.'],
+]

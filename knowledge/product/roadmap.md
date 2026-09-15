@@ -4,6 +4,7 @@
 
 ## Now
 <!-- Active features currently being built or measured. Link to features/<slug>.md. -->
+- [Dossier storefront](./features/dossier-storefront.md) — locally implemented ecommerce design patterns centered on the single dossier offer; payment, accounts, and fulfillment remain previews.
 - [Institution foundation](./features/institution-foundation.md) — version the Constitution, validate case/evidence/ruling/challenge records, and publish the public authority page.
 - [Static register and category dossiers](./features/static-register.md) — finish the Astro rebuild and make the index plus every category URL coherent.
 - [Category content and evidence](./features/category-content-and-evidence.md) — clean the schema, validate the register, and resolve the current in-review rows.

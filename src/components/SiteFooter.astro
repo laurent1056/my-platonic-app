@@ -1,34 +1,17 @@
 ---
 import { registerStats, withBase } from '@/data/register'
-const year = new Date().getFullYear()
-const platoSource = 'https://commons.wikimedia.org/wiki/File:Marble_bust_of_the_Greek_philosopher_Plato._Roman_copy_(1st_century_CE)_of_an_original_(350-340_BCE)._Altes_Museum,_Berlin.jpg'
+const groups = [
+  ['Explore', [['The catalog', 'register/'], ['The dossier', 'dossier/'], ['Journal', 'journal/'], ['About us', 'about/']]],
+  ['Our standard', [['How we choose', 'methodology/'], ['The Constitution', 'constitution/'], ['Free vs. paid', 'compare/'], ['Brands & independence', 'brands/']]],
+  ['Reader support', [['Help center', 'help/'], ['Contact', 'contact/'], ['Digital delivery & returns', 'shipping-returns/'], ['Your account', 'account/']]],
+] as const
 ---
-
-<footer class="site-footer">
+<footer class="shop-footer">
   <div class="shell">
-    <div class="footer-grid">
-      <div>
-        <p class="footer-title">Platonic Ideal</p>
-        <p class="footer-copy">A buyer’s guide to products that earn their place. We name one product when the evidence supports it—or explain why none has earned the pick.</p>
-      </div>
-      <nav class="footer-links" aria-label="Learn about Platonic Ideal">
-        <span class="label">Learn</span>
-        <a href={withBase('register/')}>Explore products</a>
-        <a href={withBase('methodology/')}>How we choose</a>
-        <a href={withBase('constitution/')}>Our rules</a>
-        <a href={platoSource} target="_blank" rel="license noopener noreferrer">Plato portrait credit</a>
-      </nav>
-      <div class="footer-links">
-        <span class="label">Current catalog</span>
-        <span>{registerStats.total} categories tracked</span>
-        <span>{registerStats.declared} picks made</span>
-        <span>{registerStats.empty} no-pick verdicts</span>
-        <span>{registerStats.review} still researching</span>
-      </div>
+    <div class="shop-footer-grid">
+      <div><a class="footer-wordmark" href={withBase()}>Platonic Ideal</a><p>Fewer things.<br />Better reasons.</p><span class="fine-print">{registerStats.total} categories. One independent standard.</span></div>
+      {groups.map(([title, links]) => <nav aria-label={title}><h2 class="eyebrow">{title}</h2>{links.map(([label, href]) => <a href={withBase(href)}>{label}</a>)}</nav>)}
     </div>
-    <div class="colophon">
-      <span>© {year} PLATONIC IDEAL · STATIC-FIRST REGISTER</span>
-      <span>ASTRO · VERCEL · REV 2026.09</span>
-    </div>
+    <div class="shop-colophon"><span>© {new Date().getFullYear()} Platonic Ideal</span><div><a href={withBase('privacy/')}>Privacy</a><a href={withBase('terms/')}>Terms</a><a href={withBase('page-directory/')}>Page directory</a></div><span>Evidence before verdict.</span></div>
   </div>
 </footer>

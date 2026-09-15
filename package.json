@@ -16,7 +16,8 @@
     "verify:dist": "node scripts/verify-dist.mjs",
     "validate:images": "node scripts/validate-image-sources.mjs",
     "audit:prod": "npm audit --audit-level=high --omit=dev",
-    "test": "npm run check && npm run test:institution && npm run build"
+    "test:storefront": "node --test scripts/test-storefront.mjs",
+    "test": "npm run check && npm run test:institution && npm run build && npm run test:storefront"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",

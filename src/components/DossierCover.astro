@@ -1,0 +1,10 @@
+---
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props
+---
+<div class:list={['dossier-cover', { compact }]} role="img" aria-label="The Platonic Ideal Dossier. Digital edition cover concept.">
+  <div class="cover-top"><span>Platonic Ideal</span><span>Research edition</span></div>
+  <div class="cover-title">The<br /><em>Dossier.</em></div>
+  <div class="cover-seal" aria-hidden="true"><span>Π</span></div>
+  <div class="cover-bottom"><p>Fewer things.<br />Better reasons.</p><span>Evidence · Judgment · Ownership</span></div>
+</div>

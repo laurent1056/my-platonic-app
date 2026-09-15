@@ -1,13 +1,17 @@
 ---
 import '@/styles/global.css'
+import '@/styles/storefront.css'
 import SiteHeader from '@/components/SiteHeader.astro'
 import SiteFooter from '@/components/SiteFooter.astro'
+import DossierOffer from '@/components/DossierOffer.astro'
 
 interface Props {
   title?: string
   description?: string
-  current?: 'index' | 'register' | 'methodology' | 'constitution'
+  current?: string
   image?: string
+  noindex?: boolean
+  offer?: boolean
 }
 
 const {
@@ -15,6 +19,8 @@ const {
   description = 'A buyer’s guide to products that earn their place: one product worth choosing per category, or an honest explanation when none qualifies.',
   current,
   image,
+  noindex = false,
+  offer = true,
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platonic Ideal`
@@ -28,7 +34,7 @@ const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platon
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <meta name="robots" content="index,follow,max-image-preview:large" />
+    <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
     <link rel="canonical" href={canonical} />
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
     <meta property="og:type" content="website" />
@@ -40,8 +46,10 @@ const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platon
     <meta name="twitter:card" content={image ? 'summary_large_image' : 'summary'} />
     <script is:inline>
       (() => {
-        const stored = localStorage.getItem('PI_THEME')
-        if (stored === 'dark' || stored === 'light') document.documentElement.dataset.theme = stored
+        try {
+          const stored = localStorage.getItem('PI_THEME')
+          if (stored === 'dark' || stored === 'light') document.documentElement.dataset.theme = stored
+        } catch {}
       })()
     </script>
   </head>
@@ -49,6 +57,9 @@ const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platon
     <a class="skip-link" href="#main">Skip to content</a>
     <SiteHeader current={current} />
     <main id="main"><slot /></main>
+    {offer && <div class="shell"><DossierOffer /></div>}
     <SiteFooter />
+    <div class="shop-toast" id="shop-toast" role="status" hidden></div>
+    <script>import '@/scripts/commerce'</script>
   </body>
 </html>

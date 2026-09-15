@@ -13,3 +13,11 @@ The canonical design specification is [`design/design.md`](./design/design.md).
 - light and candlelight-dark themes built entirely from CSS tokens
 
 The original Gemini-era system is superseded. `src/styles/global.css` is the implementation contract; reusable motifs and states live in `src/components/`.
+
+## Dossier storefront extension
+
+The [2026-09-14 dossier storefront pass](./design/dossier-storefront.md) adds
+standard ecommerce navigation, visual collections, a single dossier product
+page, and account/content/support templates. The shared palette is inherited;
+new patterns live in `src/styles/storefront.css`. The dossier is the only
+commercial product, and purchase/account screens remain explicit previews.

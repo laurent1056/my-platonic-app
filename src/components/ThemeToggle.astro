@@ -11,15 +11,16 @@
 
   const applyTheme = (theme: 'light' | 'dark') => {
     root.dataset.theme = theme
-    localStorage.setItem('PI_THEME', theme)
+    try { localStorage.setItem('PI_THEME', theme) } catch {}
     button?.setAttribute('aria-label', `Switch to ${theme === 'dark' ? 'light' : 'dark'} theme`)
   }
 
-  const stored = localStorage.getItem('PI_THEME')
+  let stored: string | null = null
+  try { stored = localStorage.getItem('PI_THEME') } catch {}
   if (stored === 'light' || stored === 'dark') applyTheme(stored)
 
   button?.addEventListener('click', () => {
-    const current = root.dataset.theme || (matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light')
+    const current = root.dataset.theme || 'light'
     applyTheme(current === 'dark' ? 'light' : 'dark')
   })
 </script>

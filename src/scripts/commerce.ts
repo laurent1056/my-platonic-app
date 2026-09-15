@@ -1,0 +1,53 @@
+/** Local-only design state. No identity, payment details, or entitlements. */
+import { dossier } from '@/data/dossier'
+const key = 'PI_DOSSIER_PREVIEW_V1'
+type PreviewState = { cart: boolean; saved: boolean; order: boolean }
+function read(): PreviewState {
+  try {
+    const value = JSON.parse(localStorage.getItem(key) || '{}')
+    return { cart: value?.cart === true, saved: value?.saved === true, order: value?.order === true }
+  } catch { return { cart: false, saved: false, order: false } }
+}
+let state = read()
+let toastTimer: ReturnType<typeof setTimeout>
+function announce(message: string) {
+  const toast = document.querySelector<HTMLElement>('#shop-toast')
+  if (!toast) return
+  toast.textContent = message
+  toast.hidden = false
+  clearTimeout(toastTimer)
+  toastTimer = setTimeout(() => { toast.hidden = true }, 4500)
+}
+function save(next: PreviewState): boolean {
+  try { localStorage.setItem(key, JSON.stringify(next)); state = next; render(); return true }
+  catch { announce('Browser storage is unavailable. Enable local storage to try the cart preview.'); return false }
+}
+function render() {
+  document.querySelectorAll<HTMLElement>('[data-cart-count]').forEach(el => { el.hidden = !state.cart })
+  document.querySelectorAll<HTMLElement>('[data-cart-filled]').forEach(el => { el.hidden = !state.cart })
+  document.querySelectorAll<HTMLElement>('[data-cart-empty]').forEach(el => { el.hidden = state.cart })
+  document.querySelectorAll<HTMLElement>('[data-saved-filled]').forEach(el => { el.hidden = !state.saved })
+  document.querySelectorAll<HTMLElement>('[data-saved-empty]').forEach(el => { el.hidden = state.saved })
+  document.querySelectorAll<HTMLElement>('[data-order-filled]').forEach(el => { el.hidden = !state.order })
+  document.querySelectorAll<HTMLElement>('[data-order-empty]').forEach(el => { el.hidden = state.order })
+  document.querySelectorAll<HTMLButtonElement>('[data-save-dossier]').forEach(el => { el.setAttribute('aria-pressed', String(state.saved)); el.textContent = state.saved ? 'Saved · Remove' : 'Save for later' })
+  document.querySelectorAll<HTMLButtonElement>('[data-add-dossier]').forEach(el => { el.textContent = state.cart ? 'Dossier in cart · View cart →' : `Add the dossier to cart · ${dossier.priceLabel} →` })
+}
+document.querySelectorAll<HTMLButtonElement>('[data-add-dossier]').forEach(button => button.addEventListener('click', () => {
+  const cartUrl = `${import.meta.env.BASE_URL}cart/`
+  if (state.cart) { location.assign(cartUrl); return }
+  if (save({ ...state, cart: true })) { announce(`The dossier was added. One digital copy, ${dossier.priceLabel}.`); location.assign(cartUrl) }
+}))
+document.querySelectorAll<HTMLButtonElement>('[data-remove-dossier]').forEach(button => button.addEventListener('click', () => {
+  if (save({ ...state, cart: false })) announce('The dossier was removed from your cart.')
+}))
+document.querySelectorAll<HTMLButtonElement>('[data-save-dossier]').forEach(button => button.addEventListener('click', () => {
+  if (save({ ...state, saved: !state.saved })) announce(state.saved ? 'Dossier saved on this device.' : 'Dossier removed from saved items.')
+}))
+document.querySelector<HTMLButtonElement>('[data-complete-preview]')?.addEventListener('click', () => {
+  if (!state.cart) { announce('Add the dossier before trying checkout.'); return }
+  if (save({ ...state, cart: false, order: true })) location.assign(`${import.meta.env.BASE_URL}order-confirmation/`)
+})
+window.addEventListener('storage', event => { if (event.key === key || event.key === null) { state = read(); render() } })
+window.addEventListener('pageshow', () => { state = read(); render() })
+render()

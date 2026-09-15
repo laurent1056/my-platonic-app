@@ -1,0 +1,10 @@
+---
+import { dossier } from '@/data/dossier'
+import { withBase } from '@/data/register'
+interface Props { compact?: boolean; context?: string }
+const { compact = false, context } = Astro.props
+---
+<aside class:list={['dossier-offer', { 'offer-compact': compact }]} aria-label="The dossier">
+  <div><p class="eyebrow">The research, brought together</p><h2>{context ? `Go deeper on ${context.toLowerCase()}.` : 'Good judgment. In one place.'}</h2><p>The verdict is free. Get the dossier for the research behind a more considered purchase.</p></div>
+  <div class="offer-action"><a class="button" href={withBase('dossier/')}>Get the dossier <span>{dossier.priceLabel} ↗</span></a><span class="fine-print">Digital edition · One-time purchase · Preview</span></div>
+</aside>
