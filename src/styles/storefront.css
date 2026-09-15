@@ -42,21 +42,35 @@ input:disabled { opacity: .75; }
 h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .store-dek { font-size: 16px; line-height: 1.9; max-width: 440px; color: var(--ink-soft); margin: 24px 0 30px; }
 .hero-footnote { font-size: 12px; color: var(--muted); line-height: 1.8; margin-top: 32px; }
-.hero-book-stage { position: relative; min-height: 500px; background: var(--paper-deep); display: grid; justify-items: center; padding: 50px 30px 20px; overflow: hidden; }
+.hero-book-stage { position: relative; min-height: 610px; background: var(--paper-deep); display: grid; grid-template-rows: 1fr auto; justify-items: center; padding: 50px 30px 20px; overflow: hidden; }
 .book-stage-caption { font-size: 12px; position: absolute; left: 26px; top: 22px; }
 .book-stage-bottom { width: 100%; display: flex; justify-content: space-between; font-family: var(--mono); font-size: 12px; color: var(--muted); margin-top: 20px; }
-.hero-book-stage .dossier-cover { width: 275px; transform: rotate(-6deg); margin: 20px 0; transition: transform .35s; }
-.hero-book-stage:hover .dossier-cover { transform: rotate(-3deg) translateY(-4px); }
-.dossier-cover { position: relative; display: flex; flex-direction: column; width: min(100%, 330px); aspect-ratio: .73; padding: 28px; background: var(--surface-high); color: var(--ink); border: 1px solid var(--line-strong); border-left: 7px solid var(--accent); box-shadow: 7px 7px 0 var(--surface), 8px 8px 0 var(--line-strong), 16px 24px 30px color-mix(in srgb, var(--ink) 13%, transparent); }
-.cover-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line-strong); padding-bottom: 13px; gap: 10px; font-family: var(--mono); font-size: 7px; letter-spacing: .08em; text-transform: uppercase; }
-.cover-title { margin-top: 26px; font-family: var(--serif); font-size: 68px; line-height: .9; letter-spacing: -.04em; }
-.cover-title em { font-weight: 400; }
-.cover-seal { flex: 1; min-height: 80px; display: grid; place-items: center; }
-.cover-seal span { width: 72px; height: 72px; border: 1px solid var(--accent); border-radius: 50%; display: grid; place-items: center; color: var(--accent); font-family: var(--caps); font-size: 42px; position: relative; }
-.cover-seal span::before { content: ''; position: absolute; inset: 5px; border: 1px solid var(--line-strong); border-radius: 50%; }
-.cover-bottom { border-top: 1px solid var(--line-strong); padding-top: 13px; }
-.cover-bottom p { margin: 0 0 12px; font-family: var(--serif); font-size: 23px; line-height: 1.1; }
-.cover-bottom > span { font: 7px var(--mono); text-transform: uppercase; letter-spacing: .03em; }
+.hero-book-stage .dossier-object { width: 275px; align-self: center; margin: 28px 0 8px; }
+.hero-book-stage .dossier-cover { transform: rotate(-5deg); transition: transform .35s; }
+.hero-book-stage:hover .dossier-cover { transform: rotate(-2deg) translateY(-4px); }
+.dossier-object { width: min(100%, 330px); min-width: 0; margin: 0; }
+.dossier-cover { position: relative; display: flex; flex-direction: column; width: 100%; aspect-ratio: .68; padding: 22px; background: var(--surface-high); color: var(--ink); border: 1px solid var(--line-strong); border-left: 7px solid var(--accent); box-shadow: 7px 7px 0 var(--surface), 8px 8px 0 var(--line-strong), 16px 24px 30px color-mix(in srgb, var(--ink) 13%, transparent); overflow: hidden; }
+.cover-top { display: flex; justify-content: space-between; border-bottom: 1px solid var(--line-strong); padding-bottom: 9px; gap: 8px; font-family: var(--mono); font-size: 10px; line-height: 1.35; letter-spacing: .04em; text-transform: uppercase; }
+.cover-title { display: grid; gap: 1px; margin-top: 14px; line-height: 1; }
+.cover-title > span { font: 600 10px/1.3 var(--caps); letter-spacing: .12em; text-transform: uppercase; }
+.cover-title em { font: 400 57px/.88 var(--serif); letter-spacing: -.045em; }
+.cover-portrait { position: relative; flex: 1; min-height: 105px; margin-top: 13px; overflow: hidden; border-block: 1px solid var(--line-strong); background: var(--paper-deep); }
+.cover-portrait::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 48%, color-mix(in srgb, var(--ink) 26%, transparent)); pointer-events: none; }
+.cover-portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 38%; filter: grayscale(1) sepia(.16) contrast(1.08); }
+.cover-plato-name { position: absolute; z-index: 1; right: 8px; top: 50%; transform: translateY(-50%); writing-mode: vertical-rl; color: var(--surface-high); font: 600 12px/1 var(--caps); letter-spacing: .2em; text-shadow: 0 1px 8px color-mix(in srgb, var(--ink) 85%, transparent); }
+.cover-quote { display: grid; gap: 5px; margin: 12px 0 0; padding-left: 10px; border-left: 2px solid var(--accent); }
+.cover-quote p { margin: 0; font: 500 13px/1.25 var(--serif); }
+.cover-quote cite { color: var(--muted); font: 12px/1.35 var(--mono); font-style: normal; }
+.cover-bottom { margin-top: 10px; padding-top: 9px; border-top: 1px solid var(--line-strong); }
+.cover-bottom > span { font: 12px/1.35 var(--mono); text-transform: uppercase; letter-spacing: .02em; }
+.dossier-cover-link { position: absolute; z-index: 3; inset: 0; }
+.dossier-cover-link:hover { box-shadow: inset 0 0 0 2px var(--accent); }
+.dossier-cover-link:focus-visible { outline: 3px solid var(--accent); outline-offset: -6px; }
+.dossier-cover-credit { display: grid; gap: 2px; margin-top: 14px; color: var(--muted); font: 12px/1.55 var(--mono); }
+.dossier-credit-links { display: flex; flex-wrap: wrap; gap: 0 14px; }
+.dossier-credit-links a { display: inline-flex; align-items: center; min-height: 44px; text-decoration: underline; text-decoration-color: var(--line-strong); text-underline-offset: 4px; }
+.dossier-credit-links a:hover { color: var(--accent); text-decoration-color: currentColor; }
+:root[data-theme="dark"] .cover-portrait img { filter: grayscale(1) sepia(.12) brightness(.76) contrast(1.16); }
 .principle-strip { display: flex; justify-content: space-between; padding: 22px 0; border-block: 1px solid var(--line-strong); font: 12px var(--mono); color: var(--muted); gap: 20px; }
 .principle-strip b { font-weight: 500; color: var(--ink); }
 .store-section { padding: var(--shop-space) 0 48px; }
@@ -163,16 +177,14 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .cart-line p { font-size: 12px; color: var(--muted); }
 .cart-line > strong { margin-left: auto; font-size: 14px; }
 .cart-cover { flex-shrink: 0; width: 105px; }
-.dossier-cover.compact { padding: 10px; border-left-width: 3px; box-shadow: 4px 5px 0 var(--line); }
-.compact .cover-top { font-size: 4px; padding-bottom: 4px; }
-.compact .cover-top span:last-child { display: none; }
-.compact .cover-title { font-size: 26px; margin-top: 10px; }
-.compact .cover-seal { min-height: 30px; }
-.compact .cover-seal span { font-size: 20px; width: 30px; height: 30px; }
-.compact .cover-seal span::before { inset: 3px; }
-.compact .cover-bottom { padding-top: 4px; }
-.compact .cover-bottom p { font-size: 9px; margin-bottom: 0; }
-.compact .cover-bottom > span { display: none; }
+.dossier-object.compact { width: 100%; }
+.compact .dossier-cover { padding: 8px; border-left-width: 3px; box-shadow: 4px 5px 0 var(--line); }
+.compact .cover-top, .compact .cover-quote, .compact .cover-bottom { display: none; }
+.compact .cover-title { display: block; margin: 0 0 7px; }
+.compact .cover-title > span { display: none; }
+.compact .cover-title em { font-size: 23px; line-height: .9; }
+.compact .cover-portrait { min-height: 0; margin-top: 0; }
+.compact .cover-plato-name { display: none; }
 .order-summary { background: var(--surface); border: 1px solid var(--line); padding: 30px; }
 .order-summary h2 { font: 400 30px/1.15 var(--serif); margin: 0 0 20px; }
 .order-summary > p { font-size: 13px; }
@@ -219,7 +231,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .comparison-table thead span { display: inline-block; font: 12px var(--mono); color: var(--muted); margin-top: 12px; }
 .comparison-table tbody th { font-weight: 500; }
 .campaign-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; padding: 50px; background: var(--paper-deep); }
-.campaign-layout > .dossier-cover { justify-self: center; }
+.campaign-layout > .dossier-object { justify-self: center; }
 .campaign-layout p { color: var(--muted); line-height: 1.9; font-size: 15px; }
 .account-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 60px; border-top: 1px solid var(--line-strong); padding-top: 30px; }
 .account-nav { display: flex; flex-direction: column; align-self: start; }
@@ -258,7 +270,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .shop-nav { order: 4; width: 100%; justify-content: center; padding-top: 5px; border-top: 1px solid var(--line); }
   .shop-tools { margin-left: auto; }
   .store-hero { gap: 30px; }
-  .hero-book-stage { min-height: 470px; }
+  .hero-book-stage { min-height: 585px; }
   .store-hero h1 { font-size: 72px; }
   .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .featured-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
@@ -289,12 +301,10 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .store-dek { font-size: 15px; max-width: 100%; line-height: 1.85; margin: 20px 0; }
   .store-hero .action-row { gap: 20px; margin: 24px 0; }
   .hero-footnote { margin-top: 12px; }
-  .hero-book-stage { min-height: 420px; padding: 35px 20px 20px; }
-  .hero-book-stage .dossier-cover { width: 235px; }
-  .cover-title { font-size: 58px; }
-  .cover-seal { min-height: 60px; }
-  .cover-seal span { width: 58px; height: 58px; font-size: 35px; }
-  .cover-bottom p { font-size: 20px; }
+  .hero-book-stage { min-height: 590px; padding: 35px 20px 20px; }
+  .hero-book-stage .dossier-object { width: 235px; }
+  .cover-title em { font-size: 47px; }
+  .dossier-object:not(.compact) .cover-bottom { display: none; }
   .principle-strip { display: grid; grid-template-columns: 1fr 1fr; gap: 16px 10px; font-size: 12px; line-height: 1.7; padding: 20px 0; }
   .store-section-heading { display: block; }
   .store-section-heading .inline-link { display: inline-block; margin-top: 18px; }
@@ -319,7 +329,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .form-field input, .form-field select { font-size: 16px; }
   .product-detail { padding-top: 25px; }
   .product-art { min-height: 440px; padding: 40px; }
-  .product-art .dossier-cover { max-width: 245px; }
+  .product-art .dossier-object { max-width: 245px; }
   .product-info h1 { font-size: 54px; }
   .detail-tabs { gap: 24px; font-size: 12px; }
   .cart-line { gap: 16px; flex-wrap: wrap; }
@@ -335,7 +345,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .comparison-table thead th { font-size: 22px; }
   .comparison-table thead span { font-size: 12px; }
   .campaign-layout { padding: 30px; }
-  .campaign-layout .dossier-cover { width: 240px; }
+  .campaign-layout .dossier-object { width: 240px; }
   .account-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; border-top: 1px solid var(--line); }
   .account-nav a { min-height: 48px; white-space: normal; padding: 12px; }
   .account-nav a:nth-child(odd) { border-right: 1px solid var(--line); }
@@ -365,6 +375,11 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .shop-nav { order: 3; }
   .nav-offer { order: 4; }
   .card-heading > span[aria-hidden="true"] { display: none; }
+  .product-art { padding: 30px 20px; }
+  .product-art .dossier-object { width: 220px; max-width: 100%; }
+  .product-art .cover-title { margin-top: 10px; }
+  .product-art .cover-title > span { display: none; }
+  .product-art .cover-portrait { min-height: 90px; }
 }
 .category-card .chip { max-width: 100%; white-space: normal; font-size: 12px; letter-spacing: .03em; line-height: 1.5; }
 body { min-width: 0; }

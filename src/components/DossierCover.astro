@@ -1,10 +1,47 @@
 ---
-interface Props { compact?: boolean }
-const { compact = false } = Astro.props
+import { dossierCoverQuote, platoPortrait } from '@/data/dossier-art'
+import { withBase } from '@/data/register'
+
+interface Props {
+  compact?: boolean
+  credit?: boolean
+  eager?: boolean
+  href?: string
+}
+
+const { compact = false, credit = !compact, eager = false, href } = Astro.props
+const portraitSrc = withBase(platoPortrait.src)
 ---
-<div class:list={['dossier-cover', { compact }]} role="img" aria-label="The Platonic Ideal Dossier. Digital edition cover concept.">
-  <div class="cover-top"><span>Platonic Ideal</span><span>Research edition</span></div>
-  <div class="cover-title">The<br /><em>Dossier.</em></div>
-  <div class="cover-seal" aria-hidden="true"><span>Π</span></div>
-  <div class="cover-bottom"><p>Fewer things.<br />Better reasons.</p><span>Evidence · Judgment · Ownership</span></div>
-</div>
+<figure class:list={['dossier-object', { compact }]}>
+  <div class="dossier-cover">
+    <div class="cover-top" aria-hidden="true"><span>Platonic Ideal</span><span>Research edition</span></div>
+    <div class="cover-title"><span>The Platonic Ideal</span><em>Dossier.</em></div>
+    <div class="cover-portrait">
+      <img
+        src={portraitSrc}
+        width={platoPortrait.width}
+        height={platoPortrait.height}
+        alt={platoPortrait.alt}
+        loading={eager ? 'eager' : 'lazy'}
+        fetchpriority={eager ? 'high' : 'auto'}
+        decoding="async"
+      />
+      <span class="cover-plato-name" aria-hidden="true">ΠΛΑΤΩΝ</span>
+    </div>
+    <blockquote class="cover-quote">
+      <p>“{dossierCoverQuote.coverExcerpt}”</p>
+      <cite>Republic VI · 507b</cite>
+    </blockquote>
+    <div class="cover-bottom" aria-hidden="true"><span>Evidence · Judgment · Ownership</span></div>
+    {href && <a class="dossier-cover-link" href={href}><span class="sr-only">Explore the Platonic Ideal Dossier</span></a>}
+  </div>
+  {credit && (
+    <figcaption class="dossier-cover-credit">
+      <span>{platoPortrait.object} · {platoPortrait.holdingInstitution}</span>
+      <span class="dossier-credit-links">
+        <a href={platoPortrait.sourceUrl} target="_blank" rel="license noopener noreferrer">Photo: {platoPortrait.displayCreator} ↗</a>
+        <a href={platoPortrait.licenseUrl} target="_blank" rel="license noopener noreferrer">{platoPortrait.licenseName} · cropped and toned ↗</a>
+      </span>
+    </figcaption>
+  )}
+</figure>

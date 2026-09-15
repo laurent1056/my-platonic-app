@@ -17,7 +17,7 @@ The existing sage, basalt, and iron-oxide tokens remain the palette. Cormorant G
 | Pattern | Role | Behavior and accessibility |
 | --- | --- | --- |
 | Shared header | Familiar catalog/dossier/journal navigation; search, account, cart | Named icon links, current-page states, mobile reflow, theme control |
-| DossierCover | Product identity without suggesting a physical product for sale | HTML/CSS cover, accessible image label, explicit digital cover concept |
+| DossierCover | Plato-led product identity without suggesting a physical product for sale | Shared portrait cover, accessible image description, visible full-size image credit, explicit digital cover concept |
 | DossierOffer | One reusable conversion panel | Common destination and price; compact variant on category pages |
 | CategoryCard | Free editorial research entry | Real category route, visible verdict, interpretive art, honest empty state |
 | Catalog | Listing and search results | Text, collection, exact or grouped verdict, ownership mechanism, and evidence/alphabetical sorting; result announcements, empty state, reset |
@@ -76,4 +76,4 @@ The catalog accepts both the previous `domain`, `state`, `mechanism`, `sort=cate
 
 ## Production work still required
 
-Finalize the actual dossier and offer scope, configure hosted payment and verified fulfillment, decide whether accounts are needed, and supply final support/contact and policy information. The current design must not be described as a live store.
+Finalize the actual dossier and offer scope, follow `docs/design/DOSSIER_PDF_ART_DIRECTION.md` while building its image and quotation ledger, configure hosted payment and verified fulfillment, decide whether accounts are needed, and supply final support/contact and policy information. The current design must not be described as a live store.
