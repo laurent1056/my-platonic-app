@@ -1,6 +1,6 @@
 ---
 import CategoryCard from './CategoryCard.astro'
-import { domains, register, publicPermanenceLabels, publicStateLabels } from '@/data/register'
+import { domains, register, publicPermanenceLabels } from '@/data/register'
 interface Props { domain?: string; search?: boolean }
 const { domain = '', search = false } = Astro.props
 const entries = domain ? register.filter(entry => entry.domainSlug === domain) : register
@@ -9,7 +9,7 @@ const entries = domain ? register.filter(entry => entry.domainSlug === domain) :
   <div class="catalog-controls">
     <label class="form-field catalog-search"><span>{search ? 'Search the research' : 'Find a category'}</span><input id="catalog-query" type="search" placeholder="Try cookware, boots, or repair…" /></label>
     {!domain && <label class="form-field"><span>Collection</span><select id="catalog-domain"><option value="">All collections</option>{domains.map(item => <option value={item.id}>{item.name}</option>)}</select></label>}
-    <label class="form-field"><span>Verdict</span><select id="catalog-verdict"><option value="">All verdicts</option>{Object.entries(publicStateLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
+    <label class="form-field"><span>Outcome</span><select id="catalog-verdict"><option value="">All outcomes</option><option value="DECLARED">Our picks</option><option value="EMPTY">No qualifying picks</option><option value="IN REVIEW">Research in progress</option></select></label>
     <label class="form-field"><span>Why it lasts</span><select id="catalog-mechanism"><option value="">All ownership paths</option>{Object.entries(publicPermanenceLabels).map(([value, label]) => <option value={value}>{label}</option>)}</select></label>
     <label class="form-field"><span>Sort by</span><select id="catalog-sort"><option value="original">Register order</option><option value="az">Category A–Z</option><option value="confidence">Evidence strength</option></select></label>
   </div>
@@ -41,7 +41,7 @@ const entries = domain ? register.filter(entry => entry.domainSlug === domain) :
       let count = 0
       cards.sort((a, b) => sort.value === 'az' ? a.dataset.name!.localeCompare(b.dataset.name!) : sort.value === 'confidence' ? Number(b.dataset.confidence) - Number(a.dataset.confidence) || Number(a.dataset.number) - Number(b.dataset.number) : Number(a.dataset.number) - Number(b.dataset.number))
       for (const card of cards) {
-        card.hidden = !((card.dataset.search || '').includes(query.value.trim().toLowerCase()) && (!domain?.value || card.dataset.domain === domain.value) && (!verdict.value || card.dataset.verdict === verdict.value || card.dataset.status === verdict.value) && (!mechanism.value || card.dataset.mechanism === mechanism.value))
+        card.hidden = !((card.dataset.search || '').includes(query.value.trim().toLowerCase()) && (!domain?.value || card.dataset.domain === domain.value) && (!verdict.value || card.dataset.verdict === verdict.value) && (!mechanism.value || card.dataset.mechanism === mechanism.value))
         if (!card.hidden) count++
         grid!.append(card)
       }

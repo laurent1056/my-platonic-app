@@ -6,14 +6,10 @@ import { categoryUrl, domains, publicPermanenceDescriptions, publicPermanenceLab
 const mechanismLabels = publicPermanenceLabels
 
 const stateOptions = [
-  ['all', 'All review statuses'],
+  ['all', 'All outcomes'],
   ['DECLARED', 'Our picks'],
   ['EMPTY', 'No qualifying pick'],
-  ['IN REVIEW', 'Still researching'],
-  ['SPLIT_REQUIRED', 'Needs a narrower category'],
-  ['CONDITIONAL', 'Depends on the use'],
-  ['CANDIDATE', 'Possible pick under review'],
-  ['CONSUMABLE', 'Designed to be replaced'],
+  ['IN REVIEW', 'Research in progress'],
 ] as const
 ---
 
@@ -80,7 +76,6 @@ const stateOptions = [
             class="register-row"
             data-search={entry.searchText}
             data-verdict={entry.verdict}
-            data-status={entry.sourceStatus}
             data-domain={entry.domainSlug}
             data-mechanism={entry.permanenceKind}
             data-number={entry.number}
@@ -165,7 +160,7 @@ const stateOptions = [
     rows.forEach((row) => {
       const matchesQuery = !query || (row.dataset.search || '').includes(query)
       const matchesDomain = selectedDomain === 'all' || row.dataset.domain === selectedDomain
-      const matchesState = selectedState === 'all' || (selectedState === 'IN REVIEW' ? row.dataset.verdict === selectedState : row.dataset.status === selectedState)
+      const matchesState = selectedState === 'all' || row.dataset.verdict === selectedState
       const matchesMechanism = selectedMechanism === 'all' || row.dataset.mechanism === selectedMechanism
       row.hidden = !(matchesQuery && matchesDomain && matchesState && matchesMechanism)
       if (!row.hidden) visible += 1

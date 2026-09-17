@@ -49,10 +49,28 @@ test('catalog retains ownership and evidence controls, including empty verdicts'
   for (const id of ['catalog-query', 'catalog-domain', 'catalog-verdict', 'catalog-mechanism', 'catalog-sort', 'catalog-empty']) assert.ok(content.includes(`id="${id}"`), id)
   assert.match(content, /value="confidence"/)
   assert.match(content, /data-verdict="EMPTY"/)
+  assert.doesNotMatch(content, /\b(?:CANDIDATE|SPLIT_REQUIRED|CONDITIONAL|CONSUMABLE)\b/)
 })
 
 test('preview routes are excluded from the sitemap', async () => {
   const sitemap = await readFile(path.join(root, 'sitemap-0.xml'), 'utf8')
   assert.doesNotMatch(sitemap, /<loc>[^<]*\/(?:account(?:\/[^<]*)?|cart\/|checkout\/|order-confirmation\/|privacy\/|terms\/|page-directory\/)<\/loc>/)
   assert.match(sitemap, /\/dossier\/<\/loc>/)
+})
+
+test('public promise, founder story, measurement hooks, and sandbox fulfillment are present', async () => {
+  const home = await html('')
+  const about = await html('about')
+  const confirmation = await html('order-confirmation')
+  assert.match(home, /names one product worth choosing|no product qualifies/i)
+  assert.match(home, /data-email-capture/)
+  assert.match(about, /Laurent Courtines/)
+  assert.match(about, /I am Catholic/)
+  assert.match(about, /cultural conflict/)
+  assert.match(about, /cognitive load/)
+  assert.match(about, /refrigerator/i)
+  assert.match(home, /data-analytics-event="dossier_cta_click"/)
+  assert.match(home, /A founder’s letter/)
+  assert.match(confirmation, /Download sandbox file/)
+  assert.match(confirmation, /No payment was taken/)
 })

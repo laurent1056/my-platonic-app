@@ -257,15 +257,17 @@ function publicVerdict(status: SourceStatus): Verdict {
 }
 
 export function publicStateLabel(verdict: Verdict, sourceStatus?: SourceStatus): string {
+  void sourceStatus
   if (verdict === 'DECLARED') return publicStateLabels.DECLARED
   if (verdict === 'EMPTY') return publicStateLabels.EMPTY
-  return publicStateLabels[sourceStatus ?? 'CANDIDATE'] ?? publicStateLabels['IN REVIEW']
+  return 'Research in progress'
 }
 
 export function publicStateDescription(verdict: Verdict, sourceStatus?: SourceStatus): string {
+  void sourceStatus
   if (verdict === 'DECLARED') return publicStateDescriptions.DECLARED
   if (verdict === 'EMPTY') return publicStateDescriptions.EMPTY
-  return publicStateDescriptions[sourceStatus ?? 'CANDIDATE'] ?? publicStateDescriptions['IN REVIEW']
+  return 'The category has a defined research question, but the evidence is not complete enough for a final public outcome.'
 }
 
 export const register: RegisterEntry[] = parsed.data.map((row, index) => {
@@ -313,7 +315,6 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     entry.category,
     entry.model,
     entry.verdict,
-    entry.sourceStatus,
     publicStateLabel(entry.verdict, entry.sourceStatus),
     entry.permanence,
     publicPermanenceLabels[entry.permanenceKind],

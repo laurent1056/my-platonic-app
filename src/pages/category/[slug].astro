@@ -5,6 +5,7 @@ import ConfidenceMeter from '@/components/ConfidenceMeter.astro'
 import ProductPlate from '@/components/ProductPlate.astro'
 import SourceReference from '@/components/SourceReference.astro'
 import DossierOffer from '@/components/DossierOffer.astro'
+import EvidenceSummary from '@/components/EvidenceSummary.astro'
 import { approvedPlateFor } from '@/data/product-plates'
 import { categoryUrl, publicPermanenceDescriptions, publicPermanenceLabels, publicStateLabel, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
 
@@ -27,7 +28,7 @@ const failures = splitStatements(entry.failureModes)
 ---
 
 <SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedPlate ? withBase(approvedPlate.path) : undefined} offer={false}>
-  <div class="shell">
+  <div class="shell" data-category-page data-category={entry.category} data-verdict={entry.verdict}>
     <section class="dossier-hero">
       <nav class="breadcrumbs" aria-label="Breadcrumb">
         <a href={withBase('register/')}>Explore products</a><span aria-hidden="true">/</span><span>{entry.category}</span>
@@ -113,6 +114,8 @@ const failures = splitStatements(entry.failureModes)
             </ul>
           </section>
         )}
+
+        <EvidenceSummary entry={entry} />
 
         <dl class="dossier-facts">
           <div class="fact"><dt class="label" title="What wears out, needs care, or may eventually need replacement.">What you’ll maintain</dt><dd>{entry.maintenance || 'Not recorded'}</dd></div>

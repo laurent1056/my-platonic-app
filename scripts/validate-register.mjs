@@ -26,7 +26,10 @@ data.forEach((row, index) => {
   if (!allowed.has(status)) errors.push(`Line ${line} (${category || 'unnamed'}): Unknown status ${status || 'blank'}`)
   if (status === 'DECLARED' && !model) errors.push(`Line ${line} (${category}): DECLARED requires one Model`)
   if (status === 'EMPTY' && model) errors.push(`Line ${line} (${category}): EMPTY must not name a Model`)
-  if (model && /\s+or\s+|\s*\/\s*/i.test(model)) warnings.push(`Line ${line} (${category}): Model may contain multiple declarations: ${model}`)
+  // Slashes are common in model identifiers and measurements (1/2 in, 12/3,
+  // SKU suffixes). Treat an explicit natural-language "or" as the reliable
+  // local signal for more than one declared product.
+  if (model && /\s+or\s+/i.test(model)) warnings.push(`Line ${line} (${category}): Model may contain multiple declarations: ${model}`)
 
   const slug = slugify(category)
   if (slugs.has(slug)) errors.push(`Line ${line} (${category}): Duplicate generated slug also used by ${slugs.get(slug)}`)

@@ -1,0 +1,63 @@
+---
+import { imageSourceFor } from '@/data/image-sources'
+import type { RegisterEntry } from '@/data/register'
+
+interface Props { entry: RegisterEntry }
+const { entry } = Astro.props
+const source = imageSourceFor(entry.reference)
+const sourceTypeLabels: Record<string, string> = {
+  manufacturer: 'Manufacturer source',
+  'authorized-retailer': 'Authorized retailer source',
+  retailer: 'Retailer source',
+  'catalog-or-manual': 'Catalog or manual',
+  'open-license': 'Open-license source',
+  owned: 'Owned reference',
+  'ai-interpretation': 'Editorial illustration',
+  unlocated: 'Source not located',
+}
+const inputs = [
+  ['Category definition', 'Editorial standard', entry.formDefinition],
+  ['Why the decision follows', 'Editorial analysis', entry.coreReasoning],
+  ['What could overturn it', 'Comparative analysis', entry.disqualifiers],
+  ['Ownership record', 'Maintenance and failure analysis', [entry.maintenance, entry.permanence, entry.failureModes].filter(Boolean).join(' ')],
+] as const
+const visibleInputs = inputs.filter(([, , text]) => text.trim())
+---
+
+<section class="evidence-summary" aria-labelledby={`evidence-${entry.reference}`}>
+  <div class="argument-heading">
+    <p class="label">Evidence trail</p>
+    <h2 id={`evidence-${entry.reference}`}>{entry.verdict === 'DECLARED' ? 'What supports the call' : entry.verdict === 'EMPTY' ? 'What supports the no-pick' : 'What has been examined so far'}</h2>
+  </div>
+  <p class="evidence-summary-intro">We separate source material from our interpretation. A source page can establish model identity; it does not, by itself, prove that a product deserves the pick.</p>
+  <div class="evidence-input-grid">
+    {source && <article class="evidence-input evidence-source">
+      <span class="label">Model identity</span>
+      <strong>{sourceTypeLabels[source.sourceType] ?? 'Published source'}</strong>
+      <p>{source.sourcePageTitle}. {source.sellerOrManufacturer} · {source.exactModel}.</p>
+      {source.sourceUrl && <a class="inline-link" href={source.sourceUrl} target="_blank" rel="noopener noreferrer">Open the source page ↗</a>}
+    </article>}
+    {visibleInputs.map(([label, type, text]) => <article class="evidence-input">
+      <span class="label">{label}</span>
+      <strong>{type}</strong>
+      <p>{text}</p>
+    </article>)}
+  </div>
+  {entry.verdict === 'DECLARED' && <p class="evidence-summary-note">This record is a public editorial summary. The Constitution sets the final standard: exact identity, evidence across independent source types, a counter-case, and a visible ownership path.</p>}
+  {entry.verdict === 'EMPTY' && <p class="evidence-summary-note">A no-pick is not a blank page. It records the category boundary, the recurring failure, and the evidence a future product would need to change the answer.</p>}
+</section>
+
+<style>
+  .evidence-summary { margin: 2.5rem 0 0; padding-top: 2rem; border-top: 1px solid var(--line-strong); }
+  .argument-heading { display: grid; gap: .35rem; }
+  .argument-heading h2 { margin: 0; font-family: var(--serif); font-size: clamp(1.8rem, 3vw, 2.6rem); font-weight: 500; letter-spacing: -.025em; line-height: 1; }
+  .evidence-summary-intro { max-width: 58ch; margin: .8rem 0 1.2rem; color: var(--muted); font-size: .88rem; line-height: 1.55; }
+  .evidence-input-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1px; border: 1px solid var(--line-strong); background: var(--line-strong); }
+  .evidence-input { min-width: 0; padding: 1rem; background: var(--paper); }
+  .evidence-input.evidence-source { background: var(--surface); }
+  .evidence-input strong { display: block; margin-top: .4rem; font-family: var(--caps); font-size: .66rem; letter-spacing: .08em; text-transform: uppercase; }
+  .evidence-input p { margin: .55rem 0 0; color: var(--ink-soft); font-size: .84rem; line-height: 1.5; }
+  .evidence-input .inline-link { display: inline-block; margin-top: .7rem; font-size: .7rem; }
+  .evidence-summary-note { margin: 1rem 0 0; padding-left: .9rem; border-left: 1px solid var(--accent); color: var(--muted); font-size: .78rem; line-height: 1.5; }
+  @media (max-width: 640px) { .evidence-input-grid { grid-template-columns: 1fr; } }
+</style>

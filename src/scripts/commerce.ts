@@ -1,6 +1,8 @@
 /** Local-only design state. No identity, payment details, or entitlements. */
 import { dossier } from '@/data/dossier'
+import { track } from './analytics'
 const key = 'PI_DOSSIER_PREVIEW_V1'
+const fulfillmentKey = 'PI_DOSSIER_FULFILLMENT_TRACKED_V1'
 type PreviewState = { cart: boolean; saved: boolean; order: boolean }
 function read(): PreviewState {
   try {
@@ -36,7 +38,7 @@ function render() {
 document.querySelectorAll<HTMLButtonElement>('[data-add-dossier]').forEach(button => button.addEventListener('click', () => {
   const cartUrl = `${import.meta.env.BASE_URL}cart/`
   if (state.cart) { location.assign(cartUrl); return }
-  if (save({ ...state, cart: true })) { announce(`The dossier was added. One digital copy, ${dossier.priceLabel}.`); location.assign(cartUrl) }
+  if (save({ ...state, cart: true })) { track('add_to_cart', { product: dossier.id, amount: dossier.price }); announce(`The dossier was added. One digital copy, ${dossier.priceLabel}.`); location.assign(cartUrl) }
 }))
 document.querySelectorAll<HTMLButtonElement>('[data-remove-dossier]').forEach(button => button.addEventListener('click', () => {
   if (save({ ...state, cart: false })) announce('The dossier was removed from your cart.')
@@ -46,8 +48,22 @@ document.querySelectorAll<HTMLButtonElement>('[data-save-dossier]').forEach(butt
 }))
 document.querySelector<HTMLButtonElement>('[data-complete-preview]')?.addEventListener('click', () => {
   if (!state.cart) { announce('Add the dossier before trying checkout.'); return }
-  if (save({ ...state, cart: false, order: true })) location.assign(`${import.meta.env.BASE_URL}order-confirmation/`)
+  if (save({ ...state, cart: false, order: true })) {
+    track('purchase', { product: dossier.id, amount: dossier.price, mode: 'sandbox' })
+    location.assign(`${import.meta.env.BASE_URL}order-confirmation/`)
+  }
 })
 window.addEventListener('storage', event => { if (event.key === key || event.key === null) { state = read(); render() } })
-window.addEventListener('pageshow', () => { state = read(); render() })
+window.addEventListener('pageshow', () => {
+  state = read()
+  render()
+  if (state.order && location.pathname.endsWith('/order-confirmation/')) {
+    try {
+      if (localStorage.getItem(fulfillmentKey) !== 'sent') {
+        localStorage.setItem(fulfillmentKey, 'sent')
+        track('fulfillment', { product: dossier.id, mode: 'sandbox' })
+      }
+    } catch {}
+  }
+})
 render()

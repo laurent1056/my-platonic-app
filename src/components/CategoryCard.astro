@@ -5,11 +5,11 @@ import { categoryUrl, type RegisterEntry } from '@/data/register'
 interface Props { entry: RegisterEntry }
 const { entry } = Astro.props
 ---
-<article class="category-card" data-category-card data-search={entry.searchText} data-domain={entry.domainSlug} data-verdict={entry.verdict} data-status={entry.sourceStatus} data-mechanism={entry.permanenceKind} data-confidence={entry.confidence} data-name={entry.category} data-number={entry.number}>
-  <a class="category-card-image" href={categoryUrl(entry)} aria-label={`Read our ${entry.category.toLowerCase()} research`}>
+<article class="category-card" data-category-card data-search={entry.searchText} data-domain={entry.domainSlug} data-verdict={entry.verdict} data-mechanism={entry.permanenceKind} data-confidence={entry.confidence} data-name={entry.category} data-number={entry.number}>
+  <a class="category-card-image" data-analytics-event="category_view" data-analytics-category={entry.category} data-analytics-outcome={entry.verdict} href={categoryUrl(entry)} aria-label={`Read our ${entry.category.toLowerCase()} research`}>
     {entry.verdict === 'EMPTY' ? <div class="no-pick-art"><span>∅</span><p>No qualifying pick.<br />The reasoning still matters.</p></div> : <ProductPlate entry={entry} />}
   </a>
-  <div class="card-heading"><h3><a href={categoryUrl(entry)}>{entry.category}</a></h3><span aria-hidden="true">↗</span></div>
+  <div class="card-heading"><h3><a data-analytics-event="category_view" data-analytics-category={entry.category} data-analytics-outcome={entry.verdict} href={categoryUrl(entry)}>{entry.category}</a></h3><span aria-hidden="true">↗</span></div>
   <p class="card-model">{entry.model || (entry.verdict === 'EMPTY' ? 'No product has earned the pick.' : 'Research in progress')}</p>
   <StatusChip verdict={entry.verdict} sourceStatus={entry.sourceStatus} />
 </article>

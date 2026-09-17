@@ -11,6 +11,8 @@ __pycache__/
 dist/
 dist-ssr/
 .vercel/
+tmp/
+output/
 
 # Local credentials and environment files
 .env

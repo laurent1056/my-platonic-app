@@ -1,0 +1,33 @@
+---
+---
+
+<section class="email-capture" aria-labelledby="email-capture-title">
+  <div>
+    <p class="eyebrow">A quieter update</p>
+    <h2 id="email-capture-title">Keep the next good question close.</h2>
+    <p>Preview the future reader note: occasional category verdicts, new evidence, and dossier updates. It will never change a public verdict.</p>
+  </div>
+  <form data-email-capture novalidate>
+    <label class="form-field" for="preview-email"><span>Email address</span><input id="preview-email" name="email" type="email" autocomplete="email" placeholder="reader@example.com" required /></label>
+    <label class="consent-line"><input type="checkbox" name="email-consent" required /><span>I agree to the preview signup.</span></label>
+    <button class="button" type="submit">Preview signup →</button>
+    <p class="fine-print">Sandbox only: no address is saved, sent, or added to a list. A production signup needs an approved provider, privacy notice, confirmation email, and unsubscribe route.</p>
+    <p class="email-feedback" data-email-feedback role="status" hidden></p>
+    <a class="inline-link email-unsubscribe" data-email-unsubscribe href="#">Unsubscribe this preview</a>
+  </form>
+</section>
+
+<style>
+  .email-capture { display: grid; grid-template-columns: minmax(0, 1fr) minmax(280px, .8fr); gap: clamp(2rem, 7vw, 6rem); align-items: start; margin: 0 clamp(1rem, 4vw, 4rem); padding: clamp(2rem, 5vw, 4rem) 0; border-top: 1px solid var(--line-strong); border-bottom: 1px solid var(--line-strong); }
+  .email-capture h2 { max-width: 14ch; margin: .45rem 0 .8rem; font-family: var(--serif); font-size: clamp(2.2rem, 4vw, 3.8rem); font-weight: 500; letter-spacing: -.035em; line-height: .95; }
+  .email-capture > div > p:last-child { max-width: 48ch; color: var(--muted); }
+  .email-capture form { display: grid; gap: .7rem; }
+  .email-capture .form-field { margin: 0; }
+  .email-capture .button { justify-self: start; }
+  .consent-line { display: flex; gap: .55rem; align-items: center; color: var(--muted); font-size: .78rem; }
+  .consent-line input { accent-color: var(--accent); }
+  .email-feedback { margin: .2rem 0 0; color: var(--accent); font-size: .8rem; }
+  .email-unsubscribe { display: none; font-size: .72rem; }
+  .email-unsubscribe:not([hidden]) { display: inline-block; }
+  @media (max-width: 720px) { .email-capture { grid-template-columns: 1fr; margin-inline: 0; } }
+</style>
