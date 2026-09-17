@@ -4,7 +4,7 @@ import Papa from 'papaparse'
 
 const dist = path.resolve('dist')
 const vercelConfigPath = path.resolve('vercel.json')
-const productionOrigin = 'https://my-platonic-app.vercel.app'
+const productionOrigin = process.env.SITE_URL || 'https://www.platonicidealguide.com'
 const registerPath = path.resolve('public/platonic_ideal.csv')
 const forbiddenFragments = [
   'https://laurent1056.github.io',

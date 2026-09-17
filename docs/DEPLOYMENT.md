@@ -7,12 +7,12 @@ Platonic Ideal deploys from `main` to Vercel as a static-first Astro application
 - repository: `laurent1056/my-platonic-app`
 - source branch: `main`
 - Vercel project: `laurent1056-4779s-projects/my-platonic-app`
-- production URL: `https://my-platonic-app.vercel.app/`
-- Astro `site`: `https://my-platonic-app.vercel.app`
+- production URL: `https://www.platonicidealguide.com/`
+- Astro `site`: `https://www.platonicidealguide.com`
 - Astro `base`: none; the site is served from `/`
 - framework adapter: `@astrojs/vercel`
 
-Set `SITE_URL` at build time only when moving production to a custom domain. Preview deployments intentionally retain the production canonical origin.
+The production build uses the custom domain as its canonical origin. Set `SITE_URL` at build time only when a preview or alternate deployment needs a different canonical origin.
 
 ## Delivery workflow
 
