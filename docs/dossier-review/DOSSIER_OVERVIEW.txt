@@ -1,0 +1,149 @@
+PLATONIC IDEAL DOSSIER
+The Good Buy — Declared 1940 Edition
+Review build: September 2026
+
+
+WHAT THE DOSSIER IS
+
+The dossier is the long-form buying guide behind the Platonic Ideal storefront.
+The site gives a reader a clear place to browse and buy. The dossier earns the
+recommendation: it names the exact product, states the job it is for, shows the
+tradeoff, carries the care and service path, and makes the sources easy to check.
+
+The promise is practical: stop researching, buy with a clear boundary, and keep
+the product useful longer. A recommendation is a decision with a clear reason,
+not a decorative list of links.
+
+
+THE CURRENT EDITION
+
+The working CSV contains 48 records marked DECLARED. Earlier notes refer to 46;
+this edition carries all 48 so every declared item has a visible place in the
+book. The first four follow the proof sequence: Drill, Frying Pan, Hammer, and
+Screwdriver. The remaining categories follow alphabetically.
+
+The default PDF is 157 pages:
+
+  01  Cover
+  02  Full-page Plato quotation and large portrait with both eyes visible
+  03  Alphabetical field index with category name and spread page number
+  04  Six tests before a declaration, condensed to one page
+  05–148  48 product recommendations, three pages each
+        decision + large plate / fit or use + candidate pressure /
+        care + parts + service + stop conditions
+  149–152  Quick comparison covering every recommendation
+  153–155  Product sources and update links
+  156  Image, rights, and reader-label glossary
+  157  A reader checklist for buying and keeping it working
+
+Build the current edition with:
+
+  python3 scripts/build-dossier-delta.py
+
+The PDF is written to:
+
+  output/pdf/platonic-ideal-dossier-declared-1940.pdf
+
+The supplied twenty-page proof remains available for visual comparison:
+
+  python3 scripts/build-dossier-delta.py --proof \
+    --output output/pdf/platonic-ideal-dossier-1940-20-page-proof.pdf
+
+An older full-register builder is retained only as an archived comparison:
+
+  python3 scripts/build-dossier-delta.py --legacy-full \
+    --output output/pdf/platonic-ideal-dossier-full-review.pdf
+
+
+THE 1940 DESIGN RULE
+
+The declared edition uses the same page anatomy as the Platonic Ideal 1940 proof:
+white stock, inset black page rule, condensed gothic display type, serif reading
+text, vermilion rules and registration marks, open ruled tables, red footer rule,
+and black folio tab. Product images are large and dispersed so the physical
+judgment has room to breathe.
+
+The live site may keep its Greek icon background. Dossier product art does not:
+every product plate uses clean warm-ivory paper and removes the Greek icon,
+laurel, marble slab, halo, pedestal, and decorative panel from behind the object.
+The wrench, extension cord, step ladder, and Windsor chair received dedicated
+clean industrial illustrations, and the remaining recommendations now use newly
+generated source-referenced multi-view illustrations rather than storefront hero
+backgrounds. Each plate has a large object view and separate elevation/detail
+views with registration detail.
+
+
+WHAT ONE RECOMMENDATION CARRIES
+
+DECISION
+  The exact model and variant, the job it earns, a direct buy statement, the
+  decisive dimensions or material facts, and the visible trade.
+
+FIT / USE
+  A plain explanation of when the product fits, what it asks of the user, and
+  where a credible alternative changes the decision. Every declared chapter has
+  a dedicated action plate showing the object doing its primary job, with its
+  working surface, load, hands, or setting visible.
+
+OWNERSHIP
+  A four-step care routine, a four-part Parts to Watch callout rail, routine wear,
+  damage that needs inspection, the point where use should stop, parts and
+  service implications, and a direct manual, maker, or seller link.
+
+PRODUCT SOURCES
+  The model record, source role, identity status, rights state, check date, and
+  update path are collected at the back. Essential specs and care guidance stay
+  on the product spread, with the source links there when you want to verify a
+  detail.
+
+
+THE SIX TESTS
+
+FIT       Will it do the everyday job?
+FORM      What is holding it together?
+RECOVERY  What can be fixed or renewed?
+SUPPLY    Can the important parts be obtained?
+OWNERSHIP What will it ask of you after checkout?
+VALUE     What does the upgrade actually buy?
+
+A product clears a declaration when the category Form, use boundary, ownership
+path, and evidence state support one model better than the available field. If
+the answer changes with fit, installation, safety, region, or service, the page
+states that boundary instead of hiding it.
+
+
+HOW TO READ THE IMAGES
+
+The product plates are original editorial interpretations. They make silhouette,
+material, construction, and service-relevant geometry easier to inspect; they do
+not prove an exact factory finish or replace a maker's manual. The wrench plate,
+for example, uses the verified Bahco 8071 geometry as its reference and shows a
+large three-quarter view, side elevation, jaw-and-worm detail, and handle end.
+
+The image prompts are shipped in:
+
+  docs/dossier-review/assets/editorial/IMAGE_PROMPTS.txt
+
+Creative Commons and image-use notes are kept in the back-of-book glossary so
+the product pages can stay focused on the decision. The Plato portrait and quote
+follow the same rule: the portrait is original editorial art, while the quote is
+linked to a public-domain Benjamin Jowett translation of Republic VI, 507b.
+
+
+WHY IT HAS MORE VALUE THAN THE SITE
+
+A storefront card must be quick. A dossier chapter can answer the questions a
+card cannot: which dimension matters, which part wears first, whether the source
+supports the claim, what to inspect on a used example, what is recoverable, and
+what the owner should do next. The dossier is built to be checked and updated,
+so a changed price, model, part, or service path reopens a clear page rather than
+forcing the reader to start the research from zero.
+
+
+EDITORIAL LIMITS
+
+The source links are the authority for exact specification, current price,
+stock, fit, safety, and regional service. The dossier carries the usable
+implication and records the source role. It does not claim independent laboratory
+testing where none has been done. Dedicated action scenes are illustrations, not
+safety instructions. Read the maker's manual before use.

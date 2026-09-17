@@ -1,0 +1,162 @@
+PLATONIC IDEAL — REVIEW EDITION IMAGE PROMPTS
+
+The following original images were generated with OpenAI image generation for this review edition. Product imagery is illustrative, not factory photography, a scale drawing, or proof of an exact SKU. The Plato portrait on the quote page is original editorial art; the quotation is sourced separately in the PDF.
+
+plato-cover-portrait.png
+Create an original portrait-format editorial illustration of Plato for the cover of a premium philosophical buying guide. Portray him as an older classical Greek philosopher with curled beard and composed gaze, inspired by Roman marble bust traditions but not depicting a specific museum photograph or specific sculptor's exact work. Strong theatrical chiaroscuro; engraved crosshatching and subtle halftone; black ink, stone gray, paper white, one very restrained vermilion accent. Composition: bust occupies right 60 percent, left 40 percent is quiet light paper for cover typography. Architectural fragment and laurel leaf, elegant and serious, feels like a beautifully printed 1940s reference-book plate. No words, letters, logo, watermark, border, signature. Vertical 4:5 composition.
+
+plato-quote-portrait.png
+Create an original, dramatic vertical editorial engraving of Plato for a full-page quote interlude. An imposing close marble head-and-shoulders portrait of a thoughtful older Greek philosopher with curled beard, looking slightly upward as if considering the difference between what is seen and what is known. This is an original interpretation, not a copy of a particular statue or photograph. Set him against a sparse classical stone arch and dark shadow field. Black ink, finely crosshatched stone gray, warm white paper, tiny restrained vermilion sun disk; beautiful 1940s philosophical reference-book print texture. Composition leaves a generous calm light zone across the lower quarter for a long typeset quotation while the portrait remains large and dominant above. No text, letters, watermark, border, logo, signature. Vertical 4:5.
+
+skillet-in-use.png
+Create a wide editorial illustration of an unbranded 12-inch seasoned cast-iron skillet actively used to sear a simple supper over a home stove. Show the full pan body, long handle and small assist handle clearly; onions, vegetables and a browned steak provide scale without obscuring the pan geometry. Warm but restrained late-afternoon light; American workshop-catalog engraving meets rich realistic food illustration, 1940s printed reference-book mood, halftone grain, black ink and umber with minimal vermilion detail on warm paper. Helpful for a durable-objects book, inviting, not luxury food advertising. No labels, numbers, words, brand marks, logo, watermark, border. Landscape 4:3.
+
+ph2-driver-plate.png
+Create a clean accurate editorial product illustration of a standard fixed Phillips screwdriver with a black-and-red two-material ergonomic handle and a long straight round chrome blade, matching the general silhouette of a PH2 driver with 150 mm visible blade. Show one large side view and a separated close-up of the cross-shaped PH2 tip on the same image, clearly showing there is no bit magazine and no battery. Do not reproduce any brand logo, exact handle trademark details or text. 1940s hand-tool catalogue engraving with precise crisp black and steel-gray linework, muted red handle panels, warm white paper, restrained vermilion measurement ticks with no numbers. Generous negative space, mechanically plausible, object only, no label, no words, no watermark, no border. Landscape 4:3.
+
+ph2-driver-technical-plate.png
+Use case: product-mockup. Asset type: a technical product plate for page 15 of a premium printed buying dossier. Image 1 is a STYLE AND COMPOSITION reference only: match its 1940s industrial catalog engraving, warm ivory ground, large diagonal main view, and smaller secondary views; do not depict a hammer. Image 2 is a SUBJECT reference for a fixed-blade PH2 screwdriver silhouette; do not copy any lettering. Create one accurate, mechanically plausible Wiha SoftFinish type PH2 screwdriver with a straight chrome steel shaft and dark charcoal ergonomic handle with restrained red grip panels. The model is long: 150 mm exposed shaft, 268 mm overall length, so the shaft is a little over half the full length. Show one large three-quarter view of the complete driver diagonally across the page, plus three smaller exterior views: a clean side elevation of the complete straight tool, a close detail of the PH2 cross-point tip from end-on and side, and a close detail of the textured handle/end cap. All four views must show the same consistent straight tool; its shaft must remain straight and the tip a Phillips cross point. Use crisp black and steel-gray linework, fine engraved hatching, subtle halftone, warm white paper, small restrained red registration marks, and very restrained red on the handle. Compose as a spacious landscape 4:3 technical plate with the large view dominant and the secondary views clearly separated. No words, letters, numbers, labels, captions, arrows, measurement text, logos, signatures, watermark, border, extra tools, cross-section, cutaway, or invented internal parts.
+
+hammer-in-use.png
+Create a wide editorial illustration of a generic 16-ounce curved-claw hammer being used carefully on a workbench. In the large scene, show one hand gripping the handle and a visibly separate hand steadying the nail, with distinct arms. The tool has a smooth steel face, one continuous forged steel head and handle, and a cobalt blue textured molded grip; do not show a logo or imply a specific photographed SKU. Add a circular, side-view inset tightly composed around the complete steel hammer head: its rear split claw visibly hooks under a partly started nail and levers it out of the board, with the striking face at the opposite end of the same steel head. Show only a short bare-steel neck if needed; crop the long handle and blue rubber grip completely out of the inset. The steel head, not the handle or grip, contacts the nail and board. Period 1940s tool-catalog engraving with clear steel linework, controlled blue accent, warm white paper, a few restrained red registration marks, and tactile wood grain. No labels, letters, logo, watermark, or border. Landscape 4:3.
+
+corded-drill-in-use.png
+Create a wide editorial illustration of a generic vintage low-speed 1/2-inch corded pistol-grip drill in controlled use boring a hole through a wood block on a bench. Tool silhouette should include a front metal gear housing, large keyed chuck, removable side handle held by the second hand, and cord trailing out of frame. Show safe stable two-hand use; no logo and no invented internal mechanism. This is an interpretive workshop scene, not a product photo. 1940s power-tool catalogue engraving with black and steel-gray linework, a restrained teal motor-shell accent, warm white paper and light halftone. Clear composition, drill is large and visible. No text, numbers, logo, watermark, border. Landscape 4:3.
+
+lodge-l10sk3-technical-plate.png
+Create a landscape 4:3 editorial technical plate for a premium reference book. Subject: an accurate exterior study of a Lodge-style L10SK3 12-inch seasoned cast-iron skillet, shown without any brand name or logo. The skillet must have a round 12-inch bowl, a long integral cast-iron handle with a hanging hole, a short integral assist handle directly opposite, and two pour spouts at left and right. Show one large three-quarter isometric view and two small inset views: exact side profile and underside/flat-bottom view. Do not invent internal parts and do not show an exploded assembly; it is a single cast form. Style: 1930s-1940s American industrial catalog engraving combined with clean axonometric product illustration, black charcoal linework and subtle halftone shading on warm ivory archival paper, with restrained vermilion-red registration marks and measurement ticks but absolutely no numbers, letters, labels, captions, logos, signatures, or watermark. Object edges and proportions must be clear enough for annotations to be added later. Generous negative space around the object. High-end editorial, mechanically plausible, clean print texture.
+
+estwing-e3-16c-technical-plate.png
+Create a landscape 4:3 editorial technical plate for a premium reference book. Subject: an accurate exterior study of an Estwing E3-16C type 16-ounce curved-claw hammer, shown without brand name or logo. The hammer is exactly 13 inches overall, with the steel head and steel handle forged as one continuous polished piece, a smooth round striking face, a curved nail-pulling claw, and a molded cobalt-blue shock-reduction grip covering the lower handle. Show one large three-quarter isometric view and two small inset views: side silhouette and a conceptual cut section only through the blue molded grip around the steel core. Do not separate the steel head from the handle and do not invent hidden mechanisms. Style: 1930s-1940s American industrial catalog engraving combined with clean axonometric product illustration, black charcoal and steel-gray linework on warm ivory archival paper, restrained cobalt blue only for the grip, and a few vermilion-red registration marks and measurement ticks. Absolutely no numbers, letters, labels, captions, logos, signatures, or watermark. Mechanically plausible, crisp object edges, generous negative space, high-end editorial print texture.
+
+makita-6302h-technical-plate.png
+Create a landscape 4:3 editorial technical plate for a premium reference book. Subject: an accurate exterior study of a Makita 6302H type 1/2-inch corded pistol-grip drill, shown without brand name or logo. Required visible features: teal cylindrical motor housing, black pistol grip with large trigger and lock-on detail, silver industrial metal gear housing at the front, heavy-duty 1/2-inch keyed chuck, removable black side handle attached beside the gear housing, black power cord exiting the grip, and a small belt clip. Show one large three-quarter isometric view plus three smaller separated accessory/system views: keyed chuck and chuck key, removable side handle, and a clean side silhouette. Do not expose or invent motor internals; this is exterior evidence and an accessory system map, not an exploded internal diagram. Style: 1930s-1940s American power-tool catalog engraving combined with precise axonometric product illustration, black charcoal/steel-gray linework on warm ivory archival paper, restrained teal on the motor housing, and a few vermilion-red registration marks and measurement ticks. Absolutely no numbers, letters, labels, captions, logos, signatures, or watermark. Mechanically plausible, crisp edges, generous negative space, high-end editorial print texture.
+
+bahco-8071-technical-plate.png
+Use the supplied Bahco 8071 hero only as a silhouette reference. Create a clean,
+accurate landscape 4:3 industrial catalog plate for the exact 205 mm / 8-inch
+central-nut adjustable wrench: one-piece forged alloy-steel body, slim fixed
+jaw, sliding jaw, central worm, phosphate finish, and hanging hole. Replace the
+Greek icon/marble background with warm ivory archival paper. Show a large 3/4
+view, a straight side elevation, a jaw-and-worm close-up, and a handle/end
+detail; keep every view mechanically consistent with the same wrench. Use crisp
+black engraved linework, steel-gray hatching, restrained vermilion registration
+ticks, and generous negative space. No Greek ornament, halo, laurel, marble,
+text, labels, numbers, logo, watermark, border, extra tools, invented
+mechanism, or warped handle.
+
+us-wire-12-3-sjtw-technical-plate.png
+Create a clean, accurate landscape 4:3 industrial catalog plate of a 50-foot
+orange 12/3 SJTW extension cord with a circular coil, black molded male plug,
+black molded female receptacle, and strain-relief jackets. Use the supplied
+product hero only as the geometry reference. Remove every Greek icon, laurel,
+marble slab, halo, and decorative border. Show one large coil and three
+consistent detail views (male plug, female receptacle, side/coil profile) on
+warm ivory paper with black engraved linework, steel-gray hatching, and sparse
+vermilion registration ticks. No text, logos, numbers, watermark, packaging,
+extra tools, or invented electronics.
+
+werner-fiberglass-step-ladder-technical-plate.png
+Create a clean, accurate landscape 4:3 industrial catalog plate of a 6-foot
+fiberglass step ladder with orange rails, gray aluminum steps, spreader braces,
+hinge hardware, and black foot caps. Use the supplied product hero only as the
+geometry reference. Remove every Greek icon, laurel, limestone slab, halo,
+circle, and decorative border. Show one large open A-frame view plus hinge /
+spreader, step / foot, and folded side-elevation details on warm ivory paper
+with crisp black engraved linework, steel-gray hatching, and sparse vermilion
+registration ticks. No text, labels, numbers, logo, watermark, people, extra
+tools, invented mechanisms, or warped rails.
+
+vermont-windsor-chair-technical-plate.png
+Create a clean, accurate landscape 4:3 industrial catalog plate of a traditional
+solid hardwood Windsor dining chair with a bow back, turned spindles, shaped
+seat, splayed legs, and turned stretchers. Use the supplied product hero only
+as the geometry reference. Remove every Greek icon, golden halo, laurel, stone
+slab, circle, and decorative border. Show one large 3/4 view plus bow-back /
+spindle, seat-and-leg joint, and side-elevation details on warm ivory paper with
+walnut-brown engraved hatching and sparse vermilion registration ticks. No text,
+labels, numbers, logo, watermark, people, extra furniture, or warped legs.
+
+CLEAN DECLARED PLATE PROMPT FAMILY
+Use the exact model record and the supplied identity source only for silhouette,
+materials, finish, proportions, geometry, and service-relevant hardware. Build a
+spacious landscape 4:3 1940s industrial catalog plate on warm ivory archival
+paper: one dominant three-quarter object view and two or three separated detail
+or elevation views of the same object. Use crisp black linework, steel-gray
+crosshatching, restrained color accents, subtle paper grain, a grounding shadow,
+and small vermilion registration marks. The dossier plate must stand alone:
+remove the Greek icon, laurel, halo, marble slab, pedestal, and decorative
+background used by the storefront. No readable text, labels, numbers, logos,
+packaging, serial marks, watermark, extra tools, people, or invented mechanisms.
+The source page remains authoritative for exact specifications; the plate is an
+original editorial interpretation that makes the physical judgment inspectable.
+
+ACTION PLATE PROMPT FAMILY
+Use the clean multi-view plate only as a silhouette, proportion, material, and
+visible-part reference. Do not reuse its plain product layout. Show the declared
+object actively doing its primary job in one dominant scene: the working surface,
+hands, load, or setting should prove fit and use. Add a small contact-point inset
+only when it clarifies the job. Keep the object's geometry consistent with the
+reference; do not invent mechanisms or branding. Render as a 1940s American
+industrial catalog action illustration on warm ivory archival paper with crisp
+black linework, restrained steel-gray hatching, subtle raster print texture, and
+tiny vermilion registration marks. No Greek motifs, marble, halo, laurel, labels,
+text, numbers, logos, watermark, vector infographic, or decorative panel. The
+scene is an original editorial interpretation, not product photography or a
+safety instruction.
+
+ACTION PAGE COMPLETION — 2026-09-17
+The following dedicated “BUY IT WHEN” plates use the prompt family above and the
+named clean multi-view plate as the object-identity reference. Each scene keeps
+the object large, shows a real working relationship, and uses a mechanically or
+anatomically plausible contact point.
+
+pi-042-bicycle-action.jpg — adult commuter pedaling the steel drop-bar bicycle;
+full bicycle visible; brake-lever inset.
+pi-058-briefcase-action.jpg — structured leather briefcase carried by its top
+handles from a train platform toward work; handle-grip inset.
+pi-052-camping-stove-action.jpg — liquid-fuel stove heating a pot on level bare
+ground; fuel bottle, hose, control valve, and pot supports visible.
+pi-040-cutting-board-action.jpg — cook safely slicing vegetables on the thick
+edge-grain board; finger-grip inset.
+pi-043-dining-chair-action.jpg — Windsor chair supporting a seated diner; seat,
+legs, stretchers, spindles, and joint-check inset visible.
+pi-050-drill-bits-action.jpg — twist bit seated straight in a keyed drill and
+boring a clamped steel plate; cutting-lip inset.
+pi-051-extension-cord-action.jpg — heavy orange grounded cord being laid out in
+a workshop; both molded ends and strain-relief inset visible.
+pi-060-gloves-action.jpg — charcoal knit gloves gripping and stacking firewood;
+palm texture and ribbed cuffs visible.
+pi-059-hat-action.jpg — broad-brim canvas field hat shading an outdoor worker;
+chin-cord toggle and ventilation eyelets visible.
+pi-055-ladder-action.jpg — fiberglass A-frame stepladder fully open and locked
+for indoor trim work; worker below the top cap; spreader-lock inset.
+pi-049-level-action.jpg — aluminum spirit level setting a wall shelf; working
+edge flat and center bubble between its marks.
+pi-053-mechanical-pencil-action.jpg — metal mechanical pencil drawing a measured
+line at a drafting table; lead-sleeve inset.
+pi-039-pen-action.jpg — brushed-metal retractable pen writing in a bound notebook;
+ballpoint and refill details visible.
+pi-062-razor-action.jpg — double-edge safety razor held at a shallow cheek-shaving
+angle; cap, blade, and guard assembly inset.
+pi-047-shoes-action.jpg — welted leather derby shoes worn in a natural walking
+stride; both shoes and the welt line visible.
+pi-045-socks-action.jpg — charcoal crew socks being pulled smoothly over the heel;
+cuff, heel pocket, and reinforced toe visible.
+pi-054-umbrella-action.jpg — full-size hooked-handle umbrella sheltering a walker
+in rain; open canopy, shaft, ribs, and locked runner visible.
+pi-057-wallet-action.jpg — stitched leather bifold used at a shop counter; card
+removed from a real pocket; fold and edge-stitching inset.
+pi-046-watch-action.jpg — steel field watch checked on the wrist during field work;
+crown, case, dial, woven strap, and buckle details visible.
+pi-056-wheelbarrow-action.jpg — galvanized single-wheel barrow carrying soil on a
+garden path; centered load, lifted legs, wooden handles, and axle inset visible.
+
+CARE PAGE CALLOUT SYSTEM
+The ownership page pairs the clean detail plate with a four-part “PARTS TO WATCH”
+callout rail. These labels name the working surfaces, joints, interfaces, and
+service parts that change the ownership decision; they are typeset in the dossier
+so the generated art stays clean and the source trail remains readable.
+
+CUSTOM VECTOR DIAGRAMS
+The Makita service map and PH2/PZ2 matching graphic remain hand-built SVG reading aids in scripts/build-dossier-delta.py. The hammer inspection page and screwdriver reach page use raster multi-view plates instead of vector product drawings. The diagrams and plates were made from cited manufacturer specifications and parts lists; they do not substitute for factory drawings.
