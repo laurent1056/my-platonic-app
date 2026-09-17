@@ -32,3 +32,5 @@ platonic-ideal/
 *.njsproj
 *.sln
 *.sw?
+.vercel
+.env*
