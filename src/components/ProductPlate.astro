@@ -18,6 +18,8 @@ const plate: ProductPlateRecord | undefined = approvedPlateFor(entry.reference)
     <img
       class="specimen-image editorial-plate-image"
       src={withBase(plate.path)}
+      width={plate.width}
+      height={plate.height}
       alt={plate.alt}
       loading={priority ? 'eager' : 'lazy'}
       decoding="async"

@@ -4,7 +4,7 @@ import DossierCover from '@/components/DossierCover.astro'
 import { dossier, dossierChapters, faqs } from '@/data/dossier'
 import { withBase } from '@/data/register'
 ---
-<SiteLayout title="The dossier — $24" current="dossier" offer={false}>
+<SiteLayout title="The dossier — $24" current="dossier" description="The Platonic Ideal Dossier organizes deeper research on durable products, repairability, failure, tradeoffs, and ownership." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'The dossier' }]} offer={false}>
   <div class="shell page-space">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={withBase()}>Home</a><span>/</span><span>The dossier</span></nav>
     <section class="product-detail">

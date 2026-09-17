@@ -25,6 +25,7 @@ const requiredFiles = [
 ]
 
 const errors = []
+const productionUrl = new URL(productionOrigin)
 const register = Papa.parse(await readFile(registerPath, 'utf8'), { header: true, skipEmptyLines: true })
 const expectedCategoryRoutes = register.data.length
 if (register.errors.length) {
@@ -126,6 +127,75 @@ for (const file of htmlFiles) {
     errors.push(`${label} has an invalid canonical URL: ${canonical || 'missing'}`)
   }
 
+  const title = content.match(/<title>([^<]+)<\/title>/i)?.[1]
+  if (!title?.trim()) {
+    errors.push(`${label} is missing a document title`)
+  }
+
+  const description = content.match(/<meta name="description" content="([^"]*)"/i)?.[1]
+  if (!description?.trim()) {
+    errors.push(`${label} is missing a meta description`)
+  }
+
+  const robots = content.match(/<meta name="robots" content="([^"]+)"/i)?.[1]
+  if (!robots) {
+    errors.push(`${label} is missing a robots directive`)
+  }
+
+  const isNoindex = /\bnoindex\b/i.test(robots || '')
+  if (label === '404.html' && !isNoindex) {
+    errors.push('404.html must be noindex')
+  }
+
+  if (!isNoindex) {
+    const ogImage = content.match(/<meta property="og:image" content="([^"]+)"/i)?.[1]
+    if (!ogImage) {
+      errors.push(`${label} is missing an absolute og:image`)
+    } else {
+      try {
+        const imageUrl = new URL(ogImage)
+        if (imageUrl.origin !== productionUrl.origin) {
+          errors.push(`${label} has an og:image outside the production origin: ${ogImage}`)
+        }
+      } catch {
+        errors.push(`${label} has an invalid og:image URL: ${ogImage}`)
+      }
+    }
+
+    const ogImageAlt = content.match(/<meta property="og:image:alt" content="([^"]+)"/i)?.[1]
+    if (!ogImageAlt?.trim()) {
+      errors.push(`${label} is missing og:image:alt`)
+    }
+
+    const twitterImage = content.match(/<meta name="twitter:image" content="([^"]+)"/i)?.[1]
+    if (!twitterImage || twitterImage !== ogImage) {
+      errors.push(`${label} has mismatched or missing Twitter image metadata`)
+    }
+
+    const structuredDataScripts = [...content.matchAll(/<script\b[^>]*type="application\/ld\+json"[^>]*>([\s\S]*?)<\/script>/gi)]
+    const structuredDataTypes = new Set()
+    if (!structuredDataScripts.length) {
+      errors.push(`${label} is missing JSON-LD structured data`)
+    }
+
+    for (const [, rawJson] of structuredDataScripts) {
+      try {
+        const parsedJson = JSON.parse(rawJson)
+        const nodes = Array.isArray(parsedJson?.['@graph']) ? parsedJson['@graph'] : [parsedJson]
+        for (const node of nodes) {
+          const types = Array.isArray(node?.['@type']) ? node['@type'] : [node?.['@type']]
+          for (const type of types) if (type) structuredDataTypes.add(type)
+        }
+      } catch (error) {
+        errors.push(`${label} contains invalid JSON-LD: ${error instanceof Error ? error.message : String(error)}`)
+      }
+    }
+
+    for (const type of ['Organization', 'WebSite', 'WebPage']) {
+      if (!structuredDataTypes.has(type)) errors.push(`${label} JSON-LD is missing ${type} data`)
+    }
+  }
+
   const references = content.matchAll(/(?:href|src)="([^"]+)"/gi)
   for (const [, value] of references) {
     if (!value.startsWith('/') || value.startsWith('//')) continue
@@ -165,4 +235,4 @@ if (errors.length) {
   process.exit(1)
 }
 
-console.log(`Verified ${htmlFiles.length} HTML files, ${expectedCategoryRoutes} category routes, Constitution route, root-relative assets, and Vercel canonical URLs.`)
+console.log(`Verified ${htmlFiles.length} HTML files, ${expectedCategoryRoutes} category routes, metadata, JSON-LD, root-relative assets, and Vercel canonical URLs.`)

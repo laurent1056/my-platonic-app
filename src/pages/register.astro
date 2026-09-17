@@ -1,5 +1,6 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro'
 import Catalog from '@/components/Catalog.astro'
+import { withBase } from '@/data/register'
 ---
-<SiteLayout title="The catalog" current="register"><div class="shell page-space"><div class="page-heading"><p class="eyebrow">The public research</p><h1>The catalog.</h1><p>One pick per category. Or an honest explanation of why none qualifies. Explore the research, then go deeper with the dossier.</p></div><Catalog /></div></SiteLayout>
+<SiteLayout title="The catalog" current="register" description="Browse independent product research across 100 categories: one product worth choosing per category, or an honest explanation when none qualifies." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'The catalog' }]}><div class="shell page-space"><div class="page-heading"><p class="eyebrow">The public research</p><h1>The catalog.</h1><p>One pick per category. Or an honest explanation of why none qualifies. Explore the research, then go deeper with the dossier.</p></div><Catalog /></div></SiteLayout>

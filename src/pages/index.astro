@@ -8,7 +8,7 @@ import { founderStory } from '@/data/founder-story'
 import { domains, register, registerStats, withBase } from '@/data/register'
 const featured = ['frying-pan', 'pocket-knife', 'pen', 'boots'].map(slug => register.find(entry => entry.slug === slug)!)
 ---
-<SiteLayout current="index" title="Platonic Ideal — Fewer things. Better reasons.">
+<SiteLayout current="index" title="Platonic Ideal — Fewer things. Better reasons." description="Independent research for durable, repairable products: one product worth choosing per category, or an honest no.">
   <div class="shell">
     <section class="store-hero" aria-labelledby="home-heading">
       <div class="store-hero-copy"><p class="eyebrow"><span class="small-rule"></span> A more considered way to buy</p><h1 id="home-heading">Fewer things.<br /><em>Better reasons.</em></h1><p class="store-dek">Platonic Ideal researches everyday categories and names one product worth choosing—or explains clearly when no product qualifies.</p><div class="action-row"><a class="button" href={withBase('register/')}>Explore the free catalog <span>{registerStats.total} categories ↗</span></a><a class="inline-link" href={withBase('dossier/')}>Read about the dossier →</a></div><p class="hero-footnote">The verdict and decisive reasoning are free.<br />The dossier sells research depth, never influence.</p></div>

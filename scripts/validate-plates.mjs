@@ -22,10 +22,13 @@ if (!Array.isArray(productPlates)) {
 } else {
   for (const plate of productPlates) {
     const label = plate.productId || plate.id || 'Unknown plate'
-    const required = ['id', 'productId', 'role', 'kind', 'path', 'alt', 'caption', 'credit', 'license', 'exactness', 'capturedOrRetrievedAt', 'verifiedAt', 'status']
+    const required = ['id', 'productId', 'role', 'kind', 'path', 'width', 'height', 'alt', 'caption', 'credit', 'license', 'exactness', 'capturedOrRetrievedAt', 'verifiedAt', 'status']
     for (const field of required) {
       if (!plate[field]) errors.push(`${label}: missing required field ${field}`)
     }
+
+    if (!Number.isInteger(plate.width) || plate.width <= 0) errors.push(`${label}: width must be a positive integer`)
+    if (!Number.isInteger(plate.height) || plate.height <= 0) errors.push(`${label}: height must be a positive integer`)
 
     if (seen.has(plate.productId)) errors.push(`Duplicate product plate: ${plate.productId}`)
     seen.add(plate.productId)

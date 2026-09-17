@@ -1,21 +1,24 @@
 # SEO Metadata
 
-Astro renders unique metadata directly into every static HTML page.
+Astro renders search and social metadata directly into every static HTML page.
 
 ## Implemented
 
 - crawlable category URLs
-- unique title and description per dossier
+- unique, normalized, length-bounded title and description per page
 - canonical URL per page
-- Open Graph and Twitter metadata
+- absolute Open Graph and Twitter metadata, including image alt text
+- JSON-LD for the organization, website, web page, and available breadcrumbs
 - `robots.txt`
 - generated XML sitemap via `@astrojs/sitemap`
 - semantic headings and landmarks
+- `noindex` on preview-only routes and the 404 document
+- intrinsic dimensions on product plates to reserve image layout space
 
 ## Category titles
 
-- declared: `Category — Model · Platonic Ideal`
-- empty: `Category — No product qualifies. · Platonic Ideal`
-- in review: `Category — Declaration withheld. · Platonic Ideal`
+- declared: `Category: Model · Platonic Ideal`
+- empty: `Category: No qualifying pick · Platonic Ideal`
+- in review: `Category: Still researching · Platonic Ideal`
 
-Real non-placeholder images become `og:image` values. Placeholder URLs are intentionally excluded.
+Category-specific plates become absolute `og:image` values. Pages without a plate use the approved Platonic Ideal editorial portrait as a consistent social fallback; no placeholder product URLs are emitted.

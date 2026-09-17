@@ -1,7 +1,7 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro'
 import profileJson from '../../constitution/constitution.v1.json'
-import { publicStateLabels } from '@/data/register'
+import { publicStateLabels, withBase } from '@/data/register'
 
 interface Rule { id: string; key: string; title: string }
 interface ConstitutionProfile {
@@ -48,7 +48,7 @@ const publicEvidenceTitles: Record<string, string> = {
 }
 ---
 
-<SiteLayout current="constitution" title="Our rules for making the call" description="The public rules behind every Platonic Ideal pick: one product per category, or an honest explanation when none qualifies.">
+<SiteLayout current="constitution" title="Our rules for making the call" description="The public rules behind every Platonic Ideal pick: one product per category, or an honest explanation when none qualifies." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'Our editorial rules' }]}>
   <div class="shell constitution-page">
     <header class="constitution-hero">
       <div>

@@ -8,6 +8,7 @@ import DossierOffer from '@/components/DossierOffer.astro'
 import EvidenceSummary from '@/components/EvidenceSummary.astro'
 import { approvedPlateFor } from '@/data/product-plates'
 import { categoryUrl, publicPermanenceDescriptions, publicPermanenceLabels, publicStateLabel, register, splitStatements, withBase, type RegisterEntry } from '@/data/register'
+import { categorySeoDescription, categorySeoTitle } from '@/data/seo'
 
 export function getStaticPaths() {
   return register.map((entry) => ({ params: { slug: entry.slug }, props: { entry } }))
@@ -20,14 +21,15 @@ const next = register[(index + 1) % register.length]
 const isDeclared = entry.verdict === 'DECLARED'
 const isEmpty = entry.verdict === 'EMPTY'
 const declaration = isDeclared ? entry.model : isEmpty ? 'No product qualifies.' : 'Declaration withheld.'
-const description = entry.summary || entry.coreReasoning || `${entry.category}: ${declaration}`
+const description = categorySeoDescription(entry.category, entry.verdict, entry.summary || entry.coreReasoning || `${entry.category}: ${declaration}`)
+const seoTitle = categorySeoTitle(entry.category, entry.verdict, entry.model)
 const approvedPlate = approvedPlateFor(entry.reference)
 const disqualifiers = splitStatements(entry.disqualifiers)
 const admission = splitStatements(entry.admissionTest)
 const failures = splitStatements(entry.failureModes)
 ---
 
-<SiteLayout title={`${entry.category} — ${declaration}`} description={description} image={approvedPlate ? withBase(approvedPlate.path) : undefined} offer={false}>
+<SiteLayout title={seoTitle} description={description} image={approvedPlate ? withBase(approvedPlate.path) : undefined} imageAlt={approvedPlate?.alt} breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'The catalog', href: withBase('register/') }, { name: entry.category }]} offer={false}>
   <div class="shell" data-category-page data-category={entry.category} data-verdict={entry.verdict}>
     <section class="dossier-hero">
       <nav class="breadcrumbs" aria-label="Breadcrumb">

@@ -5,6 +5,7 @@ import AccountPage from '@/components/AccountPage.astro'
 import { infoPages, journalPosts, accountPages, authPages } from '@/data/site-pages'
 import { dossier, faqs } from '@/data/dossier'
 import { domains, withBase } from '@/data/register'
+import { pageSeoDescription } from '@/data/seo'
 export function getStaticPaths() {
   return [...infoPages.map(p => p.slug), ...accountPages.map(p => p[0]), ...authPages.map(p => p[0]), ...journalPosts.map(p => `journal/${p.slug}`), 'journal', 'help', 'compare', 'campaign', 'page-directory'].map(page => ({ params: { page } }))
 }
@@ -23,6 +24,13 @@ const special: Record<string, [string, string, string]> = {
 const title = info?.title || post?.title || account?.[1] || auth?.[1] || special[slug]?.[0]
 const eyebrow = info?.eyebrow || post?.tag || account?.[2] || auth?.[2] || special[slug]?.[1]
 const intro = info?.intro || post?.excerpt || special[slug]?.[2]
+const pageTitle = title || 'Platonic Ideal'
+const pageDescription = pageSeoDescription(intro, `${pageTitle}.`)
+const breadcrumbs = [
+  { name: 'Home', href: withBase() },
+  ...(post || slug === 'journal' ? [{ name: 'Journal', href: withBase('journal/') }] : []),
+  ...(slug === 'journal' ? [] : [{ name: pageTitle }]),
+]
 const directory = [
   ['Storefront & research', [['Home', ''], ['Catalog / product listing', 'register/'], ['Dossier / product detail', 'dossier/'], ['Search results', 'search/'], ['Cart', 'cart/'], ['Checkout preview', 'checkout/'], ['Confirmation preview', 'order-confirmation/']]],
   ['Reader account · Preview', [...authPages.map(([path, , label]) => [label, `${path}/`]), ...accountPages.map(([path, , label]) => [label, `${path}/`])]],
@@ -31,7 +39,7 @@ const directory = [
   ['Collections', domains.map(d => [d.name, `collections/${d.id}/`])],
 ] as [string, string[][]][]
 ---
-<SiteLayout title={title} noindex={!!account || !!auth || info?.preview || slug === 'page-directory'}>
+<SiteLayout title={pageTitle} description={pageDescription} breadcrumbs={breadcrumbs} noindex={!!account || !!auth || info?.preview || slug === 'page-directory'}>
   <div class="shell page-space">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={withBase()}>Home</a><span>/</span>{post && <><a href={withBase('journal/')}>Journal</a><span>/</span></>}<span>{eyebrow}</span></nav>
     <div class="page-heading"><p class="eyebrow">{eyebrow}</p><h1>{title}</h1>{intro && <p>{intro}</p>}</div>
