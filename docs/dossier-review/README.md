@@ -33,9 +33,12 @@ Screwdriver. The remaining spreads are alphabetical.
 Each recommendation puts the useful source-derived facts next to the decision:
 model and variant, dimensions or capacity, construction, what ownership asks of
 you, care routine, likely wear symptoms, service and parts path, serious
-alternatives, and a link to the maker or seller. The source pages at the back
-make those references easy to check and update; they are not a substitute for
-the information on the product spread.
+alternatives, and a link to the maker or seller. The decision page carries the
+full register reasoning under **Editorial analysis**; the fit/use page carries
+the full register disqualifiers under **Comparative analysis**, directly below
+the serious-alternatives table. The source pages at the back make those
+references easy to check and update; they are not a substitute for the
+information on the product spread.
 
 Every declared product has at least three dossier images:
 
@@ -67,9 +70,9 @@ python3 scripts/build-dossier-delta.py --legacy-full \
   --output output/pdf/platonic-ideal-dossier-full-review.pdf
 ```
 
-The default output is a 157-page PDF: four front pages, 144 product pages, four
-comparison pages, three source pages, an image and rights glossary, and a final
-reader checklist.
+The default output is a 157-page PDF: four front pages, 144 product pages
+(three pages per declared recommendation), four comparison pages, three source
+pages, an image and rights glossary, and a final reader checklist.
 
 ## Image truth and sources
 

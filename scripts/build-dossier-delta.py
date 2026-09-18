@@ -677,7 +677,7 @@ def load_entries() -> list[Entry]:
                 price=get("Price"),
                 form=get("Form Definition"),
                 form_statement=get("Form Statement"),
-                summary=get("Card Snippet (Why this ends the search)"),
+                summary=get("Card Snippet (Why this ends the search)") or get("Form Statement") or get("Core_Reasoning", "Core Reasoning"),
                 reasoning=get("Core_Reasoning", "Core Reasoning"),
                 disqualifiers=get("Key_Disqualifiers", "Key Disqualifiers"),
                 maintenance=get("Maintenance / Replacement Cycle"),
@@ -2653,8 +2653,13 @@ def declared_model_label(entry: Entry) -> str:
     record = source_for(entry)
     exact = normalize(record.get("exactModel"))
     variant = normalize(record.get("variant"))
-    if exact and exact.lower() not in {"not recorded", "model pending", "not sku-normalized"}:
-        return shorten(" / ".join(part for part in (exact, variant) if part), 96)
+    title = normalize(record.get("sourcePageTitle"))
+    identity = normalize(record.get("identityStatus")).lower()
+    if identity == "exact" and exact and exact.lower() not in {"not recorded", "model pending", "not sku-normalized"}:
+        base = title or variant or exact
+        if exact.lower() not in base.lower():
+            base = f"{base} ({exact})"
+        return shorten(base, 96)
     return shorten(entry.model or entry.category, 96)
 
 
@@ -2834,6 +2839,26 @@ def declared_source_line(entry: Entry) -> str:
     return f'<p class="declared-source-line"><span class="red">CHECK THE SOURCE:</span> {esc(role)}; {esc(identity_text)}; last checked {esc(checked)}. {declared_source_cta(entry)}</p>'
 
 
+def declared_editorial_analysis(entry: Entry) -> str:
+    """Give every declared pick's full editorial reasoning visual priority."""
+    return f'''<section class="declared-editorial-analysis" data-case-reference="{esc(entry.reference)}" data-case-field="coreReasoning">
+  <p class="section-label">EDITORIAL ANALYSIS</p>
+  <h3>Why this is the pick</h3>
+  <p>{esc(clean_editorial_text(entry.reasoning))}</p>
+</section>'''
+
+
+def declared_comparative_analysis(entry: Entry) -> str:
+    """Place every declared pick's full counter-case below its candidate table."""
+    return f'''<section class="declared-comparative-analysis" data-case-reference="{esc(entry.reference)}" data-case-field="disqualifiers">
+  <div>
+    <p class="section-label">COMPARATIVE ANALYSIS</p>
+    <h3>Why the field falls short</h3>
+  </div>
+  <p>{esc(clean_editorial_text(entry.disqualifiers))}</p>
+</section>'''
+
+
 def _declared_index_rows(entries: list[Entry], page_map: dict[str, int]) -> str:
     return "".join(
         f'<div class="declared-index-row"><span>{esc(entry.category)}</span><i class="dots"></i><span>{page_map[entry.reference]:02d}</span></div>'
@@ -2884,7 +2909,9 @@ def build_declared_html(entries: list[Entry]) -> str:
     """Build the declared-only book in the supplied 1940 proof rhythm.
 
     Four front pages establish the reading method. Every declaration then gets
-    exactly three pages: decision, fit/use, and ownership/service. The remaining
+    exactly three pages: decision, fit/use, and ownership/service. Every
+    declared chapter uses the existing decision and fit pages to carry its
+    full editorial and comparative case. The remaining
     pages are a comparison, product sources, an image glossary, and a reader checklist.
     """
     declared = declared_order(entries)
@@ -2968,6 +2995,14 @@ def build_declared_html(entries: list[Entry]) -> str:
         action_trade = proof_action["trade"] if proof_action else declared_trade(entry)
         feature_rows = [(label, text) for label, text in proof_action["checks"]] if proof_action else declared_feature_rows(entry)
         feature_html = "".join(f'<li><b>{esc(label)}:</b> {esc(shorten(text, 180))}</li>' for label, text in feature_rows)
+        editorial_case = clean_editorial_text(entry.reasoning)
+        comparative_case = clean_editorial_text(entry.disqualifiers)
+        decision_page_class = "declared-page declared-decision"
+        action_page_class = "declared-page declared-action"
+        if len(editorial_case) > 590:
+            decision_page_class += " declared-decision-compact"
+        if len(comparative_case) > 520:
+            action_page_class += " declared-action-compact"
 
         pages.append(review_page(decision_page, entry.category.upper(), "DECISION • EXACT MODEL", f'''
 <div class="declared-object-opener">
@@ -2981,7 +3016,8 @@ def build_declared_html(entries: list[Entry]) -> str:
   {declared_metric_grid(entry)}
   <div class="declared-verdict"><p class="section-label">THE DECISION</p><p>{esc(shorten(declared_trade(entry), 230))}</p><div class="cta-row">{declared_source_cta(entry, "View product details")}</div></div>
 </div>
-''', "declared-page declared-decision"))
+{declared_editorial_analysis(entry)}
+''', decision_page_class))
 
         pages.append(review_page(decision_page + 1, entry.category.upper(), action_right, f'''
 <div class="split-title"><h2>{esc(action_heading)}</h2><span>{esc(shorten(model, 34))}</span></div>
@@ -2997,8 +3033,9 @@ def build_declared_html(entries: list[Entry]) -> str:
   </div>
 </div>
 {declared_candidate_table(entry)}
+{declared_comparative_analysis(entry)}
 <div class="cta-row">{declared_source_cta(entry, "View specs and fit")}</div>
-''', "declared-page declared-action"))
+''', action_page_class))
 
         care_rows = declared_care_rows(entry)
         care_html = "".join(f'<tr><td>{esc(number)}</td><td><strong>{esc(title)}</strong></td><td>{esc(text)}</td></tr>' for number, title, text in care_rows)
@@ -3137,6 +3174,19 @@ def declared_css() -> str:
 .declared-candidate-table th { font-size:7.1pt; padding:.04in .045in .04in 0; }
 .declared-candidate-table td { padding:.042in .045in .042in 0; }
 .declared-candidate-table td:first-child { width:1.55in; }
+.declared-decision-compact .declared-plate-large { height:4.02in; }
+.declared-decision-compact .declared-editorial-analysis p:last-child { font-size:8.4pt; line-height:1.15; }
+.declared-action-compact .declared-action-copy .small-copy { font-size:8.9pt; line-height:1.2; }
+.declared-action-compact .declared-action-copy .note-rule { font-size:8.7pt; line-height:1.17; margin:.06in 0; }
+.declared-action-compact .declared-action-copy .ruled-list li { font-size:8.3pt; line-height:1.1; padding:.035in 0; }
+.declared-action-compact .declared-action-copy .ruled-list b { font-size:7.6pt; }
+.declared-action-compact .candidate-note { font-size:8pt; line-height:1.1; margin:-.01in 0 .03in; }
+.declared-action-compact .declared-candidate-table { font-size:7.1pt; line-height:1.08; margin-bottom:.08in; }
+.declared-action-compact .declared-candidate-table th { padding:.03in .04in .03in 0; }
+.declared-action-compact .declared-candidate-table td { padding:.03in .04in .03in 0; }
+.declared-action-compact .declared-comparative-analysis { grid-template-columns:1.45in 1fr; gap:.12in; margin-top:.06in; padding-top:.04in; }
+.declared-action-compact .declared-comparative-analysis > p { font-size:7.95pt; line-height:1.12; }
+.declared-action-compact .cta-row { margin-top:.04in; }
 .declared-care .deck { max-width:6.9in; margin:.06in 0 .08in; font-size:10.8pt; }
 .declared-care-layout { display:grid; grid-template-columns:2.72in 1fr; gap:.22in; align-items:start; }
 .declared-detail-image { width:100%; height:3.02in; object-fit:contain; display:block; }
@@ -3163,6 +3213,14 @@ def declared_css() -> str:
 .declared-source-line { margin:.04in 0 0; font-size:7.2pt; line-height:1.18; color:var(--muted); }
 .declared-source-line .text-link { font-size:7.2pt; margin:0 0 0 .08in; }
 .declared-source-line .source-missing { font:7.2pt var(--sans); color:var(--red); }
+.declared-editorial-analysis { margin-top:.08in; padding-top:.06in; border-top:1pt solid var(--ink); break-inside:avoid; }
+.declared-editorial-analysis .section-label { margin:0 0 .025in; }
+.declared-editorial-analysis h3 { margin:0 0 .025in; font-size:10.5pt; line-height:1.05; }
+.declared-editorial-analysis p:last-child { margin:0; font-size:8.65pt; line-height:1.19; }
+.declared-comparative-analysis { display:grid; grid-template-columns:1.65in 1fr; gap:.16in; align-items:start; margin-top:.1in; padding-top:.06in; border-top:1pt solid var(--ink); break-inside:avoid; }
+.declared-comparative-analysis .section-label { margin:0 0 .025in; }
+.declared-comparative-analysis h3 { margin:0; font-size:10.2pt; line-height:1.05; }
+.declared-comparative-analysis > p { margin:0; font-size:8.35pt; line-height:1.2; }
 .declared-image-missing { height:2.8in; display:flex; align-items:center; justify-content:center; border-top:1pt solid var(--ink); border-bottom:1pt solid var(--ink); font:8pt var(--sans); letter-spacing:.7px; text-transform:uppercase; }
 .colophon-number { margin:0; color:var(--red); font:600 31pt/.86 var(--sans); }
 .colophon-label { margin:.035in 0 .13in; font:600 8pt var(--sans); letter-spacing:1px; text-transform:uppercase; }

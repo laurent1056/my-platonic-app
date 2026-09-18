@@ -1,6 +1,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import Papa from 'papaparse'
+import { imageSourceFor } from './image-sources'
 
 export type SourceStatus =
   | 'DECLARED'
@@ -246,6 +247,23 @@ export function slugify(value: string): string {
     .replace(/^-|-$/g, '')
 }
 
+/**
+ * Use the source inventory's exact-model page as the shared display identity
+ * when it is confirmed. The CSV remains the editorial register of record;
+ * this only prevents the storefront and dossier from naming the same model
+ * differently.
+ */
+export function canonicalModelLabel(reference: string, fallback: string): string {
+  const source = imageSourceFor(reference)
+  const title = source?.sourcePageTitle?.trim()
+  const exact = source?.exactModel?.trim()
+  const exactIsUsable = exact && !['not recorded', 'model pending', 'not sku-normalized'].includes(exact.toLocaleLowerCase())
+  if (!source || source.identityStatus !== 'exact' || !exactIsUsable) return fallback
+  const base = title || source.variant?.trim() || exact
+  if (!base) return fallback
+  return base.toLocaleLowerCase().includes(exact.toLocaleLowerCase()) ? base : `${base} (${exact})`
+}
+
 function clean(value?: string): string {
   return (value ?? '').trim().replace(/\r\n/g, '\n')
 }
@@ -290,7 +308,7 @@ export const register: RegisterEntry[] = parsed.data.map((row, index) => {
     slug: slugify(category),
     sourceStatus,
     verdict: publicVerdict(sourceStatus),
-    model,
+    model: canonicalModelLabel(`PI-${String(number).padStart(3, '0')}`, model),
     price: clean(row.Price),
     formDefinition: clean(row['Form Definition']),
     formStatement: clean(row['Form Statement']),

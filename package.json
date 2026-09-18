@@ -17,8 +17,9 @@
     "validate:images": "node scripts/validate-image-sources.mjs",
     "audit:prod": "npm audit --audit-level=high --omit=dev",
     "test:storefront": "node --test scripts/test-storefront.mjs",
+    "test:dossier": "node --test scripts/test-dossier-parity.mjs",
     "audit:launch": "node scripts/launch-audit.mjs",
-    "test": "npm run check && npm run test:institution && npm run build && npm run test:storefront"
+    "test": "npm run check && npm run test:institution && npm run build && npm run test:dossier && npm run test:storefront"
   },
   "dependencies": {
     "@astrojs/sitemap": "3.7.3",
