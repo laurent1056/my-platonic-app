@@ -121,6 +121,13 @@ const resolvedCurrent = current === 'constitution' ? 'methodology' : current || 
     <meta name="description" content={seoDescription} />
     <meta name="google-site-verification" content="c8ruZs4tXVdUDDq3iXf_6xtiNaoouDWOvGQ7jVUpiVI" />
     <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GF42RQENS" is:inline></script>
+    <script is:inline>
+      window.dataLayer = window.dataLayer || []
+      function gtag(){dataLayer.push(arguments)}
+      gtag('js', new Date())
+      gtag('config', 'G-5GF42RQENS')
+    </script>
     <link rel="canonical" href={canonical.href} />
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
     <meta property="og:type" content="website" />
