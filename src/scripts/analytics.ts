@@ -117,13 +117,13 @@ function sendToGa4(event: AnalyticsEventName, properties: AnalyticsProperties): 
   if (event === 'dossier_sample_open') {
     parameters.download_type ??= 'sample'
     parameters.access_type ??= 'public'
-    parameters.trial_download ??= true
+    parameters.trial_download ??= 'true'
   }
 
   if (event === 'fulfillment') {
     parameters.download_type ??= 'paid_dossier'
     parameters.access_type ??= 'paid'
-    parameters.trial_download ??= false
+    parameters.trial_download ??= 'false'
   }
 
   try {
@@ -208,7 +208,7 @@ function propertiesFromTarget(target: HTMLElement): AnalyticsProperties {
   if (target.dataset.analyticsFileName) properties.file_name = target.dataset.analyticsFileName
   if (target.dataset.analyticsFileExtension) properties.file_extension = target.dataset.analyticsFileExtension
   if (target.dataset.analyticsTransactionId) properties.transaction_id = target.dataset.analyticsTransactionId
-  if (target.dataset.analyticsTrial) properties.trial_download = target.dataset.analyticsTrial === 'true'
+  if (target.dataset.analyticsTrial) properties.trial_download = target.dataset.analyticsTrial === 'true' ? 'true' : 'false'
   if (price !== undefined) properties.value = price
   if (target.dataset.analyticsCurrency) properties.currency = target.dataset.analyticsCurrency
 
