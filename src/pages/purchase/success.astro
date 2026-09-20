@@ -14,9 +14,9 @@ const downloadHref = downloadToken
   ? `${withBase('api/dossier/download/')}?token=${encodeURIComponent(downloadToken)}`
   : ''
 ---
-<SiteLayout title="Purchase confirmation" noindex offer={false} analytics={false}>
+<SiteLayout title="Purchase confirmation" noindex offer={false}>
   <div class="shell page-space">
-    <section class="confirmation">
+    <section class="confirmation" data-purchase-confirmed={paid ? 'true' : 'false'} data-purchase-transaction-id={paid && sessionId ? sessionId : undefined} data-purchase-item-id={dossier.id} data-purchase-item-name={dossier.name} data-purchase-edition={dossier.editionId} data-purchase-value={dossier.price} data-purchase-currency="USD">
       <span class="confirmation-mark" aria-hidden="true">{paid ? '✓' : '—'}</span>
       <p class="eyebrow">Purchase confirmation</p>
       {paid ? <>
@@ -27,7 +27,7 @@ const downloadHref = downloadToken
           <p class="eyebrow">Your edition</p>
           <h2>{dossier.pageCount} pages. {dossier.recommendationCount} declarations.</h2>
           {deliveryConfigured && downloadHref
-            ? <a class="button" href={downloadHref} data-analytics-event="fulfillment">Download the dossier →</a>
+            ? <a class="button" href={downloadHref} data-analytics-event="fulfillment" data-analytics-download-type="paid_dossier" data-analytics-access-type="paid" data-analytics-trial="false" data-analytics-file-name={`${dossier.editionId}.pdf`} data-analytics-file-extension="pdf" data-analytics-edition-id={dossier.editionId} data-analytics-transaction-id={sessionId || undefined}>Download the dossier →</a>
             : <p>Delivery is still being connected. Keep your Stripe receipt and contact support if the download does not arrive.</p>}
           <p class="fine-print">This link grants access to the paid edition. Please do not share it publicly.</p>
         </div>

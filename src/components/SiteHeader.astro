@@ -19,6 +19,6 @@ const { current } = Astro.props
       <a href={withBase('search/')} aria-label="Search" aria-current={current === 'search' ? 'page' : undefined} class="icon-link"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg></a>
       <ThemeToggle />
     </div>
-    <a class="button nav-offer" href={withBase('dossier/')}>Get the dossier <span>{dossier.priceLabel} ↗</span></a>
+    <a class="button nav-offer" href={withBase('dossier/')} data-analytics-event="dossier_cta_click" data-analytics-item-id={dossier.id} data-analytics-item-name={dossier.name} data-analytics-item-category="digital_dossier" data-analytics-item-price={dossier.price} data-analytics-item-list-name="site_header" data-analytics-value={dossier.price} data-analytics-currency="USD" data-analytics-edition-id={dossier.editionId}>Get the dossier <span>{dossier.priceLabel} ↗</span></a>
   </div>
 </header>

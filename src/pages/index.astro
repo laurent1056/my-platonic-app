@@ -3,7 +3,7 @@ import SiteLayout from '@/layouts/SiteLayout.astro'
 import DossierCover from '@/components/DossierCover.astro'
 import CategoryCard from '@/components/CategoryCard.astro'
 import EmailCapture from '@/components/EmailCapture.astro'
-import { dossierChapters } from '@/data/dossier'
+import { dossier, dossierChapters } from '@/data/dossier'
 import { founderStory } from '@/data/founder-story'
 import { domains, register, registerStats, withBase } from '@/data/register'
 const featured = ['frying-pan', 'pocket-knife', 'pen', 'boots'].map(slug => register.find(entry => entry.slug === slug)!)
@@ -11,7 +11,7 @@ const featured = ['frying-pan', 'pocket-knife', 'pen', 'boots'].map(slug => regi
 <SiteLayout current="index" title="Platonic Ideal — Fewer things. Better reasons." description="Independent research for durable, repairable products: one product worth choosing per category, or an honest no.">
   <div class="shell">
     <section class="store-hero" aria-labelledby="home-heading">
-      <div class="store-hero-copy"><p class="eyebrow"><span class="small-rule"></span> A more considered way to buy</p><h1 id="home-heading">Fewer things.<br /><em>Better reasons.</em></h1><p class="store-dek">Platonic Ideal researches everyday categories and names one product worth choosing—or explains clearly when no product qualifies.</p><div class="action-row"><a class="button" href={withBase('register/')}>Explore the free catalog <span>{registerStats.total} categories ↗</span></a><a class="inline-link" href={withBase('dossier/')}>Read about the dossier →</a></div><p class="hero-footnote">The verdict and decisive reasoning are free.<br />The dossier sells research depth, never influence.</p></div>
+      <div class="store-hero-copy"><p class="eyebrow"><span class="small-rule"></span> A more considered way to buy</p><h1 id="home-heading">Fewer things.<br /><em>Better reasons.</em></h1><p class="store-dek">Platonic Ideal researches everyday categories and names one product worth choosing—or explains clearly when no product qualifies.</p><div class="action-row"><a class="button" href={withBase('register/')}>Explore the free catalog <span>{registerStats.total} categories ↗</span></a><a class="inline-link" data-analytics-event="dossier_cta_click" data-analytics-item-id={dossier.id} data-analytics-item-name={dossier.name} data-analytics-item-category="digital_dossier" data-analytics-item-price={dossier.price} data-analytics-item-list-name="home_hero" data-analytics-value={dossier.price} data-analytics-currency="USD" data-analytics-edition-id={dossier.editionId} href={withBase('dossier/')}>Read about the dossier →</a></div><p class="hero-footnote">The verdict and decisive reasoning are free.<br />The dossier sells research depth, never influence.</p></div>
       <div class="hero-book-stage"><span class="book-stage-caption eyebrow">The digital research edition</span><DossierCover href={withBase('dossier/')} eager /><span class="book-stage-bottom"><span>One dossier. A clearer point of view.</span><span aria-hidden="true">↗</span></span></div>
     </section>
     <div class="principle-strip"><span><b>{registerStats.total}</b> categories in the catalog</span><span>One pick. Or an honest no.</span><span>Evidence before verdict</span><span>Independent by design</span></div>

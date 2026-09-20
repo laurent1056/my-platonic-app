@@ -47,7 +47,7 @@ if (!/priceLabel/.test(dossier)) blockers.push('dossier offer has no published p
 const commerce = fs.readFileSync(path.join(root, 'src', 'scripts', 'commerce.ts'), 'utf8')
 const analytics = fs.readFileSync(path.join(root, 'src', 'scripts', 'analytics.ts'), 'utf8')
 const instrumentation = `${commerce}\n${analytics}`
-for (const marker of ['page_view', 'checkout_start', 'purchase', 'fulfillment']) {
+for (const marker of ['page_view', 'checkout_start', 'begin_checkout', 'view_item', 'purchase', 'fulfillment', 'dossier_download']) {
   if (!instrumentation.includes(`'${marker}'`)) blockers.push(`analytics instrumentation does not emit ${marker}`)
 }
 

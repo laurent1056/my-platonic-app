@@ -1,4 +1,5 @@
 ---
+import { dossier } from '@/data/dossier'
 import { dossierCoverQuote, platoPortrait } from '@/data/dossier-art'
 import { withBase } from '@/data/register'
 
@@ -33,7 +34,7 @@ const portraitSrc = withBase(platoPortrait.src)
       <cite>Republic VI · 507b</cite>
     </blockquote>
     <div class="cover-bottom" aria-hidden="true"><span>Evidence · Judgment · Ownership</span></div>
-    {href && <a class="dossier-cover-link" href={href}><span class="sr-only">Explore the Platonic Ideal Dossier</span></a>}
+    {href && <a class="dossier-cover-link" href={href} data-analytics-event="dossier_cta_click" data-analytics-item-id={dossier.id} data-analytics-item-name={dossier.name} data-analytics-item-category="digital_dossier" data-analytics-item-price={dossier.price} data-analytics-item-list-name="cover" data-analytics-value={dossier.price} data-analytics-currency="USD" data-analytics-edition-id={dossier.editionId}><span class="sr-only">Explore the Platonic Ideal Dossier</span></a>}
   </div>
   {credit && (
     <figcaption class="dossier-cover-credit">
