@@ -5,7 +5,7 @@ import { dossier, dossierChapters, faqs } from '@/data/dossier'
 import { withBase } from '@/data/register'
 const paymentLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK_URL?.trim()
 ---
-<SiteLayout title="The dossier — 48 recommendations · $24" current="dossier" description="The Platonic Ideal Declared Edition is a 157-page tagged PDF containing 48 product recommendations, with the evidence, tradeoffs, and ownership reasoning behind each one." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'The dossier' }]} offer={false}>
+<SiteLayout title="The dossier — 48 recommendations · $24" current="dossier" description="The Platonic Ideal Declared Edition is a 157-page tagged PDF containing 48 product recommendations, with the evidence, tradeoffs, and ownership reasoning behind each one." image={withBase('images/platonic-ideal-dossier-cover.jpg')} imageAlt="The Platonic Ideal Dossier cover with a portrait of Plato and a red circular motif." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'The dossier' }]} offer={false}>
   <div class="shell page-space">
     <nav class="breadcrumbs" aria-label="Breadcrumb"><a href={withBase()}>Home</a><span>/</span><span>The dossier</span></nav>
     <section class="product-detail" data-dossier-edition={dossier.editionId} data-dossier-id={dossier.id} data-dossier-name={dossier.name} data-dossier-price={dossier.price} data-dossier-currency="USD">

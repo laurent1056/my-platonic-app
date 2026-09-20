@@ -85,6 +85,7 @@ test('public promise, founder story, measurement hooks, and dossier edition deta
   assert.match(home, /A founder’s letter/)
   assert.match(dossier, /157-page tagged PDF/)
   assert.match(dossier, /48 declared recommendations/)
+  assert.match(dossier, /images\/platonic-ideal-dossier-cover\.jpg/)
   assert.match(dossier, /data-dossier-edition=/)
   assert.match(dossier, /data-analytics-event="dossier_sample_open"/)
   assert.match(dossier, /data-analytics-download-type="sample"/)

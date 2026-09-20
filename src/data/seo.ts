@@ -2,7 +2,7 @@ import type { Verdict } from './register'
 
 export const SITE_NAME = 'Platonic Ideal'
 export const DEFAULT_DESCRIPTION = 'Independent product research for durable, repairable things: one product worth choosing per category, or an honest explanation when none qualifies.'
-export const DEFAULT_SOCIAL_IMAGE = 'images/plato-silanion-berlin.webp'
+export const DEFAULT_SOCIAL_IMAGE = 'images/platonic-ideal-dossier-cover.jpg'
 
 const BRAND_SUFFIX = ` · ${SITE_NAME}`
 

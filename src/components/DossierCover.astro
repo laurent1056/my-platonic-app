@@ -1,48 +1,28 @@
 ---
 import { dossier } from '@/data/dossier'
-import { dossierCoverQuote, platoPortrait } from '@/data/dossier-art'
 import { withBase } from '@/data/register'
 
 interface Props {
   compact?: boolean
-  credit?: boolean
   eager?: boolean
   href?: string
 }
 
-const { compact = false, credit = !compact, eager = false, href } = Astro.props
-const portraitSrc = withBase(platoPortrait.src)
+const { compact = false, eager = false, href } = Astro.props
+const coverSrc = withBase('images/platonic-ideal-dossier-cover.jpg')
 ---
 <figure class:list={['dossier-object', { compact }]}>
-  <div class="dossier-cover">
-    <div class="cover-top" aria-hidden="true"><span>Platonic Ideal</span><span>Research edition</span></div>
-    <div class="cover-title"><span>The Platonic Ideal</span><em>Dossier.</em></div>
-    <div class="cover-portrait">
-      <img
-        src={portraitSrc}
-        width={platoPortrait.width}
-        height={platoPortrait.height}
-        alt={platoPortrait.alt}
-        loading={eager ? 'eager' : 'lazy'}
-        fetchpriority={eager ? 'high' : 'auto'}
-        decoding="async"
-      />
-      <span class="cover-plato-name" aria-hidden="true">ΠΛΑΤΩΝ</span>
-    </div>
-    <blockquote class="cover-quote">
-      <p>“{dossierCoverQuote.coverExcerpt}”</p>
-      <cite>Republic VI · 507b</cite>
-    </blockquote>
-    <div class="cover-bottom" aria-hidden="true"><span>Evidence · Judgment · Ownership</span></div>
+  <div class="dossier-cover dossier-cover-image">
+    <img
+      class="dossier-cover-art"
+      src={coverSrc}
+      width="1600"
+      height="2560"
+      alt="The Platonic Ideal Dossier cover: a cream book cover with a red circular motif and a portrait of Plato"
+      loading={eager ? 'eager' : 'lazy'}
+      fetchpriority={eager ? 'high' : 'auto'}
+      decoding="async"
+    />
     {href && <a class="dossier-cover-link" href={href} data-analytics-event="dossier_cta_click" data-analytics-item-id={dossier.id} data-analytics-item-name={dossier.name} data-analytics-item-category="digital_dossier" data-analytics-item-price={dossier.price} data-analytics-item-list-name="cover" data-analytics-value={dossier.price} data-analytics-currency="USD" data-analytics-edition-id={dossier.editionId}><span class="sr-only">Explore the Platonic Ideal Dossier</span></a>}
   </div>
-  {credit && (
-    <figcaption class="dossier-cover-credit">
-      <span>{platoPortrait.object} · {platoPortrait.holdingInstitution}</span>
-      <span class="dossier-credit-links">
-        <a href={platoPortrait.sourceUrl} target="_blank" rel="license noopener noreferrer">Photo: {platoPortrait.displayCreator} ↗</a>
-        <a href={platoPortrait.licenseUrl} target="_blank" rel="license noopener noreferrer">{platoPortrait.licenseName} · cropped and toned ↗</a>
-      </span>
-    </figcaption>
-  )}
 </figure>
