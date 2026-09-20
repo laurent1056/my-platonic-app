@@ -1,9 +1,11 @@
 import test from 'node:test'
 import assert from 'node:assert/strict'
 import { readFile, readdir } from 'node:fs/promises'
+import { existsSync } from 'node:fs'
 import path from 'node:path'
 
-const root = path.resolve('dist')
+const distRoot = path.resolve('dist')
+const root = existsSync(path.join(distRoot, 'client')) ? path.join(distRoot, 'client') : distRoot
 async function html(route) { return readFile(path.join(root, route ? `${route}/index.html` : 'index.html'), 'utf8') }
 async function htmlFiles(dir) {
   const entries = await readdir(dir, { withFileTypes: true })
@@ -34,6 +36,13 @@ test('checkout and account previews are noindex and do not offer editable creden
   assert.match(await html('order-confirmation'), /No payment was taken/)
 })
 
+test('Stripe confirmation, download, and webhook handlers are emitted as server routes', async () => {
+  const entry = await readFile(path.resolve('.vercel/output/_functions/entry.mjs'), 'utf8')
+  for (const route of ['src/pages/purchase/success.astro', 'src/pages/api/dossier/download.ts', 'src/pages/api/stripe/webhook.ts']) {
+    assert.match(entry, new RegExp(route.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')), route)
+  }
+})
+
 test('category verdicts do not become commercial cart items', async () => {
   const dir = path.join(root, 'category')
   for (const file of await htmlFiles(dir)) {
@@ -41,7 +50,8 @@ test('category verdicts do not become commercial cart items', async () => {
     assert.ok(!/<button\b[^>]*\bdata-add-dossier\b/.test(content), path.relative(root, file))
     assert.match(content, /class="dossier-offer offer-compact"/, path.relative(root, file))
   }
-  assert.match(await html('dossier'), /data-add-dossier/)
+  assert.match(await html('dossier'), /48 declared recommendations/)
+  assert.match(await html('dossier'), /Buy the declared edition|Stripe checkout is not configured/)
 })
 
 test('catalog retains ownership and evidence controls, including empty verdicts', async () => {
@@ -52,15 +62,16 @@ test('catalog retains ownership and evidence controls, including empty verdicts'
   assert.doesNotMatch(content, /\b(?:CANDIDATE|SPLIT_REQUIRED|CONDITIONAL|CONSUMABLE)\b/)
 })
 
-test('preview routes are excluded from the sitemap', async () => {
+test('preview and transaction routes are excluded from the sitemap', async () => {
   const sitemap = await readFile(path.join(root, 'sitemap-0.xml'), 'utf8')
-  assert.doesNotMatch(sitemap, /<loc>[^<]*\/(?:account(?:\/[^<]*)?|cart\/|checkout\/|order-confirmation\/|privacy\/|terms\/|page-directory\/)<\/loc>/)
+  assert.doesNotMatch(sitemap, /<loc>[^<]*\/(?:account(?:\/[^<]*)?|cart\/|checkout\/|order-confirmation\/|purchase(?:\/[^<]*)?|privacy\/|terms\/|page-directory\/)<\/loc>/)
   assert.match(sitemap, /\/dossier\/<\/loc>/)
 })
 
-test('public promise, founder story, measurement hooks, and sandbox fulfillment are present', async () => {
+test('public promise, founder story, measurement hooks, and dossier edition details are present', async () => {
   const home = await html('')
   const about = await html('about')
+  const dossier = await html('dossier')
   const confirmation = await html('order-confirmation')
   assert.match(home, /names one product worth choosing|no product qualifies/i)
   assert.match(home, /data-email-capture/)
@@ -71,6 +82,8 @@ test('public promise, founder story, measurement hooks, and sandbox fulfillment 
   assert.match(about, /refrigerator/i)
   assert.match(home, /data-analytics-event="dossier_cta_click"/)
   assert.match(home, /A founder’s letter/)
+  assert.match(dossier, /157-page tagged PDF/)
+  assert.match(dossier, /48 declared recommendations/)
   assert.match(confirmation, /Download sandbox file/)
   assert.match(confirmation, /No payment was taken/)
 })

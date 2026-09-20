@@ -1,4 +1,5 @@
 import test from 'node:test'
+import { existsSync } from 'node:fs'
 import assert from 'node:assert/strict'
 import fs from 'node:fs/promises'
 import path from 'node:path'
@@ -7,7 +8,8 @@ import Papa from 'papaparse'
 const root = path.resolve('.')
 const csvPath = path.join(root, 'public', 'platonic_ideal.csv')
 const dossierPath = path.join(root, 'tmp', 'pdfs', 'delta-1940', 'platonic-ideal-dossier-declared-1940.html')
-const distRoot = path.join(root, 'dist')
+const distRootBase = path.join(root, 'dist')
+const distRoot = existsSync(path.join(distRootBase, 'client')) ? path.join(distRootBase, 'client') : distRootBase
 
 const csv = await fs.readFile(csvPath, 'utf8')
 const { data: rows, errors } = Papa.parse(csv, { header: true, skipEmptyLines: true })

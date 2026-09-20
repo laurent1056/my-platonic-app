@@ -20,6 +20,7 @@ interface Props {
   breadcrumbs?: BreadcrumbItem[]
   noindex?: boolean
   offer?: boolean
+  analytics?: boolean
 }
 
 const {
@@ -31,6 +32,7 @@ const {
   breadcrumbs,
   noindex = false,
   offer = true,
+  analytics = true,
 } = Astro.props
 const canonical = new URL(Astro.url.pathname, Astro.site)
 const fullTitle = title.includes('Platonic Ideal') ? title : `${title} · Platonic Ideal`
@@ -121,13 +123,15 @@ const resolvedCurrent = current === 'constitution' ? 'methodology' : current || 
     <meta name="description" content={seoDescription} />
     <meta name="google-site-verification" content="c8ruZs4tXVdUDDq3iXf_6xtiNaoouDWOvGQ7jVUpiVI" />
     <meta name="robots" content={noindex ? 'noindex,follow' : 'index,follow,max-image-preview:large'} />
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GF42RQENS" is:inline></script>
-    <script is:inline>
-      window.dataLayer = window.dataLayer || []
-      function gtag(){dataLayer.push(arguments)}
-      gtag('js', new Date())
-      gtag('config', 'G-5GF42RQENS')
-    </script>
+    {analytics && <>
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GF42RQENS" is:inline></script>
+      <script is:inline>
+        window.dataLayer = window.dataLayer || []
+        function gtag(){dataLayer.push(arguments)}
+        gtag('js', new Date())
+        gtag('config', 'G-5GF42RQENS')
+      </script>
+    </>}
     <link rel="canonical" href={canonical.href} />
     <link rel="icon" href={`${import.meta.env.BASE_URL}favicon.svg`} type="image/svg+xml" />
     <meta property="og:type" content="website" />
@@ -162,7 +166,7 @@ const resolvedCurrent = current === 'constitution' ? 'methodology' : current || 
     {offer && <div class="shell"><DossierOffer /></div>}
     <SiteFooter />
     <div class="shop-toast" id="shop-toast" role="status" hidden></div>
-    <script>import '@/scripts/analytics'</script>
+    {analytics && <script>import '@/scripts/analytics'</script>}
     <script>import '@/scripts/commerce'</script>
   </body>
 </html>

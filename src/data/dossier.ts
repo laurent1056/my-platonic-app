@@ -1,11 +1,18 @@
 /** One commercial product. Editorial categories are never cart items. */
 export const dossier = {
   id: 'the-dossier',
-  name: 'The Platonic Ideal Dossier',
+  editionId: 'platonic-ideal-declared-1940',
+  name: 'The Platonic Ideal Dossier — Declared Edition',
+  edition: 'Declared Edition',
+  version: '1940',
+  recommendationCount: 48,
+  pageCount: 157,
+  fileFormat: 'Tagged PDF',
   price: 24,
   priceLabel: '$24',
-  format: 'Digital research dossier',
-  availability: 'Design preview — purchasing is not live',
+  format: '157-page tagged PDF',
+  coverage: '48 declared recommendations',
+  availability: 'Available now',
 }
 
 export const dossierChapters = [
@@ -16,10 +23,10 @@ export const dossierChapters = [
 ]
 
 export const faqs = [
-  ['What am I buying?', 'A digital research dossier from Platonic Ideal. Physical objects in the catalog are subjects of our research; they are not sold by us. The offer shown here is a design preview.'],
+  ['What am I buying?', 'A 157-page tagged PDF containing the Declared Edition of the Platonic Ideal dossier: 48 declared recommendations, their reasoning, evidence, tradeoffs, and ownership notes. Physical objects in the catalog are subjects of our research; they are not sold by us.'],
   ['Can I still read the verdict for free?', 'Yes. Category verdicts, decisive reasoning, and the editorial rules stay public. The dossier is intended to add research depth and convenience.'],
-  ['Is this a subscription?', 'No. The proposed dossier offer is a one-time $24 purchase. There are no membership tiers or recurring charges.'],
+  ['Is this a subscription?', 'No. The dossier is a one-time $24 purchase. There are no membership tiers or recurring charges.'],
   ['Does paying change a recommendation?', 'No. Payment cannot influence product selection, placement, or a verdict. A category can still have no qualifying pick.'],
-  ['Can I buy it today?', 'Not yet. You can explore the offer, read a sample, and try a clearly marked checkout preview. No payment is collected and no paid download is issued.'],
-  ['What will the final dossier include?', 'The chapter outline illustrates the intended research experience. Final coverage, file format, delivery, and refund terms will be confirmed before purchasing opens.'],
+  ['Can I buy it today?', 'Yes. Stripe hosts the secure checkout. After payment is confirmed, the dossier is available through the purchase confirmation flow.'],
+  ['What will the dossier include?', 'The Declared Edition includes 48 recommendations in a 157-page tagged PDF, organized around the standard, evidence, tradeoffs, ownership, and the limits of each judgment.'],
 ]

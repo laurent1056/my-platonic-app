@@ -4,7 +4,7 @@
 - Owner: Laurent Courtines
 - Status: building
 - Priority: P0
-- Last updated: 2026-09-08
+- Last updated: 2026-09-18
 
 ## Problem
 The product's value is lost if a reader cannot move from the register to a
@@ -45,6 +45,12 @@ Current build phase; complete a founder-usable slice before expanding scope.
   Oracle [source/README](../../../source/adhoc/2026-09-03-project-baseline/README.md).
 - The Constitution page is generated from the digest-pinned machine profile and
   is linked from the public navigation [constitution route](../../../src/pages/constitution.astro).
+- The current declared dossier indexes 48 recommendations across 157 pages;
+  it does not cover the remaining catalog rows and therefore cannot be treated
+  as the canonical dossier for the full 100-category register [declared dossier](../../../source/adhoc/2026-09-18-platonic-ideal-dossier-declared-1940.pdf).
+- The live homepage currently presents a 100-category catalog and the public
+  one-product-or-honest-no rule; the snapshot is evidence of the projection,
+  not evidence that every row has a versioned paid dossier [homepage snapshot](../../../source/market/2026-09-18-platonic-ideal-homepage.md).
 
 ## Linked
 - Hypotheses: [static-register](../../../hypotheses/static-register.md)
@@ -58,6 +64,10 @@ Current build phase; complete a founder-usable slice before expanding scope.
 - When should the first external usability check happen?
 - When should a validated ruling projection supersede the migration CSV on a
   category route?
+- Is the 48-category declared edition an intentional paid-product boundary, or
+  is full 100-category coverage a release gate?
+- Which public categories are covered by a versioned paid dossier, and how will
+  that association be generated rather than maintained as duplicate copy?
 
 ## Follow-up after launch
 Use founder sessions first. If public measurement is deliberately added later,

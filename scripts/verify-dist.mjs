@@ -1,8 +1,10 @@
+import { existsSync } from 'node:fs'
 import { access, readdir, readFile } from 'node:fs/promises'
 import path from 'node:path'
 import Papa from 'papaparse'
 
-const dist = path.resolve('dist')
+const distRoot = path.resolve('dist')
+const dist = existsSync(path.join(distRoot, 'client')) ? path.join(distRoot, 'client') : distRoot
 const vercelConfigPath = path.resolve('vercel.json')
 const productionOrigin = process.env.SITE_URL || 'https://www.platonicidealguide.com'
 const registerPath = path.resolve('public/platonic_ideal.csv')
@@ -69,7 +71,7 @@ function candidateForUrl(value) {
   const pathname = decodeURIComponent(url.pathname)
 
   if (pathname === '/') return path.join(dist, 'index.html')
-  if (pathname.startsWith('/api/')) return null
+  if (pathname.startsWith('/api/') || pathname === '/purchase/success/') return null
 
   const localPath = pathname.replace(/^\//, '')
   if (pathname.endsWith('/')) return path.join(dist, localPath, 'index.html')
@@ -111,6 +113,23 @@ if (await exists(path.join(dist, 'oracle', 'index.html'))) {
 
 const files = await walk(dist)
 const htmlFiles = files.filter((file) => file.endsWith('.html'))
+const serverOutput = path.resolve('.vercel/output')
+const serverFiles = await exists(serverOutput) ? await walk(serverOutput) : []
+const credentialPatterns = [
+  /sk_(?:test|live)_[A-Za-z0-9]+/,
+  /whsec_[A-Za-z0-9]+/,
+  /vercel_blob_rw_[A-Za-z0-9]+/,
+  /re_[A-Za-z0-9]{20,}/,
+]
+
+for (const file of serverFiles.filter((candidate) => /\.(?:js|mjs|json|html|txt)$/.test(candidate))) {
+  const content = await readFile(file, 'utf8')
+  for (const pattern of credentialPatterns) {
+    if (pattern.test(content)) {
+      errors.push(`${path.relative(serverOutput, file)} contains a server credential-shaped value (${pattern})`)
+    }
+  }
+}
 
 for (const file of htmlFiles) {
   const content = await readFile(file, 'utf8')

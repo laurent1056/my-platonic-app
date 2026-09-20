@@ -1,0 +1,13 @@
+# Local build output, caches, and browser profiles. These are not runtime inputs.
+node_modules/
+.git/
+.vercel/
+.astro/
+dist/
+tmp/
+output/
+Temp/
+
+# The paid PDF is stored in private Vercel Blob storage and must not be bundled
+# into the public deployment archive.
+source/adhoc/*.pdf

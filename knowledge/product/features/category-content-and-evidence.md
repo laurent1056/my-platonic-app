@@ -4,7 +4,7 @@
 - Owner: Laurent Courtines
 - Status: building
 - Priority: P0
-- Last updated: 2026-09-08
+- Last updated: 2026-09-18
 
 ## Problem
 The register carries valuable editorial reasoning, but the canonical CSV still
@@ -49,6 +49,13 @@ category milestone as a launch gate.
 - The Constitution requires three verified evidence items across independent
   classes, primary technical/service evidence, a counter-case, and confidence
   of at least 4/5 before a terminal ruling [constitution](../../../constitution/CONSTITUTION.md).
+- The declared 1940 dossier is a 157-page, 48-chapter artifact with repeatable
+  decision, comparison, care, service, and source sections, but several
+  declared chapters still contain alternative model language or explicit
+  identity/service uncertainty [declared dossier](../../../source/adhoc/2026-09-18-platonic-ideal-dossier-declared-1940.pdf).
+- The live homepage projects a 100-category catalog, one product or an honest
+  no, and free verdict/decisive reasoning; this is a public projection that
+  still needs a generated crosswalk to versioned dossiers [homepage snapshot](../../../source/market/2026-09-18-platonic-ideal-homepage.md).
 
 ## Linked
 - Hypotheses: [category-content-and-evidence](../../../hypotheses/category-content-and-evidence.md)
@@ -63,6 +70,10 @@ category milestone as a launch gate.
   family while still satisfying the constitutional floor?
 - When should a validated case replace the corresponding CSV row in the public
   projection?
+- Which declared chapters must be re-adjudicated before the dossier can be
+  treated as a one-product-or-empty canonical record?
+- How will the public 100-category projection expose the owning `dossier_id`
+  and version while distinguishing catalog coverage from paid-edition coverage?
 
 ## Follow-up after launch
 Track revision frequency, revoked declarations, and categories that repeatedly

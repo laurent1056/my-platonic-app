@@ -4,7 +4,7 @@
 - Owner: Laurent Courtines
 - Status: scoping
 - Priority: P1
-- Last updated: 2026-09-03
+- Last updated: 2026-09-18
 
 ## Problem
 The register should feel tangible and memorable, but many categories do not yet
@@ -42,6 +42,10 @@ the first founder-facing route on full image coverage.
   system [source/design-language](../../../source/adhoc/2026-09-03-project-baseline/docs/design/design.md).
 - The image-credit note identifies a Plato portrait source and the need to record
   credits [source/image-credits](../../../source/adhoc/2026-09-03-project-baseline/docs/design/IMAGE_CREDITS.md).
+- The live homepage visibly labels its illustrations as AI-generated
+  interpretive plates rather than product photography, states that physical
+  products are not sold there, and links the Plato portrait credit/license
+  [homepage snapshot](../../../source/market/2026-09-18-platonic-ideal-homepage.md).
 
 ## Linked
 - Hypotheses: [product-imagery](../../../hypotheses/product-imagery.md)
@@ -54,6 +58,8 @@ the first founder-facing route on full image coverage.
   images, manufacturer assets, or linked originals?
 - Should the first pass prioritize all `DECLARED` categories or a representative
   set that demonstrates the visual system?
+- Should the interpretive-plate disclosure and credit model be generated from
+  the dossier/image record on every category page and in social metadata?
 
 ## Follow-up after launch
 Audit broken image URLs, source credits, and declared-model mismatches during the

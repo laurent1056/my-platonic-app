@@ -84,3 +84,24 @@ approved evidence packets and human adjudication for the 40 non-terminal rows.
 The next safe commercial pass needs Laurent’s explicit approval of a payment,
 email, analytics, privacy, refund, and fulfillment setup before any external
 write or real customer data collection.
+
+## Pass 6 — Stripe-hosted paid edition wiring
+
+- Changed: the commercial offer is now explicitly the 157-page tagged PDF
+  Declared Edition containing 48 recommendations. The public 100-category
+  register remains free and is not represented as paid coverage.
+- Changed: the product page no longer uses the local cart as its purchase path.
+  A production `PUBLIC_STRIPE_PAYMENT_LINK_URL` will send buyers directly to
+  Stripe-hosted Checkout.
+- Changed: added a Stripe Payment Link creation script, a signed webhook route,
+  paid-session verification, a private Vercel Blob download route, and optional
+  Resend email delivery. No payment secret or dossier PDF is stored in Git.
+- Changed: the static-first Vercel build now emits the purchase confirmation and
+  commerce API routes in its server bundle while retaining the public pages as
+  prerendered HTML.
+- Passed: `npm test`, including the storefront, dossier-parity, institution,
+  build, and Vercel output checks.
+- Remaining: create the Stripe objects, configure Vercel environment variables,
+  upload the PDF to private Blob storage, register the webhook, test a payment
+  in Stripe test mode, and publish approved privacy, terms, refund, and support
+  disclosures before turning on live sales.

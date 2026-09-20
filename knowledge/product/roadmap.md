@@ -4,7 +4,7 @@
 
 ## Now
 <!-- Active features currently being built or measured. Link to features/<slug>.md. -->
-- [Dossier storefront](./features/dossier-storefront.md) — locally implemented ecommerce design patterns centered on the single dossier offer; payment, accounts, and fulfillment remain previews.
+- [Dossier storefront](./features/dossier-storefront.md) — the 48-recommendation edition now has a Stripe-hosted purchase and private-delivery implementation; external configuration and launch policies remain.
 - [Institution foundation](./features/institution-foundation.md) — version the Constitution, validate case/evidence/ruling/challenge records, and publish the public authority page.
 - [Static register and category dossiers](./features/static-register.md) — finish the Astro rebuild and make the index plus every category URL coherent.
 - [Category content and evidence](./features/category-content-and-evidence.md) — clean the schema, validate the register, and resolve the current in-review rows.
@@ -16,10 +16,10 @@
 - Re-adjudicate Everyday Pocket Knife from first principles and publish the first validated ruling only when the evidence floor is met.
 - Build the public ruling ledger/evidence receipt projection and run a founder usability pass on the complete register.
 - Run the 20/10/5 founding validation test for the free verdict plus `$24` evidence dossier.
+- Create the Stripe Payment Link, configure the private PDF delivery, and run a test-mode end-to-end purchase.
 
 ## Later
 <!-- Acknowledged but deferred. Why deferred matters. -->
-- Implement hosted checkout and private dossier fulfillment only after the founding case and 20/10/5 test justify it.
 - Evaluate a public challenge interface after the evidence-based challenge contract has been exercised manually.
 - Consider commerce or affiliate links only with disclosure, ranking integrity, and a reversible experiment that cannot affect verdicts.
 

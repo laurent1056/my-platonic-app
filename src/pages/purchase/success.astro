@@ -1,0 +1,46 @@
+---
+import SiteLayout from '@/layouts/SiteLayout.astro'
+import { dossier } from '@/data/dossier'
+import { createDossierDownloadToken, getDossierBlobPath, getPaidDossierSession } from '@/lib/stripe'
+import { withBase } from '@/data/register'
+
+export const prerender = false
+
+const sessionId = Astro.url.searchParams.get('session_id')
+const paid = await getPaidDossierSession(sessionId)
+const deliveryConfigured = Boolean(getDossierBlobPath())
+const downloadToken = paid && sessionId ? createDossierDownloadToken(sessionId) : null
+const downloadHref = downloadToken
+  ? `${withBase('api/dossier/download/')}?token=${encodeURIComponent(downloadToken)}`
+  : ''
+---
+<SiteLayout title="Purchase confirmation" noindex offer={false} analytics={false}>
+  <div class="shell page-space">
+    <section class="confirmation">
+      <span class="confirmation-mark" aria-hidden="true">{paid ? '✓' : '—'}</span>
+      <p class="eyebrow">Purchase confirmation</p>
+      {paid ? <>
+        <h1>Good research.<br /><em>Worth keeping.</em></h1>
+        <p>Payment is confirmed. Your {dossier.coverage} is ready as a {dossier.format}.</p>
+        <div class="receipt-line"><span>{dossier.name}</span><strong>{dossier.priceLabel} paid</strong></div>
+        <div class="fulfillment-panel">
+          <p class="eyebrow">Your edition</p>
+          <h2>{dossier.pageCount} pages. {dossier.recommendationCount} declarations.</h2>
+          {deliveryConfigured && downloadHref
+            ? <a class="button" href={downloadHref} data-analytics-event="fulfillment">Download the dossier →</a>
+            : <p>Delivery is still being connected. Keep your Stripe receipt and contact support if the download does not arrive.</p>}
+          <p class="fine-print">This link grants access to the paid edition. Please do not share it publicly.</p>
+        </div>
+      </> : <>
+        <h1>We’re checking<br /><em>your purchase.</em></h1>
+        <p>We could not verify a paid dossier session from this link. If you just completed checkout, wait a moment and use the link in your Stripe receipt or contact support.</p>
+        <div class="action-row"><a class="button" href={withBase('dossier/')}>Return to the dossier →</a><a class="inline-link" href={withBase('help/')}>Visit help →</a></div>
+      </>}
+    </section>
+  </div>
+</SiteLayout>
+<script is:inline>
+  try {
+    if (window.location.search) window.history.replaceState(null, document.title, window.location.pathname)
+  } catch {}
+</script>

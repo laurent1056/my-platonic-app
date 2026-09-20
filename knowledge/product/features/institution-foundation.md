@@ -4,7 +4,7 @@
 - Owner: Laurent Courtines
 - Status: building
 - Priority: P0
-- Last updated: 2026-09-08
+- Last updated: 2026-09-18
 
 ## Problem
 The public register claims authority through strict rules, but the inherited
@@ -51,6 +51,12 @@ commerce or public submissions.
   checks, and the need for negative fixtures [institution workflow](../../../docs/INSTITUTION_WORKFLOW.md)
 - The accepted commercial boundary keeps public rulings free and sells research
   depth separately [decision](../../../decisions/2026-09-08-constitution-and-paid-dossier-boundary.md)
+- The declared dossier records field state, source-check dates, comparative
+  reasoning, and ownership uncertainty, including an ambiguous screwdriver
+  model record and unresolved drill service-part availability [declared dossier](../../../source/adhoc/2026-09-18-platonic-ideal-dossier-declared-1940.pdf).
+- The live homepage explicitly states that the verdict and decisive reasoning
+  are free while the dossier sells research depth, never influence, and it
+  gives a public refrigerator empty-state example [homepage snapshot](../../../source/market/2026-09-18-platonic-ideal-homepage.md).
 
 ## Linked
 - Hypotheses: [institution-foundation](../../../hypotheses/institution-foundation.md)
@@ -64,6 +70,11 @@ commerce or public submissions.
 - Which parts of the evidence receipt should be expanded into the first paid
   dossier without hiding decisive public reasoning?
 - When should a validated ruling become a data source for the category route?
+- How should dossier version, case identity, field state, and public projection
+  be linked so a publication cannot silently outrun the ruling record?
+- What generated `dossier_id`, version, and coverage receipt should accompany
+  the `$24` offer and every category page before the paid product is considered
+  connected to the public ruling?
 
 ## Follow-up after launch
 Measure validator repair time, case revision frequency, challenge quality,

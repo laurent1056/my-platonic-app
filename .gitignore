@@ -13,6 +13,9 @@ dist-ssr/
 .vercel/
 tmp/
 output/
+# The full declared dossier is a local generated source artifact (>100 MB),
+# while the public sample PDF is tracked under public/dossier/.
+source/adhoc/2026-09-18-platonic-ideal-dossier-declared-1940.pdf
 
 # Local credentials and environment files
 .env

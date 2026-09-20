@@ -16,6 +16,7 @@
     "verify:dist": "node scripts/verify-dist.mjs",
     "validate:images": "node scripts/validate-image-sources.mjs",
     "audit:prod": "npm audit --audit-level=high --omit=dev",
+    "stripe:create-payment-link": "node scripts/create-stripe-payment-link.mjs",
     "test:storefront": "node --test scripts/test-storefront.mjs",
     "test:dossier": "node --test scripts/test-dossier-parity.mjs",
     "audit:launch": "node scripts/launch-audit.mjs",
@@ -29,8 +30,10 @@
     "@fontsource/ibm-plex-mono": "5.3.0",
     "@fontsource/libre-franklin": "5.3.0",
     "@tailwindcss/vite": "4.3.3",
+    "@vercel/blob": "^2.8.0",
     "astro": "7.2.8",
     "papaparse": "5.7.0",
+    "stripe": "^22.6.2",
     "tailwindcss": "4.3.3"
   },
   "devDependencies": {
