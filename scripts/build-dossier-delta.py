@@ -31,6 +31,7 @@ TMP_DIR = ROOT / "tmp" / "pdfs" / "delta-1940"
 OUTPUT_DIR = ROOT / "output" / "pdf"
 DEFAULT_OUTPUT = OUTPUT_DIR / "platonic-ideal-dossier-full-review.pdf"
 DECLARED_OUTPUT = OUTPUT_DIR / "platonic-ideal-dossier-declared-1940.pdf"
+SAMPLE_OUTPUT = OUTPUT_DIR / "platonic-ideal-dossier-sample.pdf"
 CHROME = Path("/Applications/Google Chrome.app/Contents/MacOS/Google Chrome")
 
 
@@ -3134,6 +3135,46 @@ def build_declared_html(entries: list[Entry]) -> str:
     return "<!doctype html><html><head><meta charset='utf-8'><title>" + html.escape(title) + "</title><style>" + declared_css() + "</style></head><body>" + "".join(pages) + "</body></html>"
 
 
+def build_sample_html(entries: list[Entry]) -> str:
+    """Build a short storefront preview from the declared edition.
+
+    The sample keeps the source folios so the closing pages remain visibly
+    connected to the full 157-page dossier. The index is rewritten to show
+    only the one verified Drill chapter included in the preview.
+    """
+    full_document = build_declared_html(entries)
+    page_starts = [match.start() for match in re.finditer(r'<section class="review-page(?:\s|")', full_document)]
+    body_end = full_document.rfind("</body>")
+    sections = [
+        full_document[start:end]
+        for start, end in zip(page_starts, page_starts[1:] + [body_end])
+    ]
+    if len(sections) != 157:
+        raise RuntimeError(f"Expected the declared edition to contain 157 pages, found {len(sections)}")
+
+    drill = next((entry for entry in declared_order(entries) if entry.reference == "PI-012"), None)
+    if drill is None:
+        raise RuntimeError("The sample requires the declared Drill entry PI-012")
+
+    sections[2] = review_page(3, "INDEX", "SAMPLE", f'''
+<p class="eyebrow red">SAMPLE EDITION</p>
+<h1 class="index-heading">The field index</h1>
+<p class="index-note"><strong>THIS IS A SAMPLE PAGE.</strong> The complete dossier contains 48 recommendations. This preview follows one verified item from decision through fit, care, and service.</p>
+<div class="declared-index-layout">
+  <div class="declared-index-column">{_declared_index_rows([drill], {drill.reference: 5})}</div>
+  <div class="declared-index-column">
+    <p class="section-label">THE SAMPLE PATH</p>
+    <p class="small-copy">Drill / pages 05–07<br>Decision / fit + action / care + service</p>
+    <p class="note-rule"><b>FULL EDITION:</b> The remaining recommendations, comparisons, sources, and ownership notes continue through the complete dossier.</p>
+  </div>
+</div>
+''', "index-page declared-index sample-index")
+
+    sample_sections = sections[:7] + sections[-2:]
+    title = "Platonic Ideal — The Good Buy — Sample"
+    return "<!doctype html><html><head><meta charset='utf-8'><title>" + html.escape(title) + "</title><style>" + declared_css() + "</style></head><body>" + "".join(sample_sections) + "</body></html>"
+
+
 def declared_css() -> str:
     return review_css() + r"""
 .declared-cover .cover-deck { max-width:3.35in; }
@@ -3791,21 +3832,27 @@ def main() -> None:
     parser.add_argument("--html-only", action="store_true")
     parser.add_argument("--proof", action="store_true", help="build the 20-page four-object design proof")
     parser.add_argument("--legacy-full", action="store_true", help="build the archived category/research edition")
+    parser.add_argument("--sample", action="store_true", help="build the 9-page storefront sample")
     args = parser.parse_args()
 
     TMP_DIR.mkdir(parents=True, exist_ok=True)
-    if args.proof and args.legacy_full:
-        parser.error("--proof and --legacy-full are mutually exclusive")
+    if sum((args.proof, args.legacy_full, args.sample)) > 1:
+        parser.error("--proof, --legacy-full, and --sample are mutually exclusive")
     if args.proof and args.output == DECLARED_OUTPUT:
         args.output = OUTPUT_DIR / "platonic-ideal-dossier-1940-20-page-proof.pdf"
     if args.legacy_full and args.output == DECLARED_OUTPUT:
         args.output = DEFAULT_OUTPUT
+    if args.sample and args.output == DECLARED_OUTPUT:
+        args.output = SAMPLE_OUTPUT
     if args.proof:
         html_path = TMP_DIR / "platonic-ideal-dossier-1940-proof.html"
         document = build_proof_html(ENTRIES)
     elif args.legacy_full:
         html_path = TMP_DIR / "platonic-ideal-dossier-1940-legacy.html"
         document = build_html(ENTRIES)
+    elif args.sample:
+        html_path = TMP_DIR / "platonic-ideal-dossier-sample.html"
+        document = build_sample_html(ENTRIES)
     else:
         html_path = TMP_DIR / "platonic-ideal-dossier-declared-1940.html"
         document = build_declared_html(ENTRIES)
