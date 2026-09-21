@@ -1,16 +1,25 @@
 ---
 import SiteLayout from '@/layouts/SiteLayout.astro'
 import { withBase } from '@/data/register'
+import { platoPortrait } from '@/data/dossier-art'
 ---
 
 <SiteLayout current="methodology" title="How we choose one product" description="How Platonic Ideal researches a category, weighs evidence, and chooses one product—or explains why no product qualifies." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'Our approach' }]}>
   <div class="shell">
     <header class="editorial-hero">
-      <p class="label">How we choose</p>
-      <h1 class="editorial-title">One clear answer.</h1>
-      <p class="editorial-dek">Most product reviews give you a list and leave the decision to you. We use one public standard to choose one product—or explain why no product qualifies.</p>
-      <p class="editorial-dek">We look at how a product is built, how it fails, whether it can be repaired, and whether the evidence holds up. Popularity helps us find candidates. It does not decide the verdict.</p>
-      <p class="methodology-authority"><a href="../constitution/">Read our full rules <span aria-hidden="true">↗</span></a> · the standard behind every decision.</p>
+      <div class="method-intro">
+        <figure class="method-intro-art">
+          <img src={withBase(platoPortrait.src)} width={platoPortrait.width} height={platoPortrait.height} alt={platoPortrait.alt} loading="eager" />
+          <figcaption>Plato · {platoPortrait.holdingInstitution}<br /><a href={platoPortrait.sourceUrl} rel="external">Image source ↗</a></figcaption>
+        </figure>
+        <div class="method-intro-copy">
+          <p class="label">How we choose</p>
+          <h1 class="editorial-title">One clear answer.</h1>
+          <p class="editorial-dek">Plato began with a question that still matters here: before we compare many examples, can we say what the thing is for? Platonic Ideal brings that search for the ideal into everyday buying.</p>
+          <p class="editorial-dek">Most product reviews give you a list and leave the decision to you. We define the category, test how an object is built and fails, and use one public standard to choose one product—or explain why no product qualifies.</p>
+          <p class="methodology-authority"><a href="../constitution/">Read our full rules <span aria-hidden="true">↗</span></a> · the standard behind every decision.</p>
+        </div>
+      </div>
     </header>
 
     <div class="method-grid">

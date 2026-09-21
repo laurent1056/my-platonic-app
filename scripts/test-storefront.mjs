@@ -58,8 +58,8 @@ test('test-mode Stripe links never render as live purchase CTAs', async () => {
   // Regression: ISSUE-003 — a Stripe test-mode URL must not render as a live CTA.
   // Found by /qa on 2026-09-21
   // Report: .gstack/qa-reports/qa-report-platonicidealguide-com-2026-09-21.md
-  const source = await readFile(path.resolve('src/pages/dossier.astro'), 'utf8')
-  assert.match(source, /configuredPaymentLink && !configuredPaymentLink\.includes\('buy\.stripe\.com\/test_'\)/)
+  const source = await readFile(path.resolve('src/lib/payment-link.ts'), 'utf8')
+  assert.match(source, /!link\.includes\('buy\.stripe\.com\/test_'\)/)
   assert.doesNotMatch(await html('dossier'), /href="https:\/\/buy\.stripe\.com\/test_/)
 })
 

@@ -30,3 +30,11 @@ export const faqs = [
   ['Can I buy it today?', 'Not yet. The public sample is available now; paid checkout and delivery will be enabled once the production payment and fulfillment configuration is complete.'],
   ['What will the dossier include?', 'The Declared Edition includes 48 recommendations in a 157-page tagged PDF, organized around the standard, evidence, tradeoffs, ownership, and the limits of each judgment.'],
 ]
+
+export function getDossierFaqs(isLive: boolean) {
+  return faqs.map(([question, answer]) => question === 'Can I buy it today?'
+    ? [question, isLive
+      ? 'Yes. Stripe hosts the secure checkout. After payment is confirmed, the dossier is available through the purchase confirmation flow.'
+      : 'Not yet. The public sample is available now; paid checkout and delivery will be enabled once the production payment and fulfillment configuration is complete.']
+    : [question, answer])
+}

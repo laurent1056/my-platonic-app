@@ -3,7 +3,8 @@ import SiteLayout from '@/layouts/SiteLayout.astro'
 import DossierCover from '@/components/DossierCover.astro'
 import AccountPage from '@/components/AccountPage.astro'
 import { infoPages, journalPosts, accountPages, authPages } from '@/data/site-pages'
-import { dossier, faqs } from '@/data/dossier'
+import { dossier, getDossierFaqs } from '@/data/dossier'
+import { getLivePaymentLink } from '@/lib/payment-link'
 import { domains, withBase } from '@/data/register'
 import { pageSeoDescription } from '@/data/seo'
 export function getStaticPaths() {
@@ -26,6 +27,7 @@ const eyebrow = info?.eyebrow || post?.tag || account?.[2] || auth?.[2] || speci
 const intro = info?.intro || post?.excerpt || special[slug]?.[2]
 const pageTitle = title || 'Platonic Ideal'
 const pageDescription = pageSeoDescription(intro, `${pageTitle}.`)
+const dossierFaqs = getDossierFaqs(Boolean(getLivePaymentLink(import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK_URL)))
 const breadcrumbs = [
   { name: 'Home', href: withBase() },
   ...(post || slug === 'journal' ? [{ name: 'Journal', href: withBase('journal/') }] : []),
@@ -46,7 +48,7 @@ const directory = [
     {info && <div class="content-layout"><nav class="content-index" aria-label="On this page"><span class="eyebrow">On this page</span>{info.sections.map(([heading], i) => <a href={`#section-${i}`}>{heading} ↗</a>)}</nav><article class="prose">{info.preview && <p class="preview-note">Design preview. Details on this page must be finalized before live purchasing opens.</p>}{info.sections.map(([heading, copy], i) => <section id={`section-${i}`}><h2>{heading}</h2><p>{copy}</p></section>)}<div class="action-row"><a class="inline-link" href={withBase('help/')}>Help center →</a><a class="inline-link" href={withBase('constitution/')}>Our editorial rules →</a></div></article></div>}
     {post && <div class="content-layout"><aside class="content-index"><span class="eyebrow">Platonic Ideal</span><span>Editorial note</span><a href={withBase('journal/')}>← All articles</a></aside><article class="prose journal-prose">{post.sections.map(([heading, copy]) => <section><h2>{heading}</h2><p>{copy}</p></section>)}<p class="fine-print">An editorial explanation of our approach. Read the public methodology for the complete standard.</p><a class="inline-link" href={withBase('methodology/')}>Our approach →</a></article></div>}
     {slug === 'journal' && <div class="journal-list">{journalPosts.map((item, i) => <a href={withBase(`journal/${item.slug}/`)}><span class="journal-number">0{i + 1}</span><div><p class="eyebrow">{item.tag}</p><h2>{item.title}</h2><p>{item.excerpt}</p></div><span aria-hidden="true">↗</span></a>)}</div>}
-    {slug === 'help' && <div class="help-layout"><aside class="help-aside"><p class="eyebrow">Start here</p><h2>One product.<br />A few good answers.</h2><p>Read the sample before considering the dossier.</p><a class="inline-link" href={withBase('dossier/#sample')}>Read a sample →</a></aside><div class="faq-section">{faqs.map(([q, a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div>}
+    {slug === 'help' && <div class="help-layout"><aside class="help-aside"><p class="eyebrow">Start here</p><h2>One product.<br />A few good answers.</h2><p>Read the sample before considering the dossier.</p><a class="inline-link" href={withBase('dossier/#sample')}>Read a sample →</a></aside><div class="faq-section">{dossierFaqs.map(([q, a]) => <details><summary>{q}<span aria-hidden="true">+</span></summary><p>{a}</p></details>)}</div></div>}
     {slug === 'compare' && <div class="comparison-wrap"><table class="comparison-table"><caption>Public research compared with the declared dossier</caption><thead><tr><th scope="col">What you get</th><th scope="col">Public catalog<br /><span>Free</span></th><th scope="col">The dossier<br /><span>{dossier.priceLabel} · One time</span></th></tr></thead><tbody>{[['Category verdict & decisive reasoning', 'Included', 'Remains public'], ['Methodology & Constitution', 'Included', 'Remains public'], ['Organized deeper reading', 'Browse public research', `${dossier.pageCount}-page tagged PDF`], ['Declared recommendations', 'Browse the public register', `${dossier.recommendationCount} recommendations`], ['Influence over our judgment', 'None', 'None'], ['Availability', 'Read now', dossier.availability]].map(row => <tr>{row.map((value, i) => i === 0 ? <th scope="row">{value}</th> : <td>{value}</td>)}</tr>)}</tbody></table><p class="fine-print">The public research does not move behind a paywall. The dossier sells organized depth and convenience, never influence over a verdict.</p></div>}
     {slug === 'campaign' && <section class="campaign-layout"><div><h2>Meet the dossier.</h2><p>The useful part of research is understanding why. The dossier brings that understanding into an organized digital reading experience.</p><ul class="check-list"><li>The questions behind a considered purchase</li><li>A reading path through evidence and tradeoffs</li><li>An ownership perspective that outlasts checkout</li></ul><a class="button" href={withBase('dossier/')}>Get the dossier <span>{dossier.priceLabel} ↗</span></a><p class="fine-print">{dossier.coverage} · One-time digital purchase</p></div><DossierCover href={withBase('dossier/')} /></section>}
     {account && <AccountPage slug={slug} />}
