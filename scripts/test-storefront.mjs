@@ -54,6 +54,15 @@ test('category verdicts do not become commercial cart items', async () => {
   assert.match(await html('dossier'), /Buy the declared edition|Stripe checkout is not configured/)
 })
 
+test('test-mode Stripe links never render as live purchase CTAs', async () => {
+  // Regression: ISSUE-003 — a Stripe test-mode URL must not render as a live CTA.
+  // Found by /qa on 2026-09-21
+  // Report: .gstack/qa-reports/qa-report-platonicidealguide-com-2026-09-21.md
+  const source = await readFile(path.resolve('src/pages/dossier.astro'), 'utf8')
+  assert.match(source, /configuredPaymentLink && !configuredPaymentLink\.includes\('buy\.stripe\.com\/test_'\)/)
+  assert.doesNotMatch(await html('dossier'), /href="https:\/\/buy\.stripe\.com\/test_/)
+})
+
 test('catalog retains ownership and evidence controls, including empty verdicts', async () => {
   const content = await html('register')
   for (const id of ['catalog-query', 'catalog-domain', 'catalog-verdict', 'catalog-mechanism', 'catalog-sort', 'catalog-empty']) assert.ok(content.includes(`id="${id}"`), id)
