@@ -3,7 +3,10 @@ import SiteLayout from '@/layouts/SiteLayout.astro'
 import DossierCover from '@/components/DossierCover.astro'
 import { dossier, dossierChapters, faqs } from '@/data/dossier'
 import { withBase } from '@/data/register'
-const paymentLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK_URL?.trim()
+const configuredPaymentLink = import.meta.env.PUBLIC_STRIPE_PAYMENT_LINK_URL?.trim()
+const paymentLink = configuredPaymentLink && !configuredPaymentLink.includes('buy.stripe.com/test_')
+  ? configuredPaymentLink
+  : undefined
 ---
 <SiteLayout title="The dossier — 48 recommendations · $24" current="dossier" description="The Platonic Ideal Declared Edition is a 157-page tagged PDF containing 48 product recommendations, with the evidence, tradeoffs, and ownership reasoning behind each one." image={withBase('images/platonic-ideal-dossier-cover.jpg')} imageAlt="The Platonic Ideal Dossier cover with a portrait of Plato and a red circular motif." breadcrumbs={[{ name: 'Home', href: withBase() }, { name: 'The dossier' }]} offer={false}>
   <div class="shell page-space">

@@ -12,7 +12,7 @@ export const dossier = {
   priceLabel: '$24',
   format: '157-page tagged PDF',
   coverage: '48 declared recommendations',
-  availability: 'Available now',
+  availability: 'Preview only',
 }
 
 export const dossierChapters = [
@@ -27,6 +27,6 @@ export const faqs = [
   ['Can I still read the verdict for free?', 'Yes. Category verdicts, decisive reasoning, and the editorial rules stay public. The dossier is intended to add research depth and convenience.'],
   ['Is this a subscription?', 'No. The dossier is a one-time $24 purchase. There are no membership tiers or recurring charges.'],
   ['Does paying change a recommendation?', 'No. Payment cannot influence product selection, placement, or a verdict. A category can still have no qualifying pick.'],
-  ['Can I buy it today?', 'Yes. Stripe hosts the secure checkout. After payment is confirmed, the dossier is available through the purchase confirmation flow.'],
+  ['Can I buy it today?', 'Not yet. The public sample is available now; paid checkout and delivery will be enabled once the production payment and fulfillment configuration is complete.'],
   ['What will the dossier include?', 'The Declared Edition includes 48 recommendations in a 157-page tagged PDF, organized around the standard, evidence, tradeoffs, ownership, and the limits of each judgment.'],
 ]
