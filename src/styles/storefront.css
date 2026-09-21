@@ -211,6 +211,9 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .content-index a:visited, .prose a:visited, .directory-grid a:visited, .category-card .card-heading a:visited, .product-links a:visited, .register-row .category a:visited, .register-mobile-row > a:visited .mobile-category { color: color-mix(in srgb, var(--accent) 68%, var(--ink)); }
 .content-index .eyebrow { margin-bottom: 5px; }
 .prose { max-width: 730px; }
+.founder-portrait { width: min(100%, 360px); margin: 0 0 2.5rem; }
+.founder-portrait img { display: block; width: 100%; height: auto; aspect-ratio: 4 / 5; object-fit: cover; border: 1px solid var(--line-strong); }
+.founder-portrait figcaption { margin-top: .75rem; color: var(--muted); font: .65rem/1.5 var(--mono); }
 .prose section { padding: 15px 0 25px; }
 .prose h2 { font: 400 34px/1.2 var(--serif); margin: 0 0 14px; }
 .prose p { font-size: 16px; line-height: 1.95; color: var(--ink-soft); }
