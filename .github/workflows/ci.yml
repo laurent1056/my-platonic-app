@@ -24,6 +24,12 @@ jobs:
         with:
           node-version: 24
           cache: npm
+      - name: Use Python for dossier validation
+        uses: actions/setup-python@v6
+        with:
+          python-version: '3.12'
+      - name: Install dossier validation dependency
+        run: python -m pip install --disable-pip-version-check --no-input --quiet Pillow
       - name: Install dependencies
         run: npm ci
       - name: Audit production dependencies

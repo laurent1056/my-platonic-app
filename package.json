@@ -18,7 +18,8 @@
     "audit:prod": "npm audit --audit-level=high --omit=dev",
     "stripe:create-payment-link": "node scripts/create-stripe-payment-link.mjs",
     "test:storefront": "node --test scripts/test-storefront.mjs",
-    "test:dossier": "node --test scripts/test-dossier-parity.mjs",
+    "build:dossier:html": "python3 scripts/build-dossier-delta.py --html-only",
+    "test:dossier": "npm run build:dossier:html && node --test scripts/test-dossier-parity.mjs",
     "audit:launch": "node scripts/launch-audit.mjs",
     "test": "npm run check && npm run test:institution && npm run build && npm run test:dossier && npm run test:storefront"
   },
