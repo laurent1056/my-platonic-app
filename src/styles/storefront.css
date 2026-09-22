@@ -78,7 +78,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .store-section { padding: var(--shop-space) 0 48px; }
 .store-section-heading { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; margin-bottom: 28px; }
 .store-section-heading .eyebrow { margin-bottom: 12px; }
-.store-section-heading h2, .inside-section h2, .sample-section h2, .help-aside h2, .campaign-layout h2, .auth-aside h2 { font: 400 clamp(34px, 3.8vw, 50px)/1.1 var(--serif); letter-spacing: -.02em; margin: 0; }
+.store-section-heading h2, .inside-section h2, .sample-section h2, .help-aside h2, .campaign-layout h2 { font: 400 clamp(34px, 3.8vw, 50px)/1.1 var(--serif); letter-spacing: -.02em; margin: 0; }
 .collection-pills { display: flex; flex-wrap: wrap; gap: 9px; margin: 28px 0; }
 .collection-pills a { min-height: 44px; border: 1px solid var(--line-strong); padding: 9px 13px; font-size: 12px; display: flex; align-items: center; gap: 22px; }
 .collection-pills a:hover { background: var(--ink); color: var(--paper); }
@@ -175,7 +175,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .faq-section details p { max-width: 760px; color: var(--muted); font-size: 14px; line-height: 1.9; margin: 20px 0 0; }
 .transaction-grid { display: grid; grid-template-columns: 1.5fr 1fr; gap: 60px; align-items: start; margin-top: 35px; }
 .cart-line { border-block: 1px solid var(--line-strong); display: flex; align-items: center; gap: 25px; padding: 30px 0; }
-.cart-line h2, .saved-dossier h2 { font: 500 30px/1.2 var(--serif); margin: 0; }
+.cart-line h2 { font: 500 30px/1.2 var(--serif); margin: 0; }
 .cart-line p { font-size: 12px; color: var(--muted); }
 .cart-line > strong { margin-left: auto; font-size: 14px; }
 .cart-cover { flex-shrink: 0; width: 105px; }
@@ -239,30 +239,6 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
 .campaign-layout { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 60px; padding: 50px; background: var(--paper-deep); }
 .campaign-layout > .dossier-object { justify-self: center; }
 .campaign-layout p { color: var(--muted); line-height: 1.9; font-size: 15px; }
-.account-layout { display: grid; grid-template-columns: 220px minmax(0, 1fr); gap: 60px; border-top: 1px solid var(--line-strong); padding-top: 30px; }
-.account-nav { display: flex; flex-direction: column; align-self: start; }
-.account-nav a { font-size: 13px; display: flex; justify-content: space-between; gap: 15px; padding: 15px 12px; border-bottom: 1px solid var(--line); }
-.account-nav a[aria-current] { background: var(--ink); color: var(--paper); }
-.account-content { min-width: 0; }
-.account-content > .preview-note { margin: 0 0 30px; }
-.account-welcome { padding: 25px 0; }
-.account-welcome h2, .account-content > div > h2 { font: 400 38px/1.1 var(--serif); margin: 0 0 22px; }
-.account-welcome > p:not(.eyebrow) { font-size: 15px; color: var(--muted); line-height: 1.9; max-width: 650px; }
-.account-links { display: grid; grid-template-columns: 1fr 1fr; border-top: 1px solid var(--line); gap: 35px; padding-top: 25px; }
-.account-links h3 { font: 400 28px var(--serif); margin: 0; }
-.account-links p { font-size: 13px; color: var(--muted); }
-.account-links span { font-size: 12px; text-decoration: underline; text-underline-offset: 4px; }
-.account-facts { margin: 30px 0; }
-.account-facts > div { display: flex; justify-content: space-between; gap: 25px; padding: 16px 0; border-bottom: 1px solid var(--line); font-size: 13px; }
-.account-facts dd { margin: 0; color: var(--muted); }
-.saved-dossier { display: flex; gap: 35px; align-items: center; }
-.saved-dossier p { font-size: 13px; color: var(--muted); }
-.auth-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 90px; max-width: 1000px; }
-.auth-panel form { display: grid; gap: 22px; margin-top: 30px; }
-.auth-links { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 20px; font-size: 12px; text-decoration: underline; margin-top: 25px; }
-.auth-links a { min-width: 44px; min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
-.auth-aside { padding: 45px; background: var(--paper-deep); }
-.auth-aside > p:not(.eyebrow) { font-size: 14px; line-height: 1.9; color: var(--muted); margin: 25px 0; }
 .directory-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; }
 .directory-grid h2 { font: 400 30px var(--serif); border-bottom: 1px solid var(--line-strong); padding-bottom: 15px; margin-top: 0; }
 .directory-grid a { min-height: 44px; display: flex; align-items: center; justify-content: space-between; gap: 20px; font-size: 14px; padding: 10px 0; }
@@ -280,7 +256,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .store-hero h1 { font-size: 72px; }
   .category-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .featured-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
-  .inside-section, .product-detail, .sample-section, .content-layout, .help-layout, .auth-layout { gap: 40px; }
+  .inside-section, .product-detail, .sample-section, .content-layout, .help-layout { gap: 40px; }
   .catalog-controls { grid-template-columns: 1.5fr 1fr 1fr; }
   .catalog-search { grid-column: 1 / -1; }
   .product-art { padding: 35px; }
@@ -320,7 +296,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .card-model { font-size: 12px; }
   .collection-pills { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 8px; }
   .collection-pills a { flex-shrink: 0; }
-  .inside-section, .sample-section, .product-detail, .help-layout, .content-layout, .campaign-layout, .auth-layout, .transaction-grid, .account-layout { grid-template-columns: 1fr; gap: 35px; }
+  .inside-section, .sample-section, .product-detail, .help-layout, .content-layout, .campaign-layout, .transaction-grid { grid-template-columns: 1fr; gap: 35px; }
   .inside-section { gap: 40px; }
   .dossier-offer { flex-direction: column; align-items: stretch; padding: 28px; gap: 25px; }
   .dossier-offer h2 { font-size: 34px; }
@@ -352,17 +328,7 @@ h1 em, h2 em { color: var(--accent); font-weight: 400; }
   .comparison-table thead span { font-size: 12px; }
   .campaign-layout { padding: 30px; }
   .campaign-layout .dossier-object { width: 240px; }
-  .account-nav { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); overflow: visible; border-top: 1px solid var(--line); }
-  .account-nav a { min-height: 48px; white-space: normal; padding: 12px; }
-  .account-nav a:nth-child(odd) { border-right: 1px solid var(--line); }
-  .account-nav a:last-child { grid-column: 1 / -1; border-right: 0; }
-  .account-nav a span { display: none; }
-  .account-links { gap: 22px; }
-  .saved-dossier { align-items: flex-start; gap: 22px; }
-  .saved-dossier .action-row { gap: 16px; }
-  .saved-dossier .button { padding: 12px; font-size: 12px; }
   .directory-grid { grid-template-columns: 1fr; gap: 30px; }
-  .auth-aside { padding: 30px; }
 }
 @media (prefers-reduced-motion: reduce) { .hero-book-stage .dossier-cover { transition: none; } html { scroll-behavior: auto; } }
 /* Keep the existing register's advanced discovery controls available. */

@@ -10,7 +10,7 @@ export default defineConfig({
   trailingSlash: 'always',
   adapter: vercel(),
   integrations: [sitemap({
-    filter: (page) => !/^\/(account(?:\/|$)|cart\/|checkout\/|order-confirmation\/|purchase(?:\/|$)|search\/|page-directory\/|privacy\/|terms\/|shipping-returns\/|gift-card\/|404)/.test(new URL(page).pathname),
+    filter: (page) => !/^\/(cart\/|checkout\/|order-confirmation\/|purchase(?:\/|$)|search\/|page-directory\/|privacy\/|terms\/|shipping-returns\/|gift-card\/|404)/.test(new URL(page).pathname),
   })],
   vite: {
     plugins: [tailwindcss()],

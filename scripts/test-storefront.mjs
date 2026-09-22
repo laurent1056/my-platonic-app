@@ -21,13 +21,13 @@ test('every built page offers the same dossier, including existing editorial rou
 })
 
 test('all requested page families have navigable destinations', async () => {
-  const routes = ['register', 'collections/kitchen-cooking', 'dossier', 'search', 'cart', 'checkout', 'order-confirmation', 'account/login', 'account/register', 'account/password-reset', 'account', 'account/orders', 'account/orders/preview', 'account/addresses', 'account/payment-methods', 'account/wishlist', 'campaign', 'journal', 'journal/the-value-of-no', 'about', 'contact', 'help', 'shipping-returns', 'privacy', 'terms', 'store-locator', 'brands', 'gift-card', 'size-guide', 'compare', 'account/subscriptions', 'page-directory']
+  const routes = ['register', 'collections/kitchen-cooking', 'dossier', 'search', 'cart', 'checkout', 'order-confirmation', 'campaign', 'journal', 'journal/the-value-of-no', 'about', 'contact', 'help', 'shipping-returns', 'privacy', 'terms', 'store-locator', 'brands', 'gift-card', 'size-guide', 'compare', 'page-directory']
   for (const route of routes) assert.match(await html(route), /<main id="main">/, route)
   assert.match(await readFile(path.join(root, '404.html'), 'utf8'), /Page not found/)
 })
 
-test('checkout and account previews are noindex and do not offer editable credential or payment inputs', async () => {
-  for (const route of ['cart', 'checkout', 'order-confirmation', 'account', 'account/login', 'account/register', 'account/password-reset', 'account/orders', 'account/payment-methods']) {
+test('checkout previews are noindex and do not offer editable credential or payment inputs', async () => {
+  for (const route of ['cart', 'checkout', 'order-confirmation']) {
     const content = await html(route)
     assert.match(content, /name="robots" content="noindex,follow"/, route)
     for (const [input] of content.matchAll(/<input\b[^>]*>/g)) assert.match(input, /\bdisabled\b/, `${route}: ${input}`)
@@ -73,7 +73,7 @@ test('catalog retains ownership and evidence controls, including empty verdicts'
 
 test('preview and transaction routes are excluded from the sitemap', async () => {
   const sitemap = await readFile(path.join(root, 'sitemap-0.xml'), 'utf8')
-  assert.doesNotMatch(sitemap, /<loc>[^<]*\/(?:account(?:\/[^<]*)?|cart\/|checkout\/|order-confirmation\/|purchase(?:\/[^<]*)?|privacy\/|terms\/|page-directory\/)<\/loc>/)
+  assert.doesNotMatch(sitemap, /<loc>[^<]*\/(?:cart\/|checkout\/|order-confirmation\/|purchase(?:\/[^<]*)?|privacy\/|terms\/|page-directory\/)<\/loc>/)
   assert.match(sitemap, /\/dossier\/<\/loc>/)
 })
 

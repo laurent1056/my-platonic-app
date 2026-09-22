@@ -95,9 +95,7 @@ const structuredData = {
 }
 const serializedStructuredData = JSON.stringify(structuredData).replace(/</g, '\\u003c')
 const routePath = Astro.url.pathname
-const inferredCurrent = /\/account(\/|$)/.test(routePath)
-  ? 'account'
-  : /\/(register|collections|category)(\/|$)/.test(routePath)
+const inferredCurrent = /\/(register|collections|category)(\/|$)/.test(routePath)
     ? 'register'
     : /\/journal(\/|$)/.test(routePath)
       ? 'journal'

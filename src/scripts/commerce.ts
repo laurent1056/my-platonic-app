@@ -3,12 +3,12 @@ import { dossier } from '@/data/dossier'
 import { track } from './analytics'
 const key = 'PI_DOSSIER_PREVIEW_V1'
 const fulfillmentKey = 'PI_DOSSIER_FULFILLMENT_TRACKED_V2'
-type PreviewState = { cart: boolean; saved: boolean; order: boolean }
+type PreviewState = { cart: boolean; order: boolean }
 function read(): PreviewState {
   try {
     const value = JSON.parse(localStorage.getItem(key) || '{}')
-    return { cart: value?.cart === true, saved: value?.saved === true, order: value?.order === true }
-  } catch { return { cart: false, saved: false, order: false } }
+    return { cart: value?.cart === true, order: value?.order === true }
+  } catch { return { cart: false, order: false } }
 }
 let state = read()
 let toastTimer: ReturnType<typeof setTimeout>
@@ -28,11 +28,8 @@ function render() {
   document.querySelectorAll<HTMLElement>('[data-cart-count]').forEach(el => { el.hidden = !state.cart })
   document.querySelectorAll<HTMLElement>('[data-cart-filled]').forEach(el => { el.hidden = !state.cart })
   document.querySelectorAll<HTMLElement>('[data-cart-empty]').forEach(el => { el.hidden = state.cart })
-  document.querySelectorAll<HTMLElement>('[data-saved-filled]').forEach(el => { el.hidden = !state.saved })
-  document.querySelectorAll<HTMLElement>('[data-saved-empty]').forEach(el => { el.hidden = state.saved })
   document.querySelectorAll<HTMLElement>('[data-order-filled]').forEach(el => { el.hidden = !state.order })
   document.querySelectorAll<HTMLElement>('[data-order-empty]').forEach(el => { el.hidden = state.order })
-  document.querySelectorAll<HTMLButtonElement>('[data-save-dossier]').forEach(el => { el.setAttribute('aria-pressed', String(state.saved)); el.textContent = state.saved ? 'Saved · Remove' : 'Save for later' })
   document.querySelectorAll<HTMLButtonElement>('[data-add-dossier]').forEach(el => { el.textContent = state.cart ? 'Dossier in cart · View cart →' : `Add the dossier to cart · ${dossier.priceLabel} →` })
 }
 document.querySelectorAll<HTMLButtonElement>('[data-add-dossier]').forEach(button => button.addEventListener('click', () => {
@@ -42,9 +39,6 @@ document.querySelectorAll<HTMLButtonElement>('[data-add-dossier]').forEach(butto
 }))
 document.querySelectorAll<HTMLButtonElement>('[data-remove-dossier]').forEach(button => button.addEventListener('click', () => {
   if (save({ ...state, cart: false })) announce('The dossier was removed from your cart.')
-}))
-document.querySelectorAll<HTMLButtonElement>('[data-save-dossier]').forEach(button => button.addEventListener('click', () => {
-  if (save({ ...state, saved: !state.saved })) announce(state.saved ? 'Dossier saved on this device.' : 'Dossier removed from saved items.')
 }))
 document.querySelector<HTMLButtonElement>('[data-complete-preview]')?.addEventListener('click', () => {
   if (!state.cart) { announce('Add the dossier before trying checkout.'); return }
