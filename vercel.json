@@ -19,7 +19,17 @@
       "permanent": true
     },
     {
+      "source": "/account/",
+      "destination": "/help/",
+      "permanent": true
+    },
+    {
       "source": "/account/:path*",
+      "destination": "/help/",
+      "permanent": true
+    },
+    {
+      "source": "/account/:path*/",
       "destination": "/help/",
       "permanent": true
     },
