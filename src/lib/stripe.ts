@@ -3,7 +3,10 @@ import Stripe from 'stripe'
 import { dossier } from '@/data/dossier'
 
 const checkoutSessionPattern = /^cs_(?:test_|live_)?[A-Za-z0-9]+$/
-const stripeSecretKeyPattern = /^sk_(?:test_|live_)[A-Za-z0-9]+$/
+// Stripe restricted keys (rk_*) are valid server credentials too. The live
+// production integration intentionally uses a restricted key with only the
+// Checkout Sessions permission it needs.
+const stripeSecretKeyPattern = /^(?:sk|rk)_(?:test_|live_)[A-Za-z0-9]+$/
 const downloadTokenPattern = /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/
 const downloadTokenLifetimeSeconds = 30 * 24 * 60 * 60
 let cachedClient: Stripe | null | undefined
