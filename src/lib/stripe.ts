@@ -8,7 +8,10 @@ const checkoutSessionPattern = /^cs_(?:test_|live_)?[A-Za-z0-9]+$/
 // Checkout Sessions permission it needs.
 const stripeSecretKeyPattern = /^(?:sk|rk)_(?:test_|live_)[A-Za-z0-9]+$/
 const downloadTokenPattern = /^[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$/
-const downloadTokenLifetimeSeconds = 30 * 24 * 60 * 60
+// Give purchasers enough time to find the fulfillment email without making
+// the signed bearer link permanent. Support can issue a fresh link after it
+// expires.
+const downloadTokenLifetimeSeconds = 90 * 24 * 60 * 60
 let cachedClient: Stripe | null | undefined
 
 function env(name: string): string | undefined {

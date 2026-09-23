@@ -29,7 +29,7 @@ const downloadHref = downloadToken
           {deliveryConfigured && downloadHref
             ? <a class="button" href={downloadHref} data-analytics-event="fulfillment" data-analytics-download-type="paid_dossier" data-analytics-access-type="paid" data-analytics-trial="false" data-analytics-file-name={`${dossier.editionId}.pdf`} data-analytics-file-extension="pdf" data-analytics-edition-id={dossier.editionId} data-analytics-transaction-id={sessionId || undefined}>Download the dossier →</a>
             : <p>Delivery is still being connected. Keep your Stripe receipt and contact support if the download does not arrive.</p>}
-          <p class="fine-print">This link grants access to the paid edition. Please do not share it publicly.</p>
+          <p class="fine-print">This personal link remains active for 90 days. Please do not share it publicly. If you lose it or it expires, contact help@platonicidealguide.com from the purchasing email and we can resend access.</p>
         </div>
       </> : <>
         <h1>We’re checking<br /><em>your purchase.</em></h1>

@@ -75,6 +75,10 @@ Copy the endpoint signing secret into `STRIPE_WEBHOOK_SECRET`. The webhook
 verifies Stripe's signature against the raw request body and optionally sends a
 download email when the Resend variables are configured.
 
+Download links are signed to the paid Stripe session and remain valid for 90
+days. Purchasers can download repeatedly during that period; support can issue
+a fresh link after expiry.
+
 ## Test-mode launch check
 
 Before switching to live mode:
