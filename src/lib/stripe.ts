@@ -113,7 +113,7 @@ export async function getPaidDossierSession(sessionId: string | null | undefined
       expand: ['line_items.data.price'],
     })
 
-    const expectedLiveMode = secretKey.startsWith('sk_live_')
+    const expectedLiveMode = /^(?:sk|rk)_live_/.test(secretKey)
     if (
       session.livemode !== expectedLiveMode ||
       session.status !== 'complete' ||
